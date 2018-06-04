@@ -122,6 +122,7 @@ public class LinkedList<E>
     /**
      * Links e as first element.
      */
+    // 链表操作：头插
     private void linkFirst(E e) {
         final Node<E> f = first;
         final Node<E> newNode = new Node<>(null, e, f);
@@ -967,6 +968,7 @@ public class LinkedList<E>
         }
     }
 
+    // 链表的结点：是一个内部类
     private static class Node<E> {
         E item;
         Node<E> next;
