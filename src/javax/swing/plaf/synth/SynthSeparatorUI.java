@@ -37,7 +37,7 @@ import javax.swing.plaf.DimensionUIResource;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JSeparator}.
+ * {@link javax.swing.JSeparator}.
  *
  * @author Shannon Hickey
  * @author Joshua Outwater

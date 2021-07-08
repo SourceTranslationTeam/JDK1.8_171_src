@@ -38,7 +38,7 @@ import java.io.*;
  *
  * @author  David Connelly
  * @see     Manifest
- * @see     ZipOutputStream
+ * @see     java.util.zip.ZipOutputStream
  * @since   1.2
  */
 public

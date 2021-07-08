@@ -91,7 +91,7 @@ public interface NotificationBroadcaster {
     public void addNotificationListener(NotificationListener listener,
                                         NotificationFilter filter,
                                         Object handback)
-            throws IllegalArgumentException;
+            throws java.lang.IllegalArgumentException;
 
     /**
      * Removes a listener from this MBean.  If the listener

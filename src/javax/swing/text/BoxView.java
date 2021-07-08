@@ -857,7 +857,7 @@ public class BoxView extends CompositeView {
      * @param r the <code>SizeRequirements</code> object;
      *          if <code>null</code> one will be created
      * @return the newly initialized <code>SizeRequirements</code> object
-     * @see SizeRequirements
+     * @see javax.swing.SizeRequirements
      */
     protected SizeRequirements calculateMajorAxisRequirements(int axis, SizeRequirements r) {
         // calculate tiled request
@@ -891,7 +891,7 @@ public class BoxView extends CompositeView {
      * @param r the <code>SizeRequirements</code> object;
      *          if <code>null</code> one will be created
      * @return the newly initialized <code>SizeRequirements</code> object
-     * @see SizeRequirements
+     * @see javax.swing.SizeRequirements
      */
     protected SizeRequirements calculateMinorAxisRequirements(int axis, SizeRequirements r) {
         int min = 0;

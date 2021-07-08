@@ -35,7 +35,7 @@ import java.io.Serializable;
  *
  * @author Steve Wilson
  *
- * @see Color
+ * @see java.awt.Color
  */
 public class DefaultColorSelectionModel implements ColorSelectionModel, Serializable {
 

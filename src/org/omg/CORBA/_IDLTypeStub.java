@@ -35,7 +35,7 @@ package org.omg.CORBA;
 * 03 June 1999 11:33:44 o'clock GMT+00:00
 */
 
-public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements IDLType
+public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements org.omg.CORBA.IDLType
 {
   /**
    * Constructs a default <code>_IDLTypeStub</code> object.
@@ -62,18 +62,18 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements I
     _set_delegate (delegate);
   }
 
-  public TypeCode type ()
+  public org.omg.CORBA.TypeCode type ()
   {
     org.omg.CORBA.portable.InputStream _in = null;
     try {
        org.omg.CORBA.portable.OutputStream _out = _request ("_get_type", true);
        _in = _invoke (_out);
-       TypeCode __result = _in.read_TypeCode ();
+       org.omg.CORBA.TypeCode __result = _in.read_TypeCode ();
        return __result;
     } catch (org.omg.CORBA.portable.ApplicationException _ex) {
        _in = _ex.getInputStream ();
        String _id = _ex.getId ();
-       throw new MARSHAL (_id);
+       throw new org.omg.CORBA.MARSHAL (_id);
     } catch (org.omg.CORBA.portable.RemarshalException _rm) {
        return type ();
     } finally {
@@ -83,18 +83,18 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements I
 
 
   // read interface
-  public DefinitionKind def_kind ()
+  public org.omg.CORBA.DefinitionKind def_kind ()
   {
     org.omg.CORBA.portable.InputStream _in = null;
     try {
        org.omg.CORBA.portable.OutputStream _out = _request ("_get_def_kind", true);
        _in = _invoke (_out);
-       DefinitionKind __result = DefinitionKindHelper.read (_in);
+       org.omg.CORBA.DefinitionKind __result = org.omg.CORBA.DefinitionKindHelper.read (_in);
        return __result;
     } catch (org.omg.CORBA.portable.ApplicationException _ex) {
        _in = _ex.getInputStream ();
        String _id = _ex.getId ();
-       throw new MARSHAL (_id);
+       throw new org.omg.CORBA.MARSHAL (_id);
     } catch (org.omg.CORBA.portable.RemarshalException _rm) {
        return def_kind ();
     } finally {
@@ -113,7 +113,7 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements I
     } catch (org.omg.CORBA.portable.ApplicationException _ex) {
        _in = _ex.getInputStream ();
        String _id = _ex.getId ();
-       throw new MARSHAL (_id);
+       throw new org.omg.CORBA.MARSHAL (_id);
     } catch (org.omg.CORBA.portable.RemarshalException _rm) {
        destroy ();
     } finally {
@@ -136,7 +136,7 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements I
      try
      {
        String str = s.readUTF ();
-       Object obj = ORB.init ().string_to_object (str);
+       org.omg.CORBA.Object obj = org.omg.CORBA.ORB.init ().string_to_object (str);
        org.omg.CORBA.portable.Delegate delegate = ((org.omg.CORBA.portable.ObjectImpl) obj)._get_delegate ();
        _set_delegate (delegate);
      } catch (java.io.IOException e) {}
@@ -146,7 +146,7 @@ public class _IDLTypeStub extends org.omg.CORBA.portable.ObjectImpl implements I
   {
      try
      {
-       String str = ORB.init ().object_to_string (this);
+       String str = org.omg.CORBA.ORB.init ().object_to_string (this);
        s.writeUTF (str);
      } catch (java.io.IOException e) {}
   }

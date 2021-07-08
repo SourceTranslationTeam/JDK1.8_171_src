@@ -30,7 +30,7 @@ package java.net;
  * a socket address.
  * A {@code Proxy} is an immutable object.
  *
- * @see     ProxySelector
+ * @see     java.net.ProxySelector
  * @author Yingxian Wang
  * @author Jean-Christophe Collet
  * @since   1.5
@@ -143,7 +143,7 @@ public class Proxy {
      * @param   obj   the object to compare against.
      * @return  {@code true} if the objects are the same;
      *          {@code false} otherwise.
-     * @see InetSocketAddress#equals(Object)
+     * @see java.net.InetSocketAddress#equals(java.lang.Object)
      */
     public final boolean equals(Object obj) {
         if (obj == null || !(obj instanceof Proxy))

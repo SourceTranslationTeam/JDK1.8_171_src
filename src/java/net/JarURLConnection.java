@@ -123,12 +123,12 @@ import sun.net.www.ParseUtil;
  *
  * </ul>
  *
- * @see URL
- * @see URLConnection
+ * @see java.net.URL
+ * @see java.net.URLConnection
  *
- * @see JarFile
+ * @see java.util.jar.JarFile
  * @see java.util.jar.JarInputStream
- * @see Manifest
+ * @see java.util.jar.Manifest
  * @see java.util.zip.ZipEntry
  *
  * @author Benjamin Renaud

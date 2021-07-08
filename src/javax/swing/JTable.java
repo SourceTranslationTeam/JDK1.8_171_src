@@ -51,6 +51,9 @@ import java.text.MessageFormat;
 
 import javax.print.attribute.*;
 import javax.print.PrintService;
+
+import sun.awt.AWTAccessor;
+import sun.awt.AWTAccessor.MouseEventAccessor;
 import sun.reflect.misc.ReflectUtil;
 
 import sun.swing.SwingUtilities2;
@@ -201,7 +204,7 @@ import sun.swing.PrintingStatus;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  *
  * @beaninfo
@@ -210,8 +213,8 @@ import sun.swing.PrintingStatus;
  *
  * @author Philip Milne
  * @author Shannon Hickey (printing support)
- * @see DefaultTableModel
- * @see TableRowSorter
+ * @see javax.swing.table.DefaultTableModel
+ * @see javax.swing.table.TableRowSorter
  */
 /* The first versions of the JTable, contained in Swing-0.1 through
  * Swing-0.4, were written by Alan Chung.
@@ -250,7 +253,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
     /**
      * Printing modes, used in printing <code>JTable</code>s.
      *
-     * @see #print(PrintMode, MessageFormat, MessageFormat,
+     * @see #print(JTable.PrintMode, MessageFormat, MessageFormat,
      *             boolean, PrintRequestAttributeSet, boolean)
      * @see #getPrintable
      * @since 1.5
@@ -643,7 +646,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *
      * @param numRows           the number of rows the table holds
      * @param numColumns        the number of columns the table holds
-     * @see DefaultTableModel
+     * @see javax.swing.table.DefaultTableModel
      */
     public JTable(int numRows, int numColumns) {
         this(new DefaultTableModel(numRows, numColumns));
@@ -1420,7 +1423,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *            <code>b</code> is <code>true</code> and
      *            <code>GraphicsEnvironment.isHeadless()</code>
      *            returns <code>true</code>
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #getDragEnabled
      * @see #setTransferHandler
      * @see TransferHandler
@@ -1828,7 +1831,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *
      * @param autoCreateRowSorter whether or not a {@code RowSorter}
      *        should be automatically created
-     * @see TableRowSorter
+     * @see javax.swing.table.TableRowSorter
      * @beaninfo
      *        bound: true
      *    preferred: true
@@ -1904,7 +1907,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *
      * @param sorter the <code>RowSorter</code>; <code>null</code> turns
      *        sorting off
-     * @see TableRowSorter
+     * @see javax.swing.table.TableRowSorter
      * @beaninfo
      *        bound: true
      *  description: The table's RowSorter
@@ -2611,7 +2614,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *         the row isn't visible
      * @throws IndexOutOfBoundsException if sorting is enabled and passed an
      *         index outside the number of rows of the <code>TableModel</code>
-     * @see TableRowSorter
+     * @see javax.swing.table.TableRowSorter
      * @since 1.6
      */
     public int convertRowIndexToView(int modelRowIndex) {
@@ -2632,7 +2635,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * @throws IndexOutOfBoundsException if sorting is enabled and passed an
      *         index outside the range of the <code>JTable</code> as
      *         determined by the method <code>getRowCount</code>
-     * @see TableRowSorter
+     * @see javax.swing.table.TableRowSorter
      * @see #getRowCount
      * @since 1.6
      */
@@ -3404,6 +3407,9 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
                                           event.getClickCount(),
                                           event.isPopupTrigger(),
                                           MouseEvent.NOBUTTON);
+                MouseEventAccessor meAccessor = AWTAccessor.getMouseEventAccessor();
+                meAccessor.setCausedByTouchEvent(newEvent,
+                    meAccessor.isCausedByTouchEvent(event));
 
                 tip = ((JComponent)component).getToolTipText(newEvent);
             }
@@ -5308,7 +5314,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
     /**
      * Creates default cell renderers for objects, numbers, doubles, dates,
      * booleans, and icons.
-     * @see DefaultTableCellRenderer
+     * @see javax.swing.table.DefaultTableCellRenderer
      *
      */
     protected void createDefaultRenderers() {
@@ -5547,7 +5553,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * method to return a different table model object.
      *
      * @return the default table model object
-     * @see DefaultTableModel
+     * @see javax.swing.table.DefaultTableModel
      */
     protected TableModel createDefaultDataModel() {
         return new DefaultTableModel();
@@ -5559,7 +5565,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * method to return a different column model object.
      *
      * @return the default column model object
-     * @see DefaultTableColumnModel
+     * @see javax.swing.table.DefaultTableColumnModel
      */
     protected TableColumnModel createDefaultColumnModel() {
         return new DefaultTableColumnModel();
@@ -5571,7 +5577,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * method to return a different selection model object.
      *
      * @return the default selection model object
-     * @see DefaultListSelectionModel
+     * @see javax.swing.DefaultListSelectionModel
      */
     protected ListSelectionModel createDefaultSelectionModel() {
         return new DefaultListSelectionModel();
@@ -5583,7 +5589,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * method to return a different table header object.
      *
      * @return the default table header object
-     * @see JTableHeader
+     * @see javax.swing.table.JTableHeader
      */
     protected JTableHeader createDefaultTableHeader() {
         return new JTableHeader(columnModel);
@@ -5663,8 +5669,8 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * @return the assigned renderer; if <code>null</code>
      *                  returns the default renderer
      *                  for this type of object
-     * @see DefaultTableCellRenderer
-     * @see TableColumn#setCellRenderer
+     * @see javax.swing.table.DefaultTableCellRenderer
+     * @see javax.swing.table.TableColumn#setCellRenderer
      * @see #setDefaultRenderer
      */
     public TableCellRenderer getCellRenderer(int row, int column) {
@@ -5688,7 +5694,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * them from appearing in the printed output. To do other
      * customizations based on whether or not the table is being
      * printed, you can check the value of
-     * {@link JComponent#isPaintingForPrint()}, either here
+     * {@link javax.swing.JComponent#isPaintingForPrint()}, either here
      * or within custom renderers.
      * <p>
      * <b>Note:</b>
@@ -5983,7 +5989,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *                           initiate a print job request
      * @throws PrinterException if an error in the print system causes the job
      *                          to be aborted
-     * @see #print(PrintMode, MessageFormat, MessageFormat,
+     * @see #print(JTable.PrintMode, MessageFormat, MessageFormat,
      *             boolean, PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
      *
@@ -6009,7 +6015,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *                           initiate a print job request
      * @throws PrinterException if an error in the print system causes the job
      *                          to be aborted
-     * @see #print(PrintMode, MessageFormat, MessageFormat,
+     * @see #print(JTable.PrintMode, MessageFormat, MessageFormat,
      *             boolean, PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
      *
@@ -6041,7 +6047,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *                           initiate a print job request
      * @throws PrinterException if an error in the print system causes the job
      *                          to be aborted
-     * @see #print(PrintMode, MessageFormat, MessageFormat,
+     * @see #print(JTable.PrintMode, MessageFormat, MessageFormat,
      *             boolean, PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
      *
@@ -6058,7 +6064,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
 
     /**
      * Prints this table, as specified by the fully featured
-     * {@link #print(PrintMode, MessageFormat, MessageFormat,
+     * {@link #print(JTable.PrintMode, MessageFormat, MessageFormat,
      * boolean, PrintRequestAttributeSet, boolean, PrintService) print}
      * method, with the default printer specified as the print service.
      *
@@ -6083,7 +6089,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *                           initiate a print job request
      * @throws PrinterException if an error in the print system causes the job
      *                          to be aborted
-     * @see #print(PrintMode, MessageFormat, MessageFormat,
+     * @see #print(JTable.PrintMode, MessageFormat, MessageFormat,
      *             boolean, PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
      *
@@ -6150,7 +6156,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * during printing such that selection and focus are not indicated.
      * As far as customizing further how the table looks in the printout,
      * developers can provide custom renderers or paint code that conditionalize
-     * on the value of {@link JComponent#isPaintingForPrint()}.
+     * on the value of {@link javax.swing.JComponent#isPaintingForPrint()}.
      * <p>
      * See {@link #getPrintable} for more description on how the table is
      * printed.
@@ -6175,12 +6181,12 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      *                           <code>GraphicsEnvironment.isHeadless</code>
      *                           returns <code>true</code>
      * @throws  SecurityException if a security manager exists and its
-     *          {@link SecurityManager#checkPrintJobAccess}
+     *          {@link java.lang.SecurityManager#checkPrintJobAccess}
      *          method disallows this thread from creating a print job request
      * @throws PrinterException if an error in the print system causes the job
      *                          to be aborted
      * @see #getPrintable
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      *
      * @since 1.6
      */
@@ -6400,7 +6406,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * <code>JTable</code> itself will take care of hiding the selection
      * and focus during printing. For additional customizations, your
      * renderers or painting code can customize the look based on the value
-     * of {@link JComponent#isPaintingForPrint()}
+     * of {@link javax.swing.JComponent#isPaintingForPrint()}
      * <p>
      * Also, <i>before</i> calling this method you may wish to <i>first</i>
      * modify the state of the table, such as to cancel cell editing or
@@ -6416,7 +6422,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * @param  footerFormat  a <code>MessageFormat</code> specifying the text to
      *                       be used in printing a footer, or null for none
      * @return a <code>Printable</code> for printing this JTable
-     * @see #print(PrintMode, MessageFormat, MessageFormat,
+     * @see #print(JTable.PrintMode, MessageFormat, MessageFormat,
      *             boolean, PrintRequestAttributeSet, boolean)
      * @see Printable
      * @see PrinterJob
@@ -6567,7 +6573,7 @@ public class JTable extends JComponent implements TableModelListener, Scrollable
      * the same version of Swing.  As of 1.4, support for long term storage
      * of all JavaBeans&trade;
      * has been added to the <code>java.beans</code> package.
-     * Please see {@link XMLEncoder}.
+     * Please see {@link java.beans.XMLEncoder}.
      */
     protected class AccessibleJTable extends AccessibleJComponent
     implements AccessibleSelection, ListSelectionListener, TableModelListener,

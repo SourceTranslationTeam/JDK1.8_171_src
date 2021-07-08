@@ -188,7 +188,7 @@ public class MetalInternalFrameTitlePane  extends BasicInternalFrameTitlePane {
     }
 
     class MetalPropertyChangeHandler
-        extends PropertyChangeHandler
+        extends BasicInternalFrameTitlePane.PropertyChangeHandler
     {
         public void propertyChange(PropertyChangeEvent evt) {
             String prop = evt.getPropertyName();

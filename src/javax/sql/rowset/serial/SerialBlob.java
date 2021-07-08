@@ -131,7 +131,7 @@ public class SerialBlob implements Blob, Serializable, Cloneable {
      * @throws SerialException if an error occurs during serialization
      * @throws SQLException if the <code>Blob</code> passed to this
      *     to this constructor is a <code>null</code>.
-     * @see Blob
+     * @see java.sql.Blob
      */
     public SerialBlob (Blob blob)
             throws SerialException, SQLException {
@@ -216,7 +216,7 @@ public class SerialBlob implements Blob, Serializable, Cloneable {
      * if {@code free} had previously been called on this object
      * @see #setBinaryStream
      */
-    public InputStream getBinaryStream() throws SerialException {
+    public java.io.InputStream getBinaryStream() throws SerialException {
         isValid();
         InputStream stream = new ByteArrayInputStream(buf);
         return stream;
@@ -401,7 +401,7 @@ public class SerialBlob implements Blob, Serializable, Cloneable {
      * if {@code free} had previously been called on this object
      * @see #getBinaryStream
      */
-    public OutputStream setBinaryStream(long pos)
+    public java.io.OutputStream setBinaryStream(long pos)
             throws SerialException, SQLException {
 
         isValid();

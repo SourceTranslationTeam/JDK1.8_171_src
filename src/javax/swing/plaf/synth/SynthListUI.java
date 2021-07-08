@@ -35,7 +35,7 @@ import java.beans.PropertyChangeEvent;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JList}.
+ * {@link javax.swing.JList}.
  *
  * @author Scott Violet
  * @since 1.7

@@ -30,7 +30,7 @@ package java.lang;
  * native-language definition of a method declared <code>native</code>.
  *
  * @author unascribed
- * @see     Runtime
+ * @see     java.lang.Runtime
  * @since   JDK1.0
  */
 public

@@ -49,11 +49,11 @@ import java.security.BasicPermission;
  * the security of the application, this may introduce a security hole that
  * is remotely exploitable.
  *
- * @see Endpoint
- * @see BasicPermission
+ * @see javax.xml.ws.Endpoint
+ * @see java.security.BasicPermission
  * @see java.security.Permission
  * @see java.security.Permissions
- * @see SecurityManager
+ * @see java.lang.SecurityManager
  * @see java.net.SocketPermission
  */
 public final class WebServicePermission extends BasicPermission {

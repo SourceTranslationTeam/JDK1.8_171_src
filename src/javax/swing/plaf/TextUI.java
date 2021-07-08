@@ -156,7 +156,7 @@ public abstract class TextUI extends ComponentUI
     /**
      * Returns the string to be used as the tooltip at the passed in location.
      *
-     * @see JTextComponent#getToolTipText
+     * @see javax.swing.text.JTextComponent#getToolTipText
      * @since 1.4
      */
     public String getToolTipText(JTextComponent t, Point pt) {

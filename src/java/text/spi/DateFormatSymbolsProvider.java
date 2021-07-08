@@ -32,7 +32,7 @@ import java.util.spi.LocaleServiceProvider;
 /**
  * An abstract class for service providers that
  * provide instances of the
- * {@link DateFormatSymbols DateFormatSymbols} class.
+ * {@link java.text.DateFormatSymbols DateFormatSymbols} class.
  *
  * @since        1.6
  */
@@ -53,10 +53,10 @@ public abstract class DateFormatSymbolsProvider extends LocaleServiceProvider {
      * @exception NullPointerException if <code>locale</code> is null
      * @exception IllegalArgumentException if <code>locale</code> isn't
      *     one of the locales returned from
-     *     {@link LocaleServiceProvider#getAvailableLocales()
+     *     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
      *     getAvailableLocales()}.
      * @return a <code>DateFormatSymbols</code> instance.
-     * @see DateFormatSymbols#getInstance(Locale)
+     * @see java.text.DateFormatSymbols#getInstance(java.util.Locale)
      */
     public abstract DateFormatSymbols getInstance(Locale locale);
 }

@@ -39,8 +39,8 @@ import java.util.List;
  * Applications should not create their own file descriptors.
  *
  * @author  Pavani Diwanji
- * @see     FileInputStream
- * @see     FileOutputStream
+ * @see     java.io.FileInputStream
+ * @see     java.io.FileOutputStream
  * @since   JDK1.0
  */
 public final class FileDescriptor {
@@ -68,7 +68,7 @@ public final class FileDescriptor {
      * descriptor is not used directly, but rather via the input stream
      * known as <code>System.in</code>.
      *
-     * @see     System#in
+     * @see     java.lang.System#in
      */
     public static final FileDescriptor in = new FileDescriptor(0);
 
@@ -76,7 +76,7 @@ public final class FileDescriptor {
      * A handle to the standard output stream. Usually, this file
      * descriptor is not used directly, but rather via the output stream
      * known as <code>System.out</code>.
-     * @see     System#out
+     * @see     java.lang.System#out
      */
     public static final FileDescriptor out = new FileDescriptor(1);
 
@@ -85,7 +85,7 @@ public final class FileDescriptor {
      * descriptor is not used directly, but rather via the output stream
      * known as <code>System.err</code>.
      *
-     * @see     System#err
+     * @see     java.lang.System#err
      */
     public static final FileDescriptor err = new FileDescriptor(2);
 

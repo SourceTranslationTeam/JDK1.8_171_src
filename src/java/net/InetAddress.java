@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1995, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1995, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -37,6 +37,7 @@ import java.security.AccessController;
 import java.io.ObjectStreamException;
 import java.io.ObjectStreamField;
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
 import java.io.ObjectInputStream.GetField;
 import java.io.ObjectOutputStream;
@@ -178,11 +179,11 @@ import sun.net.spi.nameservice.*;
  * </blockquote>
  *
  * @author  Chris Warth
- * @see     InetAddress#getByAddress(byte[])
- * @see     InetAddress#getByAddress(String, byte[])
- * @see     InetAddress#getAllByName(String)
- * @see     InetAddress#getByName(String)
- * @see     InetAddress#getLocalHost()
+ * @see     java.net.InetAddress#getByAddress(byte[])
+ * @see     java.net.InetAddress#getByAddress(java.lang.String, byte[])
+ * @see     java.net.InetAddress#getAllByName(java.lang.String)
+ * @see     java.net.InetAddress#getByName(java.lang.String)
+ * @see     java.net.InetAddress#getLocalHost()
  * @since JDK1.0
  */
 public
@@ -286,7 +287,7 @@ class InetAddress implements java.io.Serializable {
      * Load net library into runtime, and perform initializations.
      */
     static {
-        preferIPv6Address = AccessController.doPrivileged(
+        preferIPv6Address = java.security.AccessController.doPrivileged(
             new GetBooleanAction("java.net.preferIPv6Addresses")).booleanValue();
         AccessController.doPrivileged(
             new java.security.PrivilegedAction<Void>() {
@@ -704,7 +705,7 @@ class InetAddress implements java.io.Serializable {
      * @param   obj   the object to compare against.
      * @return  {@code true} if the objects are the same;
      *          {@code false} otherwise.
-     * @see     InetAddress#getAddress()
+     * @see     java.net.InetAddress#getAddress()
      */
     public boolean equals(Object obj) {
         return false;
@@ -935,7 +936,7 @@ class InetAddress implements java.io.Serializable {
         } else {
             final String providerName = provider;
             try {
-                nameService = AccessController.doPrivileged(
+                nameService = java.security.AccessController.doPrivileged(
                     new java.security.PrivilegedExceptionAction<NameService>() {
                         public NameService run() {
                             Iterator<NameServiceDescriptor> itr =
@@ -1021,7 +1022,7 @@ class InetAddress implements java.io.Serializable {
      */
     public static InetAddress getByAddress(String host, byte[] addr)
         throws UnknownHostException {
-        if (host != null && host.length() > 0 && host.charAt(0) == '[') {
+        if (host != null && !host.isEmpty() && host.charAt(0) == '[') {
             if (host.charAt(host.length()-1) == ']') {
                 host = host.substring(1, host.length() -1);
             }
@@ -1129,7 +1130,7 @@ class InetAddress implements java.io.Serializable {
     private static InetAddress[] getAllByName(String host, InetAddress reqAddr)
         throws UnknownHostException {
 
-        if (host == null || host.length() == 0) {
+        if (host == null || host.isEmpty()) {
             InetAddress[] ret = new InetAddress[1];
             ret[0] = impl.loopbackAddress();
             return ret;
@@ -1465,7 +1466,7 @@ class InetAddress implements java.io.Serializable {
      *             be resolved into an address.
      *
      * @see SecurityManager#checkConnect
-     * @see InetAddress#getByName(String)
+     * @see java.net.InetAddress#getByName(java.lang.String)
      */
     public static InetAddress getLocalHost() throws UnknownHostException {
 
@@ -1512,7 +1513,7 @@ class InetAddress implements java.io.Serializable {
                 }
             }
             return ret;
-        } catch (SecurityException e) {
+        } catch (java.lang.SecurityException e) {
             return impl.loopbackAddress();
         }
     }
@@ -1602,8 +1603,11 @@ class InetAddress implements java.io.Serializable {
         }
         GetField gf = s.readFields();
         String host = (String)gf.get("hostName", null);
-        int address= gf.get("address", 0);
-        int family= gf.get("family", 0);
+        int address = gf.get("address", 0);
+        int family = gf.get("family", 0);
+        if (family != IPv4 && family != IPv6) {
+            throw new InvalidObjectException("invalid address family type: " + family);
+        }
         InetAddressHolder h = new InetAddressHolder(host, address, family);
         UNSAFE.putObject(this, FIELDS_OFFSET, h);
     }

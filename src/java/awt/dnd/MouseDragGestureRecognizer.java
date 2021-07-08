@@ -57,9 +57,9 @@ import java.awt.event.MouseMotionListener;
  *
  * @author Laurence P. G. Cable
  *
- * @see DragGestureListener
- * @see DragGestureEvent
- * @see DragSource
+ * @see java.awt.dnd.DragGestureListener
+ * @see java.awt.dnd.DragGestureEvent
+ * @see java.awt.dnd.DragSource
  */
 
 public abstract class MouseDragGestureRecognizer extends DragGestureRecognizer implements MouseListener, MouseMotionListener {

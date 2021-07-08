@@ -1,8 +1,33 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 
 /*
+ *
+ *
+ *
+ *
+ *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -17,7 +42,7 @@ import sun.misc.Unsafe;
  * description of the properties of atomic variables. An
  * {@code AtomicBoolean} is used in applications such as atomically
  * updated flags, and cannot be used as a replacement for a
- * {@link Boolean}.
+ * {@link java.lang.Boolean}.
  *
  * @since 1.5
  * @author Doug Lea

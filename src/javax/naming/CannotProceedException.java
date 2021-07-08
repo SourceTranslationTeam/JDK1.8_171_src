@@ -136,7 +136,7 @@ public class CannotProceedException extends NamingException {
      * @param   explanation     A possibly null string containing additional
      *                          detail about this exception.
      *   If null, this exception has no detail message.
-     * @see Throwable#getMessage
+     * @see java.lang.Throwable#getMessage
      */
     public CannotProceedException(String explanation) {
         super(explanation);

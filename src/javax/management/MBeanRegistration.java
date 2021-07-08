@@ -58,12 +58,12 @@ public interface MBeanRegistration   {
      * parameter is not null, it will usually but not necessarily be
      * the returned value.
      *
-     * @exception Exception This exception will be caught by
+     * @exception java.lang.Exception This exception will be caught by
      * the MBean Server and re-thrown as an {@link
      * MBeanRegistrationException}.
      */
     public ObjectName preRegister(MBeanServer server,
-                                  ObjectName name) throws Exception;
+                                  ObjectName name) throws java.lang.Exception;
 
     /**
      * Allows the MBean to perform any operations needed after having been
@@ -91,11 +91,11 @@ public interface MBeanRegistration   {
      * Allows the MBean to perform any operations it needs before
      * being unregistered by the MBean server.
      *
-     * @exception Exception This exception will be caught by
+     * @exception java.lang.Exception This exception will be caught by
      * the MBean server and re-thrown as an {@link
      * MBeanRegistrationException}.
      */
-    public void preDeregister() throws Exception ;
+    public void preDeregister() throws java.lang.Exception ;
 
     /**
      * Allows the MBean to perform any operations needed after having been

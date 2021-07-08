@@ -207,8 +207,8 @@ import javax.sql.*;
  * </OL>
  *
  * @author Jonathan Bruce
- * @see SyncFactory
- * @see SyncFactoryException
+ * @see javax.sql.rowset.spi.SyncFactory
+ * @see javax.sql.rowset.spi.SyncFactoryException
  */
 public abstract class SyncProvider {
 

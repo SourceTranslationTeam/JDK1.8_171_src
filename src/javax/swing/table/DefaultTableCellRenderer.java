@@ -172,7 +172,7 @@ public class DefaultTableCellRenderer extends JLabel
      * <code>false</code> to prevent selection and focus from appearing
      * in the printed output. To do other customization based on whether
      * or not the table is being printed, check the return value from
-     * {@link JComponent#isPaintingForPrint()}.
+     * {@link javax.swing.JComponent#isPaintingForPrint()}.
      *
      * @param table  the <code>JTable</code>
      * @param value  the value to assign to the cell at
@@ -182,7 +182,7 @@ public class DefaultTableCellRenderer extends JLabel
      * @param row  the row of the cell to render
      * @param column the column of the cell to render
      * @return the default table cell renderer
-     * @see JComponent#isPaintingForPrint()
+     * @see javax.swing.JComponent#isPaintingForPrint()
      */
     public Component getTableCellRendererComponent(JTable table, Object value,
                           boolean isSelected, boolean hasFocus, int row, int column) {

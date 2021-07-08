@@ -31,7 +31,7 @@ package java.awt.image;
  * {@link BufferedImageOp} or {@link RasterOp} filter methods cannot
  * process the image.
  */
-public class ImagingOpException extends RuntimeException {
+public class ImagingOpException extends java.lang.RuntimeException {
 
     /**
      * Constructs an <code>ImagingOpException</code> object with the

@@ -45,9 +45,9 @@ package java.lang;
  * Throwable#getCause()} method, as well as the aforementioned "legacy method."
  *
  * @author  unascribed
- * @see     Class#forName(String)
- * @see     ClassLoader#findSystemClass(String)
- * @see     ClassLoader#loadClass(String, boolean)
+ * @see     java.lang.Class#forName(java.lang.String)
+ * @see     java.lang.ClassLoader#findSystemClass(java.lang.String)
+ * @see     java.lang.ClassLoader#loadClass(java.lang.String, boolean)
  * @since   JDK1.0
  */
 public class ClassNotFoundException extends ReflectiveOperationException {

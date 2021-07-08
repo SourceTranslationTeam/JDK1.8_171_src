@@ -71,7 +71,7 @@ import org.xml.sax.Locator;
  *
  * @since SAX 1.0
  * @author David Megginson
- * @see Locator Locator
+ * @see org.xml.sax.Locator Locator
  */
 public class LocatorImpl implements Locator
 {
@@ -118,7 +118,7 @@ public class LocatorImpl implements Locator
      *
      * @return The public identifier as a string, or null if none
      *         is available.
-     * @see Locator#getPublicId
+     * @see org.xml.sax.Locator#getPublicId
      * @see #setPublicId
      */
     public String getPublicId ()
@@ -132,7 +132,7 @@ public class LocatorImpl implements Locator
      *
      * @return The system identifier as a string, or null if none
      *         is available.
-     * @see Locator#getSystemId
+     * @see org.xml.sax.Locator#getSystemId
      * @see #setSystemId
      */
     public String getSystemId ()
@@ -145,7 +145,7 @@ public class LocatorImpl implements Locator
      * Return the saved line number (1-based).
      *
      * @return The line number as an integer, or -1 if none is available.
-     * @see Locator#getLineNumber
+     * @see org.xml.sax.Locator#getLineNumber
      * @see #setLineNumber
      */
     public int getLineNumber ()
@@ -158,7 +158,7 @@ public class LocatorImpl implements Locator
      * Return the saved column number (1-based).
      *
      * @return The column number as an integer, or -1 if none is available.
-     * @see Locator#getColumnNumber
+     * @see org.xml.sax.Locator#getColumnNumber
      * @see #setColumnNumber
      */
     public int getColumnNumber ()

@@ -192,7 +192,7 @@ public abstract class AbstractTableModel implements TableModel, Serializable
      *
      * @see TableModelEvent
      * @see EventListenerList
-     * @see JTable#tableChanged(TableModelEvent)
+     * @see javax.swing.JTable#tableChanged(TableModelEvent)
      */
     public void fireTableDataChanged() {
         fireTableChanged(new TableModelEvent(this));

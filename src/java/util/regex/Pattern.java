@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2017, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -46,7 +46,7 @@ import java.util.stream.StreamSupport;
  * <p> A regular expression, specified as a string, must first be compiled into
  * an instance of this class.  The resulting pattern can then be used to create
  * a {@link Matcher} object that can match arbitrary {@linkplain
- * CharSequence character sequences} against the regular
+ * java.lang.CharSequence character sequences} against the regular
  * expression.  All of the state involved in performing a match resides in the
  * matcher, so many matchers can share the same pattern.
  *
@@ -106,9 +106,9 @@ import java.util.stream.StreamSupport;
  *     <td headers="matches">The character with hexadecimal&nbsp;value&nbsp;<tt>0x</tt><i>hhhh</i></td></tr>
  * <tr><td valign="top" headers="construct characters"><tt>&#92;x</tt><i>{h...h}</i></td>
  *     <td headers="matches">The character with hexadecimal&nbsp;value&nbsp;<tt>0x</tt><i>h...h</i>
- *         ({@link Character#MIN_CODE_POINT Character.MIN_CODE_POINT}
+ *         ({@link java.lang.Character#MIN_CODE_POINT Character.MIN_CODE_POINT}
  *         &nbsp;&lt;=&nbsp;<tt>0x</tt><i>h...h</i>&nbsp;&lt;=&nbsp;
- *          {@link Character#MAX_CODE_POINT Character.MAX_CODE_POINT})</td></tr>
+ *          {@link java.lang.Character#MAX_CODE_POINT Character.MAX_CODE_POINT})</td></tr>
  * <tr><td valign="top" headers="matches"><tt>\t</tt></td>
  *     <td headers="matches">The tab character (<tt>'&#92;u0009'</tt>)</td></tr>
  * <tr><td valign="top" headers="construct characters"><tt>\n</tt></td>
@@ -569,7 +569,7 @@ import java.util.stream.StreamSupport;
  * <p>
  * The script names supported by <code>Pattern</code> are the valid script names
  * accepted and defined by
- * {@link Character.UnicodeScript#forName(String) UnicodeScript.forName}.
+ * {@link java.lang.Character.UnicodeScript#forName(String) UnicodeScript.forName}.
  *
  * <p>
  * <b><a name="ubc">Blocks</a></b> are specified with the prefix {@code In}, as in
@@ -578,7 +578,7 @@ import java.util.stream.StreamSupport;
  * <p>
  * The block names supported by <code>Pattern</code> are the valid block names
  * accepted and defined by
- * {@link Character.UnicodeBlock#forName(String) UnicodeBlock.forName}.
+ * {@link java.lang.Character.UnicodeBlock#forName(String) UnicodeBlock.forName}.
  * <p>
  *
  * <b><a name="ucc">Categories</a></b> may be specified with the optional prefix {@code Is}:
@@ -590,7 +590,7 @@ import java.util.stream.StreamSupport;
  * The supported categories are those of
  * <a href="http://www.unicode.org/unicode/standard/standard.html">
  * <i>The Unicode Standard</i></a> in the version specified by the
- * {@link Character Character} class. The category names are those
+ * {@link java.lang.Character Character} class. The category names are those
  * defined in the Standard, both normative and informative.
  * <p>
  *
@@ -756,8 +756,8 @@ import java.util.stream.StreamSupport;
  * O'Reilly and Associates, 2006.</a>
  * </p>
  *
- * @see String#split(String, int)
- * @see String#split(String)
+ * @see java.lang.String#split(String, int)
+ * @see java.lang.String#split(String)
  *
  * @author      Mike McCloskey
  * @author      Mark Reinhold
@@ -1245,7 +1245,7 @@ public final class Pattern
      * Splits the given input sequence around matches of this pattern.
      *
      * <p> This method works as if by invoking the two-argument {@link
-     * #split(CharSequence, int) split} method with the given input
+     * #split(java.lang.CharSequence, int) split} method with the given input
      * sequence and a limit argument of zero.  Trailing empty strings are
      * therefore not included in the resulting array. </p>
      *
@@ -1322,7 +1322,7 @@ public final class Pattern
 
         // if length > 0, the Pattern is lazily compiled
         compiled = false;
-        if (pattern.length() == 0) {
+        if (pattern.isEmpty()) {
             root = new Start(lastAccept);
             matchRoot = lastAccept;
             compiled = true;
@@ -1347,8 +1347,12 @@ public final class Pattern
         capturingGroupCount = 1;
         localCount = 0;
 
-        if (pattern.length() > 0) {
-            compile();
+        if (!pattern.isEmpty()) {
+            try {
+                compile();
+            } catch (StackOverflowError soe) {
+                throw error("Stack overflow during pattern compilation");
+            }
         } else {
             root = new Start(lastAccept);
             matchRoot = lastAccept;
@@ -1905,6 +1909,10 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
         int ch = temp[cursor++];
         while (ch != 0 && !isLineSeparator(ch))
             ch = temp[cursor++];
+        if (ch == 0 && cursor > patternLength) {
+            cursor = patternLength;
+            ch = temp[cursor++];
+        }
         return ch;
     }
 
@@ -1915,6 +1923,10 @@ loop:   for(int x=0, offset=0; x<nCodePoints; x++, offset+=len) {
         int ch = temp[++cursor];
         while (ch != 0 && !isLineSeparator(ch))
             ch = temp[++cursor];
+        if (ch == 0 && cursor > patternLength) {
+            cursor = patternLength;
+            ch = temp[cursor];
+        }
         return ch;
     }
 

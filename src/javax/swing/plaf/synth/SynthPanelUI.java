@@ -33,7 +33,7 @@ import java.beans.*;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JPanel}.
+ * {@link javax.swing.JPanel}.
  *
  * @author Steve Wilson
  * @since 1.7

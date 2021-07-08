@@ -51,7 +51,7 @@ public class InvalidNameException extends NamingException {
       * explanation of the problem.
       * All other fields are initialized to null.
       * @param explanation      A possibly null message explaining the problem.
-      * @see Throwable#getMessage
+      * @see java.lang.Throwable#getMessage
       */
     public InvalidNameException(String explanation) {
         super(explanation);

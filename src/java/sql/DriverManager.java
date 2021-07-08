@@ -328,7 +328,7 @@ public class DriverManager {
      * @exception SQLException if a database access error occurs
      * @exception NullPointerException if {@code driver} is null
      */
-    public static synchronized void registerDriver(Driver driver)
+    public static synchronized void registerDriver(java.sql.Driver driver)
         throws SQLException {
 
         registerDriver(driver, null);
@@ -349,7 +349,7 @@ public class DriverManager {
      * @exception NullPointerException if {@code driver} is null
      * @since 1.8
      */
-    public static synchronized void registerDriver(Driver driver,
+    public static synchronized void registerDriver(java.sql.Driver driver,
             DriverAction da)
         throws SQLException {
 

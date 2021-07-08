@@ -654,7 +654,7 @@ public interface Connection  extends Wrapper, AutoCloseable {
      * @since 1.2
      * @see #getTypeMap
      */
-    void setTypeMap(java.util.Map<String, Class<?>> map) throws SQLException;
+    void setTypeMap(java.util.Map<String,Class<?>> map) throws SQLException;
 
     //--------------------------JDBC 3.0-----------------------------
 
@@ -1120,7 +1120,7 @@ public interface Connection  extends Wrapper, AutoCloseable {
          * is less then 0
          * @since 1.6
          *
-         * @see DatabaseMetaData#getClientInfoProperties
+         * @see java.sql.DatabaseMetaData#getClientInfoProperties
          */
          boolean isValid(int timeout) throws SQLException;
 
@@ -1202,7 +1202,7 @@ public interface Connection  extends Wrapper, AutoCloseable {
      *
      * @param properties                the list of client info properties to set
      * <p>
-     * @see Connection#setClientInfo(String, String) setClientInfo(String, String)
+     * @see java.sql.Connection#setClientInfo(String, String) setClientInfo(String, String)
      * @since 1.6
      * <p>
      * @throws SQLClientInfoException if the database server returns an error while
@@ -1233,7 +1233,7 @@ public interface Connection  extends Wrapper, AutoCloseable {
          * <p>
          * @since 1.6
          *
-         * @see DatabaseMetaData#getClientInfoProperties
+         * @see java.sql.DatabaseMetaData#getClientInfoProperties
          */
          String getClientInfo(String name)
                 throws SQLException;
@@ -1364,9 +1364,9 @@ throws SQLException;
      * <code>java.lang.SecurityException</code>.
      * @param executor  The <code>Executor</code>  implementation which will
      * be used by <code>abort</code>.
-     * @throws SQLException if a database access error occurs or
+     * @throws java.sql.SQLException if a database access error occurs or
      * the {@code executor} is {@code null},
-     * @throws SecurityException if a security manager exists and its
+     * @throws java.lang.SecurityException if a security manager exists and its
      *    <code>checkPermission</code> method denies calling <code>abort</code>
      * @see SecurityManager#checkPermission
      * @see Executor
@@ -1448,11 +1448,11 @@ throws SQLException;
      * timeout period expires before the operation
      * completes, a SQLException will be thrown.
      * A value of 0 indicates that there is not timeout for database operations.
-     * @throws SQLException if a database access error occurs, this
+     * @throws java.sql.SQLException if a database access error occurs, this
      * method is called on a closed connection,
      * the {@code executor} is {@code null},
      * or the value specified for <code>seconds</code> is less than 0.
-     * @throws SecurityException if a security manager exists and its
+     * @throws java.lang.SecurityException if a security manager exists and its
      *    <code>checkPermission</code> method denies calling
      * <code>setNetworkTimeout</code>.
      * @exception SQLFeatureNotSupportedException if the JDBC driver does not support

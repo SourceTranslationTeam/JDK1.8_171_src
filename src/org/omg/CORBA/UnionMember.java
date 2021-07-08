@@ -49,21 +49,21 @@ public final class UnionMember implements org.omg.CORBA.portable.IDLEntity {
      * <code>UnionMember</code> object.
      * @serial
      */
-    public Any label;
+    public org.omg.CORBA.Any label;
 
     /**
      * The type of the union member described by this
      * <code>UnionMember</code> object.
      * @serial
      */
-    public TypeCode type;
+    public org.omg.CORBA.TypeCode type;
 
     /**
      * The typedef that represents the IDL type of the union member described by this
      * <code>UnionMember</code> object.
      * @serial
      */
-    public IDLType type_def;
+    public org.omg.CORBA.IDLType type_def;
 
     //  constructors
 
@@ -86,7 +86,7 @@ public final class UnionMember implements org.omg.CORBA.portable.IDLEntity {
      * @param __type_def an <code>IDLType</code> object that represents the
      *        IDL type of this <code>UnionMember</code> object
      */
-    public UnionMember(String __name, Any __label, TypeCode __type, IDLType __type_def) {
+    public UnionMember(String __name, org.omg.CORBA.Any __label, org.omg.CORBA.TypeCode __type, org.omg.CORBA.IDLType __type_def) {
         name = __name;
         label = __label;
         type = __type;

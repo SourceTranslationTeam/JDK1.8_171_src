@@ -39,7 +39,7 @@ import javax.print.attribute.SupportedValuesAttribute;
  * <B>IPP Compatibility:</B> The JobKOctetsSupported attribute's canonical array
  * form gives the lower and upper bound for the range of values to be included
  * in an IPP "job-k-octets-supported" attribute. See class {@link
- * SetOfIntegerSyntax SetOfIntegerSyntax} for an
+ * javax.print.attribute.SetOfIntegerSyntax SetOfIntegerSyntax} for an
  * explanation of canonical array form. The category name returned by
  * <CODE>getName()</CODE> gives the IPP attribute name.
  * <P>
@@ -106,7 +106,7 @@ public final class JobKOctetsSupported extends SetOfIntegerSyntax
      * JobKOctetsSupported itself.
      *
      * @return  Printing attribute class (category), an instance of class
-     *          {@link Class java.lang.Class}.
+     *          {@link java.lang.Class java.lang.Class}.
      */
     public final Class<? extends Attribute> getCategory() {
         return JobKOctetsSupported.class;

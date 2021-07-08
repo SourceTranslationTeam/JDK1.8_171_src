@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2012, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -31,6 +31,7 @@ import java.util.StringTokenizer;
 import java.net.MalformedURLException;
 
 import javax.naming.*;
+import com.sun.naming.internal.ObjectFactoriesFilter;
 import com.sun.naming.internal.VersionHelper;
 import com.sun.naming.internal.ResourceManager;
 import com.sun.naming.internal.FactoryEnumeration;
@@ -103,7 +104,7 @@ public class NamingManager {
      * @see #getObjectInstance
      * @see ObjectFactory
      * @see ObjectFactoryBuilder
-     * @see SecurityManager#checkSetFactory
+     * @see java.lang.SecurityManager#checkSetFactory
      */
     public static synchronized void setObjectFactoryBuilder(
             ObjectFactoryBuilder builder) throws NamingException {
@@ -143,7 +144,11 @@ public class NamingManager {
 
         // Try to use current class loader
         try {
-             clas = helper.loadClass(factoryName);
+             clas = helper.loadClassWithoutInit(factoryName);
+             // Validate factory's class with the objects factory serial filter
+             if (!ObjectFactoriesFilter.canInstantiateObjectsFactory(clas)) {
+                 return null;
+             }
         } catch (ClassNotFoundException e) {
             // ignore and continue
             // e.printStackTrace();
@@ -156,6 +161,11 @@ public class NamingManager {
                 (codebase = ref.getFactoryClassLocation()) != null) {
             try {
                 clas = helper.loadClass(factoryName, codebase);
+                // Validate factory's class with the objects factory serial filter
+                if (clas == null ||
+                    !ObjectFactoriesFilter.canInstantiateObjectsFactory(clas)) {
+                    return null;
+                }
             } catch (ClassNotFoundException e) {
             }
         }
@@ -581,7 +591,7 @@ public class NamingManager {
      * @param nameCtx Context whose provider resource file will be searched
      *          for package prefix values (or null if none)
      * @param environment Environment properties for creating the context
-     * @see InitialContext
+     * @see javax.naming.InitialContext
      */
     private static Object getURLObject(String scheme, Object urlInfo,
                                        Name name, Context nameCtx,
@@ -644,7 +654,7 @@ public class NamingManager {
      *          or if the initial context could not be created for some other
      *          reason.
      * @exception NamingException If some other naming exception was encountered.
-     * @see InitialContext
+     * @see javax.naming.InitialContext
      * @see javax.naming.directory.InitialDirContext
      */
     public static Context getInitialContext(Hashtable<?,?> env)
@@ -700,7 +710,7 @@ public class NamingManager {
      *         a non-security-related reason.
      * @exception IllegalStateException If a builder was previous installed.
      * @see #hasInitialContextFactoryBuilder
-     * @see SecurityManager#checkSetFactory
+     * @see java.lang.SecurityManager#checkSetFactory
      */
     public static synchronized void setInitialContextFactoryBuilder(
         InitialContextFactoryBuilder builder)

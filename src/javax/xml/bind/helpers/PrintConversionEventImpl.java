@@ -37,11 +37,11 @@ import javax.xml.bind.ValidationEventLocator;
  * convenience.
  *
  * @author <ul><li>Ryan Shoemaker, Sun Microsystems, Inc.</li></ul>
- * @see PrintConversionEvent
+ * @see javax.xml.bind.PrintConversionEvent
  * @see javax.xml.bind.Validator
  * @see javax.xml.bind.ValidationEventHandler
  * @see javax.xml.bind.ValidationEvent
- * @see ValidationEventLocator
+ * @see javax.xml.bind.ValidationEventLocator
  * @since JAXB1.0
  */
 public class PrintConversionEventImpl

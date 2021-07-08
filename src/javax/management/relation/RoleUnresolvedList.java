@@ -95,7 +95,7 @@ public class RoleUnresolvedList extends ArrayList<Object> {
      * is {@code null} or if the {@code list} parameter contains any
      * non-RoleUnresolved objects.
      *
-     * @see ArrayList#ArrayList(Collection)
+     * @see ArrayList#ArrayList(java.util.Collection)
      */
     public RoleUnresolvedList(List<RoleUnresolved> list)
         throws IllegalArgumentException {

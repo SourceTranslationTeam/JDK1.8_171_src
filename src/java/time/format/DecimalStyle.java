@@ -128,7 +128,7 @@ public final class DecimalStyle {
 
     /**
      * Obtains the DecimalStyle for the default
-     * {@link Locale.Category#FORMAT FORMAT} locale.
+     * {@link java.util.Locale.Category#FORMAT FORMAT} locale.
      * <p>
      * This method provides access to locale sensitive decimal style symbols.
      * <p>
@@ -136,7 +136,7 @@ public final class DecimalStyle {
      * {@link #of(Locale)
      *     of(Locale.getDefault(Locale.Category.FORMAT))}.
      *
-     * @see Locale.Category#FORMAT
+     * @see java.util.Locale.Category#FORMAT
      * @return the decimal style, not null
      */
     public static DecimalStyle ofDefaultLocale() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2017, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -82,6 +82,10 @@ final class Finalizer extends FinalReference<Object> { /* Package-private; must 
         add();
     }
 
+    static ReferenceQueue<Object> getQueue() {
+        return queue;
+    }
+
     /* Invoked by VM */
     static void register(Object finalizee) {
         new Finalizer(finalizee);
@@ -94,7 +98,7 @@ final class Finalizer extends FinalReference<Object> { /* Package-private; must 
         }
         try {
             Object finalizee = this.get();
-            if (finalizee != null && !(finalizee instanceof Enum)) {
+            if (finalizee != null && !(finalizee instanceof java.lang.Enum)) {
                 jla.invokeFinalize(finalizee);
 
                 /* Clear stack slot containing this variable, to decrease

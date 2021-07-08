@@ -34,7 +34,7 @@ import java.lang.annotation.RetentionPolicy;
  * Used to annotate a Provider implementation class.
  *
  * @since JAX-WS 2.0
- * @see Provider
+ * @see javax.xml.ws.Provider
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

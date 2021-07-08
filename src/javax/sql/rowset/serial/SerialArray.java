@@ -163,37 +163,37 @@ public class SerialArray implements Array, Serializable, Cloneable {
         len = elements.length;
 
         switch (baseType) {
-            case Types.STRUCT:
+            case java.sql.Types.STRUCT:
                 for (int i = 0; i < len; i++) {
                     elements[i] = new SerialStruct((Struct)elements[i], map);
                 }
             break;
 
-            case Types.ARRAY:
+            case java.sql.Types.ARRAY:
                 for (int i = 0; i < len; i++) {
                     elements[i] = new SerialArray((Array)elements[i], map);
                 }
             break;
 
-            case Types.BLOB:
+            case java.sql.Types.BLOB:
             for (int i = 0; i < len; i++) {
                 elements[i] = new SerialBlob((Blob)elements[i]);
             }
             break;
 
-            case Types.CLOB:
+            case java.sql.Types.CLOB:
                 for (int i = 0; i < len; i++) {
                     elements[i] = new SerialClob((Clob)elements[i]);
                 }
             break;
 
-            case Types.DATALINK:
+            case java.sql.Types.DATALINK:
                 for (int i = 0; i < len; i++) {
                     elements[i] = new SerialDatalink((URL)elements[i]);
                 }
             break;
 
-            case Types.JAVA_OBJECT:
+            case java.sql.Types.JAVA_OBJECT:
                 for (int i = 0; i < len; i++) {
                 elements[i] = new SerialJavaObject(elements[i]);
             }
@@ -267,25 +267,25 @@ public class SerialArray implements Array, Serializable, Cloneable {
 
         switch (baseType) {
 
-        case Types.BLOB:
+        case java.sql.Types.BLOB:
             for (int i = 0; i < len; i++) {
                 elements[i] = new SerialBlob((Blob)elements[i]);
             }
             break;
 
-        case Types.CLOB:
+        case java.sql.Types.CLOB:
             for (int i = 0; i < len; i++) {
                 elements[i] = new SerialClob((Clob)elements[i]);
             }
             break;
 
-        case Types.DATALINK:
+        case java.sql.Types.DATALINK:
             for (int i = 0; i < len; i++) {
                 elements[i] = new SerialDatalink((URL)elements[i]);
             }
             break;
 
-        case Types.JAVA_OBJECT:
+        case java.sql.Types.JAVA_OBJECT:
             for (int i = 0; i < len; i++) {
                 elements[i] = new SerialJavaObject(elements[i]);
             }

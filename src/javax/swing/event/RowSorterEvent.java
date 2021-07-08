@@ -37,7 +37,7 @@ import javax.swing.RowSorter;
  *     been sorted or filtered.
  * </ul>
  *
- * @see RowSorter
+ * @see javax.swing.RowSorter
  * @since 1.6
  */
 public class RowSorterEvent extends java.util.EventObject {

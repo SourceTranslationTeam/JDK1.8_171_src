@@ -104,7 +104,7 @@ public final class ByteHolder implements Streamable {
      * @return    the TypeCode of the value held in
      *               this <code>ByteHolder</code> object
      */
-    public TypeCode _type() {
+    public org.omg.CORBA.TypeCode _type() {
         return ORB.init().get_primitive_tc(TCKind.tk_octet);
     }
 }

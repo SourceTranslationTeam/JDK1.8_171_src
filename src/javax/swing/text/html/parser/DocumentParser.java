@@ -100,7 +100,7 @@ import java.net.*;
  *
  * @author      Sunita Mani
  */
-public class DocumentParser extends Parser {
+public class DocumentParser extends javax.swing.text.html.parser.Parser {
 
     private int inbody;
     private int intitle;

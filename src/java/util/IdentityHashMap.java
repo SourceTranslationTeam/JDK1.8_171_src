@@ -835,7 +835,7 @@ public class IdentityHashMap<K,V>
     }
 
     private class EntryIterator
-        extends IdentityHashMapIterator<Entry<K,V>>
+        extends IdentityHashMapIterator<Map.Entry<K,V>>
     {
         private Entry lastReturnedEntry;
 
@@ -923,7 +923,7 @@ public class IdentityHashMap<K,V>
      * view the first time this view is requested.  The view is stateless,
      * so there's no reason to create more than one.
      */
-    private transient Set<Entry<K,V>> entrySet;
+    private transient Set<Map.Entry<K,V>> entrySet;
 
     /**
      * Returns an identity-based set view of the keys contained in this map.
@@ -1174,28 +1174,28 @@ public class IdentityHashMap<K,V>
      *
      * @return a set view of the identity-mappings contained in this map
      */
-    public Set<Entry<K,V>> entrySet() {
-        Set<Entry<K,V>> es = entrySet;
+    public Set<Map.Entry<K,V>> entrySet() {
+        Set<Map.Entry<K,V>> es = entrySet;
         if (es != null)
             return es;
         else
             return entrySet = new EntrySet();
     }
 
-    private class EntrySet extends AbstractSet<Entry<K,V>> {
-        public Iterator<Entry<K,V>> iterator() {
+    private class EntrySet extends AbstractSet<Map.Entry<K,V>> {
+        public Iterator<Map.Entry<K,V>> iterator() {
             return new EntryIterator();
         }
         public boolean contains(Object o) {
             if (!(o instanceof Map.Entry))
                 return false;
-            Entry<?,?> entry = (Entry<?,?>)o;
+            Map.Entry<?,?> entry = (Map.Entry<?,?>)o;
             return containsMapping(entry.getKey(), entry.getValue());
         }
         public boolean remove(Object o) {
             if (!(o instanceof Map.Entry))
                 return false;
-            Entry<?,?> entry = (Entry<?,?>)o;
+            Map.Entry<?,?> entry = (Map.Entry<?,?>)o;
             return removeMapping(entry.getKey(), entry.getValue());
         }
         public int size() {
@@ -1212,7 +1212,7 @@ public class IdentityHashMap<K,V>
         public boolean removeAll(Collection<?> c) {
             Objects.requireNonNull(c);
             boolean modified = false;
-            for (Iterator<Entry<K,V>> i = iterator(); i.hasNext(); ) {
+            for (Iterator<Map.Entry<K,V>> i = iterator(); i.hasNext(); ) {
                 if (c.contains(i.next())) {
                     i.remove();
                     modified = true;
@@ -1240,7 +1240,7 @@ public class IdentityHashMap<K,V>
                     if (ti >= size) {
                         throw new ConcurrentModificationException();
                     }
-                    a[ti++] = (T) new SimpleEntry<>(unmaskNull(key), tab[si + 1]);
+                    a[ti++] = (T) new AbstractMap.SimpleEntry<>(unmaskNull(key), tab[si + 1]);
                 }
             }
             // fewer elements than expected or concurrent modification from other thread detected
@@ -1254,7 +1254,7 @@ public class IdentityHashMap<K,V>
             return a;
         }
 
-        public Spliterator<Entry<K,V>> spliterator() {
+        public Spliterator<Map.Entry<K,V>> spliterator() {
             return new EntrySpliterator<>(IdentityHashMap.this, 0, -1, 0, 0);
         }
     }
@@ -1533,7 +1533,7 @@ public class IdentityHashMap<K,V>
 
     static final class EntrySpliterator<K,V>
         extends IdentityHashMapSpliterator<K,V>
-        implements Spliterator<Entry<K,V>> {
+        implements Spliterator<Map.Entry<K,V>> {
         EntrySpliterator(IdentityHashMap<K,V> m, int origin, int fence, int est,
                          int expectedModCount) {
             super(m, origin, fence, est, expectedModCount);
@@ -1546,7 +1546,7 @@ public class IdentityHashMap<K,V>
                                           expectedModCount);
         }
 
-        public void forEachRemaining(Consumer<? super Entry<K, V>> action) {
+        public void forEachRemaining(Consumer<? super Map.Entry<K, V>> action) {
             if (action == null)
                 throw new NullPointerException();
             int i, hi, mc;
@@ -1560,7 +1560,7 @@ public class IdentityHashMap<K,V>
                             (K)unmaskNull(key);
                         @SuppressWarnings("unchecked") V v = (V)a[i+1];
                         action.accept
-                            (new SimpleImmutableEntry<K,V>(k, v));
+                            (new AbstractMap.SimpleImmutableEntry<K,V>(k, v));
 
                     }
                 }
@@ -1570,7 +1570,7 @@ public class IdentityHashMap<K,V>
             throw new ConcurrentModificationException();
         }
 
-        public boolean tryAdvance(Consumer<? super Entry<K,V>> action) {
+        public boolean tryAdvance(Consumer<? super Map.Entry<K,V>> action) {
             if (action == null)
                 throw new NullPointerException();
             Object[] a = map.table;
@@ -1583,7 +1583,7 @@ public class IdentityHashMap<K,V>
                     @SuppressWarnings("unchecked") K k =
                         (K)unmaskNull(key);
                     action.accept
-                        (new SimpleImmutableEntry<K,V>(k, v));
+                        (new AbstractMap.SimpleImmutableEntry<K,V>(k, v));
                     if (map.modCount != expectedModCount)
                         throw new ConcurrentModificationException();
                     return true;

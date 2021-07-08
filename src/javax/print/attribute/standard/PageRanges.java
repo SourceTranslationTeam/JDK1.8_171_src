@@ -97,7 +97,7 @@ import javax.print.attribute.PrintJobAttribute;
  * <B>IPP Compatibility:</B> The PageRanges attribute's canonical array form
  * gives the lower and upper bound for each range of pages to be included in
  * and IPP "page-ranges" attribute. See class {@link
- * SetOfIntegerSyntax SetOfIntegerSyntax} for an
+ * javax.print.attribute.SetOfIntegerSyntax SetOfIntegerSyntax} for an
  * explanation of canonical array form. The category name returned by
  * <CODE>getName()</CODE> gives the IPP attribute name.
  * <P>
@@ -114,7 +114,7 @@ public final class PageRanges   extends SetOfIntegerSyntax
     /**
      * Construct a new page ranges attribute with the given members. The
      * members are specified in "array form;" see class {@link
-     * SetOfIntegerSyntax SetOfIntegerSyntax} for an
+     * javax.print.attribute.SetOfIntegerSyntax SetOfIntegerSyntax} for an
      * explanation of array form.
      *
      * @param  members  Set members in array form.
@@ -138,7 +138,7 @@ public final class PageRanges   extends SetOfIntegerSyntax
     /**
      * Construct a new  page ranges attribute with the given members in
      * string form.
-     * See class {@link SetOfIntegerSyntax
+     * See class {@link javax.print.attribute.SetOfIntegerSyntax
      * SetOfIntegerSyntax}
      * for explanation of the syntax.
      *
@@ -244,7 +244,7 @@ public final class PageRanges   extends SetOfIntegerSyntax
      * For class PageRanges, the category is class PageRanges itself.
      *
      * @return  Printing attribute class (category), an instance of class
-     *          {@link Class java.lang.Class}.
+     *          {@link java.lang.Class java.lang.Class}.
      */
     public final Class<? extends Attribute> getCategory() {
         return PageRanges.class;

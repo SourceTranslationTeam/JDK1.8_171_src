@@ -241,7 +241,7 @@ public interface ListSelectionModel
      *
      * @param valueIsAdjusting the new value of the property
      * @see #getValueIsAdjusting
-     * @see ListSelectionEvent#getValueIsAdjusting
+     * @see javax.swing.event.ListSelectionEvent#getValueIsAdjusting
      */
     void setValueIsAdjusting(boolean valueIsAdjusting);
 

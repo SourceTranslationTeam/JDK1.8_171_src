@@ -37,9 +37,9 @@ package java.io;
  * which modified UTF-8 strings are read and written.
  *
  * @author  Frank Yellin
- * @see     DataInput
- * @see     DataInputStream#readUTF(DataInput)
- * @see     IOException
+ * @see     java.io.DataInput
+ * @see     java.io.DataInputStream#readUTF(java.io.DataInput)
+ * @see     java.io.IOException
  * @since   JDK1.0
  */
 public
@@ -58,7 +58,7 @@ class UTFDataFormatException extends IOException {
      * Constructs a <code>UTFDataFormatException</code> with the
      * specified detail message. The string <code>s</code> can be
      * retrieved later by the
-     * <code>{@link Throwable#getMessage}</code>
+     * <code>{@link java.lang.Throwable#getMessage}</code>
      * method of class <code>java.lang.Throwable</code>.
      *
      * @param   s   the detail message.

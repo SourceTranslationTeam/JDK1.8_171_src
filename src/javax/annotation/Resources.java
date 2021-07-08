@@ -31,7 +31,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * This class is used to allow multiple resources declarations.
  *
- * @see Resource
+ * @see javax.annotation.Resource
  * @since Common Annotations 1.0
  */
 

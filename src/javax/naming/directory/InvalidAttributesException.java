@@ -51,7 +51,7 @@ public class InvalidAttributesException extends NamingException {
      * Constructs a new instance of InvalidAttributesException using an
      * explanation. All other fields are set to null.
      * @param   explanation     Additional detail about this exception. Can be null.
-     * @see Throwable#getMessage
+     * @see java.lang.Throwable#getMessage
      */
     public InvalidAttributesException(String explanation) {
         super(explanation);

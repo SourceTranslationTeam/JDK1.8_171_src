@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1998, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -182,15 +182,15 @@ import sun.security.jca.GetInstance;
  * Java Cryptography Architecture Standard Algorithm Name Documentation</a>
  * for a list of standard Configuration types.
  *
- * @see LoginContext
- * @see Security security properties
+ * @see javax.security.auth.login.LoginContext
+ * @see java.security.Security security properties
  */
 public abstract class Configuration {
 
     private static Configuration configuration;
 
     private final java.security.AccessControlContext acc =
-            AccessController.getContext();
+            java.security.AccessController.getContext();
 
     private static void checkPermission(String type) {
         SecurityManager sm = System.getSecurityManager();
@@ -233,7 +233,7 @@ public abstract class Configuration {
                 config_class = AccessController.doPrivileged
                     (new PrivilegedAction<String>() {
                     public String run() {
-                        return Security.getProperty
+                        return java.security.Security.getProperty
                                     ("login.configuration.provider");
                     }
                 });
@@ -341,7 +341,7 @@ public abstract class Configuration {
      * @since 1.6
      */
     public static Configuration getInstance(String type,
-                                Parameters params)
+                                Configuration.Parameters params)
                 throws NoSuchAlgorithmException {
 
         checkPermission(type);
@@ -404,11 +404,11 @@ public abstract class Configuration {
      * @since 1.6
      */
     public static Configuration getInstance(String type,
-                                Parameters params,
+                                Configuration.Parameters params,
                                 String provider)
                 throws NoSuchProviderException, NoSuchAlgorithmException {
 
-        if (provider == null || provider.length() == 0) {
+        if (provider == null || provider.isEmpty()) {
             throw new IllegalArgumentException("missing provider");
         }
 
@@ -466,7 +466,7 @@ public abstract class Configuration {
      * @since 1.6
      */
     public static Configuration getInstance(String type,
-                                Parameters params,
+                                Configuration.Parameters params,
                                 Provider provider)
                 throws NoSuchAlgorithmException {
 
@@ -541,7 +541,7 @@ public abstract class Configuration {
      *
      * @since 1.6
      */
-    public Parameters getParameters() {
+    public Configuration.Parameters getParameters() {
         return null;
     }
 
@@ -586,10 +586,10 @@ public abstract class Configuration {
         private ConfigurationSpi spi;
         private Provider p;
         private String type;
-        private Parameters params;
+        private Configuration.Parameters params;
 
         private ConfigDelegate(ConfigurationSpi spi, Provider p,
-                        String type, Parameters params) {
+                        String type, Configuration.Parameters params) {
             this.spi = spi;
             this.p = p;
             this.type = type;
@@ -598,7 +598,7 @@ public abstract class Configuration {
 
         public String getType() { return type; }
 
-        public Parameters getParameters() { return params; }
+        public Configuration.Parameters getParameters() { return params; }
 
         public Provider getProvider() { return p; }
 

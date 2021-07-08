@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -255,9 +255,6 @@ public abstract class ClassLoader {
         new ProtectionDomain(new CodeSource(null, (Certificate[]) null),
                              null, this, null);
 
-    // The initiating protection domains for all classes loaded by this loader
-    private final Set<ProtectionDomain> domains;
-
     // Invoked by the VM to record every loaded class with this loader.
     void addClass(Class<?> c) {
         classes.addElement(c);
@@ -281,14 +278,11 @@ public abstract class ClassLoader {
         if (ParallelLoaders.isRegistered(this.getClass())) {
             parallelLockMap = new ConcurrentHashMap<>();
             package2certs = new ConcurrentHashMap<>();
-            domains =
-                Collections.synchronizedSet(new HashSet<ProtectionDomain>());
             assertionLock = new Object();
         } else {
             // no finer-grained lock; lock on the classloader instance
             parallelLockMap = null;
             package2certs = new Hashtable<>();
-            domains = new HashSet<>();
             assertionLock = this;
         }
     }
@@ -398,19 +392,18 @@ public abstract class ClassLoader {
      * @throws  ClassNotFoundException
      *          If the class could not be found
      */
-    protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException  {
+    protected Class<?> loadClass(String name, boolean resolve)
+        throws ClassNotFoundException
+    {
         synchronized (getClassLoadingLock(name)) {
             // First, check if the class has already been loaded
-            // 如果加载过，将直接使用
             Class<?> c = findLoadedClass(name);
             if (c == null) {
                 long t0 = System.nanoTime();
                 try {
-                    // 如果有父加载器，让父加载器去加载
                     if (parent != null) {
                         c = parent.loadClass(name, false);
                     } else {
-                        // 如果没有父加载器，就使用引导类加载器（null）
                         c = findBootstrapClassOrNull(name);
                     }
                 } catch (ClassNotFoundException e) {
@@ -506,7 +499,6 @@ public abstract class ClassLoader {
                 }, new AccessControlContext(new ProtectionDomain[] {pd}));
             }
         }
-        domains.add(pd);
     }
 
     /**
@@ -583,11 +575,11 @@ public abstract class ClassLoader {
      * Converts an array of bytes into an instance of class <tt>Class</tt>.
      * Before the <tt>Class</tt> can be used it must be resolved.
      *
-     * <p> This method assigns a default {@link ProtectionDomain
+     * <p> This method assigns a default {@link java.security.ProtectionDomain
      * <tt>ProtectionDomain</tt>} to the newly defined class.  The
      * <tt>ProtectionDomain</tt> is effectively granted the same set of
      * permissions returned when {@link
-     * Policy#getPermissions(CodeSource)
+     * java.security.Policy#getPermissions(java.security.CodeSource)
      * <tt>Policy.getPolicy().getPermissions(new CodeSource(null, null))</tt>}
      * is invoked.  The default domain is created on the first invocation of
      * {@link #defineClass(String, byte[], int, int) <tt>defineClass</tt>},
@@ -595,7 +587,7 @@ public abstract class ClassLoader {
      *
      * <p> To assign a specific <tt>ProtectionDomain</tt> to the class, use
      * the {@link #defineClass(String, byte[], int, int,
-     * ProtectionDomain) <tt>defineClass</tt>} method that takes a
+     * java.security.ProtectionDomain) <tt>defineClass</tt>} method that takes a
      * <tt>ProtectionDomain</tt> as one of its arguments.  </p>
      *
      * @param  name
@@ -632,7 +624,7 @@ public abstract class ClassLoader {
      *
      * @see  #loadClass(String, boolean)
      * @see  #resolveClass(Class)
-     * @see  CodeSource
+     * @see  java.security.CodeSource
      * @see  java.security.SecureClassLoader
      *
      * @since  1.1
@@ -700,7 +692,7 @@ public abstract class ClassLoader {
      * <p> The first class defined in a package determines the exact set of
      * certificates that all subsequent classes defined in that package must
      * contain.  The set of certificates for a class is obtained from the
-     * {@link CodeSource <tt>CodeSource</tt>} within the
+     * {@link java.security.CodeSource <tt>CodeSource</tt>} within the
      * <tt>ProtectionDomain</tt> of the class.  Any classes added to that
      * package must contain the same set of certificates or a
      * <tt>SecurityException</tt> will be thrown.  Note that if
@@ -867,7 +859,7 @@ public abstract class ClassLoader {
 
     // true if the name is null or has the potential to be a valid binary name
     private boolean checkName(String name) {
-        if ((name == null) || (name.length() == 0))
+        if ((name == null) || (name.isEmpty()))
             return true;
         if ((name.indexOf('/') != -1)
             || (!VM.allowArraySyntax() && (name.charAt(0) == '[')))
@@ -1075,7 +1067,7 @@ public abstract class ClassLoader {
      *
      * @apiNote When overriding this method it is recommended that an
      * implementation ensures that any delegation is consistent with the {@link
-     * #getResources(String) getResources(String)} method.
+     * #getResources(java.lang.String) getResources(String)} method.
      *
      * @param  name
      *         The resource name
@@ -1112,7 +1104,7 @@ public abstract class ClassLoader {
      *
      * @apiNote When overriding this method it is recommended that an
      * implementation ensures that any delegation is consistent with the {@link
-     * #getResource(String) getResource(String)} method. This should
+     * #getResource(java.lang.String) getResource(String)} method. This should
      * ensure that the first element returned by the Enumeration's
      * {@code nextElement} method is the same resource that the
      * {@code getResource(String)} method would return.
@@ -1120,7 +1112,7 @@ public abstract class ClassLoader {
      * @param  name
      *         The resource name
      *
-     * @return  An enumeration of {@link URL <tt>URL</tt>} objects for
+     * @return  An enumeration of {@link java.net.URL <tt>URL</tt>} objects for
      *          the resource.  If no resources could  be found, the enumeration
      *          will be empty.  Resources that the class loader doesn't have
      *          access to will not be in the enumeration.
@@ -1162,7 +1154,7 @@ public abstract class ClassLoader {
     }
 
     /**
-     * Returns an enumeration of {@link URL <tt>URL</tt>} objects
+     * Returns an enumeration of {@link java.net.URL <tt>URL</tt>} objects
      * representing all the resources with the given name. Class loader
      * implementations should override this method to specify where to load
      * resources from.
@@ -1170,7 +1162,7 @@ public abstract class ClassLoader {
      * @param  name
      *         The resource name
      *
-     * @return  An enumeration of {@link URL <tt>URL</tt>} objects for
+     * @return  An enumeration of {@link java.net.URL <tt>URL</tt>} objects for
      *          the resources
      *
      * @throws  IOException
@@ -1179,7 +1171,7 @@ public abstract class ClassLoader {
      * @since  1.2
      */
     protected Enumeration<URL> findResources(String name) throws IOException {
-        return Collections.emptyEnumeration();
+        return java.util.Collections.emptyEnumeration();
     }
 
     /**
@@ -1214,7 +1206,7 @@ public abstract class ClassLoader {
      * @param  name
      *         The resource name
      *
-     * @return  A {@link URL <tt>URL</tt>} object for reading the
+     * @return  A {@link java.net.URL <tt>URL</tt>} object for reading the
      *          resource, or <tt>null</tt> if the resource could not be found
      *
      * @since  1.1
@@ -1230,8 +1222,8 @@ public abstract class ClassLoader {
     /**
      * Finds all resources of the specified name from the search path used to
      * load classes.  The resources thus found are returned as an
-     * {@link Enumeration <tt>Enumeration</tt>} of {@link
-     * URL <tt>URL</tt>} objects.
+     * {@link java.util.Enumeration <tt>Enumeration</tt>} of {@link
+     * java.net.URL <tt>URL</tt>} objects.
      *
      * <p> The search order is described in the documentation for {@link
      * #getSystemResource(String)}.  </p>
@@ -1239,7 +1231,7 @@ public abstract class ClassLoader {
      * @param  name
      *         The resource name
      *
-     * @return  An enumeration of resource {@link URL <tt>URL</tt>}
+     * @return  An enumeration of resource {@link java.net.URL <tt>URL</tt>}
      *          objects
      *
      * @throws  IOException
@@ -1572,7 +1564,7 @@ public abstract class ClassLoader {
      *
      * @param  sealBase
      *         If not <tt>null</tt>, then this package is sealed with
-     *         respect to the given code source {@link URL
+     *         respect to the given code source {@link java.net.URL
      *         <tt>URL</tt>}  object.  Otherwise, the package is not sealed.
      *
      * @return  The newly defined <tt>Package</tt> object

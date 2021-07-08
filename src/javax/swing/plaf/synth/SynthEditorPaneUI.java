@@ -34,7 +34,7 @@ import java.beans.PropertyChangeEvent;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JEditorPane}.
+ * {@link javax.swing.JEditorPane}.
  *
  * @author  Shannon Hickey
  * @since 1.7

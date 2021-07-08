@@ -58,7 +58,7 @@ public class MenuKeyEvent extends KeyEvent {
      * @param source     the Component that originated the event
      *                     (typically <code>this</code>)
      * @param id         an int specifying the type of event, as defined
-     *                     in {@link KeyEvent}
+     *                     in {@link java.awt.event.KeyEvent}
      * @param when       a long identifying the time the event occurred
      * @param modifiers     an int specifying any modifier keys held down,
      *                      as specified in {@link java.awt.event.InputEvent}

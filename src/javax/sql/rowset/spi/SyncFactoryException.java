@@ -33,10 +33,10 @@ import java.sql.SQLException;
  * being successfully instantiated
  *
  * @author Jonathan Bruce
- * @see SyncFactory
- * @see SyncFactoryException
+ * @see javax.sql.rowset.spi.SyncFactory
+ * @see javax.sql.rowset.spi.SyncFactoryException
  */
-public class SyncFactoryException extends SQLException {
+public class SyncFactoryException extends java.sql.SQLException {
 
     /**
      * Creates new <code>SyncFactoryException</code> without detail message.

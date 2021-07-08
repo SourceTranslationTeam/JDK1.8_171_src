@@ -31,7 +31,7 @@ package java.lang;
  * including arrays, implement the methods of this class.
  *
  * @author  unascribed
- * @see     Class
+ * @see     java.lang.Class
  * @since   JDK1.0
  */
 public class Object {
@@ -79,7 +79,7 @@ public class Object {
      *     method, then calling the {@code hashCode} method on each of
      *     the two objects must produce the same integer result.
      * <li>It is <em>not</em> required that if two objects are unequal
-     *     according to the {@link Object#equals(Object)}
+     *     according to the {@link java.lang.Object#equals(java.lang.Object)}
      *     method, then calling the {@code hashCode} method on each of the
      *     two objects must produce distinct integer results.  However, the
      *     programmer should be aware that producing distinct integer results
@@ -94,8 +94,8 @@ public class Object {
      * Java&trade; programming language.)
      *
      * @return  a hash code value for this object.
-     * @see     Object#equals(Object)
-     * @see     System#identityHashCode
+     * @see     java.lang.Object#equals(java.lang.Object)
+     * @see     java.lang.System#identityHashCode
      */
     public native int hashCode();
 
@@ -207,7 +207,7 @@ public class Object {
      *               that override the {@code clone} method can also
      *               throw this exception to indicate that an instance cannot
      *               be cloned.
-     * @see Cloneable
+     * @see java.lang.Cloneable
      */
     protected native Object clone() throws CloneNotSupportedException;
 
@@ -265,8 +265,8 @@ public class Object {
      *
      * @throws  IllegalMonitorStateException  if the current thread is not
      *               the owner of this object's monitor.
-     * @see        Object#notifyAll()
-     * @see        Object#wait()
+     * @see        java.lang.Object#notifyAll()
+     * @see        java.lang.Object#wait()
      */
     public final native void notify();
 
@@ -289,15 +289,15 @@ public class Object {
      *
      * @throws  IllegalMonitorStateException  if the current thread is not
      *               the owner of this object's monitor.
-     * @see        Object#notify()
-     * @see        Object#wait()
+     * @see        java.lang.Object#notify()
+     * @see        java.lang.Object#wait()
      */
     public final native void notifyAll();
 
     /**
      * Causes the current thread to wait until either another thread invokes the
-     * {@link Object#notify()} method or the
-     * {@link Object#notifyAll()} method for this object, or a
+     * {@link java.lang.Object#notify()} method or the
+     * {@link java.lang.Object#notifyAll()} method for this object, or a
      * specified amount of time has elapsed.
      * <p>
      * The current thread must own this object's monitor.
@@ -349,7 +349,7 @@ public class Object {
      * 2000), or Item 50 in Joshua Bloch's "Effective Java Programming
      * Language Guide" (Addison-Wesley, 2001).
      *
-     * <p>If the current thread is {@linkplain Thread#interrupt()
+     * <p>If the current thread is {@linkplain java.lang.Thread#interrupt()
      * interrupted} by any thread before or while it is waiting, then an
      * {@code InterruptedException} is thrown.  This exception is not
      * thrown until the lock status of this object has been restored as
@@ -376,15 +376,15 @@ public class Object {
      *             was waiting for a notification.  The <i>interrupted
      *             status</i> of the current thread is cleared when
      *             this exception is thrown.
-     * @see        Object#notify()
-     * @see        Object#notifyAll()
+     * @see        java.lang.Object#notify()
+     * @see        java.lang.Object#notifyAll()
      */
     public final native void wait(long timeout) throws InterruptedException;
 
     /**
      * Causes the current thread to wait until another thread invokes the
-     * {@link Object#notify()} method or the
-     * {@link Object#notifyAll()} method for this object, or
+     * {@link java.lang.Object#notify()} method or the
+     * {@link java.lang.Object#notifyAll()} method for this object, or
      * some other thread interrupts the current thread, or a certain
      * amount of real time has elapsed.
      * <p>
@@ -462,8 +462,8 @@ public class Object {
 
     /**
      * Causes the current thread to wait until another thread invokes the
-     * {@link Object#notify()} method or the
-     * {@link Object#notifyAll()} method for this object.
+     * {@link java.lang.Object#notify()} method or the
+     * {@link java.lang.Object#notifyAll()} method for this object.
      * In other words, this method behaves exactly as if it simply
      * performs the call {@code wait(0)}.
      * <p>
@@ -495,8 +495,8 @@ public class Object {
      *             was waiting for a notification.  The <i>interrupted
      *             status</i> of the current thread is cleared when
      *             this exception is thrown.
-     * @see        Object#notify()
-     * @see        Object#notifyAll()
+     * @see        java.lang.Object#notify()
+     * @see        java.lang.Object#notifyAll()
      */
     public final void wait() throws InterruptedException {
         wait(0);

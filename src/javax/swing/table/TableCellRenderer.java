@@ -64,7 +64,7 @@ public interface TableCellRenderer {
      * <code>false</code> to prevent selection and focus from appearing
      * in the printed output. To do other customization based on whether
      * or not the table is being printed, check the return value from
-     * {@link JComponent#isPaintingForPrint()}.
+     * {@link javax.swing.JComponent#isPaintingForPrint()}.
      *
      * @param   table           the <code>JTable</code> that is asking the
      *                          renderer to draw; can be <code>null</code>
@@ -86,7 +86,7 @@ public interface TableCellRenderer {
      *                          drawing the header, the value of
      *                          <code>row</code> is -1
      * @param   column          the column index of the cell being drawn
-     * @see JComponent#isPaintingForPrint()
+     * @see javax.swing.JComponent#isPaintingForPrint()
      */
     Component getTableCellRendererComponent(JTable table, Object value,
                                             boolean isSelected, boolean hasFocus,

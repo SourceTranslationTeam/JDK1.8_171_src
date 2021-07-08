@@ -47,7 +47,7 @@ import java.security.Principal;
  * {@link #setNegativePermissions() setNegativePermissions}
  * method is called on it.
  *
- * @see Acl
+ * @see java.security.acl.Acl
  *
  * @author      Satish Dharmaraj
  */

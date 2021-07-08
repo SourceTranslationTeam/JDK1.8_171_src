@@ -39,7 +39,7 @@ import java.util.EventListenerProxy;
  * then the array returned could be a mixture of {@code VetoableChangeListener}
  * and {@code VetoableChangeListenerProxy} objects.
  *
- * @see EventListenerProxy
+ * @see java.util.EventListenerProxy
  * @see VetoableChangeSupport#getVetoableChangeListeners
  * @since 1.4
  */

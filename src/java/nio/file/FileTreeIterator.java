@@ -81,7 +81,7 @@ class FileTreeIterator implements Iterator<Event>, Closeable {
 
     private void fetchNextIfNeeded() {
         if (next == null) {
-            Event ev = walker.next();
+            FileTreeWalker.Event ev = walker.next();
             while (ev != null) {
                 IOException ioe = ev.ioeException();
                 if (ioe != null)

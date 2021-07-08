@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1998, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1998, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -66,7 +66,7 @@ import java.io.*;
  * <p>
  * There are two possible ways in which this decoder could deal with
  * illegal strings.  It could either leave illegal characters alone or
- * it could throw an {@link IllegalArgumentException}.
+ * it could throw an {@link java.lang.IllegalArgumentException}.
  * Which approach the decoder takes is left to the
  * implementation.
  *
@@ -126,7 +126,7 @@ public class URLDecoder {
      * @exception  UnsupportedEncodingException
      *             If character encoding needs to be consulted, but
      *             named character encoding is not supported
-     * @see URLEncoder#encode(String, String)
+     * @see URLEncoder#encode(java.lang.String, java.lang.String)
      * @since 1.4
      */
     public static String decode(String s, String enc)
@@ -137,7 +137,7 @@ public class URLDecoder {
         StringBuffer sb = new StringBuffer(numChars > 500 ? numChars / 2 : numChars);
         int i = 0;
 
-        if (enc.length() == 0) {
+        if (enc.isEmpty()) {
             throw new UnsupportedEncodingException ("URLDecoder: empty string enc parameter");
         }
 

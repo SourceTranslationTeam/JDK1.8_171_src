@@ -66,7 +66,7 @@ public interface AppletContext {
      *
      * @param   url   an absolute URL giving the location of the image.
      * @return  the image at the specified URL.
-     * @see     Image
+     * @see     java.awt.Image
      */
     Image getImage(URL url);
 

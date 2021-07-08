@@ -27,6 +27,7 @@ package java.util;
 import java.io.Serializable;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.lang.reflect.Array;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -37,6 +38,7 @@ import java.util.function.UnaryOperator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import sun.misc.SharedSecrets;
 
 /**
  * This class consists exclusively of static methods that operate on or return
@@ -457,7 +459,7 @@ public class Collections {
             for (int i=size; i>1; i--)
                 swap(list, i-1, rnd.nextInt(i));
         } else {
-            Object arr[] = list.toArray();
+            Object[] arr = list.toArray();
 
             // Shuffle array
             for (int i=size; i>1; i--)
@@ -1467,7 +1469,7 @@ public class Collections {
         }
 
         private transient Set<K> keySet;
-        private transient Set<Entry<K,V>> entrySet;
+        private transient Set<Map.Entry<K,V>> entrySet;
         private transient Collection<V> values;
 
         public Set<K> keySet() {
@@ -1476,7 +1478,7 @@ public class Collections {
             return keySet;
         }
 
-        public Set<Entry<K,V>> entrySet() {
+        public Set<Map.Entry<K,V>> entrySet() {
             if (entrySet==null)
                 entrySet = new UnmodifiableEntrySet<>(m.entrySet());
             return entrySet;
@@ -1562,16 +1564,16 @@ public class Collections {
          * @serial include
          */
         static class UnmodifiableEntrySet<K,V>
-            extends UnmodifiableSet<Entry<K,V>> {
+            extends UnmodifiableSet<Map.Entry<K,V>> {
             private static final long serialVersionUID = 7854390611657943733L;
 
             @SuppressWarnings({"unchecked", "rawtypes"})
-            UnmodifiableEntrySet(Set<? extends Entry<? extends K, ? extends V>> s) {
+            UnmodifiableEntrySet(Set<? extends Map.Entry<? extends K, ? extends V>> s) {
                 // Need to cast to raw in order to work around a limitation in the type system
                 super((Set)s);
             }
 
-            static <K, V> Consumer<Entry<K, V>> entryConsumer(Consumer<? super Entry<K, V>> action) {
+            static <K, V> Consumer<Map.Entry<K, V>> entryConsumer(Consumer<? super Entry<K, V>> action) {
                 return e -> action.accept(new UnmodifiableEntry<>(e));
             }
 
@@ -1582,7 +1584,7 @@ public class Collections {
 
             static final class UnmodifiableEntrySetSpliterator<K, V>
                     implements Spliterator<Entry<K,V>> {
-                final Spliterator<Entry<K, V>> s;
+                final Spliterator<Map.Entry<K, V>> s;
 
                 UnmodifiableEntrySetSpliterator(Spliterator<Entry<K, V>> s) {
                     this.s = s;
@@ -1637,7 +1639,7 @@ public class Collections {
             @SuppressWarnings("unchecked")
             public Spliterator<Entry<K,V>> spliterator() {
                 return new UnmodifiableEntrySetSpliterator<>(
-                        (Spliterator<Entry<K, V>>) c.spliterator());
+                        (Spliterator<Map.Entry<K, V>>) c.spliterator());
             }
 
             @Override
@@ -1650,14 +1652,14 @@ public class Collections {
                 return StreamSupport.stream(spliterator(), true);
             }
 
-            public Iterator<Entry<K,V>> iterator() {
-                return new Iterator<Entry<K,V>>() {
-                    private final Iterator<? extends Entry<? extends K, ? extends V>> i = c.iterator();
+            public Iterator<Map.Entry<K,V>> iterator() {
+                return new Iterator<Map.Entry<K,V>>() {
+                    private final Iterator<? extends Map.Entry<? extends K, ? extends V>> i = c.iterator();
 
                     public boolean hasNext() {
                         return i.hasNext();
                     }
-                    public Entry<K,V> next() {
+                    public Map.Entry<K,V> next() {
                         return new UnmodifiableEntry<>(i.next());
                     }
                     public void remove() {
@@ -1670,7 +1672,7 @@ public class Collections {
             public Object[] toArray() {
                 Object[] a = c.toArray();
                 for (int i=0; i<a.length; i++)
-                    a[i] = new UnmodifiableEntry<>((Entry<? extends K, ? extends V>)a[i]);
+                    a[i] = new UnmodifiableEntry<>((Map.Entry<? extends K, ? extends V>)a[i]);
                 return a;
             }
 
@@ -1682,7 +1684,7 @@ public class Collections {
                 Object[] arr = c.toArray(a.length==0 ? a : Arrays.copyOf(a, 0));
 
                 for (int i=0; i<arr.length; i++)
-                    arr[i] = new UnmodifiableEntry<>((Entry<? extends K, ? extends V>)arr[i]);
+                    arr[i] = new UnmodifiableEntry<>((Map.Entry<? extends K, ? extends V>)arr[i]);
 
                 if (arr.length > a.length)
                     return (T[])arr;
@@ -1703,7 +1705,7 @@ public class Collections {
                 if (!(o instanceof Map.Entry))
                     return false;
                 return c.contains(
-                    new UnmodifiableEntry<>((Entry<?,?>) o));
+                    new UnmodifiableEntry<>((Map.Entry<?,?>) o));
             }
 
             /**
@@ -1737,10 +1739,10 @@ public class Collections {
              * an ill-behaved Map.Entry that attempts to modify another
              * Map Entry when asked to perform an equality check.
              */
-            private static class UnmodifiableEntry<K,V> implements Entry<K,V> {
-                private Entry<? extends K, ? extends V> e;
+            private static class UnmodifiableEntry<K,V> implements Map.Entry<K,V> {
+                private Map.Entry<? extends K, ? extends V> e;
 
-                UnmodifiableEntry(Entry<? extends K, ? extends V> e)
+                UnmodifiableEntry(Map.Entry<? extends K, ? extends V> e)
                         {this.e = Objects.requireNonNull(e);}
 
                 public K getKey()        {return e.getKey();}
@@ -1754,7 +1756,7 @@ public class Collections {
                         return true;
                     if (!(o instanceof Map.Entry))
                         return false;
-                    Entry<?,?> t = (Entry<?,?>)o;
+                    Map.Entry<?,?> t = (Map.Entry<?,?>)o;
                     return eq(e.getKey(),   t.getKey()) &&
                            eq(e.getValue(), t.getValue());
                 }
@@ -2598,7 +2600,7 @@ public class Collections {
         }
 
         private transient Set<K> keySet;
-        private transient Set<Entry<K,V>> entrySet;
+        private transient Set<Map.Entry<K,V>> entrySet;
         private transient Collection<V> values;
 
         public Set<K> keySet() {
@@ -2609,7 +2611,7 @@ public class Collections {
             }
         }
 
-        public Set<Entry<K,V>> entrySet() {
+        public Set<Map.Entry<K,V>> entrySet() {
             synchronized (mutex) {
                 if (entrySet==null)
                     entrySet = new SynchronizedSet<>(m.entrySet(), mutex);
@@ -3629,22 +3631,22 @@ public class Collections {
             // - protection from malicious t
             // - correct behavior if t is a concurrent map
             Object[] entries = t.entrySet().toArray();
-            List<Entry<K,V>> checked = new ArrayList<>(entries.length);
+            List<Map.Entry<K,V>> checked = new ArrayList<>(entries.length);
             for (Object o : entries) {
-                Entry<?,?> e = (Entry<?,?>) o;
+                Map.Entry<?,?> e = (Map.Entry<?,?>) o;
                 Object k = e.getKey();
                 Object v = e.getValue();
                 typeCheck(k, v);
                 checked.add(
                         new AbstractMap.SimpleImmutableEntry<>((K)k, (V)v));
             }
-            for (Entry<K,V> e : checked)
+            for (Map.Entry<K,V> e : checked)
                 m.put(e.getKey(), e.getValue());
         }
 
-        private transient Set<Entry<K,V>> entrySet;
+        private transient Set<Map.Entry<K,V>> entrySet;
 
-        public Set<Entry<K,V>> entrySet() {
+        public Set<Map.Entry<K,V>> entrySet() {
             if (entrySet==null)
                 entrySet = new CheckedEntrySet<>(m.entrySet(), valueType);
             return entrySet;
@@ -3726,11 +3728,11 @@ public class Collections {
          *
          * @serial exclude
          */
-        static class CheckedEntrySet<K,V> implements Set<Entry<K,V>> {
-            private final Set<Entry<K,V>> s;
+        static class CheckedEntrySet<K,V> implements Set<Map.Entry<K,V>> {
+            private final Set<Map.Entry<K,V>> s;
             private final Class<V> valueType;
 
-            CheckedEntrySet(Set<Entry<K, V>> s, Class<V> valueType) {
+            CheckedEntrySet(Set<Map.Entry<K, V>> s, Class<V> valueType) {
                 this.s = s;
                 this.valueType = valueType;
             }
@@ -3741,22 +3743,22 @@ public class Collections {
             public int hashCode()    { return s.hashCode(); }
             public void clear()      {        s.clear(); }
 
-            public boolean add(Entry<K, V> e) {
+            public boolean add(Map.Entry<K, V> e) {
                 throw new UnsupportedOperationException();
             }
-            public boolean addAll(Collection<? extends Entry<K, V>> coll) {
+            public boolean addAll(Collection<? extends Map.Entry<K, V>> coll) {
                 throw new UnsupportedOperationException();
             }
 
-            public Iterator<Entry<K,V>> iterator() {
-                final Iterator<Entry<K, V>> i = s.iterator();
+            public Iterator<Map.Entry<K,V>> iterator() {
+                final Iterator<Map.Entry<K, V>> i = s.iterator();
                 final Class<V> valueType = this.valueType;
 
-                return new Iterator<Entry<K,V>>() {
+                return new Iterator<Map.Entry<K,V>>() {
                     public boolean hasNext() { return i.hasNext(); }
                     public void remove()     { i.remove(); }
 
-                    public Entry<K,V> next() {
+                    public Map.Entry<K,V> next() {
                         return checkedEntry(i.next(), valueType);
                     }
                 };
@@ -3775,7 +3777,7 @@ public class Collections {
                                  new Object[source.length]);
 
                 for (int i = 0; i < source.length; i++)
-                    dest[i] = checkedEntry((Entry<K,V>)source[i],
+                    dest[i] = checkedEntry((Map.Entry<K,V>)source[i],
                                            valueType);
                 return dest;
             }
@@ -3788,7 +3790,7 @@ public class Collections {
                 T[] arr = s.toArray(a.length==0 ? a : Arrays.copyOf(a, 0));
 
                 for (int i=0; i<arr.length; i++)
-                    arr[i] = (T) checkedEntry((Entry<K,V>)arr[i],
+                    arr[i] = (T) checkedEntry((Map.Entry<K,V>)arr[i],
                                               valueType);
                 if (arr.length > a.length)
                     return arr;
@@ -3808,7 +3810,7 @@ public class Collections {
             public boolean contains(Object o) {
                 if (!(o instanceof Map.Entry))
                     return false;
-                Entry<?,?> e = (Entry<?,?>) o;
+                Map.Entry<?,?> e = (Map.Entry<?,?>) o;
                 return s.contains(
                     (e instanceof CheckedEntry) ? e : checkedEntry(e, valueType));
             }
@@ -3829,7 +3831,7 @@ public class Collections {
                 if (!(o instanceof Map.Entry))
                     return false;
                 return s.remove(new AbstractMap.SimpleImmutableEntry
-                                <>((Entry<?,?>)o));
+                                <>((Map.Entry<?,?>)o));
             }
 
             public boolean removeAll(Collection<?> c) {
@@ -3841,7 +3843,7 @@ public class Collections {
             private boolean batchRemove(Collection<?> c, boolean complement) {
                 Objects.requireNonNull(c);
                 boolean modified = false;
-                Iterator<Entry<K,V>> it = iterator();
+                Iterator<Map.Entry<K,V>> it = iterator();
                 while (it.hasNext()) {
                     if (c.contains(it.next()) != complement) {
                         it.remove();
@@ -3861,7 +3863,7 @@ public class Collections {
                     && containsAll(that); // Invokes safe containsAll() above
             }
 
-            static <K,V,T> CheckedEntry<K,V,T> checkedEntry(Entry<K,V> e,
+            static <K,V,T> CheckedEntry<K,V,T> checkedEntry(Map.Entry<K,V> e,
                                                             Class<T> valueType) {
                 return new CheckedEntry<>(e, valueType);
             }
@@ -3873,11 +3875,11 @@ public class Collections {
              * an ill-behaved Map.Entry that attempts to modify another
              * Map.Entry when asked to perform an equality check.
              */
-            private static class CheckedEntry<K,V,T> implements Entry<K,V> {
-                private final Entry<K, V> e;
+            private static class CheckedEntry<K,V,T> implements Map.Entry<K,V> {
+                private final Map.Entry<K, V> e;
                 private final Class<T> valueType;
 
-                CheckedEntry(Entry<K, V> e, Class<T> valueType) {
+                CheckedEntry(Map.Entry<K, V> e, Class<T> valueType) {
                     this.e = Objects.requireNonNull(e);
                     this.valueType = Objects.requireNonNull(valueType);
                 }
@@ -3904,7 +3906,7 @@ public class Collections {
                     if (!(o instanceof Map.Entry))
                         return false;
                     return e.equals(new AbstractMap.SimpleImmutableEntry
-                                    <>((Entry<?,?>)o));
+                                    <>((Map.Entry<?,?>)o));
                 }
             }
         }
@@ -4049,7 +4051,7 @@ public class Collections {
         public Entry<K, V> lowerEntry(K key) {
             Entry<K,V> lower = nm.lowerEntry(key);
             return (null != lower)
-                ? new CheckedEntrySet.CheckedEntry<>(lower, valueType)
+                ? new CheckedMap.CheckedEntrySet.CheckedEntry<>(lower, valueType)
                 : null;
         }
 
@@ -4058,7 +4060,7 @@ public class Collections {
         public Entry<K, V> floorEntry(K key) {
             Entry<K,V> floor = nm.floorEntry(key);
             return (null != floor)
-                ? new CheckedEntrySet.CheckedEntry<>(floor, valueType)
+                ? new CheckedMap.CheckedEntrySet.CheckedEntry<>(floor, valueType)
                 : null;
         }
 
@@ -4067,7 +4069,7 @@ public class Collections {
         public Entry<K, V> ceilingEntry(K key) {
             Entry<K,V> ceiling = nm.ceilingEntry(key);
             return (null != ceiling)
-                ? new CheckedEntrySet.CheckedEntry<>(ceiling, valueType)
+                ? new CheckedMap.CheckedEntrySet.CheckedEntry<>(ceiling, valueType)
                 : null;
         }
 
@@ -4076,7 +4078,7 @@ public class Collections {
         public Entry<K, V> higherEntry(K key) {
             Entry<K,V> higher = nm.higherEntry(key);
             return (null != higher)
-                ? new CheckedEntrySet.CheckedEntry<>(higher, valueType)
+                ? new CheckedMap.CheckedEntrySet.CheckedEntry<>(higher, valueType)
                 : null;
         }
 
@@ -4085,14 +4087,14 @@ public class Collections {
         public Entry<K, V> firstEntry() {
             Entry<K,V> first = nm.firstEntry();
             return (null != first)
-                ? new CheckedEntrySet.CheckedEntry<>(first, valueType)
+                ? new CheckedMap.CheckedEntrySet.CheckedEntry<>(first, valueType)
                 : null;
         }
 
         public Entry<K, V> lastEntry() {
             Entry<K,V> last = nm.lastEntry();
             return (null != last)
-                ? new CheckedEntrySet.CheckedEntry<>(last, valueType)
+                ? new CheckedMap.CheckedEntrySet.CheckedEntry<>(last, valueType)
                 : null;
         }
 
@@ -4100,14 +4102,14 @@ public class Collections {
             Entry<K,V> entry = nm.pollFirstEntry();
             return (null == entry)
                 ? null
-                : new CheckedEntrySet.CheckedEntry<>(entry, valueType);
+                : new CheckedMap.CheckedEntrySet.CheckedEntry<>(entry, valueType);
         }
 
         public Entry<K, V> pollLastEntry() {
             Entry<K,V> entry = nm.pollLastEntry();
             return (null == entry)
                 ? null
-                : new CheckedEntrySet.CheckedEntry<>(entry, valueType);
+                : new CheckedMap.CheckedEntrySet.CheckedEntry<>(entry, valueType);
         }
 
         public NavigableMap<K, V> descendingMap() {
@@ -4578,7 +4580,7 @@ public class Collections {
         public V get(Object key)                   {return null;}
         public Set<K> keySet()                     {return emptySet();}
         public Collection<V> values()              {return emptySet();}
-        public Set<Entry<K,V>> entrySet()      {return emptySet();}
+        public Set<Map.Entry<K,V>> entrySet()      {return emptySet();}
 
         public boolean equals(Object o) {
             return (o instanceof Map) && ((Map<?,?>)o).isEmpty();
@@ -4877,7 +4879,7 @@ public class Collections {
         public V get(Object key)              {return (eq(key, k) ? v : null);}
 
         private transient Set<K> keySet;
-        private transient Set<Entry<K,V>> entrySet;
+        private transient Set<Map.Entry<K,V>> entrySet;
         private transient Collection<V> values;
 
         public Set<K> keySet() {
@@ -4886,9 +4888,9 @@ public class Collections {
             return keySet;
         }
 
-        public Set<Entry<K,V>> entrySet() {
+        public Set<Map.Entry<K,V>> entrySet() {
             if (entrySet==null)
-                entrySet = Collections.<Entry<K,V>>singleton(
+                entrySet = Collections.<Map.Entry<K,V>>singleton(
                     new SimpleImmutableEntry<>(k, v));
             return entrySet;
         }
@@ -5037,7 +5039,7 @@ public class Collections {
         public <T> T[] toArray(T[] a) {
             final int n = this.n;
             if (a.length < n) {
-                a = (T[])Array
+                a = (T[])java.lang.reflect.Array
                     .newInstance(a.getClass().getComponentType(), n);
                 if (element != null)
                     Arrays.fill(a, 0, n, element);
@@ -5060,6 +5062,53 @@ public class Collections {
             return new CopiesList<>(toIndex - fromIndex, element);
         }
 
+        @Override
+        public int hashCode() {
+            if (n == 0) return 1;
+            // hashCode of n repeating elements is 31^n + elementHash * Sum(31^k, k = 0..n-1)
+            // this implementation completes in O(log(n)) steps taking advantage of
+            // 31^(2*n) = (31^n)^2 and Sum(31^k, k = 0..(2*n-1)) = Sum(31^k, k = 0..n-1) * (31^n + 1)
+            int pow = 31;
+            int sum = 1;
+            for (int i = Integer.numberOfLeadingZeros(n) + 1; i < Integer.SIZE; i++) {
+                sum *= pow + 1;
+                pow *= pow;
+                if ((n << i) < 0) {
+                    pow *= 31;
+                    sum = sum * 31 + 1;
+                }
+            }
+            return pow + sum * (element == null ? 0 : element.hashCode());
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == this)
+                return true;
+            if (o instanceof CopiesList) {
+                CopiesList<?> other = (CopiesList<?>) o;
+                return n == other.n && (n == 0 || eq(element, other.element));
+            }
+            if (!(o instanceof List))
+                return false;
+
+            int remaining = n;
+            E e = element;
+            Iterator<?> itr = ((List<?>) o).iterator();
+            if (e == null) {
+                while (itr.hasNext() && remaining-- > 0) {
+                    if (itr.next() != null)
+                        return false;
+                }
+            } else {
+                while (itr.hasNext() && remaining-- > 0) {
+                    if (!e.equals(itr.next()))
+                        return false;
+                }
+            }
+            return remaining == 0 && !itr.hasNext();
+        }
+
         // Override default methods in Collection
         @Override
         public Stream<E> stream() {
@@ -5074,6 +5123,11 @@ public class Collections {
         @Override
         public Spliterator<E> spliterator() {
             return stream().spliterator();
+        }
+
+        private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+            ois.defaultReadObject();
+            SharedSecrets.getJavaOISAccess().checkArray(ois, Object[].class, n);
         }
     }
 

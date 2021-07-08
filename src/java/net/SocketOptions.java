@@ -120,7 +120,7 @@ public interface SocketOptions {
      * @throws SocketException if the socket is closed
      * @throws SocketException if <I>optID</I> is unknown along the
      *         protocol stack (including the SocketImpl)
-     * @see #setOption(int, Object)
+     * @see #setOption(int, java.lang.Object)
      */
     public Object getOption(int optID) throws SocketException;
 

@@ -44,7 +44,7 @@ package org.xml.sax;
  * <p>If a SAX application needs to implement customized error
  * handling, it must implement this interface and then register an
  * instance with the XML reader using the
- * {@link XMLReader#setErrorHandler setErrorHandler}
+ * {@link org.xml.sax.XMLReader#setErrorHandler setErrorHandler}
  * method.  The parser will then report all errors and warnings
  * through this interface.</p>
  *
@@ -67,8 +67,8 @@ package org.xml.sax;
  *
  * @since SAX 1.0
  * @author David Megginson
- * @see XMLReader#setErrorHandler
- * @see SAXParseException
+ * @see org.xml.sax.XMLReader#setErrorHandler
+ * @see org.xml.sax.SAXParseException
  */
 public interface ErrorHandler {
 
@@ -90,11 +90,11 @@ public interface ErrorHandler {
      *
      * @param exception The warning information encapsulated in a
      *                  SAX parse exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see SAXParseException
+     * @see org.xml.sax.SAXParseException
      */
-    public abstract void warning(SAXParseException exception)
+    public abstract void warning (SAXParseException exception)
         throws SAXException;
 
 
@@ -119,11 +119,11 @@ public interface ErrorHandler {
      *
      * @param exception The error information encapsulated in a
      *                  SAX parse exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see SAXParseException
+     * @see org.xml.sax.SAXParseException
      */
-    public abstract void error(SAXParseException exception)
+    public abstract void error (SAXParseException exception)
         throws SAXException;
 
 
@@ -132,7 +132,7 @@ public interface ErrorHandler {
      *
      * <p><strong>There is an apparent contradiction between the
      * documentation for this method and the documentation for {@link
-     * ContentHandler#endDocument}.  Until this ambiguity
+     * org.xml.sax.ContentHandler#endDocument}.  Until this ambiguity
      * is resolved in a future major release, clients should make no
      * assumptions about whether endDocument() will or will not be
      * invoked when the parser has reported a fatalError() or thrown
@@ -151,11 +151,11 @@ public interface ErrorHandler {
      *
      * @param exception The error information encapsulated in a
      *                  SAX parse exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see SAXParseException
+     * @see org.xml.sax.SAXParseException
      */
-    public abstract void fatalError(SAXParseException exception)
+    public abstract void fatalError (SAXParseException exception)
         throws SAXException;
 
 }

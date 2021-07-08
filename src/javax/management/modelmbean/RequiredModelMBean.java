@@ -231,7 +231,7 @@ public class RequiredModelMBean
      * registered with the MBeanServer.
      * <P>
      * If the ModelMBean is currently registered, this method throws
-     * a {@link RuntimeOperationsException} wrapping an
+     * a {@link javax.management.RuntimeOperationsException} wrapping an
      * {@link IllegalStateException}
      * <P>
      * If the given <var>inModelMBeanInfo</var> does not contain any
@@ -870,7 +870,7 @@ public class RequiredModelMBean
      * <LI> {@link InvalidTargetObjectTypeException}: The 'targetType'
      *      field value is not 'objectReference'.</LI>
      * </UL>
-     * @exception ReflectionException  Wraps an {@link Exception}
+     * @exception ReflectionException  Wraps an {@link java.lang.Exception}
      *      thrown while trying to invoke the method.
      * @exception RuntimeOperationsException Wraps an
      *      {@link IllegalArgumentException} Method name is null.
@@ -1484,13 +1484,13 @@ public class RequiredModelMBean
      *           field value is not 'objectReference'.</LI>
      *      <LI> An Exception thrown by the managed object's getter.</LI>
      *    </UL>
-     * @exception ReflectionException  Wraps an {@link Exception}
+     * @exception ReflectionException  Wraps an {@link java.lang.Exception}
      *    thrown while trying to invoke the getter.
      * @exception RuntimeOperationsException Wraps an
      *    {@link IllegalArgumentException}: The attribute name in
      *    parameter is null.
      *
-     * @see #setAttribute(Attribute)
+     * @see #setAttribute(javax.management.Attribute)
      **/
     public Object getAttribute(String attrName)
         throws AttributeNotFoundException, MBeanException,
@@ -1779,7 +1779,7 @@ public class RequiredModelMBean
      * {@link IllegalArgumentException}: The object name in parameter is
      * null or attributes in parameter is null.
      *
-     * @see #setAttributes(AttributeList)
+     * @see #setAttributes(javax.management.AttributeList)
      */
     public AttributeList getAttributes(String[] attrNames)      {
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
@@ -1888,13 +1888,13 @@ public class RequiredModelMBean
      *          field value is not 'objectReference'.</LI>
      *     <LI> An Exception thrown by the managed object's getter.</LI>
      *   </UL>
-     * @exception ReflectionException  Wraps an {@link Exception}
+     * @exception ReflectionException  Wraps an {@link java.lang.Exception}
      *   thrown while trying to invoke the setter.
      * @exception RuntimeOperationsException Wraps an
      *   {@link IllegalArgumentException}: The attribute in parameter is
      *   null.
      *
-     * @see #getAttribute(String)
+     * @see #getAttribute(java.lang.String)
      **/
     public void setAttribute(Attribute attribute)
         throws AttributeNotFoundException, InvalidAttributeValueException,
@@ -2188,7 +2188,7 @@ public class RequiredModelMBean
     public void addNotificationListener(NotificationListener listener,
                                         NotificationFilter filter,
                                         Object handback)
-        throws IllegalArgumentException {
+        throws java.lang.IllegalArgumentException {
         final String mth = "addNotificationListener(" +
                 "NotificationListener, NotificationFilter, Object)";
         if (MODELMBEAN_LOGGER.isLoggable(Level.FINER)) {
@@ -2840,7 +2840,7 @@ public class RequiredModelMBean
     /**
      * Return the Class Loader Repository used to perform class loading.
      * Subclasses may wish to redefine this method in order to return
-     * the appropriate {@link ClassLoaderRepository}
+     * the appropriate {@link javax.management.loading.ClassLoaderRepository}
      * that should be used in this object.
      *
      * @return the Class Loader Repository.
@@ -2913,14 +2913,14 @@ public class RequiredModelMBean
      * parameter is not null, it will usually but not necessarily be
      * the returned value.
      *
-     * @exception Exception This exception will be caught by
+     * @exception java.lang.Exception This exception will be caught by
      * the MBean server and re-thrown as an
      * {@link javax.management.MBeanRegistrationException
      * MBeanRegistrationException}.
      */
     public ObjectName preRegister(MBeanServer server,
                                   ObjectName name)
-        throws Exception  {
+        throws java.lang.Exception  {
         // Since ModelMbeanInfo cannot be null (otherwise exception
         // thrown at creation)
         // no exception thrown on ModelMBeanInfo not set.
@@ -2956,12 +2956,12 @@ public class RequiredModelMBean
      * method should call <code>super.preDeregister()</code> in its own
      * <code>preDeregister</code> implementation.
      *
-     * @exception Exception This exception will be caught by
+     * @exception java.lang.Exception This exception will be caught by
      * the MBean server and re-thrown as an
      * {@link javax.management.MBeanRegistrationException
      * MBeanRegistrationException}.
      */
-    public void preDeregister() throws Exception {
+    public void preDeregister() throws java.lang.Exception {
     }
 
     /**

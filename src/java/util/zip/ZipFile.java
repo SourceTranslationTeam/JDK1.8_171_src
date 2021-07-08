@@ -111,7 +111,7 @@ class ZipFile implements ZipConstants, Closeable {
      * method is called with the <code>name</code> argument as its argument
      * to ensure the read is allowed.
      *
-     * <p>The UTF-8 {@link Charset charset} is used to
+     * <p>The UTF-8 {@link java.nio.charset.Charset charset} is used to
      * decode the entry names and comments.
      *
      * @param name the name of the zip file
@@ -120,7 +120,7 @@ class ZipFile implements ZipConstants, Closeable {
      * @throws SecurityException if a security manager exists and its
      *         <code>checkRead</code> method doesn't allow read access to the file.
      *
-     * @see SecurityManager#checkRead(String)
+     * @see SecurityManager#checkRead(java.lang.String)
      */
     public ZipFile(String name) throws IOException {
         this(new File(name), OPEN_READ);
@@ -135,7 +135,7 @@ class ZipFile implements ZipConstants, Closeable {
      * method is called with the <code>name</code> argument as its argument to
      * ensure the read is allowed.
      *
-     * <p>The UTF-8 {@link Charset charset} is used to
+     * <p>The UTF-8 {@link java.nio.charset.Charset charset} is used to
      * decode the entry names and comments
      *
      * @param file the ZIP file to be opened for reading
@@ -148,7 +148,7 @@ class ZipFile implements ZipConstants, Closeable {
      *         or its <code>checkDelete</code> method doesn't allow deleting
      *         the file when the <tt>OPEN_DELETE</tt> flag is set.
      * @throws IllegalArgumentException if the <tt>mode</tt> argument is invalid
-     * @see SecurityManager#checkRead(String)
+     * @see SecurityManager#checkRead(java.lang.String)
      * @since 1.3
      */
     public ZipFile(File file, int mode) throws IOException {
@@ -158,7 +158,7 @@ class ZipFile implements ZipConstants, Closeable {
     /**
      * Opens a ZIP file for reading given the specified File object.
      *
-     * <p>The UTF-8 {@link Charset charset} is used to
+     * <p>The UTF-8 {@link java.nio.charset.Charset charset} is used to
      * decode the entry names and comments.
      *
      * @param file the ZIP file to be opened for reading
@@ -183,7 +183,7 @@ class ZipFile implements ZipConstants, Closeable {
      * @param file the ZIP file to be opened for reading
      * @param mode the mode in which the file is to be opened
      * @param charset
-     *        the {@linkplain Charset charset} to
+     *        the {@linkplain java.nio.charset.Charset charset} to
      *        be used to decode the ZIP entry name and comment that are not
      *        encoded by using UTF-8 encoding (indicated by entry's general
      *        purpose flag).
@@ -199,7 +199,7 @@ class ZipFile implements ZipConstants, Closeable {
      *
      * @throws IllegalArgumentException if the <tt>mode</tt> argument is invalid
      *
-     * @see SecurityManager#checkRead(String)
+     * @see SecurityManager#checkRead(java.lang.String)
      *
      * @since 1.7
      */
@@ -239,7 +239,7 @@ class ZipFile implements ZipConstants, Closeable {
      *
      * @param name the name of the zip file
      * @param charset
-     *        the {@linkplain Charset charset} to
+     *        the {@linkplain java.nio.charset.Charset charset} to
      *        be used to decode the ZIP entry name and comment that are not
      *        encoded by using UTF-8 encoding (indicated by entry's general
      *        purpose flag).
@@ -250,7 +250,7 @@ class ZipFile implements ZipConstants, Closeable {
      *         if a security manager exists and its <code>checkRead</code>
      *         method doesn't allow read access to the file
      *
-     * @see SecurityManager#checkRead(String)
+     * @see SecurityManager#checkRead(java.lang.String)
      *
      * @since 1.7
      */
@@ -263,7 +263,7 @@ class ZipFile implements ZipConstants, Closeable {
      * Opens a ZIP file for reading given the specified File object.
      * @param file the ZIP file to be opened for reading
      * @param charset
-     *        The {@linkplain Charset charset} to be
+     *        The {@linkplain java.nio.charset.Charset charset} to be
      *        used to decode the ZIP entry name and comment (ignored if
      *        the <a href="package-summary.html#lang_encoding"> language
      *        encoding bit</a> of the ZIP entry's general purpose bit
@@ -673,7 +673,7 @@ class ZipFile implements ZipConstants, Closeable {
      * length of time.
      *
      * @throws IOException if an I/O error has occurred
-     * @see    ZipFile#close()
+     * @see    java.util.zip.ZipFile#close()
      */
     protected void finalize() throws IOException {
         close();

@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.awt.IllegalComponentStateException;
 import java.awt.MouseInfo;
+
+import sun.awt.AWTAccessor;
 import sun.awt.SunToolkit;
 
 /**
@@ -332,10 +334,15 @@ public class MouseEvent extends InputEvent {
     int clickCount;
 
     /**
+     * Indicates whether the event is a result of a touch event.
+     */
+    private boolean causedByTouchEvent;
+
+    /**
      * Indicates which, if any, of the mouse buttons has changed state.
      *
      * The valid values are ranged from 0 to the value returned by the
-     * {@link MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()} method.
+     * {@link java.awt.MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()} method.
      * This range already includes constants {@code NOBUTTON}, {@code BUTTON1},
      * {@code BUTTON2}, and {@code BUTTON3}
      * if these buttons are present. So it is allowed to use these constants too.
@@ -358,7 +365,7 @@ public class MouseEvent extends InputEvent {
      * then the field may not contain the value larger than {@code BUTTON3}.
      * @serial
      * @see #getButton()
-     * @see Toolkit#areExtraMouseButtonsEnabled()
+     * @see java.awt.Toolkit#areExtraMouseButtonsEnabled()
      */
     int button;
 
@@ -399,6 +406,17 @@ public class MouseEvent extends InputEvent {
             //whatever besides SunToolkit) could also operate.
             cachedNumberOfButtons = 3;
         }
+        AWTAccessor.setMouseEventAccessor(
+            new AWTAccessor.MouseEventAccessor() {
+                public boolean isCausedByTouchEvent(MouseEvent ev) {
+                    return ev.causedByTouchEvent;
+                }
+
+                public void setCausedByTouchEvent(MouseEvent ev,
+                    boolean causedByTouchEvent) {
+                    ev.causedByTouchEvent = causedByTouchEvent;
+                }
+            });
     }
 
     /**
@@ -523,7 +541,7 @@ public class MouseEvent extends InputEvent {
      * {@link Toolkit#areExtraMouseButtonsEnabled() enabled} by Java, then
      * in addition to the standard buttons, {@code MouseEvent} objects can be created
      * using buttons from the range starting from 4 to
-     * {@link MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
+     * {@link java.awt.MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
      * if the mouse has more than three buttons.
      * </ul>
      * @throws IllegalArgumentException if {@code button} is less then zero
@@ -531,7 +549,7 @@ public class MouseEvent extends InputEvent {
      * @throws IllegalArgumentException if {@code button} is greater then BUTTON3 and the support for extended mouse buttons is
      *                                  {@link Toolkit#areExtraMouseButtonsEnabled() disabled} by Java
      * @throws IllegalArgumentException if {@code button} is greater then the
-     *                                  {@link MouseInfo#getNumberOfButtons() current number of buttons} and the support
+     *                                  {@link java.awt.MouseInfo#getNumberOfButtons() current number of buttons} and the support
      *                                  for extended mouse buttons is {@link Toolkit#areExtraMouseButtonsEnabled() enabled}
      *                                  by Java
      * @throws IllegalArgumentException if an invalid <code>button</code>
@@ -698,7 +716,7 @@ public class MouseEvent extends InputEvent {
      * {@link Toolkit#areExtraMouseButtonsEnabled() enabled} by Java, then
      * in addition to the standard buttons, {@code MouseEvent} objects can be created
      * using buttons from the range starting from 4 to
-     * {@link MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
+     * {@link java.awt.MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
      * if the mouse has more than three buttons.
      * </ul>
      * @throws IllegalArgumentException if {@code button} is less then zero
@@ -706,7 +724,7 @@ public class MouseEvent extends InputEvent {
      * @throws IllegalArgumentException if {@code button} is greater then BUTTON3 and the support for extended mouse buttons is
      *                                  {@link Toolkit#areExtraMouseButtonsEnabled() disabled} by Java
      * @throws IllegalArgumentException if {@code button} is greater then the
-     *                                  {@link MouseInfo#getNumberOfButtons() current number of buttons} and the support
+     *                                  {@link java.awt.MouseInfo#getNumberOfButtons() current number of buttons} and the support
      *                                  for extended mouse buttons is {@link Toolkit#areExtraMouseButtonsEnabled() enabled}
      *                                  by Java
      * @throws IllegalArgumentException if an invalid <code>button</code>
@@ -725,7 +743,7 @@ public class MouseEvent extends InputEvent {
      * @see #getButton()
      * @see #button
      * @see Toolkit#areExtraMouseButtonsEnabled()
-     * @see MouseInfo#getNumberOfButtons()
+     * @see java.awt.MouseInfo#getNumberOfButtons()
      * @see InputEvent#getMaskForButton(int)
      * @since 1.6
      */
@@ -844,7 +862,7 @@ public class MouseEvent extends InputEvent {
     /**
      * Returns which, if any, of the mouse buttons has changed state.
      * The returned value is ranged
-     * from 0 to the {@link MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
+     * from 0 to the {@link java.awt.MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
      * value.
      * The returned value includes at least the following constants:
      * <ul>
@@ -881,7 +899,7 @@ public class MouseEvent extends InputEvent {
      * buttons. So it is not expected that this method returns anything except {@code NOBUTTON}, {@code BUTTON1},
      * {@code BUTTON2}, {@code BUTTON3}.
      *
-     * @return one of the values from 0 to {@link MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
+     * @return one of the values from 0 to {@link java.awt.MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}
      *         if support for the extended mouse buttons is {@link Toolkit#areExtraMouseButtonsEnabled() enabled} by Java.
      *         That range includes {@code NOBUTTON}, {@code BUTTON1}, {@code BUTTON2}, {@code BUTTON3};
      *         <br>
@@ -889,7 +907,7 @@ public class MouseEvent extends InputEvent {
      *         if support for the extended mouse buttons is {@link Toolkit#areExtraMouseButtonsEnabled() disabled} by Java
      * @since 1.4
      * @see Toolkit#areExtraMouseButtonsEnabled()
-     * @see MouseInfo#getNumberOfButtons()
+     * @see java.awt.MouseInfo#getNumberOfButtons()
      * @see #MouseEvent(Component, int, long, int, int, int, int, int, int, boolean, int)
      * @see InputEvent#getMaskForButton(int)
      */

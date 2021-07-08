@@ -49,7 +49,7 @@ import java.util.Collections;
  *
  * @since       1.4
  * @author      Steve Hanna
- * @see         Collection
+ * @see         java.util.Collection
  * @see         CertStore
  */
 public class CollectionCertStoreParameters

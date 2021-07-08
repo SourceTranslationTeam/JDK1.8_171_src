@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -96,8 +96,8 @@ public class      BeanContextSupport extends BeanContextChildSupport
      *                  <tt>true</tt> if in design mode,
      *                  <tt>false</tt> if runtime.
      * @param visible   The initial visibility.
-     * @see Locale#getDefault()
-     * @see Locale#setDefault(Locale)
+     * @see java.util.Locale#getDefault()
+     * @see java.util.Locale#setDefault(java.util.Locale)
      */
     public BeanContextSupport(BeanContext peer, Locale lcle, boolean dTime, boolean visible) {
         super(peer);
@@ -121,8 +121,8 @@ public class      BeanContextSupport extends BeanContextChildSupport
      * @param dtime     The initial state, <tt>true</tt>
      *                  if in design mode,
      *                  <tt>false</tt> if runtime.
-     * @see Locale#getDefault()
-     * @see Locale#setDefault(Locale)
+     * @see java.util.Locale#getDefault()
+     * @see java.util.Locale#setDefault(java.util.Locale)
      */
     public BeanContextSupport(BeanContext peer, Locale lcle, boolean dtime) {
         this (peer, lcle, dtime, true);
@@ -141,8 +141,8 @@ public class      BeanContextSupport extends BeanContextChildSupport
      *                  the default locale
      *                  is assigned to the <tt>BeanContext</tt>
      *                  instance.
-     * @see Locale#getDefault()
-     * @see Locale#setDefault(Locale)
+     * @see java.util.Locale#getDefault()
+     * @see java.util.Locale#setDefault(java.util.Locale)
      */
     public BeanContextSupport(BeanContext peer, Locale lcle) {
         this (peer, lcle, false, true);
@@ -1024,18 +1024,8 @@ public class      BeanContextSupport extends BeanContextChildSupport
         int count = serializable;
 
         while (count-- > 0) {
-            Object                      child = null;
-            BCSChild bscc  = null;
-
-            try {
-                child = ois.readObject();
-                bscc  = (BCSChild)ois.readObject();
-            } catch (IOException ioe) {
-                continue;
-            } catch (ClassNotFoundException cnfe) {
-                continue;
-            }
-
+            Object child = ois.readObject();
+            BCSChild bscc = (BCSChild) ois.readObject();
 
             synchronized(child) {
                 BeanContextChild bcc = null;

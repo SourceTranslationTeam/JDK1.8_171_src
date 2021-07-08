@@ -335,11 +335,11 @@ import java.util.StringTokenizer;
  * </tr>
  * </table>
  *
- * @see BasicPermission
- * @see Permission
- * @see Permissions
- * @see PermissionCollection
- * @see SecurityManager
+ * @see java.security.BasicPermission
+ * @see java.security.Permission
+ * @see java.security.Permissions
+ * @see java.security.PermissionCollection
+ * @see java.lang.SecurityManager
  *
  *
  * @author Marianne Mueller

@@ -617,7 +617,7 @@ public class RMIClassLoader {
      *
      * @deprecated no replacement.  As of the Java 2 platform v1.2, RMI no
      * longer uses this method to obtain a class loader's security context.
-     * @see SecurityManager#getSecurityContext()
+     * @see java.lang.SecurityManager#getSecurityContext()
      */
     @Deprecated
     public static Object getSecurityContext(ClassLoader loader)

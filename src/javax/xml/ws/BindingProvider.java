@@ -35,7 +35,7 @@ import javax.xml.ws.wsaddressing.W3CEndpointReference;
  *
  * @since JAX-WS 2.0
  *
- * @see Binding
+ * @see javax.xml.ws.Binding
  **/
 public interface BindingProvider {
     /**
@@ -149,7 +149,7 @@ public interface BindingProvider {
      * @return EndpointReference of the target endpoint associated with this
      * <code>BindingProvider</code> instance.
      *
-     * @throws UnsupportedOperationException If this
+     * @throws java.lang.UnsupportedOperationException If this
      * <code>BindingProvider</code> uses the XML/HTTP binding.
      *
      * @see W3CEndpointReference
@@ -173,7 +173,7 @@ public interface BindingProvider {
 
      * @throws WebServiceException If the Class <code>clazz</code>
      * is not supported by this implementation.
-     * @throws UnsupportedOperationException If this
+     * @throws java.lang.UnsupportedOperationException If this
      * <code>BindingProvider</code> uses the XML/HTTP binding.
      *
      * @since JAX-WS 2.1

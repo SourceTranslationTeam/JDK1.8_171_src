@@ -75,11 +75,11 @@ public interface Tie extends org.omg.CORBA.portable.InvokeHandler {
      * for this tie.
      * @param target the object to use as the target for this tie.
      */
-    void setTarget(Remote target);
+    void setTarget(java.rmi.Remote target);
 
     /**
      * Returns the target for this tie.
      * @return the target.
      */
-    Remote getTarget();
+    java.rmi.Remote getTarget();
 }

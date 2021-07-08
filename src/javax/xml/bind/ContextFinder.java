@@ -591,9 +591,9 @@ class ContextFinder {
         if (System.getSecurityManager() == null) {
             return Thread.currentThread().getContextClassLoader();
         } else {
-            return (ClassLoader) AccessController.doPrivileged(
+            return (ClassLoader) java.security.AccessController.doPrivileged(
                     new java.security.PrivilegedAction() {
-                        public Object run() {
+                        public java.lang.Object run() {
                             return Thread.currentThread().getContextClassLoader();
                         }
                     });
@@ -604,9 +604,9 @@ class ContextFinder {
         if (System.getSecurityManager() == null) {
             return c.getClassLoader();
         } else {
-            return (ClassLoader) AccessController.doPrivileged(
+            return (ClassLoader) java.security.AccessController.doPrivileged(
                     new java.security.PrivilegedAction() {
-                        public Object run() {
+                        public java.lang.Object run() {
                             return c.getClassLoader();
                         }
                     });
@@ -617,9 +617,9 @@ class ContextFinder {
         if (System.getSecurityManager() == null) {
             return ClassLoader.getSystemClassLoader();
         } else {
-            return (ClassLoader) AccessController.doPrivileged(
+            return (ClassLoader) java.security.AccessController.doPrivileged(
                     new java.security.PrivilegedAction() {
-                        public Object run() {
+                        public java.lang.Object run() {
                             return ClassLoader.getSystemClassLoader();
                         }
                     });

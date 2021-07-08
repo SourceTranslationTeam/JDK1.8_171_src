@@ -55,7 +55,7 @@ import sun.swing.DefaultLookup;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  * @author Scott Violet
  */
@@ -673,7 +673,7 @@ public class BasicSplitPaneDivider extends Container
      * the same version of Swing.  As of 1.4, support for long term storage
      * of all JavaBeans&trade;
      * has been added to the <code>java.beans</code> package.
-     * Please see {@link XMLEncoder}.
+     * Please see {@link java.beans.XMLEncoder}.
      */
     protected class DragController
     {

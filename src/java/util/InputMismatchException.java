@@ -31,7 +31,7 @@ package java.util;
  * that the token is out of range for the expected type.
  *
  * @author  unascribed
- * @see     Scanner
+ * @see     java.util.Scanner
  * @since   1.5
  */
 public

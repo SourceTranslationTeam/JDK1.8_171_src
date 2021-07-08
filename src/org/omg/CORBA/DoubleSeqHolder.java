@@ -50,17 +50,17 @@ public final class DoubleSeqHolder implements org.omg.CORBA.portable.Streamable
 
     public void _read (org.omg.CORBA.portable.InputStream i)
     {
-        value = DoubleSeqHelper.read (i);
+        value = org.omg.CORBA.DoubleSeqHelper.read (i);
     }
 
     public void _write (org.omg.CORBA.portable.OutputStream o)
     {
-        DoubleSeqHelper.write (o, value);
+        org.omg.CORBA.DoubleSeqHelper.write (o, value);
     }
 
-    public TypeCode _type ()
+    public org.omg.CORBA.TypeCode _type ()
     {
-        return DoubleSeqHelper.type ();
+        return org.omg.CORBA.DoubleSeqHelper.type ();
     }
 
 }

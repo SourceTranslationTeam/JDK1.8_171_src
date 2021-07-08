@@ -43,9 +43,9 @@ import sun.nio.ch.FileChannelImpl;
  * <code>FileWriter</code>.
  *
  * @author  Arthur van Hoff
- * @see     File
- * @see     FileDescriptor
- * @see     FileInputStream
+ * @see     java.io.File
+ * @see     java.io.FileDescriptor
+ * @see     java.io.FileInputStream
  * @see     java.nio.file.Files#newOutputStream
  * @since   JDK1.0
  */
@@ -95,7 +95,7 @@ class FileOutputStream extends OutputStream
      * @exception  SecurityException  if a security manager exists and its
      *               <code>checkWrite</code> method denies write access
      *               to the file.
-     * @see        SecurityManager#checkWrite(String)
+     * @see        java.lang.SecurityManager#checkWrite(java.lang.String)
      */
     public FileOutputStream(String name) throws FileNotFoundException {
         this(name != null ? new File(name) : null, false);
@@ -124,7 +124,7 @@ class FileOutputStream extends OutputStream
      * @exception  SecurityException  if a security manager exists and its
      *               <code>checkWrite</code> method denies write access
      *               to the file.
-     * @see        SecurityManager#checkWrite(String)
+     * @see        java.lang.SecurityManager#checkWrite(java.lang.String)
      * @since     JDK1.1
      */
     public FileOutputStream(String name, boolean append)
@@ -154,9 +154,9 @@ class FileOutputStream extends OutputStream
      * @exception  SecurityException  if a security manager exists and its
      *               <code>checkWrite</code> method denies write access
      *               to the file.
-     * @see        File#getPath()
-     * @see        SecurityException
-     * @see        SecurityManager#checkWrite(String)
+     * @see        java.io.File#getPath()
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkWrite(java.lang.String)
      */
     public FileOutputStream(File file) throws FileNotFoundException {
         this(file, false);
@@ -186,9 +186,9 @@ class FileOutputStream extends OutputStream
      * @exception  SecurityException  if a security manager exists and its
      *               <code>checkWrite</code> method denies write access
      *               to the file.
-     * @see        File#getPath()
-     * @see        SecurityException
-     * @see        SecurityManager#checkWrite(String)
+     * @see        java.io.File#getPath()
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkWrite(java.lang.String)
      * @since 1.4
      */
     public FileOutputStream(File file, boolean append)
@@ -226,7 +226,7 @@ class FileOutputStream extends OutputStream
      * is thrown.
      * <p>
      * This constructor does not throw an exception if <code>fdObj</code>
-     * is {@link FileDescriptor#valid() invalid}.
+     * is {@link java.io.FileDescriptor#valid() invalid}.
      * However, if the methods are invoked on the resulting stream to attempt
      * I/O on the stream, an <code>IOException</code> is thrown.
      *
@@ -234,7 +234,7 @@ class FileOutputStream extends OutputStream
      * @exception  SecurityException  if a security manager exists and its
      *               <code>checkWrite</code> method denies
      *               write access to the file descriptor
-     * @see        SecurityManager#checkWrite(FileDescriptor)
+     * @see        java.lang.SecurityManager#checkWrite(java.io.FileDescriptor)
      */
     public FileOutputStream(FileDescriptor fdObj) {
         SecurityManager security = System.getSecurityManager();
@@ -366,7 +366,7 @@ class FileOutputStream extends OutputStream
      *          by this <code>FileOutputStream</code> object.
      *
      * @exception  IOException  if an I/O error occurs.
-     * @see        FileDescriptor
+     * @see        java.io.FileDescriptor
      */
      public final FileDescriptor getFD()  throws IOException {
         if (fd != null) {
@@ -376,10 +376,10 @@ class FileOutputStream extends OutputStream
      }
 
     /**
-     * Returns the unique {@link FileChannel FileChannel}
+     * Returns the unique {@link java.nio.channels.FileChannel FileChannel}
      * object associated with this file output stream.
      *
-     * <p> The initial {@link FileChannel#position()
+     * <p> The initial {@link java.nio.channels.FileChannel#position()
      * position} of the returned channel will be equal to the
      * number of bytes written to the file so far unless this stream is in
      * append mode, in which case it will be equal to the size of the file.
@@ -407,7 +407,7 @@ class FileOutputStream extends OutputStream
      * called when there are no more references to this stream.
      *
      * @exception  IOException  if an I/O error occurs.
-     * @see        FileInputStream#close()
+     * @see        java.io.FileInputStream#close()
      */
     protected void finalize() throws IOException {
         if (fd != null) {

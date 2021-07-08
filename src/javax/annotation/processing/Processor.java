@@ -35,7 +35,7 @@ import javax.lang.model.SourceVersion;
  * The interface for an annotation processor.
  *
  * <p>Annotation processing happens in a sequence of {@linkplain
- * RoundEnvironment rounds}.  On each
+ * javax.annotation.processing.RoundEnvironment rounds}.  On each
  * round, a processor may be asked to {@linkplain #process process} a
  * subset of the annotations found on the source and class files
  * produced by a prior round.  The inputs to the first round of
@@ -203,7 +203,7 @@ public interface Processor {
      *
      * <p>Each string returned in the set must be a period separated
      * sequence of {@linkplain
-     * SourceVersion#isIdentifier identifiers}:
+     * javax.lang.model.SourceVersion#isIdentifier identifiers}:
      *
      * <blockquote>
      * <dl>
@@ -225,7 +225,7 @@ public interface Processor {
      *
      * @return the options recognized by this processor or an
      *         empty collection if none
-     * @see SupportedOptions
+     * @see javax.annotation.processing.SupportedOptions
      */
     Set<String> getSupportedOptions();
 
@@ -260,7 +260,7 @@ public interface Processor {
      * <cite>The Java&trade; Language Specification</cite>.
      *
      * @return the names of the annotation types supported by this processor
-     * @see SupportedAnnotationTypes
+     * @see javax.annotation.processing.SupportedAnnotationTypes
      * @jls 3.8 Identifiers
      * @jls 6.5.5 Meaning of Type Names
      */
@@ -272,7 +272,7 @@ public interface Processor {
      *
      * @return the latest source version supported by this annotation
      * processor.
-     * @see SupportedSourceVersion
+     * @see javax.annotation.processing.SupportedSourceVersion
      * @see ProcessingEnvironment#getSourceVersion
      */
     SourceVersion getSupportedSourceVersion();

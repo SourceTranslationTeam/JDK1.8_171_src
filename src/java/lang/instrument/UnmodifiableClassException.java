@@ -27,10 +27,10 @@ package java.lang.instrument;
 
 /**
  * Thrown by an implementation of
- * {@link Instrumentation#redefineClasses Instrumentation.redefineClasses}
+ * {@link java.lang.instrument.Instrumentation#redefineClasses Instrumentation.redefineClasses}
  * when one of the specified classes cannot be modified.
  *
- * @see     Instrumentation#redefineClasses
+ * @see     java.lang.instrument.Instrumentation#redefineClasses
  * @since   1.5
  */
 public class UnmodifiableClassException extends Exception {

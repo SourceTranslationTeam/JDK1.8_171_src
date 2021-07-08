@@ -175,8 +175,8 @@ public abstract class Context {
        *                                    names and associated values to be set
        *
        * @see #get_values
-       * @see NamedValue
-       * @see Any
+       * @see org.omg.CORBA.NamedValue
+       * @see org.omg.CORBA.Any
        */
 
     public abstract void set_values(NVList values);
@@ -236,7 +236,7 @@ public abstract class Context {
      *                whose associated property name matches the given name or
      *                name pattern
      * @see #set_values
-     * @see NamedValue
+     * @see org.omg.CORBA.NamedValue
      */
 
     abstract public NVList get_values(String start_scope, int op_flags,

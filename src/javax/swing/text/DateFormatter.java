@@ -43,7 +43,7 @@ import javax.swing.text.*;
  * has been added to the <code>java.beans</code> package.
  * Please see {@link java.beans.XMLEncoder}.
  *
- * @see DateFormat
+ * @see java.text.DateFormat
  *
  * @since 1.4
  */

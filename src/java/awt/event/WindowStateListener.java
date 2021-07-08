@@ -42,8 +42,8 @@ import java.util.EventListener;
  * <code>windowStateChanged</code> method in the listener object is
  * invoked, and the <code>WindowEvent</code> is passed to it.
  *
- * @see WindowAdapter
- * @see WindowEvent
+ * @see java.awt.event.WindowAdapter
+ * @see java.awt.event.WindowEvent
  *
  * @since 1.4
  */

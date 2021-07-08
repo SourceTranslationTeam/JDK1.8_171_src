@@ -178,7 +178,7 @@ public abstract class Provider {
      * @return The newly created service delegate.
      */
     public abstract ServiceDelegate createServiceDelegate(
-            URL wsdlDocumentLocation,
+            java.net.URL wsdlDocumentLocation,
             QName serviceName, Class<? extends Service> serviceClass);
 
     /**
@@ -197,7 +197,7 @@ public abstract class Provider {
      * @since JAX-WS 2.2
      */
     public ServiceDelegate createServiceDelegate(
-            URL wsdlDocumentLocation,
+            java.net.URL wsdlDocumentLocation,
             QName serviceName, Class<? extends Service> serviceClass, WebServiceFeature ... features) {
         throw new UnsupportedOperationException("JAX-WS 2.2 implementation must override this default behaviour.");
     }
@@ -346,7 +346,7 @@ public abstract class Provider {
      *          and <code>referenceParameters</code>. This method
      *          never returns <code>null</code>.
      *
-     * @throws IllegalStateException
+     * @throws java.lang.IllegalStateException
      *     <ul>
      *        <li>If the <code>address</code>, <code>serviceName</code> and
      *            <code>portName</code> are all <code>null</code>.
@@ -418,7 +418,7 @@ public abstract class Provider {
      *          and <code>referenceParameters</code>. This method
      *          never returns <code>null</code>.
      *
-     * @throws IllegalStateException
+     * @throws java.lang.IllegalStateException
      *     <ul>
      *        <li>If the <code>address</code>, <code>serviceName</code> and
      *            <code>portName</code> are all <code>null</code>.

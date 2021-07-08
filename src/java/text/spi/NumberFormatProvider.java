@@ -32,7 +32,7 @@ import java.util.spi.LocaleServiceProvider;
 /**
  * An abstract class for service providers that
  * provide concrete implementations of the
- * {@link NumberFormat NumberFormat} class.
+ * {@link java.text.NumberFormat NumberFormat} class.
  *
  * @since        1.6
  */
@@ -53,10 +53,10 @@ public abstract class NumberFormatProvider extends LocaleServiceProvider {
      * @exception NullPointerException if <code>locale</code> is null
      * @exception IllegalArgumentException if <code>locale</code> isn't
      *     one of the locales returned from
-     *     {@link LocaleServiceProvider#getAvailableLocales()
+     *     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
      *     getAvailableLocales()}.
      * @return a currency formatter
-     * @see NumberFormat#getCurrencyInstance(Locale)
+     * @see java.text.NumberFormat#getCurrencyInstance(java.util.Locale)
      */
     public abstract NumberFormat getCurrencyInstance(Locale locale);
 
@@ -68,16 +68,16 @@ public abstract class NumberFormatProvider extends LocaleServiceProvider {
      * half-even rounding (see {@link java.math.RoundingMode#HALF_EVEN HALF_EVEN})
      * for formatting, and to parse only the integer part of
      * an input string (see {@link
-     * NumberFormat#isParseIntegerOnly isParseIntegerOnly}).
+     * java.text.NumberFormat#isParseIntegerOnly isParseIntegerOnly}).
      *
      * @param locale the desired locale
      * @exception NullPointerException if <code>locale</code> is null
      * @exception IllegalArgumentException if <code>locale</code> isn't
      *     one of the locales returned from
-     *     {@link LocaleServiceProvider#getAvailableLocales()
+     *     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
      *     getAvailableLocales()}.
      * @return a number format for integer values
-     * @see NumberFormat#getIntegerInstance(Locale)
+     * @see java.text.NumberFormat#getIntegerInstance(java.util.Locale)
      */
     public abstract NumberFormat getIntegerInstance(Locale locale);
 
@@ -89,10 +89,10 @@ public abstract class NumberFormatProvider extends LocaleServiceProvider {
      * @exception NullPointerException if <code>locale</code> is null
      * @exception IllegalArgumentException if <code>locale</code> isn't
      *     one of the locales returned from
-     *     {@link LocaleServiceProvider#getAvailableLocales()
+     *     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
      *     getAvailableLocales()}.
      * @return a general-purpose number formatter
-     * @see NumberFormat#getNumberInstance(Locale)
+     * @see java.text.NumberFormat#getNumberInstance(java.util.Locale)
      */
     public abstract NumberFormat getNumberInstance(Locale locale);
 
@@ -104,10 +104,10 @@ public abstract class NumberFormatProvider extends LocaleServiceProvider {
      * @exception NullPointerException if <code>locale</code> is null
      * @exception IllegalArgumentException if <code>locale</code> isn't
      *     one of the locales returned from
-     *     {@link LocaleServiceProvider#getAvailableLocales()
+     *     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
      *     getAvailableLocales()}.
      * @return a percent formatter
-     * @see NumberFormat#getPercentInstance(Locale)
+     * @see java.text.NumberFormat#getPercentInstance(java.util.Locale)
      */
     public abstract NumberFormat getPercentInstance(Locale locale);
 }

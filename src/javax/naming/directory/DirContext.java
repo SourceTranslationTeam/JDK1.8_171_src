@@ -160,7 +160,7 @@ import javax.naming.*;
  * @author Scott Seligman
  * @author R. Vasudevan
  *
- * @see Context
+ * @see javax.naming.Context
  * @since 1.3
  */
 

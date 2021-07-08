@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -146,7 +146,7 @@ import sun.security.util.Debug;
  */
 
 public final class SocketPermission extends Permission
-    implements Serializable
+    implements java.io.Serializable
 {
     private static final long serialVersionUID = -7204263841984476862L;
 
@@ -242,7 +242,7 @@ public final class SocketPermission extends Permission
     };
 
     static {
-        Boolean tmp = AccessController.doPrivileged(
+        Boolean tmp = java.security.AccessController.doPrivileged(
                 new sun.security.action.GetBooleanAction("sun.net.trustNameService"));
         trustNameService = tmp.booleanValue();
     }
@@ -458,7 +458,7 @@ public final class SocketPermission extends Permission
             }
             return;
         } else {
-            if (host.length() > 0) {
+            if (!host.isEmpty()) {
                 // see if we are being initialized with an IP address.
                 char ch = host.charAt(0);
                 if (ch == ':' || Character.digit(ch, 16) != -1) {
@@ -686,8 +686,7 @@ public final class SocketPermission extends Permission
             hdomain = RegisteredDomain.getRegisteredDomain(b);
         }
 
-        return cdomain.length() != 0 && hdomain.length() != 0
-                        && cdomain.equals(hdomain);
+        return !cdomain.isEmpty() && !hdomain.isEmpty() && cdomain.equals(hdomain);
     }
 
     private boolean authorized(String cname, byte[] addr) {
@@ -1180,7 +1179,7 @@ public final class SocketPermission extends Permission
      * to a stream. The actions are serialized, and the superclass
      * takes care of the name.
      */
-    private synchronized void writeObject(ObjectOutputStream s)
+    private synchronized void writeObject(java.io.ObjectOutputStream s)
         throws IOException
     {
         // Write out the actions. The superclass takes care of the name
@@ -1194,7 +1193,7 @@ public final class SocketPermission extends Permission
      * readObject is called to restore the state of the SocketPermission from
      * a stream.
      */
-    private synchronized void readObject(ObjectInputStream s)
+    private synchronized void readObject(java.io.ObjectInputStream s)
          throws IOException, ClassNotFoundException
     {
         // Read in the action, then initialize the rest
@@ -1320,9 +1319,9 @@ if wildcard, its the wild card
 else its the cname?
 
  *
- * @see Permission
+ * @see java.security.Permission
  * @see java.security.Permissions
- * @see PermissionCollection
+ * @see java.security.PermissionCollection
  *
  *
  * @author Roland Schemers

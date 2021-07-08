@@ -156,7 +156,7 @@ public class CertPathValidator {
      *          CertPathValidatorSpi implementation for the
      *          specified algorithm.
      *
-     * @see Provider
+     * @see java.security.Provider
      */
     public static CertPathValidator getInstance(String algorithm)
             throws NoSuchAlgorithmException {
@@ -199,7 +199,7 @@ public class CertPathValidator {
      * @exception IllegalArgumentException if the {@code provider} is
      *          null or empty.
      *
-     * @see Provider
+     * @see java.security.Provider
      */
     public static CertPathValidator getInstance(String algorithm,
             String provider) throws NoSuchAlgorithmException,
@@ -237,7 +237,7 @@ public class CertPathValidator {
      * @exception IllegalArgumentException if the {@code provider} is
      *          null.
      *
-     * @see Provider
+     * @see java.security.Provider
      */
     public static CertPathValidator getInstance(String algorithm,
             Provider provider) throws NoSuchAlgorithmException {
@@ -306,7 +306,7 @@ public class CertPathValidator {
      * setting the value of the {@code certpathvalidator.type} security
      * property to the desired type.
      *
-     * @see Security security properties
+     * @see java.security.Security security properties
      * @return the default {@code CertPathValidator} type as specified
      * by the {@code certpathvalidator.type} security property, or the string
      * {@literal "PKIX"} if no such property exists.

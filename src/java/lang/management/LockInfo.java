@@ -46,8 +46,8 @@ import sun.management.LockInfoCompositeData;
  * <tt>LockInfo</tt> is mapped to a {@link CompositeData CompositeData}
  * as specified in the {@link #from from} method.
  *
- * @see AbstractOwnableSynchronizer
- * @see Condition
+ * @see java.util.concurrent.locks.AbstractOwnableSynchronizer
+ * @see java.util.concurrent.locks.Condition
  *
  * @author  Mandy Chung
  * @since   1.6

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -108,7 +108,7 @@ import java.lang.annotation.Annotation;
  *
  * @see ClassLoader#definePackage
  */
-public class Package implements AnnotatedElement {
+public class Package implements java.lang.reflect.AnnotatedElement {
     /**
      * Return the name of this package.
      *
@@ -358,11 +358,11 @@ public class Package implements AnnotatedElement {
     public String toString() {
         String spec = specTitle;
         String ver =  specVersion;
-        if (spec != null && spec.length() > 0)
+        if (spec != null && !spec.isEmpty())
             spec = ", " + spec;
         else
             spec = "";
-        if (ver != null && ver.length() > 0)
+        if (ver != null && !ver.isEmpty())
             ver = ", version " + ver;
         else
             ver = "";

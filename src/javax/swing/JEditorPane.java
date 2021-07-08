@@ -318,7 +318,7 @@ public class JEditorPane extends JTextComponent {
      * @since 1.4
      */
     public synchronized HyperlinkListener[] getHyperlinkListeners() {
-        return listenerList.getListeners(HyperlinkListener.class);
+        return listenerList.getListeners(javax.swing.event.HyperlinkListener.class);
     }
 
     /**

@@ -50,17 +50,17 @@ public final class LongSeqHolder implements org.omg.CORBA.portable.Streamable
 
     public void _read (org.omg.CORBA.portable.InputStream i)
     {
-        value = LongSeqHelper.read (i);
+        value = org.omg.CORBA.LongSeqHelper.read (i);
     }
 
     public void _write (org.omg.CORBA.portable.OutputStream o)
     {
-        LongSeqHelper.write (o, value);
+        org.omg.CORBA.LongSeqHelper.write (o, value);
     }
 
-    public TypeCode _type ()
+    public org.omg.CORBA.TypeCode _type ()
     {
-        return LongSeqHelper.type ();
+        return org.omg.CORBA.LongSeqHelper.type ();
     }
 
 }

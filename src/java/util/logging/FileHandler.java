@@ -165,7 +165,7 @@ public class FileHandler extends StreamHandler {
      * If invalid/no property is provided 100 will be used as a default value.
      */
     static {
-        maxLocks = AccessController.doPrivileged(
+        maxLocks = java.security.AccessController.doPrivileged(
                 (PrivilegedAction<Integer>) () ->
                         Integer.getInteger(
                                 "jdk.internal.FileHandlerLogging.maxLocks",

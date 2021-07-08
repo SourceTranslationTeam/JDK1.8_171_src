@@ -40,7 +40,7 @@ import java.io.IOException;
  * @since   JDK1.1
  * @author  Ann Wollrath
  * @author  Roger Riggs
- * @see     RemoteRef
+ * @see     java.rmi.server.RemoteRef
  * @deprecated no replacement.
  */
 @Deprecated
@@ -51,7 +51,7 @@ public interface RemoteCall {
      * into.
      *
      * @return output stream for arguments/results
-     * @exception IOException if an I/O error occurs.
+     * @exception java.io.IOException if an I/O error occurs.
      * @since JDK1.1
      * @deprecated no replacement
      */
@@ -62,7 +62,7 @@ public interface RemoteCall {
      * Release the output stream; in some transports this would release
      * the stream.
      *
-     * @exception IOException if an I/O error occurs.
+     * @exception java.io.IOException if an I/O error occurs.
      * @since JDK1.1
      * @deprecated no replacement
      */
@@ -74,7 +74,7 @@ public interface RemoteCall {
      * results/arguments from.
      *
      * @return input stream for reading arguments/results
-     * @exception IOException if an I/O error occurs.
+     * @exception java.io.IOException if an I/O error occurs.
      * @since JDK1.1
      * @deprecated no replacement
      */
@@ -86,7 +86,7 @@ public interface RemoteCall {
      * Release the input stream. This would allow some transports to release
      * the channel early.
      *
-     * @exception IOException if an I/O error occurs.
+     * @exception java.io.IOException if an I/O error occurs.
      * @since JDK1.1
      * @deprecated no replacement
      */
@@ -101,8 +101,8 @@ public interface RemoteCall {
      * @param success If true, indicates normal return, else indicates
      * exceptional return.
      * @return output stream for writing call result
-     * @exception IOException              if an I/O error occurs.
-     * @exception StreamCorruptedException If already been called.
+     * @exception java.io.IOException              if an I/O error occurs.
+     * @exception java.io.StreamCorruptedException If already been called.
      * @since JDK1.1
      * @deprecated no replacement
      */
@@ -113,7 +113,7 @@ public interface RemoteCall {
     /**
      * Do whatever it takes to execute the call.
      *
-     * @exception Exception if a general exception occurs.
+     * @exception java.lang.Exception if a general exception occurs.
      * @since JDK1.1
      * @deprecated no replacement
      */
@@ -123,7 +123,7 @@ public interface RemoteCall {
     /**
      * Allow cleanup after the remote call has completed.
      *
-     * @exception IOException if an I/O error occurs.
+     * @exception java.io.IOException if an I/O error occurs.
      * @since JDK1.1
      * @deprecated no replacement
      */

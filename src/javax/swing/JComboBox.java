@@ -568,6 +568,8 @@ implements ItemSelectable,ListDataListener,ActionListener, Accessible {
                 if (!found) {
                     return;
                 }
+
+                getEditor().setItem(anObject);
             }
 
             // Must toggle the state of this flag since this method
@@ -1307,16 +1309,12 @@ implements ItemSelectable,ListDataListener,ActionListener, Accessible {
      * do not call or override.
      */
     public void actionPerformed(ActionEvent e) {
-        ComboBoxEditor editor = getEditor();
-        if ((editor != null) && (e != null) && (editor == e.getSource()
-                || editor.getEditorComponent() == e.getSource())) {
-            setPopupVisible(false);
-            getModel().setSelectedItem(editor.getItem());
-            String oldCommand = getActionCommand();
-            setActionCommand("comboBoxEdited");
-            fireActionEvent();
-            setActionCommand(oldCommand);
-        }
+        setPopupVisible(false);
+        getModel().setSelectedItem(getEditor().getItem());
+        String oldCommand = getActionCommand();
+        setActionCommand("comboBoxEdited");
+        fireActionEvent();
+        setActionCommand(oldCommand);
     }
 
     /**
@@ -1516,7 +1514,7 @@ implements ItemSelectable,ListDataListener,ActionListener, Accessible {
          * @return an int equal to the selected row, where 0 is the
          *         first item and -1 is none.
          */
-        int selectionForKey(char aKey, ComboBoxModel aModel);
+        int selectionForKey(char aKey,ComboBoxModel aModel);
     }
 
     class DefaultKeySelectionManager implements KeySelectionManager, Serializable {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -110,7 +110,7 @@ import sun.security.util.Debug;
  * </ul>
  *
  * <p> Before a keystore can be accessed, it must be
- * {@link #load(InputStream, char[]) loaded}.
+ * {@link #load(java.io.InputStream, char[]) loaded}.
  * <pre>
  *    KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
  *
@@ -170,9 +170,9 @@ import sun.security.util.Debug;
  *
  * @author Jan Luehe
  *
- * @see PrivateKey
- * @see SecretKey
- * @see Certificate
+ * @see java.security.PrivateKey
+ * @see javax.crypto.SecretKey
+ * @see java.security.cert.Certificate
  *
  * @since 1.2
  */
@@ -208,9 +208,9 @@ public class KeyStore {
 
     /**
      * A marker interface for {@code KeyStore}
-     * {@link #load(LoadStoreParameter) load}
+     * {@link #load(KeyStore.LoadStoreParameter) load}
      * and
-     * {@link #store(LoadStoreParameter) store}
+     * {@link #store(KeyStore.LoadStoreParameter) store}
      * parameters.
      *
      * @since 1.5
@@ -890,7 +890,7 @@ public class KeyStore {
     public static KeyStore getInstance(String type, String provider)
         throws KeyStoreException, NoSuchProviderException
     {
-        if (provider == null || provider.length() == 0)
+        if (provider == null || provider.isEmpty())
             throw new IllegalArgumentException("missing provider");
         try {
             Object[] objs = Security.getImpl(type, "KeyStore", provider);
@@ -958,7 +958,7 @@ public class KeyStore {
      * @return the default keystore type as specified by the
      * {@code keystore.type} security property, or the string {@literal "jks"}
      * if no such property exists.
-     * @see Security security properties
+     * @see java.security.Security security properties
      */
     public final static String getDefaultType() {
         String kstype;
@@ -1504,7 +1504,7 @@ public class KeyStore {
      *          the information needed to recover the key (e.g. wrong password)
      * @exception KeyStoreException if the keystore has not been initialized
      *          (loaded).
-     * @see #setEntry(String, Entry, ProtectionParameter)
+     * @see #setEntry(String, KeyStore.Entry, KeyStore.ProtectionParameter)
      *
      * @since 1.5
      */
@@ -1541,7 +1541,7 @@ public class KeyStore {
      * @exception KeyStoreException if the keystore has not been initialized
      *          (loaded), or if this operation fails for some other reason
      *
-     * @see #getEntry(String, ProtectionParameter)
+     * @see #getEntry(String, KeyStore.ProtectionParameter)
      *
      * @since 1.5
      */
@@ -1579,7 +1579,7 @@ public class KeyStore {
      */
     public final boolean
         entryInstanceOf(String alias,
-                        Class<? extends Entry> entryClass)
+                        Class<? extends KeyStore.Entry> entryClass)
         throws KeyStoreException
     {
 
@@ -1631,12 +1631,12 @@ public class KeyStore {
 
         /**
          * Returns the ProtectionParameters that should be used to obtain
-         * the {@link Entry Entry} with the given alias.
+         * the {@link KeyStore.Entry Entry} with the given alias.
          * The {@code getKeyStore} method must be invoked before this
          * method may be called.
          *
          * @return the ProtectionParameters that should be used to obtain
-         *   the {@link Entry Entry} with the given alias.
+         *   the {@link KeyStore.Entry Entry} with the given alias.
          * @param alias the alias of the KeyStore entry
          * @throws NullPointerException if alias is null
          * @throws KeyStoreException if an error occurred during the
@@ -1720,7 +1720,7 @@ public class KeyStore {
          * non-null. Otherwise, all installed providers are searched.
          *
          * <p>Calls to {@link #getProtectionParameter getProtectionParameter()}
-         * will return a {@link PasswordProtection PasswordProtection}
+         * will return a {@link KeyStore.PasswordProtection PasswordProtection}
          * object encapsulating the password that was used to invoke the
          * {@code load} method.
          *
@@ -1882,7 +1882,7 @@ public class KeyStore {
          *
          * <p>Each call to the {@link #getKeyStore} method on the returned
          * builder will return a new KeyStore object of type {@code type}.
-         * Its {@link KeyStore#load(LoadStoreParameter) load()}
+         * Its {@link KeyStore#load(KeyStore.LoadStoreParameter) load()}
          * method is invoked using a
          * {@code LoadStoreParameter} that encapsulates
          * {@code protection}.

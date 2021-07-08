@@ -191,7 +191,7 @@ public interface SQLInput {
      * this method
      * @since 1.2
      */
-    Date readDate() throws SQLException;
+    java.sql.Date readDate() throws SQLException;
 
     /**
      * Reads the next attribute in the stream and returns it as a <code>java.sql.Time</code> object.
@@ -202,7 +202,7 @@ public interface SQLInput {
      * this method
      * @since 1.2
      */
-    Time readTime() throws SQLException;
+    java.sql.Time readTime() throws SQLException;
 
     /**
      * Reads the next attribute in the stream and returns it as a <code>java.sql.Timestamp</code> object.
@@ -213,7 +213,7 @@ public interface SQLInput {
      * this method
      * @since 1.2
      */
-    Timestamp readTimestamp() throws SQLException;
+    java.sql.Timestamp readTimestamp() throws SQLException;
 
     /**
      * Reads the next attribute in the stream and returns it as a stream of Unicode characters.

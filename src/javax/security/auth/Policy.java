@@ -153,7 +153,7 @@ import sun.security.util.Debug;
  * These two APIs provide callers the means to query the
  * Policy for Principal-based Permission entries.
  *
- * @see Security security properties
+ * @see java.security.Security security properties
  */
 @Deprecated
 public abstract class Policy {
@@ -163,7 +163,7 @@ public abstract class Policy {
         "sun.security.provider.AuthPolicyFile";
 
     private final java.security.AccessControlContext acc =
-            AccessController.getContext();
+            java.security.AccessController.getContext();
 
     // true if a custom (not AUTH_POLICY) system-wide policy object is set
     private static boolean isCustomPolicy;
@@ -186,13 +186,13 @@ public abstract class Policy {
      * @return the installed Policy.  The return value cannot be
      *          {@code null}.
      *
-     * @exception SecurityException if the current thread does not
+     * @exception java.lang.SecurityException if the current thread does not
      *      have permission to get the Policy object.
      *
      * @see #setPolicy
      */
     public static Policy getPolicy() {
-        SecurityManager sm = System.getSecurityManager();
+        java.lang.SecurityManager sm = System.getSecurityManager();
         if (sm != null) sm.checkPermission(new AuthPermission("getPolicy"));
         return getPolicyNoCheck();
     }
@@ -213,7 +213,7 @@ public abstract class Policy {
                     policy_class = AccessController.doPrivileged
                         (new PrivilegedAction<String>() {
                         public String run() {
-                            return Security.getProperty
+                            return java.security.Security.getProperty
                                 ("auth.policy.provider");
                         }
                     });
@@ -267,13 +267,13 @@ public abstract class Policy {
      *
      * @param policy the new system Policy object.
      *
-     * @exception SecurityException if the current thread does not
+     * @exception java.lang.SecurityException if the current thread does not
      *          have permission to set the Policy.
      *
      * @see #getPolicy
      */
     public static void setPolicy(Policy policy) {
-        SecurityManager sm = System.getSecurityManager();
+        java.lang.SecurityManager sm = System.getSecurityManager();
         if (sm != null) sm.checkPermission(new AuthPermission("setPolicy"));
         Policy.policy = policy;
         // all non-null policy objects are assumed to be custom
@@ -300,8 +300,8 @@ public abstract class Policy {
             return isCustomPolicy;
         }
         // check if custom policy has been set using auth.policy.provider prop
-        String policyClass = AccessController.doPrivileged
-            (new PrivilegedAction<String>() {
+        String policyClass = java.security.AccessController.doPrivileged
+            (new java.security.PrivilegedAction<String>() {
                 public String run() {
                     return Security.getProperty("auth.policy.provider");
                 }

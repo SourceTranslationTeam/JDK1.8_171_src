@@ -125,9 +125,9 @@ final public class XMLReaderFactory
      * </p>
      *
      * @return A new XMLReader.
-     * @exception SAXException If no default XMLReader class
+     * @exception org.xml.sax.SAXException If no default XMLReader class
      *            can be identified and instantiated.
-     * @see #createXMLReader(String)
+     * @see #createXMLReader(java.lang.String)
      */
     public static XMLReader createXMLReader ()
         throws SAXException
@@ -211,7 +211,7 @@ final public class XMLReaderFactory
      * dynamically.</p>
      *
      * @return A new XML reader.
-     * @exception SAXException If the class cannot be
+     * @exception org.xml.sax.SAXException If the class cannot be
      *            loaded, instantiated, and cast to XMLReader.
      * @see #createXMLReader()
      */

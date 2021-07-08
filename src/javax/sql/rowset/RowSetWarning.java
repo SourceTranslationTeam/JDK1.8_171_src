@@ -91,7 +91,7 @@ public class RowSetWarning extends SQLException {
      * @param SQLState an XOPEN code identifying the warning; if a non standard
      *        XOPEN <i>SQLState</i> is supplied, no exception is thrown.
      */
-    public RowSetWarning(String reason, String SQLState) {
+    public RowSetWarning(java.lang.String reason, java.lang.String SQLState) {
         super(reason, SQLState);
     }
 
@@ -109,7 +109,7 @@ public class RowSetWarning extends SQLException {
      *        XOPEN <i>SQLState</i> is supplied, no exception is thrown.
      * @param vendorCode a database vendor-specific warning code
      */
-    public RowSetWarning(String reason, String SQLState, int vendorCode) {
+    public RowSetWarning(java.lang.String reason, java.lang.String SQLState, int vendorCode) {
         super(reason, SQLState, vendorCode);
     }
 

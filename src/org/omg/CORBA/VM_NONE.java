@@ -30,7 +30,7 @@ package org.omg.CORBA;
  * in a typecode.
  *
  * @author OMG
- * @see TypeCode
+ * @see org.omg.CORBA.TypeCode
  * @since   JDK1.2
  */
 

@@ -41,8 +41,8 @@ public class SimpleScriptContext  implements ScriptContext {
      * By default, a <code>PrintWriter</code> based on <code>System.out</code>
      * is used. Accessor methods getWriter, setWriter are used to manage
      * this field.
-     * @see System#out
-     * @see PrintWriter
+     * @see java.lang.System#out
+     * @see java.io.PrintWriter
      */
     protected Writer writer;
 
@@ -51,8 +51,8 @@ public class SimpleScriptContext  implements ScriptContext {
      * By default, a <code>PrintWriter</code> based on <code>System.err</code> is
      * used. Accessor methods getErrorWriter, setErrorWriter are used to manage
      * this field.
-     * @see System#err
-     * @see PrintWriter
+     * @see java.lang.System#err
+     * @see java.io.PrintWriter
      */
     protected Writer errorWriter;
 
@@ -61,8 +61,8 @@ public class SimpleScriptContext  implements ScriptContext {
      * By default, a <code>InputStreamReader</code> based on <code>System.in</code>
      * is used and default charset is used by this reader. Accessor methods
      * getReader, setReader are used to manage this field.
-     * @see System#in
-     * @see InputStreamReader
+     * @see java.lang.System#in
+     * @see java.io.InputStreamReader
      */
     protected Reader reader;
 

@@ -185,10 +185,10 @@ import sun.security.util.ResourcesMgr;
  * </ol>
  *
  * @see java.security.Security
- * @see AuthPermission
- * @see Subject
- * @see CallbackHandler
- * @see Configuration
+ * @see javax.security.auth.AuthPermission
+ * @see javax.security.auth.Subject
+ * @see javax.security.auth.callback.CallbackHandler
+ * @see javax.security.auth.login.Configuration
  * @see javax.security.auth.spi.LoginModule
  * @see java.security.Security security properties
  */
@@ -239,7 +239,7 @@ public class LoginContext {
 
         // get the Configuration
         if (config == null) {
-            config = AccessController.doPrivileged
+            config = java.security.AccessController.doPrivileged
                 (new java.security.PrivilegedAction<Configuration>() {
                 public Configuration run() {
                     return Configuration.getConfiguration();
@@ -275,7 +275,7 @@ public class LoginContext {
                                 null);
         }
 
-        contextClassLoader = AccessController.doPrivileged
+        contextClassLoader = java.security.AccessController.doPrivileged
                 (new java.security.PrivilegedAction<ClassLoader>() {
                 public ClassLoader run() {
                     ClassLoader loader =
@@ -298,12 +298,12 @@ public class LoginContext {
 
             final ClassLoader finalLoader = contextClassLoader;
 
-            this.callbackHandler = AccessController.doPrivileged(
+            this.callbackHandler = java.security.AccessController.doPrivileged(
                 new java.security.PrivilegedExceptionAction<CallbackHandler>() {
                 public CallbackHandler run() throws Exception {
                     String defaultHandler = java.security.Security.getProperty
                         (DEFAULT_HANDLER);
-                    if (defaultHandler == null || defaultHandler.length() == 0)
+                    if (defaultHandler == null || defaultHandler.isEmpty())
                         return null;
                     Class<? extends CallbackHandler> c = Class.forName(
                             defaultHandler, true,
@@ -318,7 +318,7 @@ public class LoginContext {
         // secure it with the caller's ACC
         if (this.callbackHandler != null && creatorAcc == null) {
             this.callbackHandler = new SecureCallbackHandler
-                                (AccessController.getContext(),
+                                (java.security.AccessController.getContext(),
                                 this.callbackHandler);
         }
     }
@@ -419,7 +419,7 @@ public class LoginContext {
             throw new LoginException(ResourcesMgr.getString
                                 ("invalid.null.CallbackHandler.provided"));
         this.callbackHandler = new SecureCallbackHandler
-                                (AccessController.getContext(),
+                                (java.security.AccessController.getContext(),
                                 callbackHandler);
     }
 
@@ -460,7 +460,7 @@ public class LoginContext {
             throw new LoginException(ResourcesMgr.getString
                                 ("invalid.null.CallbackHandler.provided"));
         this.callbackHandler = new SecureCallbackHandler
-                                (AccessController.getContext(),
+                                (java.security.AccessController.getContext(),
                                 callbackHandler);
     }
 
@@ -506,7 +506,7 @@ public class LoginContext {
                         Configuration config) throws LoginException {
         this.config = config;
         if (config != null) {
-            creatorAcc = AccessController.getContext();
+            creatorAcc = java.security.AccessController.getContext();
         }
 
         init(name);
@@ -518,7 +518,7 @@ public class LoginContext {
             loadDefaultCallbackHandler();
         } else if (creatorAcc == null) {
             this.callbackHandler = new SecureCallbackHandler
-                                (AccessController.getContext(),
+                                (java.security.AccessController.getContext(),
                                 callbackHandler);
         } else {
             this.callbackHandler = callbackHandler;
@@ -676,7 +676,7 @@ public class LoginContext {
      */
     private void invokePriv(final String methodName) throws LoginException {
         try {
-            AccessController.doPrivileged
+            java.security.AccessController.doPrivileged
                 (new java.security.PrivilegedExceptionAction<Void>() {
                 public Void run() throws LoginException {
                     invoke(methodName);
@@ -920,10 +920,10 @@ public class LoginContext {
      */
     private static class SecureCallbackHandler implements CallbackHandler {
 
-        private final AccessControlContext acc;
+        private final java.security.AccessControlContext acc;
         private final CallbackHandler ch;
 
-        SecureCallbackHandler(AccessControlContext acc,
+        SecureCallbackHandler(java.security.AccessControlContext acc,
                         CallbackHandler ch) {
             this.acc = acc;
             this.ch = ch;
@@ -932,7 +932,7 @@ public class LoginContext {
         public void handle(final Callback[] callbacks)
                 throws java.io.IOException, UnsupportedCallbackException {
             try {
-                AccessController.doPrivileged
+                java.security.AccessController.doPrivileged
                     (new java.security.PrivilegedExceptionAction<Void>() {
                     public Void run() throws java.io.IOException,
                                         UnsupportedCallbackException {

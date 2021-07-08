@@ -36,11 +36,11 @@ package java.rmi.activation;
  *
  * @author  Ann Wollrath
  * @since   1.2
- * @see     Activatable
- * @see     ActivationGroup
- * @see     ActivationGroupID
- * @see     ActivationMonitor
- * @see     ActivationSystem
+ * @see     java.rmi.activation.Activatable
+ * @see     java.rmi.activation.ActivationGroup
+ * @see     java.rmi.activation.ActivationGroupID
+ * @see     java.rmi.activation.ActivationMonitor
+ * @see     java.rmi.activation.ActivationSystem
  */
 public class UnknownGroupException extends ActivationException {
 

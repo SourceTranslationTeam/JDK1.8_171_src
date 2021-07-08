@@ -141,8 +141,8 @@ package java.io;
  *     are represented in the form of surrogate pairs.
  * </ul>
  * @author  Frank Yellin
- * @see     DataInputStream
- * @see     DataOutput
+ * @see     java.io.DataInputStream
+ * @see     java.io.DataOutput
  * @since   JDK1.0
  */
 public

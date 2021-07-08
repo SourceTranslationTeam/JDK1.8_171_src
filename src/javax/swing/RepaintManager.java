@@ -1014,7 +1014,7 @@ public class RepaintManager
    * This happens when the maximum double buffer size has been set for this
    * repaint manager.
    *
-   * @see VolatileImage
+   * @see java.awt.image.VolatileImage
    * @since 1.4
    */
     public Image getVolatileOffscreenBuffer(Component c,
@@ -1487,7 +1487,7 @@ public class RepaintManager
             if (repaintManager.useVolatileDoubleBuffer() &&
                 (offscreen = getValidImage(repaintManager.
                 getVolatileOffscreenBuffer(bufferComponent, w, h))) != null) {
-                VolatileImage vImage = (VolatileImage)offscreen;
+                VolatileImage vImage = (java.awt.image.VolatileImage)offscreen;
                 GraphicsConfiguration gc = bufferComponent.
                                             getGraphicsConfiguration();
                 for (int i = 0; !paintCompleted &&
@@ -1497,7 +1497,7 @@ public class RepaintManager
                         repaintManager.resetVolatileDoubleBuffer(gc);
                         offscreen = repaintManager.getVolatileOffscreenBuffer(
                             bufferComponent,w, h);
-                        vImage = (VolatileImage)offscreen;
+                        vImage = (java.awt.image.VolatileImage)offscreen;
                     }
                     paintDoubleBuffered(paintingComponent, vImage, g, x, y,
                                         w, h);

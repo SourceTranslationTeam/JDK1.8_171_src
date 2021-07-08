@@ -90,9 +90,9 @@ public final class XPathFilterParameterSpec implements TransformParameterSpec {
         }
         this.xPath = xPath;
         Map<?,?> copy = new HashMap<>((Map<?,?>)namespaceMap);
-        Iterator<? extends Entry<?,?>> entries = copy.entrySet().iterator();
+        Iterator<? extends Map.Entry<?,?>> entries = copy.entrySet().iterator();
         while (entries.hasNext()) {
-            Entry<?,?> me = entries.next();
+            Map.Entry<?,?> me = entries.next();
             if (!(me.getKey() instanceof String) ||
                 !(me.getValue() instanceof String)) {
                 throw new ClassCastException("not a String");

@@ -54,10 +54,10 @@ public interface MonitorMBean {
      * Adds the specified object in the set of observed MBeans.
      *
      * @param object The object to observe.
-     * @exception IllegalArgumentException the specified object is null.
+     * @exception java.lang.IllegalArgumentException the specified object is null.
      *
      */
-    public void addObservedObject(ObjectName object) throws IllegalArgumentException;
+    public void addObservedObject(ObjectName object) throws java.lang.IllegalArgumentException;
 
     /**
      * Removes the specified object from the set of observed MBeans.
@@ -139,12 +139,12 @@ public interface MonitorMBean {
      * Sets the granularity period (in milliseconds).
      *
      * @param period The granularity period.
-     * @exception IllegalArgumentException The granularity
+     * @exception java.lang.IllegalArgumentException The granularity
      * period is less than or equal to zero.
      *
      * @see #getGranularityPeriod
      */
-    public void setGranularityPeriod(long period) throws IllegalArgumentException;
+    public void setGranularityPeriod(long period) throws java.lang.IllegalArgumentException;
 
     /**
      * Tests if the monitor MBean is active.

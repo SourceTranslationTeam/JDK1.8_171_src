@@ -171,11 +171,13 @@ public class Vector<E>
      * @since   1.2
      */
     public Vector(Collection<? extends E> c) {
-        elementData = c.toArray();
-        elementCount = elementData.length;
-        // c.toArray might (incorrectly) not return Object[] (see 6260652)
-        if (elementData.getClass() != Object[].class)
-            elementData = Arrays.copyOf(elementData, elementCount, Object[].class);
+        Object[] a = c.toArray();
+        elementCount = a.length;
+        if (c.getClass() == ArrayList.class) {
+            elementData = a;
+        } else {
+            elementData = Arrays.copyOf(a, elementCount, Object[].class);
+        }
     }
 
     /**
@@ -1068,7 +1070,7 @@ public class Vector<E>
      * of the fields.
      *
      * @param in the stream
-     * @throws IOException if an I/O error occurs
+     * @throws java.io.IOException if an I/O error occurs
      * @throws ClassNotFoundException if the stream contains data
      *         of a non-existing class
      */
@@ -1091,7 +1093,7 @@ public class Vector<E>
      * of the serialized data.
      */
     private void writeObject(java.io.ObjectOutputStream s)
-            throws IOException {
+            throws java.io.IOException {
         final java.io.ObjectOutputStream.PutField fields = s.putFields();
         final Object[] data;
         synchronized (this) {

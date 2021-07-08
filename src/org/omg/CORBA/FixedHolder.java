@@ -91,7 +91,7 @@ public final class FixedHolder implements Streamable {
      *
      * @return the <code>TypeCode</code> object.
      */
-    public TypeCode _type() {
+    public org.omg.CORBA.TypeCode _type() {
         return ORB.init().get_primitive_tc(TCKind.tk_fixed);
     }
 

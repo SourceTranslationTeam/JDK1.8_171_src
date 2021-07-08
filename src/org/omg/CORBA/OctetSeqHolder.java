@@ -50,17 +50,17 @@ public final class OctetSeqHolder implements org.omg.CORBA.portable.Streamable
 
     public void _read (org.omg.CORBA.portable.InputStream i)
     {
-        value = OctetSeqHelper.read (i);
+        value = org.omg.CORBA.OctetSeqHelper.read (i);
     }
 
     public void _write (org.omg.CORBA.portable.OutputStream o)
     {
-        OctetSeqHelper.write (o, value);
+        org.omg.CORBA.OctetSeqHelper.write (o, value);
     }
 
-    public TypeCode _type ()
+    public org.omg.CORBA.TypeCode _type ()
     {
-        return OctetSeqHelper.type ();
+        return org.omg.CORBA.OctetSeqHelper.type ();
     }
 
 }

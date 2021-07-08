@@ -134,7 +134,7 @@ final class Streams {
         }
 
         @Override
-        public OfInt trySplit() {
+        public Spliterator.OfInt trySplit() {
             long size = estimateSize();
             return size <= 1
                    ? null
@@ -258,7 +258,7 @@ final class Streams {
         }
 
         @Override
-        public OfLong trySplit() {
+        public Spliterator.OfLong trySplit() {
             long size = estimateSize();
             return size <= 1
                    ? null
@@ -813,7 +813,7 @@ final class Streams {
         }
 
         static class OfInt
-                extends OfPrimitive<Integer, IntConsumer, Spliterator.OfInt>
+                extends ConcatSpliterator.OfPrimitive<Integer, IntConsumer, Spliterator.OfInt>
                 implements Spliterator.OfInt {
             OfInt(Spliterator.OfInt aSpliterator, Spliterator.OfInt bSpliterator) {
                 super(aSpliterator, bSpliterator);
@@ -821,7 +821,7 @@ final class Streams {
         }
 
         static class OfLong
-                extends OfPrimitive<Long, LongConsumer, Spliterator.OfLong>
+                extends ConcatSpliterator.OfPrimitive<Long, LongConsumer, Spliterator.OfLong>
                 implements Spliterator.OfLong {
             OfLong(Spliterator.OfLong aSpliterator, Spliterator.OfLong bSpliterator) {
                 super(aSpliterator, bSpliterator);
@@ -829,7 +829,7 @@ final class Streams {
         }
 
         static class OfDouble
-                extends OfPrimitive<Double, DoubleConsumer, Spliterator.OfDouble>
+                extends ConcatSpliterator.OfPrimitive<Double, DoubleConsumer, Spliterator.OfDouble>
                 implements Spliterator.OfDouble {
             OfDouble(Spliterator.OfDouble aSpliterator, Spliterator.OfDouble bSpliterator) {
                 super(aSpliterator, bSpliterator);

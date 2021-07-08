@@ -105,7 +105,7 @@ class MulticastSocket extends DatagramSocket {
      * @exception  SecurityException  if a security manager exists and its
      *             {@code checkListen} method doesn't allow the operation.
      * @see SecurityManager#checkListen
-     * @see DatagramSocket#setReuseAddress(boolean)
+     * @see java.net.DatagramSocket#setReuseAddress(boolean)
      */
     public MulticastSocket() throws IOException {
         this(new InetSocketAddress(0));
@@ -130,7 +130,7 @@ class MulticastSocket extends DatagramSocket {
      * @exception  SecurityException  if a security manager exists and its
      *             {@code checkListen} method doesn't allow the operation.
      * @see SecurityManager#checkListen
-     * @see DatagramSocket#setReuseAddress(boolean)
+     * @see java.net.DatagramSocket#setReuseAddress(boolean)
      */
     public MulticastSocket(int port) throws IOException {
         this(new InetSocketAddress(port));
@@ -157,7 +157,7 @@ class MulticastSocket extends DatagramSocket {
      * @exception  SecurityException  if a security manager exists and its
      *             {@code checkListen} method doesn't allow the operation.
      * @see SecurityManager#checkListen
-     * @see DatagramSocket#setReuseAddress(boolean)
+     * @see java.net.DatagramSocket#setReuseAddress(boolean)
      *
      * @since 1.4
      */
@@ -277,6 +277,30 @@ class MulticastSocket extends DatagramSocket {
         return getImpl().getTimeToLive();
     }
 
+    private static final NetworkInterface defNetIntf;
+    static {
+        String name = java.security.AccessController.doPrivileged(
+            new java.security.PrivilegedAction<String>() {
+                public String run() {
+                    return System.getProperty("jdk.net.defaultMulticastInterface");
+                }
+            });
+        NetworkInterface ni = null;
+        if (name != null) {
+            try {
+                ni = NetworkInterface.getByName(name);
+                if (ni == null) {
+                    System.err.println("WARNING: cannot find network interface " + name);
+                } else {
+                    System.err.println("INFO: network interface set to " + name);
+                }
+            } catch (SocketException se) {
+                System.err.println("ERROR: failed to find network interface " + name);
+            }
+        }
+        defNetIntf = ni;
+    }
+
     /**
      * Joins a multicast group. Its behavior may be affected by
      * {@code setInterface} or {@code setNetworkInterface}.
@@ -296,6 +320,17 @@ class MulticastSocket extends DatagramSocket {
      * @see SecurityManager#checkMulticast(InetAddress)
      */
     public void joinGroup(InetAddress mcastaddr) throws IOException {
+
+        synchronized (infLock) {
+            if (!interfaceSet && defNetIntf != null) {
+                if (mcastaddr == null) {
+                    throw new NullPointerException("Multicast address is null");
+                }
+                joinGroup(new InetSocketAddress(mcastaddr, 0), defNetIntf);
+                return;
+            }
+        }
+
         if (isClosed()) {
             throw new SocketException("Socket is closed");
         }
@@ -341,6 +376,17 @@ class MulticastSocket extends DatagramSocket {
      * @see SecurityManager#checkMulticast(InetAddress)
      */
     public void leaveGroup(InetAddress mcastaddr) throws IOException {
+
+        synchronized (infLock) {
+            if (!interfaceSet && defNetIntf != null) {
+                if (mcastaddr == null) {
+                    throw new NullPointerException("Multicast address is null");
+                }
+                leaveGroup(new InetSocketAddress(mcastaddr, 0), defNetIntf);
+                return;
+            }
+        }
+
         if (isClosed()) {
             throw new SocketException("Socket is closed");
         }
@@ -485,7 +531,7 @@ class MulticastSocket extends DatagramSocket {
      * @exception SocketException if there is an error in
      * the underlying protocol, such as a TCP error.
      *
-     * @see #setInterface(InetAddress)
+     * @see #setInterface(java.net.InetAddress)
      */
     public InetAddress getInterface() throws SocketException {
         if (isClosed()) {
@@ -652,7 +698,7 @@ class MulticastSocket extends DatagramSocket {
      *
      * @see DatagramSocket#send
      * @see DatagramSocket#receive
-     * @see SecurityManager#checkMulticast(InetAddress, byte)
+     * @see SecurityManager#checkMulticast(java.net.InetAddress, byte)
      * @see SecurityManager#checkConnect
      */
     @Deprecated

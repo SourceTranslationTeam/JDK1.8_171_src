@@ -51,7 +51,7 @@ public class ConfigurationException extends NamingException {
      *
      * @param   explanation     A possibly null string containing
      *                          additional detail about this exception.
-     * @see Throwable#getMessage
+     * @see java.lang.Throwable#getMessage
      */
     public ConfigurationException(String explanation) {
         super(explanation);

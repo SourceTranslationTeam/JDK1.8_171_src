@@ -720,7 +720,7 @@ class SpinedBuffer<E>
     /**
      * An ordered collection of {@code int} values.
      */
-    static class OfInt extends OfPrimitive<Integer, int[], IntConsumer>
+    static class OfInt extends SpinedBuffer.OfPrimitive<Integer, int[], IntConsumer>
             implements IntConsumer {
         OfInt() { }
 
@@ -806,7 +806,7 @@ class SpinedBuffer<E>
                 }
 
                 @Override
-                OfInt arraySpliterator(int[] array, int offset, int len) {
+                Spliterator.OfInt arraySpliterator(int[] array, int offset, int len) {
                     return Arrays.spliterator(array, offset, offset+len);
                 }
             }
@@ -833,7 +833,7 @@ class SpinedBuffer<E>
     /**
      * An ordered collection of {@code long} values.
      */
-    static class OfLong extends OfPrimitive<Long, long[], LongConsumer>
+    static class OfLong extends SpinedBuffer.OfPrimitive<Long, long[], LongConsumer>
             implements LongConsumer {
         OfLong() { }
 
@@ -920,7 +920,7 @@ class SpinedBuffer<E>
                 }
 
                 @Override
-                OfLong arraySpliterator(long[] array, int offset, int len) {
+                Spliterator.OfLong arraySpliterator(long[] array, int offset, int len) {
                     return Arrays.spliterator(array, offset, offset+len);
                 }
             }
@@ -948,7 +948,7 @@ class SpinedBuffer<E>
      * An ordered collection of {@code double} values.
      */
     static class OfDouble
-            extends OfPrimitive<Double, double[], DoubleConsumer>
+            extends SpinedBuffer.OfPrimitive<Double, double[], DoubleConsumer>
             implements DoubleConsumer {
         OfDouble() { }
 
@@ -1034,7 +1034,7 @@ class SpinedBuffer<E>
                 }
 
                 @Override
-                OfDouble arraySpliterator(double[] array, int offset, int len) {
+                Spliterator.OfDouble arraySpliterator(double[] array, int offset, int len) {
                     return Arrays.spliterator(array, offset, offset+len);
                 }
             }

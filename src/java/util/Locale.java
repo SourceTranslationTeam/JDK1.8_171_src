@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1996, 2014, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1996, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -289,7 +289,7 @@ import sun.util.locale.provider.ResourceBundleBasedAdapter;
  * <p>A user's preference is called a <em>Language Priority List</em> and is
  * expressed as a list of language ranges. There are syntactically two types of
  * language ranges: basic and extended. See
- * {@link LanguageRange Locale.LanguageRange} for details.
+ * {@link Locale.LanguageRange Locale.LanguageRange} for details.
  *
  * <h5>Filtering</h5>
  *
@@ -306,7 +306,7 @@ import sun.util.locale.provider.ResourceBundleBasedAdapter;
  * (called "basic filtering") and filtering for extended language ranges
  * (called "extended filtering"). They may return different results by what
  * kind of language ranges are included in the given Language Priority List.
- * {@link FilteringMode} is a parameter to specify how filtering should
+ * {@link Locale.FilteringMode} is a parameter to specify how filtering should
  * be done.
  *
  * <h5>Lookup</h5>
@@ -352,7 +352,7 @@ import sun.util.locale.provider.ResourceBundleBasedAdapter;
  * the language suitable for displaying to the user. Interestingly,
  * the <code>getDisplayXXX</code> methods are themselves locale-sensitive
  * and have two versions: one that uses the default
- * {@link Category#DISPLAY DISPLAY} locale and one
+ * {@link Locale.Category#DISPLAY DISPLAY} locale and one
  * that uses the locale specified as an argument.
  *
  * <p>The Java Platform provides a number of classes that perform locale-sensitive
@@ -371,7 +371,7 @@ import sun.util.locale.provider.ResourceBundleBasedAdapter;
  * </blockquote>
  * Each of these methods has two variants; one with an explicit locale
  * and one without; the latter uses the default
- * {@link Category#FORMAT FORMAT} locale:
+ * {@link Locale.Category#FORMAT FORMAT} locale:
  * <blockquote>
  * <pre>
  *     NumberFormat.getInstance(myLocale)
@@ -806,7 +806,7 @@ public final class Locale implements Cloneable, Serializable {
      * based on the host environment. It is used by many locale-sensitive
      * methods if no locale is explicitly specified.
      * It can be changed using the
-     * {@link #setDefault(Locale) setDefault} method.
+     * {@link #setDefault(java.util.Locale) setDefault} method.
      *
      * @return the default locale for this instance of the Java Virtual Machine
      */
@@ -828,10 +828,10 @@ public final class Locale implements Cloneable, Serializable {
      * @throws NullPointerException - if category is null
      * @return the default locale for the specified Category for this instance
      *     of the Java Virtual Machine
-     * @see #setDefault(Category, Locale)
+     * @see #setDefault(Locale.Category, Locale)
      * @since 1.7
      */
-    public static Locale getDefault(Category category) {
+    public static Locale getDefault(Locale.Category category) {
         // do not synchronize this method - see 4071298
         switch (category) {
         case DISPLAY:
@@ -888,7 +888,7 @@ public final class Locale implements Cloneable, Serializable {
         return getInstance(language, script, country, variant, null);
     }
 
-    private static Locale initDefault(Category category) {
+    private static Locale initDefault(Locale.Category category) {
         return getInstance(
             AccessController.doPrivileged(
                 new GetPropertyAction(category.languageKey, defaultLocale.getLanguage())),
@@ -927,7 +927,7 @@ public final class Locale implements Cloneable, Serializable {
      * @throws NullPointerException if <code>newLocale</code> is null
      * @param newLocale the new default locale
      * @see SecurityManager#checkPermission
-     * @see PropertyPermission
+     * @see java.util.PropertyPermission
      */
     public static synchronized void setDefault(Locale newLocale) {
         setDefault(Category.DISPLAY, newLocale);
@@ -960,10 +960,10 @@ public final class Locale implements Cloneable, Serializable {
      * @throws NullPointerException - if category and/or newLocale is null
      * @see SecurityManager#checkPermission(java.security.Permission)
      * @see PropertyPermission
-     * @see #getDefault(Category)
+     * @see #getDefault(Locale.Category)
      * @since 1.7
      */
-    public static synchronized void setDefault(Category category,
+    public static synchronized void setDefault(Locale.Category category,
         Locale newLocale) {
         if (category == null)
             throw new NullPointerException("Category cannot be NULL");
@@ -991,7 +991,7 @@ public final class Locale implements Cloneable, Serializable {
      * by the Java runtime environment and by installed
      * {@link java.util.spi.LocaleServiceProvider LocaleServiceProvider}
      * implementations.  It must contain at least a <code>Locale</code>
-     * instance equal to {@link Locale#US Locale.US}.
+     * instance equal to {@link java.util.Locale#US Locale.US}.
      *
      * @return An array of installed locales.
      */
@@ -1288,11 +1288,11 @@ public final class Locale implements Cloneable, Serializable {
      */
     @Override
     public final String toString() {
-        boolean l = (baseLocale.getLanguage().length() != 0);
-        boolean s = (baseLocale.getScript().length() != 0);
-        boolean r = (baseLocale.getRegion().length() != 0);
-        boolean v = (baseLocale.getVariant().length() != 0);
-        boolean e = (localeExtensions != null && localeExtensions.getID().length() != 0);
+        boolean l = !baseLocale.getLanguage().isEmpty();
+        boolean s = !baseLocale.getScript().isEmpty();
+        boolean r = !baseLocale.getRegion().isEmpty();
+        boolean v = !baseLocale.getVariant().isEmpty();
+        boolean e = localeExtensions != null && !localeExtensions.getID().isEmpty();
 
         StringBuilder result = new StringBuilder(baseLocale.getLanguage());
         if (r || (l && (v || s || e))) {
@@ -1396,18 +1396,18 @@ public final class Locale implements Cloneable, Serializable {
         StringBuilder buf = new StringBuilder();
 
         String subtag = tag.getLanguage();
-        if (subtag.length() > 0) {
+        if (!subtag.isEmpty()) {
             buf.append(LanguageTag.canonicalizeLanguage(subtag));
         }
 
         subtag = tag.getScript();
-        if (subtag.length() > 0) {
+        if (!subtag.isEmpty()) {
             buf.append(LanguageTag.SEP);
             buf.append(LanguageTag.canonicalizeScript(subtag));
         }
 
         subtag = tag.getRegion();
-        if (subtag.length() > 0) {
+        if (!subtag.isEmpty()) {
             buf.append(LanguageTag.SEP);
             buf.append(LanguageTag.canonicalizeRegion(subtag));
         }
@@ -1426,7 +1426,7 @@ public final class Locale implements Cloneable, Serializable {
         }
 
         subtag = tag.getPrivateuse();
-        if (subtag.length() > 0) {
+        if (!subtag.isEmpty()) {
             if (buf.length() > 0) {
                 buf.append(LanguageTag.SEP);
             }
@@ -1449,7 +1449,7 @@ public final class Locale implements Cloneable, Serializable {
      *
      * <p>If the specified language tag contains any ill-formed subtags,
      * the first such subtag and all following subtags are ignored.  Compare
-     * to {@link Builder#setLanguageTag} which throws an exception
+     * to {@link Locale.Builder#setLanguageTag} which throws an exception
      * in this case.
      *
      * <p>The following <b>conversions</b> are performed:<ul>
@@ -1561,7 +1561,7 @@ public final class Locale implements Cloneable, Serializable {
      * @return The locale that best represents the language tag.
      * @throws NullPointerException if <code>languageTag</code> is <code>null</code>
      * @see #toLanguageTag()
-     * @see Builder#setLanguageTag(String)
+     * @see java.util.Locale.Builder#setLanguageTag(String)
      * @since 1.7
      */
     public static Locale forLanguageTag(String languageTag) {
@@ -1570,7 +1570,7 @@ public final class Locale implements Cloneable, Serializable {
         bldr.setLanguageTag(tag);
         BaseLocale base = bldr.getBaseLocale();
         LocaleExtensions exts = bldr.getLocaleExtensions();
-        if (exts == null && base.getVariant().length() > 0) {
+        if (exts == null && !base.getVariant().isEmpty()) {
             exts = getCompatibilityExtensions(base.getLanguage(), base.getScript(),
                                               base.getRegion(), base.getVariant());
         }
@@ -1652,14 +1652,14 @@ public final class Locale implements Cloneable, Serializable {
      * Returns a name for the locale's language that is appropriate for display to the
      * user.
      * If possible, the name returned will be localized for the default
-     * {@link Category#DISPLAY DISPLAY} locale.
+     * {@link Locale.Category#DISPLAY DISPLAY} locale.
      * For example, if the locale is fr_FR and the default
-     * {@link Category#DISPLAY DISPLAY} locale
+     * {@link Locale.Category#DISPLAY DISPLAY} locale
      * is en_US, getDisplayLanguage() will return "French"; if the locale is en_US and
-     * the default {@link Category#DISPLAY DISPLAY} locale is fr_FR,
+     * the default {@link Locale.Category#DISPLAY DISPLAY} locale is fr_FR,
      * getDisplayLanguage() will return "anglais".
      * If the name returned cannot be localized for the default
-     * {@link Category#DISPLAY DISPLAY} locale,
+     * {@link Locale.Category#DISPLAY DISPLAY} locale,
      * (say, we don't have a Japanese name for Croatian),
      * this function falls back on the English name, and uses the ISO code as a last-resort
      * value.  If the locale doesn't specify a language, this function returns the empty string.
@@ -1694,11 +1694,11 @@ public final class Locale implements Cloneable, Serializable {
     /**
      * Returns a name for the the locale's script that is appropriate for display to
      * the user. If possible, the name will be localized for the default
-     * {@link Category#DISPLAY DISPLAY} locale.  Returns
+     * {@link Locale.Category#DISPLAY DISPLAY} locale.  Returns
      * the empty string if this locale doesn't specify a script code.
      *
      * @return the display name of the script code for the current default
-     *     {@link Category#DISPLAY DISPLAY} locale
+     *     {@link Locale.Category#DISPLAY DISPLAY} locale
      * @since 1.7
      */
     public String getDisplayScript() {
@@ -1713,7 +1713,7 @@ public final class Locale implements Cloneable, Serializable {
      *
      * @param inLocale The locale for which to retrieve the display script.
      * @return the display name of the script code for the current default
-     * {@link Category#DISPLAY DISPLAY} locale
+     * {@link Locale.Category#DISPLAY DISPLAY} locale
      * @throws NullPointerException if <code>inLocale</code> is <code>null</code>
      * @since 1.7
      */
@@ -1725,14 +1725,14 @@ public final class Locale implements Cloneable, Serializable {
      * Returns a name for the locale's country that is appropriate for display to the
      * user.
      * If possible, the name returned will be localized for the default
-     * {@link Category#DISPLAY DISPLAY} locale.
+     * {@link Locale.Category#DISPLAY DISPLAY} locale.
      * For example, if the locale is fr_FR and the default
-     * {@link Category#DISPLAY DISPLAY} locale
+     * {@link Locale.Category#DISPLAY DISPLAY} locale
      * is en_US, getDisplayCountry() will return "France"; if the locale is en_US and
-     * the default {@link Category#DISPLAY DISPLAY} locale is fr_FR,
+     * the default {@link Locale.Category#DISPLAY DISPLAY} locale is fr_FR,
      * getDisplayCountry() will return "Etats-Unis".
      * If the name returned cannot be localized for the default
-     * {@link Category#DISPLAY DISPLAY} locale,
+     * {@link Locale.Category#DISPLAY DISPLAY} locale,
      * (say, we don't have a Japanese name for Croatia),
      * this function falls back on the English name, and uses the ISO code as a last-resort
      * value.  If the locale doesn't specify a country, this function returns the empty string.
@@ -1789,7 +1789,7 @@ public final class Locale implements Cloneable, Serializable {
     /**
      * Returns a name for the locale's variant code that is appropriate for display to the
      * user.  If possible, the name will be localized for the default
-     * {@link Category#DISPLAY DISPLAY} locale.  If the locale
+     * {@link Locale.Category#DISPLAY DISPLAY} locale.  If the locale
      * doesn't specify a variant code, this function returns the empty string.
      *
      * @return The name of the display variant code appropriate to the locale.
@@ -1808,7 +1808,7 @@ public final class Locale implements Cloneable, Serializable {
      * @exception NullPointerException if <code>inLocale</code> is <code>null</code>
      */
     public String getDisplayVariant(Locale inLocale) {
-        if (baseLocale.getVariant().length() == 0)
+        if (baseLocale.getVariant().isEmpty())
             return "";
 
         LocaleResources lr = LocaleProviderAdapter.forJRE().getLocaleResources(inLocale);
@@ -1883,14 +1883,14 @@ public final class Locale implements Cloneable, Serializable {
         // The display name consists of a main name, followed by qualifiers.
         // Typically, the format is "MainName (Qualifier, Qualifier)" but this
         // depends on what pattern is stored in the display locale.
-        String   mainName       = null;
-        String[] qualifierNames = null;
+        String   mainName;
+        String[] qualifierNames;
 
         // The main name is the language, or if there is no language, the script,
         // then if no script, the country. If there is no language/script/country
         // (an anomalous situation) then the display name is simply the variant's
         // display name.
-        if (languageName.length() == 0 && scriptName.length() == 0 && countryName.length() == 0) {
+        if (languageName.isEmpty() && scriptName.isEmpty() && countryName.isEmpty()) {
             if (variantNames.length == 0) {
                 return "";
             } else {
@@ -1898,13 +1898,13 @@ public final class Locale implements Cloneable, Serializable {
             }
         }
         ArrayList<String> names = new ArrayList<>(4);
-        if (languageName.length() != 0) {
+        if (!languageName.isEmpty()) {
             names.add(languageName);
         }
-        if (scriptName.length() != 0) {
+        if (!scriptName.isEmpty()) {
             names.add(scriptName);
         }
-        if (countryName.length() != 0) {
+        if (!countryName.isEmpty()) {
             names.add(countryName);
         }
         if (variantNames.length != 0) {
@@ -2179,7 +2179,7 @@ public final class Locale implements Cloneable, Serializable {
         String variant = (String)fields.get("variant", "");
         String extStr = (String)fields.get("extensions", "");
         baseLocale = BaseLocale.getInstance(convertOldISOCodes(language), script, country, variant);
-        if (extStr.length() > 0) {
+        if (!extStr.isEmpty()) {
             try {
                 InternalLocaleBuilder bldr = new InternalLocaleBuilder();
                 bldr.setExtensions(extStr);
@@ -2237,13 +2237,13 @@ public final class Locale implements Cloneable, Serializable {
         LocaleExtensions extensions = null;
         // Special cases for backward compatibility support
         if (LocaleUtils.caseIgnoreMatch(language, "ja")
-                && script.length() == 0
+                && script.isEmpty()
                 && LocaleUtils.caseIgnoreMatch(country, "jp")
                 && "JP".equals(variant)) {
             // ja_JP_JP -> u-ca-japanese (calendar = japanese)
             extensions = LocaleExtensions.CALENDAR_JAPANESE;
         } else if (LocaleUtils.caseIgnoreMatch(language, "th")
-                && script.length() == 0
+                && script.isEmpty()
                 && LocaleUtils.caseIgnoreMatch(country, "th")
                 && "TH".equals(variant)) {
             // th_TH_TH -> u-nu-thai (numbersystem = thai)
@@ -2291,8 +2291,8 @@ public final class Locale implements Cloneable, Serializable {
      * the default locale for the specific functionality represented by the
      * category.
      *
-     * @see #getDefault(Category)
-     * @see #setDefault(Category, Locale)
+     * @see #getDefault(Locale.Category)
+     * @see #setDefault(Locale.Category, Locale)
      * @since 1.7
      */
     public enum Category {
@@ -2665,7 +2665,7 @@ public final class Locale implements Cloneable, Serializable {
         public Locale build() {
             BaseLocale baseloc = localeBuilder.getBaseLocale();
             LocaleExtensions extensions = localeBuilder.getLocaleExtensions();
-            if (extensions == null && baseloc.getVariant().length() > 0) {
+            if (extensions == null && !baseloc.getVariant().isEmpty()) {
                 extensions = getCompatibilityExtensions(baseloc.getLanguage(), baseloc.getScript(),
                         baseloc.getRegion(), baseloc.getVariant());
             }

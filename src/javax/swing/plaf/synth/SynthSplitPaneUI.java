@@ -37,7 +37,7 @@ import javax.swing.plaf.basic.*;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JSplitPane}.
+ * {@link javax.swing.JSplitPane}.
  *
  * @author Scott Violet
  * @since 1.7

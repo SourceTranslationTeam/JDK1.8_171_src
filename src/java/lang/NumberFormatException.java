@@ -31,7 +31,7 @@ package java.lang;
  * have the appropriate format.
  *
  * @author  unascribed
- * @see     Integer#parseInt(String)
+ * @see     java.lang.Integer#parseInt(String)
  * @since   JDK1.0
  */
 public

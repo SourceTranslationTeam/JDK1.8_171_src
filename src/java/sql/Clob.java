@@ -108,7 +108,7 @@ public interface Clob {
    * @see #setCharacterStream
    * @since 1.2
    */
-  Reader getCharacterStream() throws SQLException;
+  java.io.Reader getCharacterStream() throws SQLException;
 
   /**
    * Retrieves the <code>CLOB</code> value designated by this <code>Clob</code>

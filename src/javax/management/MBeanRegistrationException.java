@@ -43,7 +43,7 @@ public class MBeanRegistrationException extends MBeanException   {
      *
      * @param e the wrapped exception.
      */
-    public MBeanRegistrationException(Exception e) {
+    public MBeanRegistrationException(java.lang.Exception e) {
         super(e) ;
     }
 
@@ -55,7 +55,7 @@ public class MBeanRegistrationException extends MBeanException   {
      * @param e the wrapped exception.
      * @param message the detail message.
      */
-    public MBeanRegistrationException(Exception e, String message) {
+    public MBeanRegistrationException(java.lang.Exception e, String message) {
         super(e, message) ;
     }
 }

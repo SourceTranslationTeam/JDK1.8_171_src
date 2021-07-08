@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -198,7 +198,7 @@ import java.nio.charset.UnsupportedCharsetException;
  href="http://java.sun.com/products/jfc/tsc/articles/persistence4">Using XMLEncoder</a>,
  * an article in <em>The Swing Connection.</em>
  * @see XMLDecoder
- * @see ObjectOutputStream
+ * @see java.io.ObjectOutputStream
  *
  * @since 1.4
  *
@@ -390,7 +390,7 @@ public class XMLEncoder extends Encoder implements AutoCloseable {
      *
      * @param oldStm The statement that will be written
      *               to the stream.
-     * @see PersistenceDelegate#initialize
+     * @see java.beans.PersistenceDelegate#initialize
      */
     public void writeStatement(Statement oldStm) {
         // System.out.println("XMLEncoder::writeStatement: " + oldStm);
@@ -443,7 +443,7 @@ public class XMLEncoder extends Encoder implements AutoCloseable {
      *
      * @param oldExp The expression that will be written
      *               to the stream.
-     * @see PersistenceDelegate#initialize
+     * @see java.beans.PersistenceDelegate#initialize
      */
     public void writeExpression(Expression oldExp) {
         boolean internal = this.internal;
@@ -615,10 +615,12 @@ public class XMLEncoder extends Encoder implements AutoCloseable {
             }
 
             if (isArgument && target instanceof Field && methodName.equals("get")) {
-                Field f = (Field)target;
-                writeln("<object class=" + quote(f.getDeclaringClass().getName()) +
-                        " field=" + quote(f.getName()) + "/>");
-                return;
+                Field f = (Field) target;
+                if (Modifier.isStatic(f.getModifiers())) {
+                    writeln("<object class=" + quote(f.getDeclaringClass().getName()) +
+                            " field=" + quote(f.getName()) + "/>");
+                    return;
+                }
             }
 
             Class<?> primitiveType = primitiveTypeFor(value.getClass());

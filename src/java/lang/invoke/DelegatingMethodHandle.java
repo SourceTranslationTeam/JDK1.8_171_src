@@ -129,21 +129,21 @@ abstract class DelegatingMethodHandle extends MethodHandle {
         final int PRE_ACTION   = hasPreAction ? nameCursor++ : -1;
         final int NEXT_MH     = customized ? -1 : nameCursor++;
         final int REINVOKE    = nameCursor++;
-        Name[] names = LambdaForm.arguments(nameCursor - ARG_LIMIT, mtype.invokerType());
+        LambdaForm.Name[] names = LambdaForm.arguments(nameCursor - ARG_LIMIT, mtype.invokerType());
         assert(names.length == nameCursor);
         names[THIS_DMH] = names[THIS_DMH].withConstraint(constraint);
         Object[] targetArgs;
         if (hasPreAction) {
-            names[PRE_ACTION] = new Name(preActionFn, names[THIS_DMH]);
+            names[PRE_ACTION] = new LambdaForm.Name(preActionFn, names[THIS_DMH]);
         }
         if (customized) {
             targetArgs = Arrays.copyOfRange(names, ARG_BASE, ARG_LIMIT, Object[].class);
-            names[REINVOKE] = new Name(target, targetArgs);  // the invoker is the target itself
+            names[REINVOKE] = new LambdaForm.Name(target, targetArgs);  // the invoker is the target itself
         } else {
-            names[NEXT_MH] = new Name(getTargetFn, names[THIS_DMH]);
+            names[NEXT_MH] = new LambdaForm.Name(getTargetFn, names[THIS_DMH]);
             targetArgs = Arrays.copyOfRange(names, THIS_DMH, ARG_LIMIT, Object[].class);
             targetArgs[0] = names[NEXT_MH];  // overwrite this MH with next MH
-            names[REINVOKE] = new Name(mtype, targetArgs);
+            names[REINVOKE] = new LambdaForm.Name(mtype, targetArgs);
         }
         form = new LambdaForm(debugString, ARG_LIMIT, names, forceInline);
         if (!customized) {

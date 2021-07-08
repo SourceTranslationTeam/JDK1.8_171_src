@@ -55,16 +55,16 @@ package org.xml.sax;
  * <p>Note that the use of this class is optional.</p>
  *
  * @deprecated This class works with the deprecated
- *             {@link DocumentHandler DocumentHandler}
+ *             {@link org.xml.sax.DocumentHandler DocumentHandler}
  *             interface.  It has been replaced by the SAX2
  *             {@link org.xml.sax.helpers.DefaultHandler DefaultHandler}
  *             class.
  * @since SAX 1.0
  * @author David Megginson
- * @see EntityResolver
- * @see DTDHandler
- * @see DocumentHandler
- * @see ErrorHandler
+ * @see org.xml.sax.EntityResolver
+ * @see org.xml.sax.DTDHandler
+ * @see org.xml.sax.DocumentHandler
+ * @see org.xml.sax.ErrorHandler
  */
 public class HandlerBase
     implements EntityResolver, DTDHandler, DocumentHandler, ErrorHandler
@@ -90,9 +90,9 @@ public class HandlerBase
      *                 document.
      * @return The new input source, or null to require the
      *         default behaviour.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see EntityResolver#resolveEntity
+     * @see org.xml.sax.EntityResolver#resolveEntity
      */
     public InputSource resolveEntity (String publicId, String systemId)
         throws SAXException
@@ -118,7 +118,7 @@ public class HandlerBase
      * @param publicId The notation public identifier, or null if not
      *                 available.
      * @param systemId The notation system identifier.
-     * @see DTDHandler#notationDecl
+     * @see org.xml.sax.DTDHandler#notationDecl
      */
     public void notationDecl (String name, String publicId, String systemId)
     {
@@ -138,7 +138,7 @@ public class HandlerBase
      *                 available.
      * @param systemId The entity system identifier.
      * @param notationName The name of the associated notation.
-     * @see DTDHandler#unparsedEntityDecl
+     * @see org.xml.sax.DTDHandler#unparsedEntityDecl
      */
     public void unparsedEntityDecl (String name, String publicId,
                                     String systemId, String notationName)
@@ -161,8 +161,8 @@ public class HandlerBase
      * with other document events.</p>
      *
      * @param locator A locator for all SAX document events.
-     * @see DocumentHandler#setDocumentLocator
-     * @see Locator
+     * @see org.xml.sax.DocumentHandler#setDocumentLocator
+     * @see org.xml.sax.Locator
      */
     public void setDocumentLocator (Locator locator)
     {
@@ -178,9 +178,9 @@ public class HandlerBase
      * of a document (such as allocating the root node of a tree or
      * creating an output file).</p>
      *
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see DocumentHandler#startDocument
+     * @see org.xml.sax.DocumentHandler#startDocument
      */
     public void startDocument ()
         throws SAXException
@@ -197,9 +197,9 @@ public class HandlerBase
      * of a document (such as finalising a tree or closing an output
      * file).</p>
      *
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see DocumentHandler#endDocument
+     * @see org.xml.sax.DocumentHandler#endDocument
      */
     public void endDocument ()
         throws SAXException
@@ -218,9 +218,9 @@ public class HandlerBase
      *
      * @param name The element type name.
      * @param attributes The specified or defaulted attributes.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see DocumentHandler#startElement
+     * @see org.xml.sax.DocumentHandler#startElement
      */
     public void startElement (String name, AttributeList attributes)
         throws SAXException
@@ -238,9 +238,9 @@ public class HandlerBase
      * output to a file).</p>
      *
      * @param name the element name
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see DocumentHandler#endElement
+     * @see org.xml.sax.DocumentHandler#endElement
      */
     public void endElement (String name)
         throws SAXException
@@ -261,9 +261,9 @@ public class HandlerBase
      * @param start The start position in the character array.
      * @param length The number of characters to use from the
      *               character array.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see DocumentHandler#characters
+     * @see org.xml.sax.DocumentHandler#characters
      */
     public void characters (char ch[], int start, int length)
         throws SAXException
@@ -284,9 +284,9 @@ public class HandlerBase
      * @param start The start position in the character array.
      * @param length The number of characters to use from the
      *               character array.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see DocumentHandler#ignorableWhitespace
+     * @see org.xml.sax.DocumentHandler#ignorableWhitespace
      */
     public void ignorableWhitespace (char ch[], int start, int length)
         throws SAXException
@@ -306,9 +306,9 @@ public class HandlerBase
      * @param target The processing instruction target.
      * @param data The processing instruction data, or null if
      *             none is supplied.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see DocumentHandler#processingInstruction
+     * @see org.xml.sax.DocumentHandler#processingInstruction
      */
     public void processingInstruction (String target, String data)
         throws SAXException
@@ -332,10 +332,10 @@ public class HandlerBase
      * printing it to the console.</p>
      *
      * @param e The warning information encoded as an exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see ErrorHandler#warning
-     * @see SAXParseException
+     * @see org.xml.sax.ErrorHandler#warning
+     * @see org.xml.sax.SAXParseException
      */
     public void warning (SAXParseException e)
         throws SAXException
@@ -353,10 +353,10 @@ public class HandlerBase
      * printing it to the console.</p>
      *
      * @param e The warning information encoded as an exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see ErrorHandler#warning
-     * @see SAXParseException
+     * @see org.xml.sax.ErrorHandler#warning
+     * @see org.xml.sax.SAXParseException
      */
     public void error (SAXParseException e)
         throws SAXException
@@ -377,10 +377,10 @@ public class HandlerBase
      * the parser may no longer report parsing events.</p>
      *
      * @param e The error information encoded as an exception.
-     * @exception SAXException Any SAX exception, possibly
+     * @exception org.xml.sax.SAXException Any SAX exception, possibly
      *            wrapping another exception.
-     * @see ErrorHandler#fatalError
-     * @see SAXParseException
+     * @see org.xml.sax.ErrorHandler#fatalError
+     * @see org.xml.sax.SAXParseException
      */
     public void fatalError (SAXParseException e)
         throws SAXException

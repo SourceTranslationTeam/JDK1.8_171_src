@@ -314,7 +314,7 @@ public abstract class KeyStoreSpi {
      *
      * @since 1.5
      */
-    public void engineStore(LoadStoreParameter param)
+    public void engineStore(KeyStore.LoadStoreParameter param)
                 throws IOException, NoSuchAlgorithmException,
                 CertificateException {
         throw new UnsupportedOperationException();
@@ -376,7 +376,7 @@ public abstract class KeyStoreSpi {
      *
      * @since 1.5
      */
-    public void engineLoad(LoadStoreParameter param)
+    public void engineLoad(KeyStore.LoadStoreParameter param)
                 throws IOException, NoSuchAlgorithmException,
                 CertificateException {
 
@@ -385,7 +385,7 @@ public abstract class KeyStoreSpi {
             return;
         }
 
-        if (param instanceof SimpleLoadStoreParameter) {
+        if (param instanceof KeyStore.SimpleLoadStoreParameter) {
             ProtectionParameter protection = param.getProtectionParameter();
             char[] password;
             if (protection instanceof PasswordProtection) {
@@ -442,8 +442,8 @@ public abstract class KeyStoreSpi {
      *
      * @since 1.5
      */
-    public Entry engineGetEntry(String alias,
-                        ProtectionParameter protParam)
+    public KeyStore.Entry engineGetEntry(String alias,
+                        KeyStore.ProtectionParameter protParam)
                 throws KeyStoreException, NoSuchAlgorithmException,
                 UnrecoverableEntryException {
 
@@ -453,7 +453,7 @@ public abstract class KeyStoreSpi {
 
         if (protParam == null) {
             if (engineIsCertificateEntry(alias)) {
-                return new TrustedCertificateEntry
+                return new KeyStore.TrustedCertificateEntry
                                 (engineGetCertificate(alias));
             } else {
                 throw new UnrecoverableKeyException
@@ -461,21 +461,21 @@ public abstract class KeyStoreSpi {
             }
         }
 
-        if (protParam instanceof PasswordProtection) {
+        if (protParam instanceof KeyStore.PasswordProtection) {
             if (engineIsCertificateEntry(alias)) {
                 throw new UnsupportedOperationException
                     ("trusted certificate entries are not password-protected");
             } else if (engineIsKeyEntry(alias)) {
-                PasswordProtection pp =
-                        (PasswordProtection)protParam;
+                KeyStore.PasswordProtection pp =
+                        (KeyStore.PasswordProtection)protParam;
                 char[] password = pp.getPassword();
 
                 Key key = engineGetKey(alias, password);
                 if (key instanceof PrivateKey) {
                     Certificate[] chain = engineGetCertificateChain(alias);
-                    return new PrivateKeyEntry((PrivateKey)key, chain);
+                    return new KeyStore.PrivateKeyEntry((PrivateKey)key, chain);
                 } else if (key instanceof SecretKey) {
-                    return new SecretKeyEntry((SecretKey)key);
+                    return new KeyStore.SecretKeyEntry((SecretKey)key);
                 }
             }
         }
@@ -501,33 +501,33 @@ public abstract class KeyStoreSpi {
      *
      * @since 1.5
      */
-    public void engineSetEntry(String alias, Entry entry,
-                        ProtectionParameter protParam)
+    public void engineSetEntry(String alias, KeyStore.Entry entry,
+                        KeyStore.ProtectionParameter protParam)
                 throws KeyStoreException {
 
         // get password
         if (protParam != null &&
-            !(protParam instanceof PasswordProtection)) {
+            !(protParam instanceof KeyStore.PasswordProtection)) {
             throw new KeyStoreException("unsupported protection parameter");
         }
-        PasswordProtection pProtect = null;
+        KeyStore.PasswordProtection pProtect = null;
         if (protParam != null) {
-            pProtect = (PasswordProtection)protParam;
+            pProtect = (KeyStore.PasswordProtection)protParam;
         }
 
         // set entry
-        if (entry instanceof TrustedCertificateEntry) {
+        if (entry instanceof KeyStore.TrustedCertificateEntry) {
             if (protParam != null && pProtect.getPassword() != null) {
                 // pre-1.5 style setCertificateEntry did not allow password
                 throw new KeyStoreException
                     ("trusted certificate entries are not password-protected");
             } else {
-                TrustedCertificateEntry tce =
-                        (TrustedCertificateEntry)entry;
+                KeyStore.TrustedCertificateEntry tce =
+                        (KeyStore.TrustedCertificateEntry)entry;
                 engineSetCertificateEntry(alias, tce.getTrustedCertificate());
                 return;
             }
-        } else if (entry instanceof PrivateKeyEntry) {
+        } else if (entry instanceof KeyStore.PrivateKeyEntry) {
             if (pProtect == null || pProtect.getPassword() == null) {
                 // pre-1.5 style setKeyEntry required password
                 throw new KeyStoreException
@@ -535,12 +535,12 @@ public abstract class KeyStoreSpi {
             } else {
                 engineSetKeyEntry
                     (alias,
-                    ((PrivateKeyEntry)entry).getPrivateKey(),
+                    ((KeyStore.PrivateKeyEntry)entry).getPrivateKey(),
                     pProtect.getPassword(),
-                    ((PrivateKeyEntry)entry).getCertificateChain());
+                    ((KeyStore.PrivateKeyEntry)entry).getCertificateChain());
                 return;
             }
-        } else if (entry instanceof SecretKeyEntry) {
+        } else if (entry instanceof KeyStore.SecretKeyEntry) {
             if (pProtect == null || pProtect.getPassword() == null) {
                 // pre-1.5 style setKeyEntry required password
                 throw new KeyStoreException
@@ -548,7 +548,7 @@ public abstract class KeyStoreSpi {
             } else {
                 engineSetKeyEntry
                     (alias,
-                    ((SecretKeyEntry)entry).getSecretKey(),
+                    ((KeyStore.SecretKeyEntry)entry).getSecretKey(),
                     pProtect.getPassword(),
                     (Certificate[])null);
                 return;
@@ -575,16 +575,16 @@ public abstract class KeyStoreSpi {
      */
     public boolean
         engineEntryInstanceOf(String alias,
-                              Class<? extends Entry> entryClass)
+                              Class<? extends KeyStore.Entry> entryClass)
     {
-        if (entryClass == TrustedCertificateEntry.class) {
+        if (entryClass == KeyStore.TrustedCertificateEntry.class) {
             return engineIsCertificateEntry(alias);
         }
-        if (entryClass == PrivateKeyEntry.class) {
+        if (entryClass == KeyStore.PrivateKeyEntry.class) {
             return engineIsKeyEntry(alias) &&
                         engineGetCertificate(alias) != null;
         }
-        if (entryClass == SecretKeyEntry.class) {
+        if (entryClass == KeyStore.SecretKeyEntry.class) {
             return engineIsKeyEntry(alias) &&
                         engineGetCertificate(alias) == null;
         }

@@ -314,7 +314,7 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
         }
 
         /**
-         * Return a {@link Name} containing a {@link NamedFunction} that
+         * Return a {@link LambdaForm.Name} containing a {@link LambdaForm.NamedFunction} that
          * represents a MH bound to a generic invoker, which in turn forwards to the corresponding
          * getter.
          */

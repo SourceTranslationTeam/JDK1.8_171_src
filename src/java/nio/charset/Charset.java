@@ -59,7 +59,7 @@ import sun.security.action.GetPropertyAction;
  * constructing a map that contains every charset for which support is
  * available in the current Java virtual machine.  Support for new charsets can
  * be added via the service-provider interface defined in the {@link
- * CharsetProvider} class.
+ * java.nio.charset.spi.CharsetProvider} class.
  *
  * <p> All of the methods defined in this class are safe for use by multiple
  * concurrent threads.
@@ -264,8 +264,8 @@ import sun.security.action.GetPropertyAction;
  *
  * @see CharsetDecoder
  * @see CharsetEncoder
- * @see CharsetProvider
- * @see Character
+ * @see java.nio.charset.spi.CharsetProvider
+ * @see java.lang.Character
  */
 
 public abstract class Charset
@@ -793,7 +793,7 @@ public abstract class Charset
      * <p> This method always replaces malformed-input and unmappable-character
      * sequences with this charset's default replacement byte array.  In order
      * to detect such sequences, use the {@link
-     * CharsetDecoder#decode(ByteBuffer)} method directly.  </p>
+     * CharsetDecoder#decode(java.nio.ByteBuffer)} method directly.  </p>
      *
      * @param  bb  The byte buffer to be decoded
      *
@@ -829,7 +829,7 @@ public abstract class Charset
      * <p> This method always replaces malformed-input and unmappable-character
      * sequences with this charset's default replacement string.  In order to
      * detect such sequences, use the {@link
-     * CharsetEncoder#encode(CharBuffer)} method directly.  </p>
+     * CharsetEncoder#encode(java.nio.CharBuffer)} method directly.  </p>
      *
      * @param  cb  The char buffer to be encoded
      *

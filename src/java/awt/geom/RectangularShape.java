@@ -383,7 +383,7 @@ public abstract class RectangularShape implements Shape, Cloneable {
      * contents as this object.
      * @return     a clone of this instance.
      * @exception  OutOfMemoryError            if there is not enough memory.
-     * @see        Cloneable
+     * @see        java.lang.Cloneable
      * @since      1.2
      */
     public Object clone() {

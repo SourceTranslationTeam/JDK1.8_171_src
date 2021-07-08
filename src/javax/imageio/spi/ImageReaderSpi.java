@@ -68,7 +68,7 @@ import javax.imageio.stream.ImageInputStream;
  * invocation of this method.
  *
  * @see IIORegistry
- * @see ImageReader
+ * @see javax.imageio.ImageReader
  *
  */
 public abstract class ImageReaderSpi extends ImageReaderWriterSpi {

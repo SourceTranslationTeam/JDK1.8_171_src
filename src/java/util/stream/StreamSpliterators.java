@@ -348,8 +348,8 @@ class StreamSpliterators {
         }
 
         @Override
-        public OfInt trySplit() {
-            return (OfInt) super.trySplit();
+        public Spliterator.OfInt trySplit() {
+            return (Spliterator.OfInt) super.trySplit();
         }
 
         @Override
@@ -406,8 +406,8 @@ class StreamSpliterators {
         }
 
         @Override
-        public OfLong trySplit() {
-            return (OfLong) super.trySplit();
+        public Spliterator.OfLong trySplit() {
+            return (Spliterator.OfLong) super.trySplit();
         }
 
         @Override
@@ -464,8 +464,8 @@ class StreamSpliterators {
         }
 
         @Override
-        public OfDouble trySplit() {
-            return (OfDouble) super.trySplit();
+        public Spliterator.OfDouble trySplit() {
+            return (Spliterator.OfDouble) super.trySplit();
         }
 
         @Override
@@ -1050,7 +1050,7 @@ class StreamSpliterators {
 
             @Override
             protected Spliterator<T> makeSpliterator(Spliterator<T> s) {
-                return new OfRef<>(s, this);
+                return new UnorderedSliceSpliterator.OfRef<>(s, this);
             }
         }
 
@@ -1361,7 +1361,7 @@ class StreamSpliterators {
             public Spliterator<T> trySplit() {
                 if (estimate == 0)
                     return null;
-                return new OfRef<>(estimate >>>= 1, s);
+                return new InfiniteSupplyingSpliterator.OfRef<>(estimate >>>= 1, s);
             }
         }
 

@@ -109,7 +109,7 @@ public final class ExcC14NParameterSpec implements C14NMethodParameterSpec {
      * is a <code>String</code> that represents a namespace prefix.
      *
      * <p>This implementation returns an {@link
-     * Collections#unmodifiableList unmodifiable list}.
+     * java.util.Collections#unmodifiableList unmodifiable list}.
      *
      * @return the inclusive namespace prefix list (may be empty but never
      *    <code>null</code>)

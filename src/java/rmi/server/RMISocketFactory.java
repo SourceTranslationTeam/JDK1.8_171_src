@@ -141,7 +141,7 @@ public abstract class RMISocketFactory
      * @exception  SecurityException  if a security manager exists and its
      *             <code>checkSetFactory</code> method doesn't allow the operation.
      * @see #getSocketFactory
-     * @see SecurityManager#checkSetFactory()
+     * @see java.lang.SecurityManager#checkSetFactory()
      * @since JDK1.1
      */
     public synchronized static void setSocketFactory(RMISocketFactory fac)
@@ -202,7 +202,7 @@ public abstract class RMISocketFactory
      *          <code>checkSetFactory</code> method doesn't allow the
      *          operation.
      * @see #getFailureHandler
-     * @see RMIFailureHandler#failure(Exception)
+     * @see java.rmi.server.RMIFailureHandler#failure(Exception)
      * @since JDK1.1
      */
     public synchronized static void setFailureHandler(RMIFailureHandler fh)

@@ -106,7 +106,7 @@ import sun.util.locale.provider.LocaleResources;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  * @beaninfo
  *   attribute: isContainer false
@@ -869,8 +869,8 @@ public class JSpinner extends JComponent implements Accessible
          * Returns the baseline.
          *
          * @throws IllegalArgumentException {@inheritDoc}
-         * @see JComponent#getBaseline(int,int)
-         * @see JComponent#getBaselineResizeBehavior()
+         * @see javax.swing.JComponent#getBaseline(int,int)
+         * @see javax.swing.JComponent#getBaselineResizeBehavior()
          * @since 1.6
          */
         public int getBaseline(int width, int height) {
@@ -891,7 +891,7 @@ public class JSpinner extends JComponent implements Accessible
          * changes as the size changes.
          *
          * @throws NullPointerException {@inheritDoc}
-         * @see JComponent#getBaseline(int, int)
+         * @see javax.swing.JComponent#getBaseline(int, int)
          * @since 1.6
          */
         public BaselineResizeBehavior getBaselineResizeBehavior() {
@@ -994,7 +994,7 @@ public class JSpinner extends JComponent implements Accessible
          * @see #getModel
          * @see #getFormat
          * @see SpinnerDateModel
-         * @see SimpleDateFormat
+         * @see java.text.SimpleDateFormat
          */
         public DateEditor(JSpinner spinner, String dateFormatPattern) {
             this(spinner, new SimpleDateFormat(dateFormatPattern,
@@ -1019,7 +1019,7 @@ public class JSpinner extends JComponent implements Accessible
          * @see #getModel
          * @see #getFormat
          * @see SpinnerDateModel
-         * @see SimpleDateFormat
+         * @see java.text.SimpleDateFormat
          */
         private DateEditor(JSpinner spinner, DateFormat format) {
             super(spinner);
@@ -1058,7 +1058,7 @@ public class JSpinner extends JComponent implements Accessible
          *
          * @return the value of <code>getTextField().getFormatter().getFormat()</code>.
          * @see #getTextField
-         * @see SimpleDateFormat
+         * @see java.text.SimpleDateFormat
          */
         public SimpleDateFormat getFormat() {
             return (SimpleDateFormat)((DateFormatter)(getTextField().getFormatter())).getFormat();
@@ -1177,7 +1177,7 @@ public class JSpinner extends JComponent implements Accessible
          *
          * @see #getTextField
          * @see SpinnerNumberModel
-         * @see DecimalFormat
+         * @see java.text.DecimalFormat
          */
         public NumberEditor(JSpinner spinner, String decimalFormatPattern) {
             this(spinner, new DecimalFormat(decimalFormatPattern));
@@ -1201,7 +1201,7 @@ public class JSpinner extends JComponent implements Accessible
          *
          * @see #getTextField
          * @see SpinnerNumberModel
-         * @see DecimalFormat
+         * @see java.text.DecimalFormat
          */
         private NumberEditor(JSpinner spinner, DecimalFormat format) {
             super(spinner);
@@ -1244,7 +1244,7 @@ public class JSpinner extends JComponent implements Accessible
          *
          * @return the value of <code>getTextField().getFormatter().getFormat()</code>.
          * @see #getTextField
-         * @see DecimalFormat
+         * @see java.text.DecimalFormat
          */
         public DecimalFormat getFormat() {
             return (DecimalFormat)((NumberFormatter)(getTextField().getFormatter())).getFormat();

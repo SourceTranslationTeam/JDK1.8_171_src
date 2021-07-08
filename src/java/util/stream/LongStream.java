@@ -153,7 +153,7 @@ public interface LongStream extends BaseStream<Long, LongStream> {
      * Returns a stream consisting of the results of replacing each element of
      * this stream with the contents of a mapped stream produced by applying
      * the provided mapping function to each element.  Each mapped stream is
-     * {@link BaseStream#close() closed} after its contents
+     * {@link java.util.stream.BaseStream#close() closed} after its contents
      * have been placed into this stream.  (If a mapped stream is {@code null}
      * an empty stream is used, instead.)
      *
@@ -727,7 +727,7 @@ public interface LongStream extends BaseStream<Long, LongStream> {
      * element at position {@code n - 1}.
      *
      * @param seed the initial element
-     * @param f a function to be applied to to the previous element to produce
+     * @param f a function to be applied to the previous element to produce
      *          a new element
      * @return a new sequential {@code LongStream}
      */

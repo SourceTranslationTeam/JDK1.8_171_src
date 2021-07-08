@@ -201,7 +201,7 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * Gets the day-of-week {@code int} value.
      * <p>
      * The values are numbered following the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
-     * See {@link WeekFields#dayOfWeek()} for localized week-numbering.
+     * See {@link java.time.temporal.WeekFields#dayOfWeek()} for localized week-numbering.
      *
      * @return the day-of-week, from 1 (Monday) to 7 (Sunday)
      */
@@ -419,7 +419,7 @@ public enum DayOfWeek implements TemporalAccessor, TemporalAdjuster {
      * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
      * passing {@link ChronoField#DAY_OF_WEEK} as the field.
      * Note that this adjusts forwards or backwards within a Monday to Sunday week.
-     * See {@link WeekFields#dayOfWeek()} for localized week start days.
+     * See {@link java.time.temporal.WeekFields#dayOfWeek()} for localized week start days.
      * See {@code TemporalAdjuster} for other adjusters with more control,
      * such as {@code next(MONDAY)}.
      * <p>

@@ -39,7 +39,7 @@ import java.util.EventListenerProxy;
  * then the array returned could be a mixture of {@code PropertyChangeListener}
  * and {@code PropertyChangeListenerProxy} objects.
  *
- * @see EventListenerProxy
+ * @see java.util.EventListenerProxy
  * @see PropertyChangeSupport#getPropertyChangeListeners
  * @since 1.4
  */

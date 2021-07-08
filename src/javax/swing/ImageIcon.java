@@ -233,7 +233,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
      * then the string is used as the description of this icon.
      * @param image the image
      * @see #getDescription
-     * @see Image#getProperty
+     * @see java.awt.Image#getProperty
      */
     public ImageIcon (Image image) {
         this.image = image;
@@ -255,7 +255,7 @@ public class ImageIcon implements Icon, Serializable, Accessible {
      * @param  imageData an array of pixels in an image format supported
      *         by the AWT Toolkit, such as GIF, JPEG, or (as of 1.3) PNG
      * @param  description a brief textual description of the image
-     * @see    Toolkit#createImage
+     * @see    java.awt.Toolkit#createImage
      */
     public ImageIcon (byte[] imageData, String description) {
         this.image = Toolkit.getDefaultToolkit().createImage(imageData);
@@ -278,9 +278,9 @@ public class ImageIcon implements Icon, Serializable, Accessible {
      *
      * @param  imageData an array of pixels in an image format supported by
      *             the AWT Toolkit, such as GIF, JPEG, or (as of 1.3) PNG
-     * @see    Toolkit#createImage
+     * @see    java.awt.Toolkit#createImage
      * @see #getDescription
-     * @see Image#getProperty
+     * @see java.awt.Image#getProperty
      */
     public ImageIcon (byte[] imageData) {
         this.image = Toolkit.getDefaultToolkit().createImage(imageData);
@@ -355,9 +355,9 @@ public class ImageIcon implements Icon, Serializable, Accessible {
     /**
      * Returns the status of the image loading operation.
      * @return the loading status as defined by java.awt.MediaTracker
-     * @see MediaTracker#ABORTED
-     * @see MediaTracker#ERRORED
-     * @see MediaTracker#COMPLETE
+     * @see java.awt.MediaTracker#ABORTED
+     * @see java.awt.MediaTracker#ERRORED
+     * @see java.awt.MediaTracker#COMPLETE
      */
     public int getImageLoadStatus() {
         return loadStatus;

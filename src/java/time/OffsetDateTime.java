@@ -102,7 +102,7 @@ import java.util.Objects;
  * as well as the offset from UTC/Greenwich. For example, the value
  * "2nd October 2007 at 13:45.30.123456789 +02:00" can be stored in an {@code OffsetDateTime}.
  * <p>
- * {@code OffsetDateTime}, {@link ZonedDateTime} and {@link Instant} all store an instant
+ * {@code OffsetDateTime}, {@link java.time.ZonedDateTime} and {@link java.time.Instant} all store an instant
  * on the time-line to nanosecond precision.
  * {@code Instant} is the simplest, simply representing the instant.
  * {@code OffsetDateTime} adds to the instant the offset from UTC/Greenwich, which allows
@@ -377,7 +377,7 @@ public final class OffsetDateTime
      * such as {@code 2007-12-03T10:15:30+01:00}.
      * <p>
      * The string must represent a valid date-time and is parsed using
-     * {@link DateTimeFormatter#ISO_OFFSET_DATE_TIME}.
+     * {@link java.time.format.DateTimeFormatter#ISO_OFFSET_DATE_TIME}.
      *
      * @param text  the text to parse such as "2007-12-03T10:15:30+01:00", not null
      * @return the parsed offset date-time, not null
@@ -873,7 +873,7 @@ public final class OffsetDateTime
      * {@link java.time.temporal.TemporalAdjusters TemporalAdjusters}.
      * These include finding the "last day of the month" and "next Wednesday".
      * Key date-time classes also implement the {@code TemporalAdjuster} interface,
-     * such as {@link Month} and {@link MonthDay MonthDay}.
+     * such as {@link Month} and {@link java.time.MonthDay MonthDay}.
      * The adjuster is responsible for handling special cases, such as the varying
      * lengths of month and leap years.
      * <p>

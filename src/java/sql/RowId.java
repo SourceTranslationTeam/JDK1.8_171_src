@@ -56,7 +56,7 @@ package java.sql;
  * All methods on the <code>RowId</code> interface must be fully implemented if the
  * JDBC driver supports the data type.
  *
- * @see DatabaseMetaData
+ * @see java.sql.DatabaseMetaData
  * @since 1.6
  */
 

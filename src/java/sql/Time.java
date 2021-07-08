@@ -96,7 +96,7 @@ public class Time extends java.util.Date {
         int firstColon;
         int secondColon;
 
-        if (s == null) throw new IllegalArgumentException();
+        if (s == null) throw new java.lang.IllegalArgumentException();
 
         firstColon = s.indexOf(':');
         secondColon = s.indexOf(':', firstColon+1);
@@ -107,7 +107,7 @@ public class Time extends java.util.Date {
                 Integer.parseInt(s.substring(firstColon+1, secondColon));
             second = Integer.parseInt(s.substring(secondColon+1));
         } else {
-            throw new IllegalArgumentException();
+            throw new java.lang.IllegalArgumentException();
         }
 
         return new Time(hour, minute, second);
@@ -152,13 +152,13 @@ public class Time extends java.util.Date {
     * values do not have a year component.
     *
     * @deprecated
-    * @exception IllegalArgumentException if this
+    * @exception java.lang.IllegalArgumentException if this
     *           method is invoked
     * @see #setYear
     */
     @Deprecated
     public int getYear() {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
     }
 
    /**
@@ -166,13 +166,13 @@ public class Time extends java.util.Date {
     * values do not have a month component.
     *
     * @deprecated
-    * @exception IllegalArgumentException if this
+    * @exception java.lang.IllegalArgumentException if this
     *           method is invoked
     * @see #setMonth
     */
     @Deprecated
     public int getMonth() {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
     }
 
    /**
@@ -180,12 +180,12 @@ public class Time extends java.util.Date {
     * values do not have a day component.
     *
     * @deprecated
-    * @exception IllegalArgumentException if this
+    * @exception java.lang.IllegalArgumentException if this
     *           method is invoked
     */
     @Deprecated
     public int getDay() {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
     }
 
    /**
@@ -193,13 +193,13 @@ public class Time extends java.util.Date {
     * values do not have a date component.
     *
     * @deprecated
-    * @exception IllegalArgumentException if this
+    * @exception java.lang.IllegalArgumentException if this
     *           method is invoked
     * @see #setDate
     */
     @Deprecated
     public int getDate() {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
     }
 
    /**
@@ -207,13 +207,13 @@ public class Time extends java.util.Date {
     * values do not have a year component.
     *
     * @deprecated
-    * @exception IllegalArgumentException if this
+    * @exception java.lang.IllegalArgumentException if this
     *           method is invoked
     * @see #getYear
     */
     @Deprecated
     public void setYear(int i) {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
     }
 
    /**
@@ -221,13 +221,13 @@ public class Time extends java.util.Date {
     * values do not have a month component.
     *
     * @deprecated
-    * @exception IllegalArgumentException if this
+    * @exception java.lang.IllegalArgumentException if this
     *           method is invoked
     * @see #getMonth
     */
     @Deprecated
     public void setMonth(int i) {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
     }
 
    /**
@@ -235,13 +235,13 @@ public class Time extends java.util.Date {
     * values do not have a date component.
     *
     * @deprecated
-    * @exception IllegalArgumentException if this
+    * @exception java.lang.IllegalArgumentException if this
     *           method is invoked
     * @see #getDate
     */
     @Deprecated
     public void setDate(int i) {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
     }
 
    /**
@@ -284,10 +284,10 @@ public class Time extends java.util.Date {
     * not be used because SQL {@code Time} values do not have a date
     * component.
     *
-    * @exception UnsupportedOperationException if this method is invoked
+    * @exception java.lang.UnsupportedOperationException if this method is invoked
     */
     @Override
     public Instant toInstant() {
-        throw new UnsupportedOperationException();
+        throw new java.lang.UnsupportedOperationException();
     }
 }

@@ -55,7 +55,7 @@ import java.net.*;
  * @author  Ann Wollrath
  * @author  Peter Jones
  * @since   1.2
- * @see     UnicastRemoteObject
+ * @see     java.rmi.server.UnicastRemoteObject
  * @see     java.rmi.activation.Activatable
  * @see     java.rmi.registry.LocateRegistry
  */

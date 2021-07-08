@@ -243,7 +243,7 @@ public final class MarshalledObject<T> implements Serializable {
      * annotations.  Objects written using this stream should be read back
      * from a <code>MarshalledObjectInputStream</code>.
      *
-     * @see MarshalledObject
+     * @see java.rmi.MarshalledObject
      * @see MarshalledObjectInputStream
      */
     private static class MarshalledObjectOutputStream

@@ -314,7 +314,7 @@ public class BasicSliderUI extends SliderUI{
      *
      * @throws NullPointerException {@inheritDoc}
      * @throws IllegalArgumentException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public int getBaseline(JComponent c, int width, int height) {
@@ -373,7 +373,7 @@ public class BasicSliderUI extends SliderUI{
      * changes as the size changes.
      *
      * @throws NullPointerException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public Component.BaselineResizeBehavior getBaselineResizeBehavior(

@@ -39,10 +39,10 @@ import java.util.function.IntFunction;
  * incorporate information about the terminal (or stateful) operation which
  * follows the last intermediate operation described by this
  * {@code PipelineHelper}. The {@code PipelineHelper} is passed to the
- * {@link TerminalOp#evaluateParallel(PipelineHelper, Spliterator)},
- * {@link TerminalOp#evaluateSequential(PipelineHelper, Spliterator)},
- * and {@link AbstractPipeline#opEvaluateParallel(PipelineHelper, Spliterator,
- * IntFunction)}, methods, which can use the
+ * {@link TerminalOp#evaluateParallel(PipelineHelper, java.util.Spliterator)},
+ * {@link TerminalOp#evaluateSequential(PipelineHelper, java.util.Spliterator)},
+ * and {@link AbstractPipeline#opEvaluateParallel(PipelineHelper, java.util.Spliterator,
+ * java.util.function.IntFunction)}, methods, which can use the
  * {@code PipelineHelper} to access information about the pipeline such as
  * head shape, stream flags, and size, and use the helper methods
  * such as {@link #wrapAndCopyInto(Sink, Spliterator)},
@@ -74,7 +74,7 @@ abstract class PipelineHelper<P_OUT> {
     /**
      * Returns the exact output size of the portion of the output resulting from
      * applying the pipeline stages described by this {@code PipelineHelper} to
-     * the the portion of the input described by the provided
+     * the portion of the input described by the provided
      * {@code Spliterator}, if known.  If not known or known infinite, will
      * return {@code -1}.
      *

@@ -46,14 +46,14 @@ package java.util;
  * has shorter method names.  New implementations should consider using
  * Iterator in preference to Enumeration.
  *
- * @see     Iterator
+ * @see     java.util.Iterator
  * @see     java.io.SequenceInputStream
- * @see     Enumeration#nextElement()
- * @see     Hashtable
- * @see     Hashtable#elements()
- * @see     Hashtable#keys()
- * @see     Vector
- * @see     Vector#elements()
+ * @see     java.util.Enumeration#nextElement()
+ * @see     java.util.Hashtable
+ * @see     java.util.Hashtable#elements()
+ * @see     java.util.Hashtable#keys()
+ * @see     java.util.Vector
+ * @see     java.util.Vector#elements()
  *
  * @author  Lee Boynton
  * @since   JDK1.0

@@ -34,7 +34,7 @@ package java.rmi.server;
  *
  * @author  Ann Wollrath
  * @since   JDK1.1
- * @see UnicastRemoteObject
+ * @see java.rmi.server.UnicastRemoteObject
  * @see java.rmi.activation.Activatable
  */
 public class ExportException extends java.rmi.RemoteException {

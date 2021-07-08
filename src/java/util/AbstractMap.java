@@ -141,7 +141,7 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
      * @throws NullPointerException {@inheritDoc}
      */
     public boolean containsKey(Object key) {
-        Iterator<Entry<K,V>> i = entrySet().iterator();
+        Iterator<Map.Entry<K,V>> i = entrySet().iterator();
         if (key==null) {
             while (i.hasNext()) {
                 Entry<K,V> e = i.next();
@@ -277,7 +277,7 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
      * @throws IllegalArgumentException      {@inheritDoc}
      */
     public void putAll(Map<? extends K, ? extends V> m) {
-        for (Entry<? extends K, ? extends V> e : m.entrySet())
+        for (Map.Entry<? extends K, ? extends V> e : m.entrySet())
             put(e.getKey(), e.getValue());
     }
 
@@ -515,11 +515,11 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
      *
      * @implSpec
      * This implementation iterates over <tt>entrySet()</tt>, calling
-     * {@link Entry#hashCode hashCode()} on each element (entry) in the
+     * {@link Map.Entry#hashCode hashCode()} on each element (entry) in the
      * set, and adding up the results.
      *
      * @return the hash code value for this map
-     * @see Entry#hashCode()
+     * @see Map.Entry#hashCode()
      * @see Object#equals(Object)
      * @see Set#equals(Object)
      */
@@ -690,7 +690,7 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
         public boolean equals(Object o) {
             if (!(o instanceof Map.Entry))
                 return false;
-            Entry<?,?> e = (Entry<?,?>)o;
+            Map.Entry<?,?> e = (Map.Entry<?,?>)o;
             return eq(key, e.getKey()) && eq(value, e.getValue());
         }
 
@@ -821,7 +821,7 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
         public boolean equals(Object o) {
             if (!(o instanceof Map.Entry))
                 return false;
-            Entry<?,?> e = (Entry<?,?>)o;
+            Map.Entry<?,?> e = (Map.Entry<?,?>)o;
             return eq(key, e.getKey()) && eq(value, e.getValue());
         }
 

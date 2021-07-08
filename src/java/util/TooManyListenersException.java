@@ -40,8 +40,8 @@ package java.util;
  * concurrently.
  * </p>
  *
- * @see EventObject
- * @see EventListener
+ * @see java.util.EventObject
+ * @see java.util.EventListener
  *
  * @author Laurence P. G. Cable
  * @since  JDK1.1

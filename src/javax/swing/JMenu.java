@@ -95,7 +95,7 @@ import java.lang.ref.WeakReference;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  * @beaninfo
  *   attribute: isContainer true
@@ -595,7 +595,7 @@ public class JMenu extends JMenuItem implements Accessible,MenuElement
      * @param     index    the position at which to insert the component
      * @return    the <code>Component</code> added
      * @see       #remove
-     * @see Container#add(Component, int)
+     * @see java.awt.Container#add(Component, int)
      */
     public Component add(Component c, int index) {
         ensurePopupMenuCreated();
@@ -1152,7 +1152,7 @@ public class JMenu extends JMenuItem implements Accessible,MenuElement
      * the same version of Swing.  As of 1.4, support for long term storage
      * of all JavaBeans&trade;
      * has been added to the <code>java.beans</code> package.
-     * Please see {@link XMLEncoder}.
+     * Please see {@link java.beans.XMLEncoder}.
      */
     @SuppressWarnings("serial")
     protected class WinListener extends WindowAdapter implements Serializable {
@@ -1228,8 +1228,8 @@ public class JMenu extends JMenuItem implements Accessible,MenuElement
      * @param o the new component orientation of this menu and
      *        the components contained within it.
      * @exception NullPointerException if <code>orientation</code> is null.
-     * @see Component#setComponentOrientation
-     * @see Component#getComponentOrientation
+     * @see java.awt.Component#setComponentOrientation
+     * @see java.awt.Component#getComponentOrientation
      * @since 1.4
      */
     public void applyComponentOrientation(ComponentOrientation o) {
@@ -1389,7 +1389,7 @@ public class JMenu extends JMenuItem implements Accessible,MenuElement
      * the same version of Swing.  As of 1.4, support for long term storage
      * of all JavaBeans&trade;
      * has been added to the <code>java.beans</code> package.
-     * Please see {@link XMLEncoder}.
+     * Please see {@link java.beans.XMLEncoder}.
      */
     @SuppressWarnings("serial")
     protected class AccessibleJMenu extends AccessibleJMenuItem

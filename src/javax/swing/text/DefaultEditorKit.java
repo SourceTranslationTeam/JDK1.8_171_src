@@ -878,11 +878,10 @@ public class DefaultEditorKit extends EditorKit {
                         isPrintableMask = ((SunToolkit)tk).isPrintableCharacterModifiersMask(mod);
                     }
 
-                    if (isPrintableMask) {
-                        char c = content.charAt(0);
-                        if ((c >= 0x20) && (c != 0x7F)) {
-                            target.replaceSelection(content);
-                        }
+                    char c = content.charAt(0);
+                    if ((isPrintableMask && (c >= 0x20) && (c != 0x7F)) ||
+                        (!isPrintableMask && (c >= 0x200C) && (c <= 0x200D))) {
+                        target.replaceSelection(content);
                     }
                 }
             }
@@ -1164,7 +1163,7 @@ public class DefaultEditorKit extends EditorKit {
                     if (deleteNextWordAction == getValue(Action.NAME)) {
                         end = Utilities.
                             getNextWordInParagraph(target, line, start, false);
-                        if (end == BreakIterator.DONE) {
+                        if (end == java.text.BreakIterator.DONE) {
                             //last word in the paragraph
                             final int endOfLine = line.getEndOffset();
                             if (start == endOfLine - 1) {
@@ -1178,7 +1177,7 @@ public class DefaultEditorKit extends EditorKit {
                     } else {
                         end = Utilities.
                             getPrevWordInParagraph(target, line, start);
-                        if (end == BreakIterator.DONE) {
+                        if (end == java.text.BreakIterator.DONE) {
                             //there is no previous word in the paragraph
                             final int startOfLine = line.getStartOffset();
                             if (start == startOfLine) {

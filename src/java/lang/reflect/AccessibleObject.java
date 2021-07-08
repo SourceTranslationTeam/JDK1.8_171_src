@@ -76,7 +76,7 @@ public class AccessibleObject implements AnnotatedElement {
      * {@code true} but accessibility of any of the elements of the input
      * {@code array} may not be changed (for example, if the element
      * object is a {@link Constructor} object for the class {@link
-     * Class}).  In the event of such a SecurityException, the
+     * java.lang.Class}).  In the event of such a SecurityException, the
      * accessibility of objects is set to {@code flag} for array elements
      * upto (and excluding) the element for which the exception occurred; the
      * accessibility of elements beyond (and including) the element for which
@@ -87,7 +87,7 @@ public class AccessibleObject implements AnnotatedElement {
      *              in each object
      * @throws SecurityException if the request is denied.
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      */
     public static void setAccessible(AccessibleObject[] array, boolean flag)
         throws SecurityException {
@@ -112,16 +112,16 @@ public class AccessibleObject implements AnnotatedElement {
      * <p>A {@code SecurityException} is raised if {@code flag} is
      * {@code true} but accessibility of this object may not be changed
      * (for example, if this element object is a {@link Constructor} object for
-     * the class {@link Class}).
+     * the class {@link java.lang.Class}).
      *
      * <p>A {@code SecurityException} is raised if this object is a {@link
-     * Constructor} object for the class
+     * java.lang.reflect.Constructor} object for the class
      * {@code java.lang.Class}, and {@code flag} is true.
      *
      * @param flag the new value for the {@code accessible} flag
      * @throws SecurityException if the request is denied.
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      */
     public void setAccessible(boolean flag) throws SecurityException {
         SecurityManager sm = System.getSecurityManager();
@@ -171,7 +171,7 @@ public class AccessibleObject implements AnnotatedElement {
     // very early in the bootstrapping process.
     static final ReflectionFactory reflectionFactory =
         AccessController.doPrivileged(
-            new ReflectionFactory.GetReflectionFactoryAction());
+            new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
 
     /**
      * @throws NullPointerException {@inheritDoc}

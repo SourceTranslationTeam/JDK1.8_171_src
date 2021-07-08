@@ -182,7 +182,7 @@ public class ScrollPane extends Container implements Accessible {
      * policy of "as needed".
      * @throws HeadlessException if GraphicsEnvironment.isHeadless()
      *     returns true
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      */
     public ScrollPane() throws HeadlessException {
         this(SCROLLBARS_AS_NEEDED);
@@ -195,7 +195,7 @@ public class ScrollPane extends Container implements Accessible {
      *     display policy is invalid
      * @throws HeadlessException if GraphicsEnvironment.isHeadless()
      *     returns true
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      */
     @ConstructorProperties({"scrollbarDisplayPolicy"})
     public ScrollPane(int scrollbarDisplayPolicy) throws HeadlessException {
@@ -323,7 +323,7 @@ public class ScrollPane extends Container implements Accessible {
      * represents the state of the vertical scrollbar.
      * The declared return type of this method is
      * <code>Adjustable</code> to maintain backward compatibility.
-     * @see ScrollPaneAdjustable
+     * @see java.awt.ScrollPaneAdjustable
      */
     public Adjustable getVAdjustable() {
         return vAdjustable;
@@ -334,7 +334,7 @@ public class ScrollPane extends Container implements Accessible {
      * represents the state of the horizontal scrollbar.
      * The declared return type of this method is
      * <code>Adjustable</code> to maintain backward compatibility.
-     * @see ScrollPaneAdjustable
+     * @see java.awt.ScrollPaneAdjustable
      */
     public Adjustable getHAdjustable() {
         return hAdjustable;
@@ -644,8 +644,8 @@ public class ScrollPane extends Container implements Accessible {
      *                      automatically for a MouseWheelEvent,
      *                      <code>false</code> otherwise.
      * @see #isWheelScrollingEnabled
-     * @see MouseWheelEvent
-     * @see MouseWheelListener
+     * @see java.awt.event.MouseWheelEvent
+     * @see java.awt.event.MouseWheelListener
      * @since 1.4
      */
     public void setWheelScrollingEnabled(boolean handleWheel) {
@@ -679,7 +679,7 @@ public class ScrollPane extends Container implements Accessible {
      * @exception HeadlessException if
      * <code>GraphicsEnvironment.isHeadless()</code> returns
      * <code>true</code>
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      */
     private void readObject(ObjectInputStream s)
         throws ClassNotFoundException, IOException, HeadlessException

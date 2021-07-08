@@ -130,10 +130,10 @@ public abstract class ResponseCache {
      * @throws  IOException if an I/O error occurs
      * @throws  IllegalArgumentException if any one of the arguments is null
      *
-     * @see     URLConnection#setUseCaches(boolean)
-     * @see     URLConnection#getUseCaches()
-     * @see     URLConnection#setDefaultUseCaches(boolean)
-     * @see     URLConnection#getDefaultUseCaches()
+     * @see     java.net.URLConnection#setUseCaches(boolean)
+     * @see     java.net.URLConnection#getUseCaches()
+     * @see     java.net.URLConnection#setDefaultUseCaches(boolean)
+     * @see     java.net.URLConnection#getDefaultUseCaches()
      */
     public abstract CacheResponse
         get(URI uri, String rqstMethod, Map<String, List<String>> rqstHeaders)

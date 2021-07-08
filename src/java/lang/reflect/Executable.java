@@ -536,10 +536,10 @@ public abstract class Executable extends AccessibleObject
      * declared in source ("mandated"), as well as parameters that
      * are neither implicitly nor explicitly declared in source
      * ("synthetic") to the parameter list for a method.  See {@link
-     * Parameter} for more information.
+     * java.lang.reflect.Parameter} for more information.
      *
-     * @see Parameter
-     * @see Parameter#getAnnotations
+     * @see java.lang.reflect.Parameter
+     * @see java.lang.reflect.Parameter#getAnnotations
      * @return an array of arrays that represent the annotations on
      *    the formal and implicit parameters, in declaration order, of
      *    the executable represented by this object

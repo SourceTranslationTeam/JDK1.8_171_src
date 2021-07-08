@@ -58,11 +58,11 @@ import java.beans.beancontext.BeanContext;
  * @author      Laurence P. G. Cable
  * @since       1.2
  *
- * @see BeanContext
+ * @see java.beans.beancontext.BeanContext
  * @see java.beans.PropertyChangeEvent
- * @see PropertyChangeListener
- * @see PropertyVetoException
- * @see VetoableChangeListener
+ * @see java.beans.PropertyChangeListener
+ * @see java.beans.PropertyVetoException
+ * @see java.beans.VetoableChangeListener
  */
 
 public interface BeanContextChild {

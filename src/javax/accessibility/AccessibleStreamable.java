@@ -41,7 +41,7 @@ import java.awt.datatransfer.DataFlavor;
  * @author Lynn Monsanto
  * @author Peter Korn
  *
- * @see AccessibleContext
+ * @see javax.accessibility.AccessibleContext
  * @since 1.5
  */
 public interface AccessibleStreamable {

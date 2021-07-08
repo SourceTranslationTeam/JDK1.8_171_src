@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1995, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -39,7 +39,7 @@ import sun.reflect.Reflection;
  * An application cannot create its own instance of this class.
  *
  * @author  unascribed
- * @see     Runtime#getRuntime()
+ * @see     java.lang.Runtime#getRuntime()
  * @since   JDK1.0
  */
 
@@ -94,8 +94,8 @@ public class Runtime {
      *         SecurityManager#checkExit checkExit}</tt> method does not permit
      *         exiting with the specified status
      *
-     * @see SecurityException
-     * @see SecurityManager#checkExit(int)
+     * @see java.lang.SecurityException
+     * @see java.lang.SecurityManager#checkExit(int)
      * @see #addShutdownHook
      * @see #removeShutdownHook
      * @see #runFinalizersOnExit
@@ -272,6 +272,7 @@ public class Runtime {
         if (sm != null) {
             sm.checkExit(status);
         }
+        Shutdown.beforeHalt();
         Shutdown.halt(status);
     }
 
@@ -296,9 +297,9 @@ public class Runtime {
      *        if a security manager exists and its <code>checkExit</code>
      *        method doesn't allow the exit.
      *
-     * @see     Runtime#exit(int)
-     * @see     Runtime#gc()
-     * @see     SecurityManager#checkExit(int)
+     * @see     java.lang.Runtime#exit(int)
+     * @see     java.lang.Runtime#gc()
+     * @see     java.lang.SecurityManager#checkExit(int)
      * @since   JDK1.1
      */
     @Deprecated
@@ -440,7 +441,7 @@ public class Runtime {
      */
     public Process exec(String command, String[] envp, File dir)
         throws IOException {
-        if (command.length() == 0)
+        if (command.isEmpty())
             throw new IllegalArgumentException("Empty command");
 
         StringTokenizer st = new StringTokenizer(command);
@@ -661,7 +662,7 @@ public class Runtime {
     /**
      * Returns the maximum amount of memory that the Java virtual machine will
      * attempt to use.  If there is no inherent limit then the value {@link
-     * Long#MAX_VALUE} will be returned.
+     * java.lang.Long#MAX_VALUE} will be returned.
      *
      * @return  the maximum amount of memory that the virtual machine will
      *          attempt to use, measured in bytes
@@ -706,7 +707,7 @@ public class Runtime {
      * The method {@link System#runFinalization()} is the conventional
      * and convenient means of invoking this method.
      *
-     * @see     Object#finalize()
+     * @see     java.lang.Object#finalize()
      */
     public void runFinalization() {
         runFinalization0();
@@ -788,9 +789,9 @@ public class Runtime {
      *             a native library image by the host system.
      * @exception  NullPointerException if <code>filename</code> is
      *             <code>null</code>
-     * @see        Runtime#getRuntime()
-     * @see        SecurityException
-     * @see        SecurityManager#checkLink(String)
+     * @see        java.lang.Runtime#getRuntime()
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkLink(java.lang.String)
      */
     @CallerSensitive
     public void load(String filename) {
@@ -850,8 +851,8 @@ public class Runtime {
      *             native library image by the host system.
      * @exception  NullPointerException if <code>libname</code> is
      *             <code>null</code>
-     * @see        SecurityException
-     * @see        SecurityManager#checkLink(String)
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkLink(java.lang.String)
      */
     @CallerSensitive
     public void loadLibrary(String libname) {
@@ -883,9 +884,9 @@ public class Runtime {
      *
      * @param      in InputStream to localize
      * @return     a localized input stream
-     * @see        InputStream
-     * @see        BufferedReader#BufferedReader(Reader)
-     * @see        InputStreamReader#InputStreamReader(InputStream)
+     * @see        java.io.InputStream
+     * @see        java.io.BufferedReader#BufferedReader(java.io.Reader)
+     * @see        java.io.InputStreamReader#InputStreamReader(java.io.InputStream)
      * @deprecated As of JDK&nbsp;1.1, the preferred way to translate a byte
      * stream in the local encoding into a character stream in Unicode is via
      * the <code>InputStreamReader</code> and <code>BufferedReader</code>
@@ -914,10 +915,10 @@ public class Runtime {
      *
      * @param      out OutputStream to localize
      * @return     a localized output stream
-     * @see        OutputStream
-     * @see        BufferedWriter#BufferedWriter(Writer)
-     * @see        OutputStreamWriter#OutputStreamWriter(OutputStream)
-     * @see        PrintWriter#PrintWriter(OutputStream)
+     * @see        java.io.OutputStream
+     * @see        java.io.BufferedWriter#BufferedWriter(java.io.Writer)
+     * @see        java.io.OutputStreamWriter#OutputStreamWriter(java.io.OutputStream)
+     * @see        java.io.PrintWriter#PrintWriter(java.io.OutputStream)
      */
     @Deprecated
     public OutputStream getLocalizedOutputStream(OutputStream out) {

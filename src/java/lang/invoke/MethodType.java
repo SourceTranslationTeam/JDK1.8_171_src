@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2019, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -97,7 +97,8 @@ class MethodType implements java.io.Serializable {
 
     // The remaining fields are caches of various sorts:
     private @Stable MethodTypeForm form; // erased form, plus cached data about primitives
-    private @Stable MethodType wrapAlt;  // alternative wrapped/unwrapped version
+    private @Stable Object wrapAlt;  // alternative wrapped/unwrapped version and
+                                     // private communication for readObject and readResolve
     private @Stable Invokers invokers;   // cache of handy higher-order adapters
     private @Stable String methodDescriptor;  // cache for toMethodDescriptorString
 
@@ -208,7 +209,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with the given components.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param rtype  the return type
      * @param ptypes the parameter types
      * @return a method type with the given components
@@ -229,7 +230,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with the given components.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * The leading parameter type is prepended to the remaining array.
      * @param rtype  the return type
      * @param ptype0 the first parameter type
@@ -248,7 +249,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with the given components.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * The resulting method has no parameter types.
      * @param rtype  the return type
      * @return a method type with the given return value
@@ -261,7 +262,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with the given components.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * The resulting method has the single given parameter type.
      * @param rtype  the return type
      * @param ptype0 the parameter type
@@ -276,7 +277,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with the given components.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * The resulting method has the same parameter types as {@code ptypes},
      * and the specified return type.
      * @param rtype  the return type
@@ -313,7 +314,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type whose components are {@code Object} with an optional trailing {@code Object[]} array.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * All parameters and the return type will be {@code Object},
      * except the final array parameter if any, which will be {@code Object[]}.
      * @param objectArgCount number of parameters (excluding the final array parameter if any)
@@ -344,7 +345,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type whose components are all {@code Object}.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * All parameters and the return type will be Object.
      * @param objectArgCount number of parameters
      * @return a generally applicable method type, for all calls of the given argument count
@@ -358,7 +359,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with a single different parameter type.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param num    the index (zero-based) of the parameter type to change
      * @param nptype a new parameter type to replace the old one with
      * @return the same type, except with the selected parameter changed
@@ -376,7 +377,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with additional parameter types.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param num    the position (zero-based) of the inserted parameter type(s)
      * @param ptypesToInsert zero or more new parameter types to insert into the parameter list
      * @return the same type, except with the selected parameter(s) inserted
@@ -401,7 +402,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with additional parameter types.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param ptypesToInsert zero or more new parameter types to insert after the end of the parameter list
      * @return the same type, except with the selected parameter(s) appended
      * @throws IllegalArgumentException if any element of {@code ptypesToInsert} is {@code void.class}
@@ -414,7 +415,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with additional parameter types.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param num    the position (zero-based) of the inserted parameter type(s)
      * @param ptypesToInsert zero or more new parameter types to insert into the parameter list
      * @return the same type, except with the selected parameter(s) inserted
@@ -429,7 +430,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with additional parameter types.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param ptypesToInsert zero or more new parameter types to insert after the end of the parameter list
      * @return the same type, except with the selected parameter(s) appended
      * @throws IllegalArgumentException if any element of {@code ptypesToInsert} is {@code void.class}
@@ -442,7 +443,7 @@ class MethodType implements java.io.Serializable {
 
      /**
      * Finds or creates a method type with modified parameter types.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param start  the position (zero-based) of the first replaced parameter type(s)
      * @param end    the position (zero-based) after the last replaced parameter type(s)
      * @param ptypesToInsert zero or more new parameter types to insert into the parameter list
@@ -537,7 +538,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with some parameter types omitted.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param start  the index (zero-based) of the first parameter type to remove
      * @param end    the index (greater than {@code start}) of the first parameter type after not to remove
      * @return the same type, except with the selected parameter(s) removed
@@ -574,7 +575,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates a method type with a different return type.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * @param nrtype a return parameter type to replace the old one with
      * @return the same type, except with the return type change
      * @throws NullPointerException if {@code nrtype} is null
@@ -606,7 +607,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Erases all reference types to {@code Object}.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * All primitive types (including {@code void}) will remain unchanged.
      * @return a version of the original type with all reference types replaced
      */
@@ -648,7 +649,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Converts all primitive types to their corresponding wrapper types.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * All reference types (including wrapper types) will remain unchanged.
      * A {@code void} return type is changed to the type {@code java.lang.Void}.
      * The expression {@code type.wrap().erase()} produces the same value
@@ -661,7 +662,7 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Converts all wrapper types to their corresponding primitive types.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * All primitive types (including {@code void}) will remain unchanged.
      * A return type of {@code java.lang.Void} is changed to {@code void}.
      * @return a version of the original type with all wrapper types replaced
@@ -673,7 +674,7 @@ class MethodType implements java.io.Serializable {
 
     private static MethodType wrapWithPrims(MethodType pt) {
         assert(pt.hasPrimitives());
-        MethodType wt = pt.wrapAlt;
+        MethodType wt = (MethodType)pt.wrapAlt;
         if (wt == null) {
             // fill in lazily
             wt = MethodTypeForm.canonicalize(pt, MethodTypeForm.WRAP, MethodTypeForm.WRAP);
@@ -685,7 +686,7 @@ class MethodType implements java.io.Serializable {
 
     private static MethodType unwrapWithNoPrims(MethodType wt) {
         assert(!wt.hasPrimitives());
-        MethodType uwt = wt.wrapAlt;
+        MethodType uwt = (MethodType)wt.wrapAlt;
         if (uwt == null) {
             // fill in lazily
             uwt = MethodTypeForm.canonicalize(wt, MethodTypeForm.UNWRAP, MethodTypeForm.UNWRAP);
@@ -786,7 +787,7 @@ class MethodType implements java.io.Serializable {
      * followed immediately by the return type.
      * <p>
      * Each type is represented by its
-     * {@link Class#getSimpleName simple name}.
+     * {@link java.lang.Class#getSimpleName simple name}.
      */
     @Override
     public String toString() {
@@ -1039,9 +1040,9 @@ class MethodType implements java.io.Serializable {
 
     /**
      * Finds or creates an instance of a method type, given the spelling of its bytecode descriptor.
-     * Convenience method for {@link #methodType(Class, Class[]) methodType}.
+     * Convenience method for {@link #methodType(java.lang.Class, java.lang.Class[]) methodType}.
      * Any class or interface name embedded in the descriptor string
-     * will be resolved by calling {@link ClassLoader#loadClass(String)}
+     * will be resolved by calling {@link ClassLoader#loadClass(java.lang.String)}
      * on the given loader (or if it is null, on the system class loader).
      * <p>
      * Note that it is possible to encounter method types which cannot be
@@ -1080,7 +1081,7 @@ class MethodType implements java.io.Serializable {
      * <p>
      * This method is included for the benefit of applications that must
      * generate bytecodes that process method handles and {@code invokedynamic}.
-     * {@link #fromMethodDescriptorString(String, ClassLoader) fromMethodDescriptorString},
+     * {@link #fromMethodDescriptorString(java.lang.String, java.lang.ClassLoader) fromMethodDescriptorString},
      * because the latter requires a suitable class loader argument.
      * @return the bytecode type descriptor representation
      */
@@ -1144,27 +1145,17 @@ s.writeObject(this.parameterArray());
      * @see #writeObject
      */
     private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
-        // Assign temporary defaults in case this object escapes
-        MethodType_init(void.class, NO_PTYPES);
+        // Assign defaults in case this object escapes
+        UNSAFE.putObject(this, rtypeOffset, void.class);
+        UNSAFE.putObject(this, ptypesOffset, NO_PTYPES);
 
         s.defaultReadObject();  // requires serialPersistentFields to be an empty array
 
         Class<?>   returnType     = (Class<?>)   s.readObject();
         Class<?>[] parameterArray = (Class<?>[]) s.readObject();
-        parameterArray = parameterArray.clone();  // make sure it is unshared
-
-        // Assign deserialized values
-        MethodType_init(returnType, parameterArray);
-    }
-
-    // Initialization of state for deserialization only
-    private void MethodType_init(Class<?> rtype, Class<?>[] ptypes) {
-        // In order to communicate these values to readResolve, we must
-        // store them into the implementation-specific final fields.
-        checkRtype(rtype);
-        checkPtypes(ptypes);
-        UNSAFE.putObject(this, rtypeOffset, rtype);
-        UNSAFE.putObject(this, ptypesOffset, ptypes);
+        // Verify all operands, and make sure ptypes is unshared
+        // Cache the new MethodType for readResolve
+        wrapAlt = new MethodType[]{MethodType.methodType(returnType, parameterArray)};
     }
 
     // Support for resetting final fields while deserializing
@@ -1189,12 +1180,10 @@ s.writeObject(this.parameterArray());
         // Do not use a trusted path for deserialization:
         //    return makeImpl(rtype, ptypes, true);
         // Verify all operands, and make sure ptypes is unshared:
-        try {
-            return methodType(rtype, ptypes);
-        } finally {
-            // Re-assign defaults in case this object escapes
-            MethodType_init(void.class, NO_PTYPES);
-        }
+        // Return a new validated MethodType for the rtype and ptypes passed from readObject.
+        MethodType mt = ((MethodType[])wrapAlt)[0];
+        wrapAlt = null;
+        return mt;
     }
 
     /**

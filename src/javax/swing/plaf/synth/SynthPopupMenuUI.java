@@ -34,7 +34,7 @@ import java.beans.PropertyChangeEvent;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JPopupMenu}.
+ * {@link javax.swing.JPopupMenu}.
  *
  * @author Georges Saab
  * @author David Karlton

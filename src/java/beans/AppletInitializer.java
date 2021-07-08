@@ -37,7 +37,7 @@ import java.beans.beancontext.BeanContext;
  * instantiation by java.beans.Beans.instantiate().
  * </p>
  *
- * @see Beans#instantiate
+ * @see java.beans.Beans#instantiate
  *
  * @since 1.2
  *

@@ -367,7 +367,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
      * view the first time this view is requested.  The view is stateless,
      * so there's no reason to create more than one.
      */
-    private transient Set<Entry<K,V>> entrySet;
+    private transient Set<Map.Entry<K,V>> entrySet;
 
     /**
      * Returns a {@link Set} view of the keys contained in this map.
@@ -462,29 +462,29 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
      *
      * @return a set view of the mappings contained in this enum map
      */
-    public Set<Entry<K,V>> entrySet() {
-        Set<Entry<K,V>> es = entrySet;
+    public Set<Map.Entry<K,V>> entrySet() {
+        Set<Map.Entry<K,V>> es = entrySet;
         if (es != null)
             return es;
         else
             return entrySet = new EntrySet();
     }
 
-    private class EntrySet extends AbstractSet<Entry<K,V>> {
-        public Iterator<Entry<K,V>> iterator() {
+    private class EntrySet extends AbstractSet<Map.Entry<K,V>> {
+        public Iterator<Map.Entry<K,V>> iterator() {
             return new EntryIterator();
         }
 
         public boolean contains(Object o) {
             if (!(o instanceof Map.Entry))
                 return false;
-            Entry<?,?> entry = (Entry<?,?>)o;
+            Map.Entry<?,?> entry = (Map.Entry<?,?>)o;
             return containsMapping(entry.getKey(), entry.getValue());
         }
         public boolean remove(Object o) {
             if (!(o instanceof Map.Entry))
                 return false;
-            Entry<?,?> entry = (Entry<?,?>)o;
+            Map.Entry<?,?> entry = (Map.Entry<?,?>)o;
             return removeMapping(entry.getKey(), entry.getValue());
         }
         public int size() {
@@ -510,7 +510,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
             int j = 0;
             for (int i = 0; i < vals.length; i++)
                 if (vals[i] != null)
-                    a[j++] = new SimpleEntry<>(
+                    a[j++] = new AbstractMap.SimpleEntry<>(
                         keyUniverse[i], unmaskNull(vals[i]));
             return a;
         }
@@ -563,7 +563,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
         }
     }
 
-    private class EntryIterator extends EnumMapIterator<Entry<K,V>> {
+    private class EntryIterator extends EnumMapIterator<Map.Entry<K,V>> {
         private Entry lastReturnedEntry;
 
         public Map.Entry<K,V> next() {

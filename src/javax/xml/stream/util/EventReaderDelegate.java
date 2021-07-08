@@ -46,7 +46,7 @@ import javax.xml.stream.XMLStreamException;
  *
  * @version 1.0
  * @author Copyright (c) 2009 by Oracle Corporation. All Rights Reserved.
- * @see XMLEventReader
+ * @see javax.xml.stream.XMLEventReader
  * @see StreamReaderDelegate
  * @since 1.6
  */
@@ -122,8 +122,8 @@ public class EventReaderDelegate implements XMLEventReader {
     return reader.nextTag();
   }
 
-  public Object getProperty(String name)
-    throws IllegalArgumentException
+  public Object getProperty(java.lang.String name)
+    throws java.lang.IllegalArgumentException
   {
     return reader.getProperty(name);
   }

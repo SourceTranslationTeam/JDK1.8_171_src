@@ -70,7 +70,7 @@ import java.beans.*;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  * @beaninfo
  *      attribute: isContainer false
@@ -363,8 +363,8 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * slider.
      * @see #changeListener
      * @see #fireStateChanged
-     * @see ChangeListener
-     * @see BoundedRangeModel
+     * @see javax.swing.event.ChangeListener
+     * @see javax.swing.BoundedRangeModel
      */
     protected ChangeListener createChangeListener() {
         return new ModelListener();
@@ -1427,7 +1427,7 @@ public class JSlider extends JComponent implements SwingConstants, Accessible {
      * the same version of Swing.  As of 1.4, support for long term storage
      * of all JavaBeans&trade;
      * has been added to the <code>java.beans</code> package.
-     * Please see {@link XMLEncoder}.
+     * Please see {@link java.beans.XMLEncoder}.
      */
     protected class AccessibleJSlider extends AccessibleJComponent
     implements AccessibleValue {

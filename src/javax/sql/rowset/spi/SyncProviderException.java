@@ -58,11 +58,11 @@ import javax.sql.rowset.*;
  * called to retrieve the description if there is one.
  *
  * @author Jonathan Bruce
- * @see SyncFactory
- * @see SyncResolver
- * @see SyncFactoryException
+ * @see javax.sql.rowset.spi.SyncFactory
+ * @see javax.sql.rowset.spi.SyncResolver
+ * @see javax.sql.rowset.spi.SyncFactoryException
  */
-public class SyncProviderException extends SQLException {
+public class SyncProviderException extends java.sql.SQLException {
 
     /**
      * The instance of <code>javax.sql.rowset.spi.SyncResolver</code> that

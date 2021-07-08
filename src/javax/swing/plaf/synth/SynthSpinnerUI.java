@@ -33,7 +33,7 @@ import java.beans.*;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JSpinner}.
+ * {@link javax.swing.JSpinner}.
  *
  * @author Hans Muller
  * @author Joshua Outwater

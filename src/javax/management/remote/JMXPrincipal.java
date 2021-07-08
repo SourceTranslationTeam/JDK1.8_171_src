@@ -43,7 +43,7 @@ import java.security.Principal;
  * Authorization decisions can then be based upon
  * the Principals associated with a <code>Subject</code>.
  *
- * @see Principal
+ * @see java.security.Principal
  * @see javax.security.auth.Subject
  * @since 1.5
  */

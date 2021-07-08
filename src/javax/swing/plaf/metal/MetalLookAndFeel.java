@@ -250,7 +250,7 @@ public class MetalLookAndFeel extends BasicLookAndFeel
      *        added to
      * @throws NullPointerException if {@code table} is {@code null}
      *
-     * @see BasicLookAndFeel#initClassDefaults
+     * @see javax.swing.plaf.basic.BasicLookAndFeel#initClassDefaults
      */
     protected void initClassDefaults(UIDefaults table)
     {
@@ -1566,7 +1566,7 @@ public class MetalLookAndFeel extends BasicLookAndFeel
      * @return the look and feel defaults
      *
      * @see #createDefaultTheme
-     * @see BasicLookAndFeel#getDefaults()
+     * @see javax.swing.plaf.basic.BasicLookAndFeel#getDefaults()
      * @see MetalTheme#addCustomEntriesToTable(UIDefaults)
      */
     public UIDefaults getDefaults() {

@@ -34,7 +34,7 @@ import java.awt.Color;
  *
  * @author Steve Wilson
  *
- * @see Color
+ * @see java.awt.Color
  */
 public interface ColorSelectionModel {
     /**

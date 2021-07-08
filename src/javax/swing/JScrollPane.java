@@ -1282,7 +1282,7 @@ public class JScrollPane extends JComponent implements ScrollPaneConstants, Acce
      * <li>java.awt.ComponentOrientation.RIGHT_TO_LEFT
      * <li>java.awt.ComponentOrientation.UNKNOWN
      * </ul>
-     * @see ComponentOrientation
+     * @see java.awt.ComponentOrientation
      */
     public void setComponentOrientation( ComponentOrientation co ) {
         super.setComponentOrientation( co );

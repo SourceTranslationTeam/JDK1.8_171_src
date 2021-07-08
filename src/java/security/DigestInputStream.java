@@ -90,7 +90,7 @@ public class DigestInputStream extends FilterInputStream {
      * Returns the message digest associated with this stream.
      *
      * @return the message digest associated with this stream.
-     * @see #setMessageDigest(MessageDigest)
+     * @see #setMessageDigest(java.security.MessageDigest)
      */
     public MessageDigest getMessageDigest() {
         return digest;

@@ -34,8 +34,8 @@ import javax.imageio.ImageReader;
  * notify callers of their image and thumbnail reading methods of
  * pixel updates.
  *
- * @see ImageReader#addIIOReadUpdateListener
- * @see ImageReader#removeIIOReadUpdateListener
+ * @see javax.imageio.ImageReader#addIIOReadUpdateListener
+ * @see javax.imageio.ImageReader#removeIIOReadUpdateListener
  *
  */
 public interface IIOReadUpdateListener extends EventListener {

@@ -37,7 +37,7 @@ import java.beans.PropertyChangeListener;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JColorChooser}.
+ * {@link javax.swing.JColorChooser}.
  *
  * @author Tom Santos
  * @author Steve Wilson

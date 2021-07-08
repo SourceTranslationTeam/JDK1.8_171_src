@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -30,7 +30,7 @@ package javax.security.auth.callback;
  * {@code PasswordCallback} to the {@code handle}
  * method of a {@code CallbackHandler} to retrieve password information.
  *
- * @see CallbackHandler
+ * @see javax.security.auth.callback.CallbackHandler
  */
 public class PasswordCallback implements Callback, java.io.Serializable {
 
@@ -68,7 +68,7 @@ public class PasswordCallback implements Callback, java.io.Serializable {
      *                  if {@code prompt} has a length of 0.
      */
     public PasswordCallback(String prompt, boolean echoOn) {
-        if (prompt == null || prompt.length() == 0)
+        if (prompt == null || prompt.isEmpty())
             throw new IllegalArgumentException();
 
         this.prompt = prompt;

@@ -319,7 +319,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * used to manipulate the buffers on this component.
      *
      * @since 1.4
-     * @see BufferStrategy
+     * @see java.awt.image.BufferStrategy
      * @see #getBufferStrategy()
      */
     transient BufferStrategy bufferStrategy = null;
@@ -596,11 +596,11 @@ public abstract class Component implements ImageObserver, MenuContainer,
             initIDs();
         }
 
-        String s = AccessController.doPrivileged(
+        String s = java.security.AccessController.doPrivileged(
                                                                new GetPropertyAction("awt.image.incrementaldraw"));
         isInc = (s == null || s.equals("true"));
 
-        s = AccessController.doPrivileged(
+        s = java.security.AccessController.doPrivileged(
                                                         new GetPropertyAction("awt.image.redrawrate"));
         incRate = (s != null) ? Integer.parseInt(s) : 100;
     }
@@ -1385,8 +1385,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
             throw new HeadlessException();
         }
 
-        PointerInfo pi = AccessController.doPrivileged(
-                                                                     new PrivilegedAction<PointerInfo>() {
+        PointerInfo pi = java.security.AccessController.doPrivileged(
+                                                                     new java.security.PrivilegedAction<PointerInfo>() {
                                                                          public PointerInfo run() {
                                                                              return MouseInfo.getPointerInfo();
                                                                          }
@@ -1980,8 +1980,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * Gets the instance of <code>ColorModel</code> used to display
      * the component on the output device.
      * @return the color model used by this component
-     * @see ColorModel
-     * @see ComponentPeer#getColorModel()
+     * @see java.awt.image.ColorModel
+     * @see java.awt.peer.ComponentPeer#getColorModel()
      * @see Toolkit#getColorModel()
      * @since JDK1.0
      */
@@ -2815,7 +2815,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *         baseline
      * @throws IllegalArgumentException if width or height is &lt; 0
      * @see #getBaselineResizeBehavior
-     * @see FontMetrics
+     * @see java.awt.FontMetrics
      * @since 1.6
      */
     public int getBaseline(int width, int height) {
@@ -2922,7 +2922,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @see       #validate
      * @see       #doLayout
      * @see       LayoutManager
-     * @see       Container#isValidateRoot
+     * @see       java.awt.Container#isValidateRoot
      * @since     JDK1.0
      */
     public void invalidate() {
@@ -3080,7 +3080,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @return the font metrics for <code>font</code>
      * @see       #getFont
      * @see       #getPeer
-     * @see       ComponentPeer#getFontMetrics(Font)
+     * @see       java.awt.peer.ComponentPeer#getFontMetrics(Font)
      * @see       Toolkit#getFontMetrics(Font)
      * @since     JDK1.0
      */
@@ -3516,12 +3516,12 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @return    <code>false</code> if the infoflags indicate that the
      *            image is completely loaded; <code>true</code> otherwise.
      *
-     * @see     ImageObserver
-     * @see     Graphics#drawImage(Image, int, int, Color, ImageObserver)
-     * @see     Graphics#drawImage(Image, int, int, ImageObserver)
-     * @see     Graphics#drawImage(Image, int, int, int, int, Color, ImageObserver)
-     * @see     Graphics#drawImage(Image, int, int, int, int, ImageObserver)
-     * @see     ImageObserver#imageUpdate(Image, int, int, int, int, int)
+     * @see     java.awt.image.ImageObserver
+     * @see     Graphics#drawImage(Image, int, int, Color, java.awt.image.ImageObserver)
+     * @see     Graphics#drawImage(Image, int, int, java.awt.image.ImageObserver)
+     * @see     Graphics#drawImage(Image, int, int, int, int, Color, java.awt.image.ImageObserver)
+     * @see     Graphics#drawImage(Image, int, int, int, int, java.awt.image.ImageObserver)
+     * @see     java.awt.image.ImageObserver#imageUpdate(java.awt.Image, int, int, int, int, int)
      * @since   JDK1.0
      */
     public boolean imageUpdate(Image img, int infoflags,
@@ -3591,7 +3591,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *    component is not displayable.  This will always happen if
      *    <code>GraphicsEnvironment.isHeadless()</code> returns
      *    <code>true</code>.
-     * @see VolatileImage
+     * @see java.awt.image.VolatileImage
      * @see #isDisplayable
      * @see GraphicsEnvironment#isHeadless
      * @since     1.4
@@ -3621,7 +3621,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * be created
      * @return a VolatileImage object, which can be used
      * to manage surface contents loss and capabilities.
-     * @see VolatileImage
+     * @see java.awt.image.VolatileImage
      * @since 1.4
      */
     public VolatileImage createVolatileImage(int width, int height,
@@ -3661,7 +3661,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *            to be notified as the image is being prepared
      * @return    <code>true</code> if the image has already been fully
      *          prepared; <code>false</code> otherwise
-     * @see       ImageObserver
+     * @see       java.awt.image.ImageObserver
      * @since     JDK1.0
      */
     public boolean prepareImage(Image image, int width, int height,
@@ -3695,9 +3695,9 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @return  the bitwise inclusive <b>OR</b> of
      *            <code>ImageObserver</code> flags indicating what
      *            information about the image is currently available
-     * @see      #prepareImage(Image, int, int, ImageObserver)
-     * @see      Toolkit#checkImage(Image, int, int, ImageObserver)
-     * @see      ImageObserver
+     * @see      #prepareImage(Image, int, int, java.awt.image.ImageObserver)
+     * @see      Toolkit#checkImage(Image, int, int, java.awt.image.ImageObserver)
+     * @see      java.awt.image.ImageObserver
      * @since    JDK1.0
      */
     public int checkImage(Image image, ImageObserver observer) {
@@ -3731,9 +3731,9 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @return    the bitwise inclusive <b>OR</b> of
      *            <code>ImageObserver</code> flags indicating what
      *            information about the image is currently available
-     * @see      #prepareImage(Image, int, int, ImageObserver)
-     * @see      Toolkit#checkImage(Image, int, int, ImageObserver)
-     * @see      ImageObserver
+     * @see      #prepareImage(Image, int, int, java.awt.image.ImageObserver)
+     * @see      Toolkit#checkImage(Image, int, int, java.awt.image.ImageObserver)
+     * @see      java.awt.image.ImageObserver
      * @since    JDK1.0
      */
     public int checkImage(Image image, int width, int height,
@@ -3865,7 +3865,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * This is a proxy capabilities class used when a FlipBufferStrategy
      * is created instead of the requested Blit strategy.
      *
-     * @see SunGraphicsEnvironment#isFlipStrategyPreferred(ComponentPeer)
+     * @see sun.java2d.SunGraphicsEnvironment#isFlipStrategyPreferred(ComponentPeer)
      */
     private class ProxyCapabilities extends ExtendedBufferCapabilities {
         private BufferCapabilities orig;
@@ -3873,9 +3873,9 @@ public abstract class Component implements ImageObserver, MenuContainer,
             super(orig.getFrontBufferCapabilities(),
                   orig.getBackBufferCapabilities(),
                   orig.getFlipContents() ==
-                      FlipContents.BACKGROUND ?
-                      FlipContents.BACKGROUND :
-                      FlipContents.COPIED);
+                      BufferCapabilities.FlipContents.BACKGROUND ?
+                      BufferCapabilities.FlipContents.BACKGROUND :
+                      BufferCapabilities.FlipContents.COPIED);
             this.orig = orig;
         }
     }
@@ -3913,7 +3913,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * be a <code>Canvas</code> or <code>Window</code>.
      * @see Canvas
      * @see Window
-     * @see BufferStrategy
+     * @see java.awt.image.BufferStrategy
      * @author Michael Martak
      * @since 1.4
      */
@@ -3994,7 +3994,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
          * @exception IllegalArgumentException if numBuffers is less than two,
          * or if <code>BufferCapabilities.isPageFlipping</code> is not
          * <code>true</code>.
-         * @see BufferCapabilities#isPageFlipping()
+         * @see java.awt.BufferCapabilities#isPageFlipping()
          */
         protected void createBuffers(int numBuffers, BufferCapabilities caps)
             throws AWTException
@@ -4078,7 +4078,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
          * property.
          * @exception IllegalStateException if the buffers have not yet
          * been created
-         * @see BufferCapabilities#getFlipContents()
+         * @see java.awt.BufferCapabilities#getFlipContents()
          */
         protected void flip(BufferCapabilities.FlipContents flipAction) {
             if (peer != null) {
@@ -4552,7 +4552,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * be a <code>Canvas</code> or <code>Window</code>.
      * @see Canvas
      * @see Window
-     * @see BufferStrategy
+     * @see java.awt.image.BufferStrategy
      * @author Michael Martak
      * @since 1.4
      */
@@ -4594,7 +4594,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @see #getIgnoreRepaint
      * @see Canvas#createBufferStrategy
      * @see Window#createBufferStrategy
-     * @see BufferStrategy
+     * @see java.awt.image.BufferStrategy
      * @see GraphicsDevice#setFullScreenWindow
      */
     public void setIgnoreRepaint(boolean ignoreRepaint) {
@@ -4685,7 +4685,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * Returns the component or subcomponent that contains the
      * specified point.
      * @param     p   the point
-     * @see       Component#contains
+     * @see       java.awt.Component#contains
      * @since     JDK1.1
      */
     public Component getComponentAt(Point p) {
@@ -4790,7 +4790,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
          *    KeyboardFocusManager to process it.
          */
         if (!e.isConsumed()) {
-            if (e instanceof KeyEvent) {
+            if (e instanceof java.awt.event.KeyEvent) {
                 KeyboardFocusManager.getCurrentKeyboardFocusManager().
                     processKeyEvent(this, (KeyEvent)e);
                 if (e.isConsumed()) {
@@ -4964,6 +4964,12 @@ public abstract class Component implements ImageObserver, MenuContainer,
             if (tpeer != null) {
                 tpeer.handleEvent(e);
             }
+        }
+
+        if (SunToolkit.isTouchKeyboardAutoShowEnabled() &&
+            (toolkit instanceof SunToolkit) &&
+            ((e instanceof MouseEvent) || (e instanceof FocusEvent))) {
+            ((SunToolkit)toolkit).showOrHideTouchKeyboard(this, e);
         }
     } // dispatchEventImpl()
 
@@ -5217,8 +5223,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the component listener
-     * @see      ComponentEvent
-     * @see      ComponentListener
+     * @see      java.awt.event.ComponentEvent
+     * @see      java.awt.event.ComponentListener
      * @see      #removeComponentListener
      * @see      #getComponentListeners
      * @since    JDK1.1
@@ -5241,8 +5247,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * <p>Refer to <a href="doc-files/AWTThreadIssues.html#ListenersThreads"
      * >AWT Threading Issues</a> for details on AWT's threading model.
      * @param    l   the component listener
-     * @see      ComponentEvent
-     * @see      ComponentListener
+     * @see      java.awt.event.ComponentEvent
+     * @see      java.awt.event.ComponentListener
      * @see      #addComponentListener
      * @see      #getComponentListeners
      * @since    JDK1.1
@@ -5279,8 +5285,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the focus listener
-     * @see      FocusEvent
-     * @see      FocusListener
+     * @see      java.awt.event.FocusEvent
+     * @see      java.awt.event.FocusListener
      * @see      #removeFocusListener
      * @see      #getFocusListeners
      * @since    JDK1.1
@@ -5310,8 +5316,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the focus listener
-     * @see      FocusEvent
-     * @see      FocusListener
+     * @see      java.awt.event.FocusEvent
+     * @see      java.awt.event.FocusListener
      * @see      #addFocusListener
      * @see      #getFocusListeners
      * @since    JDK1.1
@@ -5349,8 +5355,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the hierarchy listener
-     * @see      HierarchyEvent
-     * @see      HierarchyListener
+     * @see      java.awt.event.HierarchyEvent
+     * @see      java.awt.event.HierarchyListener
      * @see      #removeHierarchyListener
      * @see      #getHierarchyListeners
      * @since    1.3
@@ -5387,8 +5393,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the hierarchy listener
-     * @see      HierarchyEvent
-     * @see      HierarchyListener
+     * @see      java.awt.event.HierarchyEvent
+     * @see      java.awt.event.HierarchyListener
      * @see      #addHierarchyListener
      * @see      #getHierarchyListeners
      * @since    1.3
@@ -5440,8 +5446,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the hierarchy bounds listener
-     * @see      HierarchyEvent
-     * @see      HierarchyBoundsListener
+     * @see      java.awt.event.HierarchyEvent
+     * @see      java.awt.event.HierarchyBoundsListener
      * @see      #removeHierarchyBoundsListener
      * @see      #getHierarchyBoundsListeners
      * @since    1.3
@@ -5480,8 +5486,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the hierarchy bounds listener
-     * @see      HierarchyEvent
-     * @see      HierarchyBoundsListener
+     * @see      java.awt.event.HierarchyEvent
+     * @see      java.awt.event.HierarchyBoundsListener
      * @see      #addHierarchyBoundsListener
      * @see      #getHierarchyBoundsListeners
      * @since    1.3
@@ -5611,8 +5617,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the key listener.
-     * @see      KeyEvent
-     * @see      KeyListener
+     * @see      java.awt.event.KeyEvent
+     * @see      java.awt.event.KeyListener
      * @see      #removeKeyListener
      * @see      #getKeyListeners
      * @since    JDK1.1
@@ -5642,8 +5648,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the key listener
-     * @see      KeyEvent
-     * @see      KeyListener
+     * @see      java.awt.event.KeyEvent
+     * @see      java.awt.event.KeyListener
      * @see      #addKeyListener
      * @see      #getKeyListeners
      * @since    JDK1.1
@@ -5680,8 +5686,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the mouse listener
-     * @see      MouseEvent
-     * @see      MouseListener
+     * @see      java.awt.event.MouseEvent
+     * @see      java.awt.event.MouseListener
      * @see      #removeMouseListener
      * @see      #getMouseListeners
      * @since    JDK1.1
@@ -5711,8 +5717,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the mouse listener
-     * @see      MouseEvent
-     * @see      MouseListener
+     * @see      java.awt.event.MouseEvent
+     * @see      java.awt.event.MouseListener
      * @see      #addMouseListener
      * @see      #getMouseListeners
      * @since    JDK1.1
@@ -5749,8 +5755,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the mouse motion listener
-     * @see      MouseEvent
-     * @see      MouseMotionListener
+     * @see      java.awt.event.MouseEvent
+     * @see      java.awt.event.MouseMotionListener
      * @see      #removeMouseMotionListener
      * @see      #getMouseMotionListeners
      * @since    JDK1.1
@@ -5780,8 +5786,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the mouse motion listener
-     * @see      MouseEvent
-     * @see      MouseMotionListener
+     * @see      java.awt.event.MouseEvent
+     * @see      java.awt.event.MouseMotionListener
      * @see      #addMouseMotionListener
      * @see      #getMouseMotionListeners
      * @since    JDK1.1
@@ -5823,8 +5829,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the mouse wheel listener
-     * @see      MouseWheelEvent
-     * @see      MouseWheelListener
+     * @see      java.awt.event.MouseWheelEvent
+     * @see      java.awt.event.MouseWheelListener
      * @see      #removeMouseWheelListener
      * @see      #getMouseWheelListeners
      * @since    1.4
@@ -5853,8 +5859,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the mouse wheel listener.
-     * @see      MouseWheelEvent
-     * @see      MouseWheelListener
+     * @see      java.awt.event.MouseWheelEvent
+     * @see      java.awt.event.MouseWheelListener
      * @see      #addMouseWheelListener
      * @see      #getMouseWheelListeners
      * @since    1.4
@@ -5894,8 +5900,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the input method listener
-     * @see      InputMethodEvent
-     * @see      InputMethodListener
+     * @see      java.awt.event.InputMethodEvent
+     * @see      java.awt.event.InputMethodListener
      * @see      #removeInputMethodListener
      * @see      #getInputMethodListeners
      * @see      #getInputMethodRequests
@@ -5920,8 +5926,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * >AWT Threading Issues</a> for details on AWT's threading model.
      *
      * @param    l   the input method listener
-     * @see      InputMethodEvent
-     * @see      InputMethodListener
+     * @see      java.awt.event.InputMethodEvent
+     * @see      java.awt.event.InputMethodListener
      * @see      #addInputMethodListener
      * @see      #getInputMethodListeners
      * @since    1.2
@@ -6166,8 +6172,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
              }
 
              // Need to check non-bootstraps.
-             Boolean enabled = AccessController.doPrivileged(
-                 new PrivilegedAction<Boolean>() {
+             Boolean enabled = java.security.AccessController.doPrivileged(
+                 new java.security.PrivilegedAction<Boolean>() {
                      public Boolean run() {
                          return isCoalesceEventsOverriden(clazz);
                      }
@@ -6344,8 +6350,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the component event
-     * @see         ComponentEvent
-     * @see         ComponentListener
+     * @see         java.awt.event.ComponentEvent
+     * @see         java.awt.event.ComponentListener
      * @see         #addComponentListener
      * @see         #enableEvents
      * @since       JDK1.1
@@ -6405,9 +6411,9 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the focus event
-     * @see         FocusEvent
-     * @see         FocusListener
-     * @see         KeyboardFocusManager
+     * @see         java.awt.event.FocusEvent
+     * @see         java.awt.event.FocusListener
+     * @see         java.awt.KeyboardFocusManager
      * @see         #addFocusListener
      * @see         #enableEvents
      * @see         #dispatchEvent
@@ -6468,10 +6474,10 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the key event
-     * @see         KeyEvent
-     * @see         KeyListener
-     * @see         KeyboardFocusManager
-     * @see         DefaultKeyboardFocusManager
+     * @see         java.awt.event.KeyEvent
+     * @see         java.awt.event.KeyListener
+     * @see         java.awt.KeyboardFocusManager
+     * @see         java.awt.DefaultKeyboardFocusManager
      * @see         #processEvent
      * @see         #dispatchEvent
      * @see         #addKeyListener
@@ -6515,8 +6521,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the mouse event
-     * @see         MouseEvent
-     * @see         MouseListener
+     * @see         java.awt.event.MouseEvent
+     * @see         java.awt.event.MouseListener
      * @see         #addMouseListener
      * @see         #enableEvents
      * @since       JDK1.1
@@ -6563,8 +6569,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the mouse motion event
-     * @see         MouseEvent
-     * @see         MouseMotionListener
+     * @see         java.awt.event.MouseEvent
+     * @see         java.awt.event.MouseMotionListener
      * @see         #addMouseMotionListener
      * @see         #enableEvents
      * @since       JDK1.1
@@ -6606,8 +6612,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the mouse wheel event
-     * @see         MouseWheelEvent
-     * @see         MouseWheelListener
+     * @see         java.awt.event.MouseWheelEvent
+     * @see         java.awt.event.MouseWheelListener
      * @see         #addMouseWheelListener
      * @see         #enableEvents
      * @since       1.4
@@ -6646,8 +6652,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the input method event
-     * @see         InputMethodEvent
-     * @see         InputMethodListener
+     * @see         java.awt.event.InputMethodEvent
+     * @see         java.awt.event.InputMethodListener
      * @see         #addInputMethodListener
      * @see         #enableEvents
      * @since       1.2
@@ -6685,8 +6691,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the hierarchy event
-     * @see         HierarchyEvent
-     * @see         HierarchyListener
+     * @see         java.awt.event.HierarchyEvent
+     * @see         java.awt.event.HierarchyListener
      * @see         #addHierarchyListener
      * @see         #enableEvents
      * @since       1.3
@@ -6721,8 +6727,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * exception.
      *
      * @param       e the hierarchy event
-     * @see         HierarchyEvent
-     * @see         HierarchyBoundsListener
+     * @see         java.awt.event.HierarchyEvent
+     * @see         java.awt.event.HierarchyBoundsListener
      * @see         #addHierarchyBoundsListener
      * @see         #enableEvents
      * @since       1.3
@@ -7423,7 +7429,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * {@code requestFocus} methods of {@code Component} being invoked.
      *
      * @see #requestFocusInWindow
-     * @see FocusEvent
+     * @see java.awt.event.FocusEvent
      * @see #addFocusListener
      * @see #isFocusable
      * @see #isDisplayable
@@ -7490,7 +7496,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *<a href="../../java/awt/doc-files/FocusSpec.html">Focus Specification</a>
      * @return <code>false</code> if the focus change request is guaranteed to
      *         fail; <code>true</code> if it is likely to succeed
-     * @see FocusEvent
+     * @see java.awt.event.FocusEvent
      * @see #addFocusListener
      * @see #isFocusable
      * @see #isDisplayable
@@ -7541,7 +7547,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @return <code>false</code> if the focus change request is guaranteed to
      *         fail; <code>true</code> if it is likely to succeed
      * @see #requestFocus
-     * @see FocusEvent
+     * @see java.awt.event.FocusEvent
      * @see #addFocusListener
      * @see #isFocusable
      * @see #isDisplayable
@@ -7606,7 +7612,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @return <code>false</code> if the focus change request is guaranteed to
      *         fail; <code>true</code> if it is likely to succeed
      * @see #requestFocus
-     * @see FocusEvent
+     * @see java.awt.event.FocusEvent
      * @see #addFocusListener
      * @see #isFocusable
      * @see #isDisplayable
@@ -8144,7 +8150,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
     /**
      * Prints a listing of this component to the standard system output
      * stream <code>System.out</code>.
-     * @see       System#out
+     * @see       java.lang.System#out
      * @since     JDK1.0
      */
     public void list() {
@@ -8167,7 +8173,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * specified print stream.
      * @param     out      a print stream
      * @param     indent   number of spaces to indent
-     * @see       PrintStream#println(Object)
+     * @see       java.io.PrintStream#println(java.lang.Object)
      * @throws    NullPointerException if {@code out} is {@code null}
      * @since     JDK1.0
      */
@@ -8194,7 +8200,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @param out the print writer to print to
      * @param indent the number of spaces to indent
      * @throws NullPointerException if {@code out} is {@code null}
-     * @see       PrintStream#println(Object)
+     * @see       java.io.PrintStream#println(java.lang.Object)
      * @since JDK1.1
      */
     public void list(PrintWriter out, int indent) {
@@ -8248,7 +8254,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *
      * @see #removePropertyChangeListener
      * @see #getPropertyChangeListeners
-     * @see #addPropertyChangeListener(String, PropertyChangeListener)
+     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener(
                                                        PropertyChangeListener listener) {
@@ -8274,7 +8280,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *
      * @see #addPropertyChangeListener
      * @see #getPropertyChangeListeners
-     * @see #removePropertyChangeListener(String,PropertyChangeListener)
+     * @see #removePropertyChangeListener(java.lang.String,java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener(
                                                           PropertyChangeListener listener) {
@@ -8296,8 +8302,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *
      * @see      #addPropertyChangeListener
      * @see      #removePropertyChangeListener
-     * @see      #getPropertyChangeListeners(String)
-     * @see      PropertyChangeSupport#getPropertyChangeListeners
+     * @see      #getPropertyChangeListeners(java.lang.String)
+     * @see      java.beans.PropertyChangeSupport#getPropertyChangeListeners
      * @since    1.4
      */
     public PropertyChangeListener[] getPropertyChangeListeners() {
@@ -8336,9 +8342,9 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @param propertyName one of the property names listed above
      * @param listener the property change listener to be added
      *
-     * @see #removePropertyChangeListener(String, PropertyChangeListener)
-     * @see #getPropertyChangeListeners(String)
-     * @see #addPropertyChangeListener(String, PropertyChangeListener)
+     * @see #removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
+     * @see #getPropertyChangeListeners(java.lang.String)
+     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener(
                                                        String propertyName,
@@ -8366,9 +8372,9 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @param propertyName a valid property name
      * @param listener the PropertyChangeListener to be removed
      *
-     * @see #addPropertyChangeListener(String, PropertyChangeListener)
-     * @see #getPropertyChangeListeners(String)
-     * @see #removePropertyChangeListener(PropertyChangeListener)
+     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
+     * @see #getPropertyChangeListeners(java.lang.String)
+     * @see #removePropertyChangeListener(java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener(
                                                           String propertyName,
@@ -8390,8 +8396,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *         if <code>propertyName</code> is <code>null</code>, an empty
      *         array is returned
      *
-     * @see #addPropertyChangeListener(String, PropertyChangeListener)
-     * @see #removePropertyChangeListener(String, PropertyChangeListener)
+     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
+     * @see #removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
      * @see #getPropertyChangeListeners
      * @since 1.4
      */
@@ -8475,8 +8481,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *          that was changed
      * @param oldValue the old value of the property (as a byte)
      * @param newValue the new value of the property (as a byte)
-     * @see #firePropertyChange(String, Object,
-     *          Object)
+     * @see #firePropertyChange(java.lang.String, java.lang.Object,
+     *          java.lang.Object)
      * @since 1.5
      */
     public void firePropertyChange(String propertyName, byte oldValue, byte newValue) {
@@ -8493,8 +8499,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *          that was changed
      * @param oldValue the old value of the property (as a char)
      * @param newValue the new value of the property (as a char)
-     * @see #firePropertyChange(String, Object,
-     *          Object)
+     * @see #firePropertyChange(java.lang.String, java.lang.Object,
+     *          java.lang.Object)
      * @since 1.5
      */
     public void firePropertyChange(String propertyName, char oldValue, char newValue) {
@@ -8511,8 +8517,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *          that was changed
      * @param oldValue the old value of the property (as a short)
      * @param newValue the old value of the property (as a short)
-     * @see #firePropertyChange(String, Object,
-     *          Object)
+     * @see #firePropertyChange(java.lang.String, java.lang.Object,
+     *          java.lang.Object)
      * @since 1.5
      */
     public void firePropertyChange(String propertyName, short oldValue, short newValue) {
@@ -8530,8 +8536,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *          that was changed
      * @param oldValue the old value of the property (as a long)
      * @param newValue the new value of the property (as a long)
-     * @see #firePropertyChange(String, Object,
-     *          Object)
+     * @see #firePropertyChange(java.lang.String, java.lang.Object,
+     *          java.lang.Object)
      * @since 1.5
      */
     public void firePropertyChange(String propertyName, long oldValue, long newValue) {
@@ -8548,8 +8554,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *          that was changed
      * @param oldValue the old value of the property (as a float)
      * @param newValue the new value of the property (as a float)
-     * @see #firePropertyChange(String, Object,
-     *          Object)
+     * @see #firePropertyChange(java.lang.String, java.lang.Object,
+     *          java.lang.Object)
      * @since 1.5
      */
     public void firePropertyChange(String propertyName, float oldValue, float newValue) {
@@ -8566,8 +8572,8 @@ public abstract class Component implements ImageObserver, MenuContainer,
      *          that was changed
      * @param oldValue the old value of the property (as a double)
      * @param newValue the new value of the property (as a double)
-     * @see #firePropertyChange(String, Object,
-     *          Object)
+     * @see #firePropertyChange(java.lang.String, java.lang.Object,
+     *          java.lang.Object)
      * @since 1.5
      */
     public void firePropertyChange(String propertyName, double oldValue, double newValue) {
@@ -8669,7 +8675,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
      * @serialData an optional <code>ComponentOrientation</code>
      *    (after <code>inputMethodListener</code>, as of 1.2)
      *
-     * @see AWTEventMulticaster#save(ObjectOutputStream, String, EventListener)
+     * @see AWTEventMulticaster#save(java.io.ObjectOutputStream, java.lang.String, java.util.EventListener)
      * @see #componentListenerK
      * @see #focusListenerK
      * @see #keyListenerK
@@ -9163,7 +9169,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
          * @return the localized name of the object -- can be
          *         <code>null</code> if this
          *         object does not have a name
-         * @see AccessibleContext#setAccessibleName
+         * @see javax.accessibility.AccessibleContext#setAccessibleName
          */
         public String getAccessibleName() {
             return accessibleName;
@@ -9182,7 +9188,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
          *
          * @return the localized description of the object -- can be
          *        <code>null</code> if this object does not have a description
-         * @see AccessibleContext#setAccessibleDescription
+         * @see javax.accessibility.AccessibleContext#setAccessibleDescription
          */
         public String getAccessibleDescription() {
             return accessibleDescription;
@@ -9193,7 +9199,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
          *
          * @return an instance of <code>AccessibleRole</code>
          *      describing the role of the object
-         * @see AccessibleRole
+         * @see javax.accessibility.AccessibleRole
          */
         public AccessibleRole getAccessibleRole() {
             return AccessibleRole.AWT_COMPONENT;
@@ -9204,7 +9210,7 @@ public abstract class Component implements ImageObserver, MenuContainer,
          *
          * @return an instance of <code>AccessibleStateSet</code>
          *       containing the current state set of the object
-         * @see AccessibleState
+         * @see javax.accessibility.AccessibleState
          */
         public AccessibleStateSet getAccessibleStateSet() {
             return Component.this.getAccessibleStateSet();

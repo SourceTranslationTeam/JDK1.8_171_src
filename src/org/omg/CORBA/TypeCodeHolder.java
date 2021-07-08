@@ -104,7 +104,7 @@ public final class TypeCodeHolder implements Streamable {
      * @return    the TypeCode of the value held in
      *             this <code>TypeCodeHolder</code> object
      */
-    public TypeCode _type() {
+    public org.omg.CORBA.TypeCode _type() {
         return ORB.init().get_primitive_tc(TCKind.tk_TypeCode);
     }
 }

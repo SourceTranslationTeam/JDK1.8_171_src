@@ -39,7 +39,7 @@ package java.lang;
  *</ul>
  *
  * @author  unascribed
- * @see     Class#newInstance()
+ * @see     java.lang.Class#newInstance()
  * @since   JDK1.0
  */
 public

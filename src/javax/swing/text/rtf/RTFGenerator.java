@@ -45,7 +45,7 @@ import javax.swing.text.*;
  * @see LTAttributedText
  * @see LTRTFFilter
  * @see LTTextAcceptor
- * @see OutputStream
+ * @see java.io.OutputStream
  */
 
 class RTFGenerator extends Object

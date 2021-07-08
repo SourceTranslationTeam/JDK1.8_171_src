@@ -36,7 +36,7 @@ import sun.swing.table.*;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JTableHeader}.
+ * {@link javax.swing.table.JTableHeader}.
  *
  * @author Alan Chung
  * @author Philip Milne

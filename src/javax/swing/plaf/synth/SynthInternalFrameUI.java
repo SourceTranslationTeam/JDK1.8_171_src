@@ -35,7 +35,7 @@ import java.beans.*;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JInternalFrame}.
+ * {@link javax.swing.JInternalFrame}.
  *
  * @author David Kloba
  * @author Joshua Outwater

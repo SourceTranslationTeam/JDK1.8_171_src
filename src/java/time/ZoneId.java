@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -347,7 +347,7 @@ public abstract class ZoneId implements Serializable {
      *  The detailed format of the region ID depends on the group supplying the data.
      *  The default set of data is supplied by the IANA Time Zone Database (TZDB).
      *  This has region IDs of the form '{area}/{city}', such as 'Europe/Paris' or 'America/New_York'.
-     *  This is compatible with most IDs from {@link TimeZone}.
+     *  This is compatible with most IDs from {@link java.util.TimeZone}.
      * </ul>
      *
      * @param zoneId  the time-zone ID, not null
@@ -375,7 +375,7 @@ public abstract class ZoneId implements Serializable {
     public static ZoneId ofOffset(String prefix, ZoneOffset offset) {
         Objects.requireNonNull(prefix, "prefix");
         Objects.requireNonNull(offset, "offset");
-        if (prefix.length() == 0) {
+        if (prefix.isEmpty()) {
             return offset;
         }
 

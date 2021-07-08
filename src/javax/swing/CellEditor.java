@@ -54,7 +54,7 @@ import javax.swing.event.*;
  * that contains an instance of the 3rd party editor object and "translate"
  * the <code>CellEditor</code> API into the 3rd party editor's API.
  *
- * @see CellEditorListener
+ * @see javax.swing.event.CellEditorListener
  *
  * @author Alan Chung
  */

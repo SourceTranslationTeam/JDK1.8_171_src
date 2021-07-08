@@ -46,7 +46,7 @@ import javax.swing.plaf.*;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  * @author Tom Santos
  */
@@ -129,7 +129,7 @@ public class MetalSliderUI extends BasicSliderUI {
         return new MetalPropertyListener();
     }
 
-    protected class MetalPropertyListener extends PropertyChangeHandler {
+    protected class MetalPropertyListener extends BasicSliderUI.PropertyChangeHandler {
         public void propertyChange( PropertyChangeEvent e ) {  // listen for slider fill
             super.propertyChange( e );
 

@@ -76,7 +76,7 @@ import java.util.Hashtable;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  * @beaninfo
  *   attribute: isContainer true
@@ -502,7 +502,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible
      */
     public void addSeparator( Dimension size )
     {
-        Separator s = new Separator( size );
+        JToolBar.Separator s = new JToolBar.Separator( size );
         add(s);
     }
 

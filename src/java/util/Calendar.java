@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1996, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -286,7 +286,7 @@ import sun.util.spi.CalendarProvider;
  *   <code>HOUR</code>.</p>
  * </blockquote>
  *
- * <p><em>Example</em>: See {@link GregorianCalendar#roll(int, int)}.
+ * <p><em>Example</em>: See {@link java.util.GregorianCalendar#roll(int, int)}.
  *
  * <p><strong>Usage model</strong>. To motivate the behavior of
  * <code>add()</code> and <code>roll()</code>, consider a user interface
@@ -302,11 +302,11 @@ import sun.util.spi.CalendarProvider;
  * fields should be affected, the user interface can behave as most users
  * will intuitively expect.</p>
  *
- * @see          System#currentTimeMillis()
+ * @see          java.lang.System#currentTimeMillis()
  * @see          Date
  * @see          GregorianCalendar
  * @see          TimeZone
- * @see          DateFormat
+ * @see          java.text.DateFormat
  * @author Mark Davis, David Goldsmith, Chen-Lieh Huang, Alan Liu
  * @since JDK1.1
  */
@@ -1574,7 +1574,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 
     /**
      * Constructs a Calendar with the default time zone
-     * and the default {@link Locale.Category#FORMAT FORMAT}
+     * and the default {@link java.util.Locale.Category#FORMAT FORMAT}
      * locale.
      * @see     TimeZone#getDefault
      */
@@ -1710,7 +1710,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * Returns an array of all locales for which the <code>getInstance</code>
      * methods of this class can return localized instances.
      * The array returned must contain at least a <code>Locale</code>
-     * instance equal to {@link Locale#US Locale.US}.
+     * instance equal to {@link java.util.Locale#US Locale.US}.
      *
      * @return An array of locales for which localized
      *         <code>Calendar</code> instances are available.
@@ -2200,7 +2200,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         if (strings != null) {
             Map<String,Integer> names = new HashMap<>();
             for (int i = 0; i < strings.length; i++) {
-                if (strings[i].length() == 0) {
+                if (strings[i].isEmpty()) {
                     continue;
                 }
                 names.put(strings[i], i);
@@ -2617,7 +2617,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @return an unmodifiable {@code Set} containing all available calendar types
      * @since 1.8
      * @see #getCalendarType()
-     * @see Builder#setCalendarType(String)
+     * @see Calendar.Builder#setCalendarType(String)
      * @see Locale#getUnicodeLocaleType(String)
      */
     public static Set<String> getAvailableCalendarTypes() {
@@ -2692,7 +2692,9 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
                 lenient == that.lenient &&
                 firstDayOfWeek == that.firstDayOfWeek &&
                 minimalDaysInFirstWeek == that.minimalDaysInFirstWeek &&
-                zone.equals(that.zone);
+                (zone instanceof ZoneInfo ?
+                    zone.equals(that.zone) :
+                    zone.equals(that.getTimeZone()));
         } catch (Exception e) {
             // Note: GregorianCalendar.computeTime throws
             // IllegalArgumentException if the ERA value is invalid
@@ -2911,7 +2913,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @param lenient <code>true</code> if the lenient mode is to be turned
      * on; <code>false</code> if it is to be turned off.
      * @see #isLenient()
-     * @see DateFormat#setLenient
+     * @see java.text.DateFormat#setLenient
      */
     public void setLenient(boolean lenient)
     {

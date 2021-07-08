@@ -31,7 +31,7 @@ package java.net;
  * an IPv4 one. An IP address and a network prefix length in the case
  * of IPv6 address.
  *
- * @see NetworkInterface
+ * @see java.net.NetworkInterface
  * @since 1.6
  */
 public class InterfaceAddress {
@@ -96,7 +96,7 @@ public class InterfaceAddress {
      * @param   obj   the object to compare against.
      * @return  {@code true} if the objects are the same;
      *          {@code false} otherwise.
-     * @see     InterfaceAddress#hashCode()
+     * @see     java.net.InterfaceAddress#hashCode()
      */
     public boolean equals(Object obj) {
         if (!(obj instanceof InterfaceAddress)) {

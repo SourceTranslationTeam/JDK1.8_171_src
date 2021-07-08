@@ -112,9 +112,9 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      *               {@code checkRead} method denies read access to the file
      *               or the mode is "rw" and the security manager's
      *               {@code checkWrite} method denies write access to the file
-     * @see        SecurityException
-     * @see        SecurityManager#checkRead(String)
-     * @see        SecurityManager#checkWrite(String)
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkRead(java.lang.String)
+     * @see        java.lang.SecurityManager#checkWrite(java.lang.String)
      * @revised 1.4
      * @spec JSR-51
      */
@@ -138,7 +138,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      * <tr><td valign="top"><tt>"r"</tt></td>
      *     <td> Open for reading only.  Invoking any of the <tt>write</tt>
      *     methods of the resulting object will cause an {@link
-     *     IOException} to be thrown. </td></tr>
+     *     java.io.IOException} to be thrown. </td></tr>
      * <tr><td valign="top"><tt>"rw"</tt></td>
      *     <td> Open for reading and writing.  If the file does not already
      *     exist then an attempt will be made to create it. </td></tr>
@@ -153,8 +153,8 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      * </table>
      *
      * The <tt>"rws"</tt> and <tt>"rwd"</tt> modes work much like the {@link
-     * FileChannel#force(boolean) force(boolean)} method of
-     * the {@link FileChannel} class, passing arguments of
+     * java.nio.channels.FileChannel#force(boolean) force(boolean)} method of
+     * the {@link java.nio.channels.FileChannel} class, passing arguments of
      * <tt>true</tt> and <tt>false</tt>, respectively, except that they always
      * apply to every I/O operation and are therefore often more efficient.  If
      * the file resides on a local storage device then when an invocation of a
@@ -194,9 +194,9 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      *               {@code checkRead} method denies read access to the file
      *               or the mode is "rw" and the security manager's
      *               {@code checkWrite} method denies write access to the file
-     * @see        SecurityManager#checkRead(String)
-     * @see        SecurityManager#checkWrite(String)
-     * @see        FileChannel#force(boolean)
+     * @see        java.lang.SecurityManager#checkRead(java.lang.String)
+     * @see        java.lang.SecurityManager#checkWrite(java.lang.String)
+     * @see        java.nio.channels.FileChannel#force(boolean)
      * @revised 1.4
      * @spec JSR-51
      */
@@ -249,7 +249,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      *
      * @return     the file descriptor object associated with this stream.
      * @exception  IOException  if an I/O error occurs.
-     * @see        FileDescriptor
+     * @see        java.io.FileDescriptor
      */
     public final FileDescriptor getFD() throws IOException {
         if (fd != null) {
@@ -259,10 +259,10 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
     }
 
     /**
-     * Returns the unique {@link FileChannel FileChannel}
+     * Returns the unique {@link java.nio.channels.FileChannel FileChannel}
      * object associated with this file.
      *
-     * <p> The {@link FileChannel#position()
+     * <p> The {@link java.nio.channels.FileChannel#position()
      * position} of the returned channel will always be equal to
      * this object's file-pointer offset as returned by the {@link
      * #getFilePointer getFilePointer} method.  Changing this object's
@@ -852,8 +852,8 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      * @exception  EOFException  if this file reaches the end before reading
      *             four bytes.
      * @exception  IOException   if an I/O error occurs.
-     * @see        RandomAccessFile#readInt()
-     * @see        Float#intBitsToFloat(int)
+     * @see        java.io.RandomAccessFile#readInt()
+     * @see        java.lang.Float#intBitsToFloat(int)
      */
     public final float readFloat() throws IOException {
         return Float.intBitsToFloat(readInt());
@@ -875,8 +875,8 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      * @exception  EOFException  if this file reaches the end before reading
      *             eight bytes.
      * @exception  IOException   if an I/O error occurs.
-     * @see        RandomAccessFile#readLong()
-     * @see        Double#longBitsToDouble(long)
+     * @see        java.io.RandomAccessFile#readLong()
+     * @see        java.lang.Double#longBitsToDouble(long)
      */
     public final double readDouble() throws IOException {
         return Double.longBitsToDouble(readLong());
@@ -959,7 +959,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      * @exception  IOException             if an I/O error occurs.
      * @exception  UTFDataFormatException  if the bytes do not represent
      *               valid modified UTF-8 encoding of a Unicode string.
-     * @see        RandomAccessFile#readUnsignedShort()
+     * @see        java.io.RandomAccessFile#readUnsignedShort()
      */
     public final String readUTF() throws IOException {
         return DataInputStream.readUTF(this);
@@ -1062,7 +1062,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      *
      * @param      v   a {@code float} value to be written.
      * @exception  IOException  if an I/O error occurs.
-     * @see        Float#floatToIntBits(float)
+     * @see        java.lang.Float#floatToIntBits(float)
      */
     public final void writeFloat(float v) throws IOException {
         writeInt(Float.floatToIntBits(v));
@@ -1077,7 +1077,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      *
      * @param      v   a {@code double} value to be written.
      * @exception  IOException  if an I/O error occurs.
-     * @see        Double#doubleToLongBits(double)
+     * @see        java.lang.Double#doubleToLongBits(double)
      */
     public final void writeDouble(double v) throws IOException {
         writeLong(Double.doubleToLongBits(v));
@@ -1108,7 +1108,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
      *
      * @param      s   a {@code String} value to be written.
      * @exception  IOException  if an I/O error occurs.
-     * @see        RandomAccessFile#writeChar(int)
+     * @see        java.io.RandomAccessFile#writeChar(int)
      */
     public final void writeChars(String s) throws IOException {
         int clen = s.length();

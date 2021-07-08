@@ -61,7 +61,7 @@ class SequenceInputStream extends InputStream {
      * <code>close</code> method.
      *
      * @param   e   an enumeration of input streams.
-     * @see     Enumeration
+     * @see     java.util.Enumeration
      */
     public SequenceInputStream(Enumeration<? extends InputStream> e) {
         this.e = e;

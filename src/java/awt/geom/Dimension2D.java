@@ -100,7 +100,7 @@ public abstract class Dimension2D implements Cloneable {
      *
      * @return     a clone of this instance.
      * @exception  OutOfMemoryError            if there is not enough memory.
-     * @see        Cloneable
+     * @see        java.lang.Cloneable
      * @since      1.2
      */
     public Object clone() {

@@ -244,7 +244,7 @@ public class BasicTabbedPaneUI extends TabbedPaneUI implements SwingConstants {
      * @return a layout manager object
      *
      * @see TabbedPaneLayout
-     * @see JTabbedPane#getTabLayoutPolicy
+     * @see javax.swing.JTabbedPane#getTabLayoutPolicy
      */
     protected LayoutManager createLayoutManager() {
         if (tabPane.getTabLayoutPolicy() == JTabbedPane.SCROLL_TAB_LAYOUT) {
@@ -307,8 +307,8 @@ public class BasicTabbedPaneUI extends TabbedPaneUI implements SwingConstants {
      * @param direction One of the SwingConstants constants:
      * SOUTH, NORTH, EAST or WEST
      * @return Widget for user to
-     * @see JTabbedPane#setTabPlacement
-     * @see SwingConstants
+     * @see javax.swing.JTabbedPane#setTabPlacement
+     * @see javax.swing.SwingConstants
      * @throws IllegalArgumentException if direction is not one of
      *         NORTH, SOUTH, EAST or WEST
      * @since 1.5
@@ -615,7 +615,7 @@ public class BasicTabbedPaneUI extends TabbedPaneUI implements SwingConstants {
      *
      * @throws NullPointerException {@inheritDoc}
      * @throws IllegalArgumentException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public int getBaseline(JComponent c, int width, int height) {
@@ -647,7 +647,7 @@ public class BasicTabbedPaneUI extends TabbedPaneUI implements SwingConstants {
      * changes as the size changes.
      *
      * @throws NullPointerException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public Component.BaselineResizeBehavior getBaselineResizeBehavior(

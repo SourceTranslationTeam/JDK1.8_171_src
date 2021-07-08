@@ -51,7 +51,7 @@ import sun.security.action.GetPropertyAction;
  * the same version of Swing.  As of 1.4, support for long term storage
  * of all JavaBeans&trade;
  * has been added to the <code>java.beans</code> package.
- * Please see {@link XMLEncoder}.
+ * Please see {@link java.beans.XMLEncoder}.
  *
  * @author Georges Saab
  * @see Action

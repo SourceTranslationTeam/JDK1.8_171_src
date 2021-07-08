@@ -76,7 +76,7 @@ import sun.swing.SwingUtilities2;
  * optional menu bar for the internal frame. Please see the
  * <code>JRootPane</code>
  * documentation for a complete description of these components.
- * Refer to {@link RootPaneContainer}
+ * Refer to {@link javax.swing.RootPaneContainer}
  * for details on adding, removing and setting the <code>LayoutManager</code>
  * of a <code>JInternalFrame</code>.
  * <p>
@@ -97,9 +97,9 @@ import sun.swing.SwingUtilities2;
  * @see InternalFrameEvent
  * @see JDesktopPane
  * @see DesktopManager
- * @see JDesktopIcon
+ * @see JInternalFrame.JDesktopIcon
  * @see JRootPane
- * @see RootPaneContainer
+ * @see javax.swing.RootPaneContainer
  *
  * @author David Kloba
  * @author Rich Schiavi
@@ -138,7 +138,7 @@ public class JInternalFrame extends JComponent implements
      *
      * @see #isRootPaneCheckingEnabled
      * @see #setRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     protected boolean rootPaneCheckingEnabled = false;
 
@@ -156,7 +156,7 @@ public class JInternalFrame extends JComponent implements
     /**
      * The frame can "iconified" (shrunk down and displayed as
      * an icon-image).
-     * @see JDesktopIcon
+     * @see JInternalFrame.JDesktopIcon
      * @see #setIconifiable
      */
     protected boolean iconable;
@@ -450,7 +450,7 @@ public class JInternalFrame extends JComponent implements
      * @see #addImpl
      * @see #setLayout
      * @see #setRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     protected boolean isRootPaneCheckingEnabled() {
         return rootPaneCheckingEnabled;
@@ -467,7 +467,7 @@ public class JInternalFrame extends JComponent implements
      * @see #addImpl
      * @see #setLayout
      * @see #isRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      * @beaninfo
      *      hidden: true
      * description: Whether the add and setLayout methods are forwarded
@@ -481,7 +481,7 @@ public class JInternalFrame extends JComponent implements
      * This method is overridden to conditionally forward calls to the
      * <code>contentPane</code>.
      * By default, children are added to the <code>contentPane</code> instead
-     * of the frame, refer to {@link RootPaneContainer} for
+     * of the frame, refer to {@link javax.swing.RootPaneContainer} for
      * details.
      *
      * @param comp the component to be enhanced
@@ -493,7 +493,7 @@ public class JInternalFrame extends JComponent implements
      * @exception IllegalArgumentException if adding a window to a container
      *
      * @see #setRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     protected void addImpl(Component comp, Object constraints, int index) {
         if(isRootPaneCheckingEnabled()) {
@@ -512,7 +512,7 @@ public class JInternalFrame extends JComponent implements
      * @param comp the component to be removed
      * @throws NullPointerException if <code>comp</code> is null
      * @see #add
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     public void remove(Component comp) {
         int oldCount = getComponentCount();
@@ -527,7 +527,7 @@ public class JInternalFrame extends JComponent implements
      * Ensures that, by default, the layout of this component cannot be set.
      * Overridden to conditionally forward the call to the
      * <code>contentPane</code>.
-     * Refer to {@link RootPaneContainer} for
+     * Refer to {@link javax.swing.RootPaneContainer} for
      * more information.
      *
      * @param manager the <code>LayoutManager</code>
@@ -621,7 +621,7 @@ public class JInternalFrame extends JComponent implements
      *
      * @param c  the content pane for this internal frame
      *
-     * @exception IllegalComponentStateException (a runtime
+     * @exception java.awt.IllegalComponentStateException (a runtime
      *           exception) if the content pane parameter is <code>null</code>
      * @see RootPaneContainer#getContentPane
      * @beaninfo
@@ -653,7 +653,7 @@ public class JInternalFrame extends JComponent implements
      *
      * @param layered the <code>JLayeredPane</code> for this internal frame
      *
-     * @exception IllegalComponentStateException (a runtime
+     * @exception java.awt.IllegalComponentStateException (a runtime
      *           exception) if the layered pane parameter is <code>null</code>
      * @see RootPaneContainer#setLayeredPane
      * @beaninfo
@@ -804,7 +804,7 @@ public class JInternalFrame extends JComponent implements
      * @see #isClosed()
      * @see #setDefaultCloseOperation
      * @see #dispose
-     * @see InternalFrameEvent#INTERNAL_FRAME_CLOSING
+     * @see javax.swing.event.InternalFrameEvent#INTERNAL_FRAME_CLOSING
      *
      * @beaninfo
      *           bound: true
@@ -1607,7 +1607,7 @@ public class JInternalFrame extends JComponent implements
      *
      * @since 1.3
      * @see #setDefaultCloseOperation
-     * @see InternalFrameEvent#INTERNAL_FRAME_CLOSING
+     * @see javax.swing.event.InternalFrameEvent#INTERNAL_FRAME_CLOSING
      */
     public void doDefaultCloseAction() {
         fireInternalFrameEvent(InternalFrameEvent.INTERNAL_FRAME_CLOSING);
@@ -1698,7 +1698,7 @@ public class JInternalFrame extends JComponent implements
      * internal frame is unable to be restored its state is not changed
      * and will not be packed.
      *
-     * @see       Window#pack
+     * @see       java.awt.Window#pack
      */
     public void pack() {
         try {
@@ -1781,7 +1781,7 @@ public class JInternalFrame extends JComponent implements
      * the internal frame and does not fire
      * an <code>INTERNAL_FRAME_CLOSING</code> event.
      *
-     * @see InternalFrameEvent#INTERNAL_FRAME_CLOSED
+     * @see javax.swing.event.InternalFrameEvent#INTERNAL_FRAME_CLOSED
      * @see #setVisible
      * @see #setSelected
      * @see #setClosed
@@ -1808,7 +1808,7 @@ public class JInternalFrame extends JComponent implements
      * and makes the corresponding adjustment to other visible internal
      * frames.
      *
-     * @see       Window#toFront
+     * @see       java.awt.Window#toFront
      * @see       #moveToFront
      */
     public void toFront() {
@@ -1821,7 +1821,7 @@ public class JInternalFrame extends JComponent implements
      * and makes the corresponding adjustment to other visible
      * internal frames.
      *
-     * @see       Window#toBack
+     * @see       java.awt.Window#toBack
      * @see       #moveToBack
      */
     public void toBack() {
@@ -1834,8 +1834,8 @@ public class JInternalFrame extends JComponent implements
      *
      * @param focusCycleRoot this value is ignored
      * @see #isFocusCycleRoot
-     * @see Container#setFocusTraversalPolicy
-     * @see Container#getFocusTraversalPolicy
+     * @see java.awt.Container#setFocusTraversalPolicy
+     * @see java.awt.Container#getFocusTraversalPolicy
      * @since 1.4
      */
     public final void setFocusCycleRoot(boolean focusCycleRoot) {
@@ -1847,8 +1847,8 @@ public class JInternalFrame extends JComponent implements
      *
      * @return <code>true</code>
      * @see #setFocusCycleRoot
-     * @see Container#setFocusTraversalPolicy
-     * @see Container#getFocusTraversalPolicy
+     * @see java.awt.Container#setFocusTraversalPolicy
+     * @see java.awt.Container#getFocusTraversalPolicy
      * @since 1.4
      */
     public final boolean isFocusCycleRoot() {
@@ -1861,7 +1861,7 @@ public class JInternalFrame extends JComponent implements
      * traversal cycle.
      *
      * @return <code>null</code>
-     * @see Container#isFocusCycleRoot()
+     * @see java.awt.Container#isFocusCycleRoot()
      * @since 1.4
      */
     public final Container getFocusCycleRootAncestor() {
@@ -1874,7 +1874,7 @@ public class JInternalFrame extends JComponent implements
      * contained within a window that might need a warning string)
      * this method always returns <code>null</code>.
      * @return    <code>null</code>
-     * @see       Window#getWarningString
+     * @see       java.awt.Window#getWarningString
      */
     public final String getWarningString() {
         return null;

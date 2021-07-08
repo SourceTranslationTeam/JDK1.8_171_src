@@ -103,19 +103,19 @@ public class DateFormatSymbols implements Serializable, Cloneable {
 
     /**
      * Construct a DateFormatSymbols object by loading format data from
-     * resources for the default {@link Locale.Category#FORMAT FORMAT}
+     * resources for the default {@link java.util.Locale.Category#FORMAT FORMAT}
      * locale. This constructor can only
      * construct instances for the locales supported by the Java
      * runtime environment, not for those supported by installed
-     * {@link DateFormatSymbolsProvider DateFormatSymbolsProvider}
+     * {@link java.text.spi.DateFormatSymbolsProvider DateFormatSymbolsProvider}
      * implementations. For full locale coverage, use the
      * {@link #getInstance(Locale) getInstance} method.
      * <p>This is equivalent to calling
      * {@link #DateFormatSymbols(Locale)
      *     DateFormatSymbols(Locale.getDefault(Locale.Category.FORMAT))}.
      * @see #getInstance()
-     * @see Locale#getDefault(Locale.Category)
-     * @see Locale.Category#FORMAT
+     * @see java.util.Locale#getDefault(java.util.Locale.Category)
+     * @see java.util.Locale.Category#FORMAT
      * @exception  java.util.MissingResourceException
      *             if the resources for the default locale cannot be
      *             found or cannot be loaded.
@@ -130,7 +130,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * resources for the given locale. This constructor can only
      * construct instances for the locales supported by the Java
      * runtime environment, not for those supported by installed
-     * {@link DateFormatSymbolsProvider DateFormatSymbolsProvider}
+     * {@link java.text.spi.DateFormatSymbolsProvider DateFormatSymbolsProvider}
      * implementations. For full locale coverage, use the
      * {@link #getInstance(Locale) getInstance} method.
      *
@@ -292,9 +292,9 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * localized instances.
      * The returned array represents the union of locales supported by the
      * Java runtime and by installed
-     * {@link DateFormatSymbolsProvider DateFormatSymbolsProvider}
+     * {@link java.text.spi.DateFormatSymbolsProvider DateFormatSymbolsProvider}
      * implementations.  It must contain at least a <code>Locale</code>
-     * instance equal to {@link Locale#US Locale.US}.
+     * instance equal to {@link java.util.Locale#US Locale.US}.
      *
      * @return An array of locales for which localized
      *         <code>DateFormatSymbols</code> instances are available.
@@ -311,12 +311,12 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * locale.  This method provides access to <code>DateFormatSymbols</code>
      * instances for locales supported by the Java runtime itself as well
      * as for those supported by installed
-     * {@link DateFormatSymbolsProvider DateFormatSymbolsProvider}
+     * {@link java.text.spi.DateFormatSymbolsProvider DateFormatSymbolsProvider}
      * implementations.
      * <p>This is equivalent to calling {@link #getInstance(Locale)
      *     getInstance(Locale.getDefault(Locale.Category.FORMAT))}.
-     * @see Locale#getDefault(Locale.Category)
-     * @see Locale.Category#FORMAT
+     * @see java.util.Locale#getDefault(java.util.Locale.Category)
+     * @see java.util.Locale.Category#FORMAT
      * @return a <code>DateFormatSymbols</code> instance.
      * @since 1.6
      */
@@ -329,7 +329,7 @@ public class DateFormatSymbols implements Serializable, Cloneable {
      * locale.  This method provides access to <code>DateFormatSymbols</code>
      * instances for locales supported by the Java runtime itself as well
      * as for those supported by installed
-     * {@link DateFormatSymbolsProvider DateFormatSymbolsProvider}
+     * {@link java.text.spi.DateFormatSymbolsProvider DateFormatSymbolsProvider}
      * implementations.
      * @param locale the given locale.
      * @return a <code>DateFormatSymbols</code> instance.

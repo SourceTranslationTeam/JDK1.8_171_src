@@ -50,17 +50,17 @@ public final class WCharSeqHolder implements org.omg.CORBA.portable.Streamable
 
     public void _read (org.omg.CORBA.portable.InputStream i)
     {
-        value = WCharSeqHelper.read (i);
+        value = org.omg.CORBA.WCharSeqHelper.read (i);
     }
 
     public void _write (org.omg.CORBA.portable.OutputStream o)
     {
-        WCharSeqHelper.write (o, value);
+        org.omg.CORBA.WCharSeqHelper.write (o, value);
     }
 
-    public TypeCode _type ()
+    public org.omg.CORBA.TypeCode _type ()
     {
-        return WCharSeqHelper.type ();
+        return org.omg.CORBA.WCharSeqHelper.type ();
     }
 
 }

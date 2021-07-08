@@ -297,7 +297,7 @@ public class JFormattedTextField extends JTextField {
      *
      * @param format Format used to look up an AbstractFormatter
      */
-    public JFormattedTextField(Format format) {
+    public JFormattedTextField(java.text.Format format) {
         this();
         setFormatterFactory(getDefaultFormatterFactory(format));
     }
@@ -1105,7 +1105,7 @@ public class JFormattedTextField extends JTextField {
      * has focus, and extends <code>actionPerformed</code> to invoke
      * commitEdit.
      */
-    static class CommitAction extends NotifyAction {
+    static class CommitAction extends JTextField.NotifyAction {
         public void actionPerformed(ActionEvent e) {
             JTextComponent target = getFocusedComponent();
 

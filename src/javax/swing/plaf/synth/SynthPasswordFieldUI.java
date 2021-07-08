@@ -32,7 +32,7 @@ import javax.swing.plaf.ComponentUI;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JPasswordField}.
+ * {@link javax.swing.JPasswordField}.
  *
  * @author  Shannon Hickey
  * @since 1.7

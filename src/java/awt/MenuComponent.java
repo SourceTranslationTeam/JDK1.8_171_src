@@ -157,7 +157,7 @@ public abstract class MenuComponent implements java.io.Serializable {
      * @exception HeadlessException if
      *    <code>GraphicsEnvironment.isHeadless</code>
      *    returns <code>true</code>
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      */
     public MenuComponent() throws HeadlessException {
         GraphicsEnvironment.checkHeadless();
@@ -178,7 +178,7 @@ public abstract class MenuComponent implements java.io.Serializable {
     /**
      * Gets the name of the menu component.
      * @return        the name of the menu component
-     * @see           MenuComponent#setName(String)
+     * @see           java.awt.MenuComponent#setName(java.lang.String)
      * @since         JDK1.1
      */
     public String getName() {
@@ -194,7 +194,7 @@ public abstract class MenuComponent implements java.io.Serializable {
     /**
      * Sets the name of the component to the specified string.
      * @param         name    the name of the menu component
-     * @see           MenuComponent#getName
+     * @see           java.awt.MenuComponent#getName
      * @since         JDK1.1
      */
     public void setName(String name) {
@@ -234,7 +234,7 @@ public abstract class MenuComponent implements java.io.Serializable {
      * Gets the font used for this menu component.
      * @return   the font used in this menu component, if there is one;
      *                  <code>null</code> otherwise
-     * @see     MenuComponent#setFont
+     * @see     java.awt.MenuComponent#setFont
      */
     public Font getFont() {
         Font font = this.font;
@@ -424,7 +424,7 @@ public abstract class MenuComponent implements java.io.Serializable {
      *   <code>GraphicsEnvironment.isHeadless</code> returns
      *   <code>true</code>
      * @serial
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      */
     private void readObject(ObjectInputStream s)
         throws ClassNotFoundException, IOException, HeadlessException

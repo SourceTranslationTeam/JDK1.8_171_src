@@ -96,7 +96,13 @@ public class BasicTextFieldUI extends BasicTextUI {
             String kind = elem.getName();
             if (kind != null) {
                 if (kind.equals(AbstractDocument.ContentElementName)) {
-                    return new GlyphView(elem);
+                    return new GlyphView(elem) {
+                        @Override
+                        public float getMinimumSpan(int axis) {
+                            // no wrap
+                            return getPreferredSpan(axis);
+                        }
+                    };
                 } else if (kind.equals(AbstractDocument.ParagraphElementName)) {
                     return new I18nFieldView(elem);
                 }
@@ -111,7 +117,7 @@ public class BasicTextFieldUI extends BasicTextUI {
      *
      * @throws NullPointerException {@inheritDoc}
      * @throws IllegalArgumentException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public int getBaseline(JComponent c, int width, int height) {
@@ -152,7 +158,7 @@ public class BasicTextFieldUI extends BasicTextUI {
      * changes as the size changes.
      *
      * @throws NullPointerException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public Component.BaselineResizeBehavior getBaselineResizeBehavior(
@@ -187,7 +193,7 @@ public class BasicTextFieldUI extends BasicTextUI {
             // ParagraphView's justification handling by doing nothing here.
         }
 
-        static boolean isLeftToRight( Component c ) {
+        static boolean isLeftToRight( java.awt.Component c ) {
             return c.getComponentOrientation().isLeftToRight();
         }
 

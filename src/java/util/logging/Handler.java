@@ -147,7 +147,7 @@ public abstract class Handler {
      *          not supported.
      */
     public synchronized void setEncoding(String encoding)
-                        throws SecurityException, UnsupportedEncodingException {
+                        throws SecurityException, java.io.UnsupportedEncodingException {
         checkPermission();
         if (encoding != null) {
             try {

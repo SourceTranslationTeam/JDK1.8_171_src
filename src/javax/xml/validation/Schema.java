@@ -54,7 +54,7 @@ package javax.xml.validation;
  *
  * <p>
  * This specification does not refine
- * the {@link Object#equals(Object)} method.
+ * the {@link java.lang.Object#equals(java.lang.Object)} method.
  * In other words, if you parse the same schema twice, you may
  * still get <code>!schemaA.equals(schemaB)</code>.
  *

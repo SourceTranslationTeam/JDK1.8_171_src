@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1996, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1996, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -294,8 +294,8 @@ import sun.util.locale.provider.ResourceBundleBasedAdapter;
  * <h4>Rounding</h4>
  *
  * <code>DecimalFormat</code> provides rounding modes defined in
- * {@link RoundingMode} for formatting.  By default, it uses
- * {@link RoundingMode#HALF_EVEN RoundingMode.HALF_EVEN}.
+ * {@link java.math.RoundingMode} for formatting.  By default, it uses
+ * {@link java.math.RoundingMode#HALF_EVEN RoundingMode.HALF_EVEN}.
  *
  * <h4>Digits</h4>
  *
@@ -382,7 +382,7 @@ public class DecimalFormat extends NumberFormat {
 
     /**
      * Creates a DecimalFormat using the default pattern and symbols
-     * for the default {@link Locale.Category#FORMAT FORMAT} locale.
+     * for the default {@link java.util.Locale.Category#FORMAT FORMAT} locale.
      * This is a convenient way to obtain a
      * DecimalFormat when internationalization is not the main concern.
      * <p>
@@ -391,10 +391,10 @@ public class DecimalFormat extends NumberFormat {
      * return the most appropriate sub-class of NumberFormat for a given
      * locale.
      *
-     * @see NumberFormat#getInstance
-     * @see NumberFormat#getNumberInstance
-     * @see NumberFormat#getCurrencyInstance
-     * @see NumberFormat#getPercentInstance
+     * @see java.text.NumberFormat#getInstance
+     * @see java.text.NumberFormat#getNumberInstance
+     * @see java.text.NumberFormat#getCurrencyInstance
+     * @see java.text.NumberFormat#getPercentInstance
      */
     public DecimalFormat() {
         // Get the pattern for the default locale.
@@ -413,7 +413,7 @@ public class DecimalFormat extends NumberFormat {
 
     /**
      * Creates a DecimalFormat using the given pattern and the symbols
-     * for the default {@link Locale.Category#FORMAT FORMAT} locale.
+     * for the default {@link java.util.Locale.Category#FORMAT FORMAT} locale.
      * This is a convenient way to obtain a
      * DecimalFormat when internationalization is not the main concern.
      * <p>
@@ -425,10 +425,10 @@ public class DecimalFormat extends NumberFormat {
      * @param pattern a non-localized pattern string.
      * @exception NullPointerException if <code>pattern</code> is null
      * @exception IllegalArgumentException if the given pattern is invalid.
-     * @see NumberFormat#getInstance
-     * @see NumberFormat#getNumberInstance
-     * @see NumberFormat#getCurrencyInstance
-     * @see NumberFormat#getPercentInstance
+     * @see java.text.NumberFormat#getInstance
+     * @see java.text.NumberFormat#getNumberInstance
+     * @see java.text.NumberFormat#getCurrencyInstance
+     * @see java.text.NumberFormat#getPercentInstance
      */
     public DecimalFormat(String pattern) {
         // Always applyPattern after the symbols are set
@@ -452,11 +452,11 @@ public class DecimalFormat extends NumberFormat {
      * @param symbols the set of symbols to be used
      * @exception NullPointerException if any of the given arguments is null
      * @exception IllegalArgumentException if the given pattern is invalid
-     * @see NumberFormat#getInstance
-     * @see NumberFormat#getNumberInstance
-     * @see NumberFormat#getCurrencyInstance
-     * @see NumberFormat#getPercentInstance
-     * @see DecimalFormatSymbols
+     * @see java.text.NumberFormat#getInstance
+     * @see java.text.NumberFormat#getNumberInstance
+     * @see java.text.NumberFormat#getCurrencyInstance
+     * @see java.text.NumberFormat#getPercentInstance
+     * @see java.text.DecimalFormatSymbols
      */
     public DecimalFormat (String pattern, DecimalFormatSymbols symbols) {
         // Always applyPattern after the symbols are set
@@ -469,7 +469,7 @@ public class DecimalFormat extends NumberFormat {
     /**
      * Formats a number and appends the resulting text to the given string
      * buffer.
-     * The number can be of any subclass of {@link Number}.
+     * The number can be of any subclass of {@link java.lang.Number}.
      * <p>
      * This implementation uses the maximum precision permitted.
      * @param number     the number to format
@@ -484,7 +484,7 @@ public class DecimalFormat extends NumberFormat {
      *                   <code>pos</code> is null
      * @exception        ArithmeticException if rounding is needed with rounding
      *                   mode being set to RoundingMode.UNNECESSARY
-     * @see              FieldPosition
+     * @see              java.text.FieldPosition
      */
     @Override
     public final StringBuffer format(Object number,
@@ -517,7 +517,7 @@ public class DecimalFormat extends NumberFormat {
      * @exception ArithmeticException if rounding is needed with rounding
      *            mode being set to RoundingMode.UNNECESSARY
      * @return The formatted number string
-     * @see FieldPosition
+     * @see java.text.FieldPosition
      */
     @Override
     public StringBuffer format(double number, StringBuffer result,
@@ -635,7 +635,7 @@ public class DecimalFormat extends NumberFormat {
      * @exception       ArithmeticException if rounding is needed with rounding
      *                  mode being set to RoundingMode.UNNECESSARY
      * @return The formatted number string
-     * @see FieldPosition
+     * @see java.text.FieldPosition
      */
     @Override
     public StringBuffer format(long number, StringBuffer result,
@@ -654,7 +654,7 @@ public class DecimalFormat extends NumberFormat {
      * @return The formatted number string
      * @exception        ArithmeticException if rounding is needed with rounding
      *                   mode being set to RoundingMode.UNNECESSARY
-     * @see FieldPosition
+     * @see java.text.FieldPosition
      */
     private StringBuffer format(long number, StringBuffer result,
                                FieldDelegate delegate) {
@@ -723,7 +723,7 @@ public class DecimalFormat extends NumberFormat {
      * @return The formatted number string
      * @exception        ArithmeticException if rounding is needed with rounding
      *                   mode being set to RoundingMode.UNNECESSARY
-     * @see FieldPosition
+     * @see java.text.FieldPosition
      */
     private StringBuffer format(BigDecimal number, StringBuffer result,
                                 FieldPosition fieldPosition) {
@@ -776,7 +776,7 @@ public class DecimalFormat extends NumberFormat {
      * @return The formatted number string
      * @exception        ArithmeticException if rounding is needed with rounding
      *                   mode being set to RoundingMode.UNNECESSARY
-     * @see FieldPosition
+     * @see java.text.FieldPosition
      */
     private StringBuffer format(BigInteger number, StringBuffer result,
                                FieldPosition fieldPosition) {
@@ -794,7 +794,7 @@ public class DecimalFormat extends NumberFormat {
      * @return The formatted number string
      * @exception        ArithmeticException if rounding is needed with rounding
      *                   mode being set to RoundingMode.UNNECESSARY
-     * @see FieldPosition
+     * @see java.text.FieldPosition
      */
     private StringBuffer format(BigInteger number, StringBuffer result,
                                FieldDelegate delegate, boolean formatLong) {
@@ -968,7 +968,7 @@ public class DecimalFormat extends NumberFormat {
      *     Decimal  : min = 0. max = 3.
      *
      */
-    private void checkAndSetFastPathStatus() {
+    private boolean checkAndSetFastPathStatus() {
 
         boolean fastPathWasOn = isFastPath;
 
@@ -998,12 +998,27 @@ public class DecimalFormat extends NumberFormat {
         } else
             isFastPath = false;
 
+        resetFastPathData(fastPathWasOn);
+        fastPathCheckNeeded = false;
+
+        /*
+         * Returns true after successfully checking the fast path condition and
+         * setting the fast path data. The return value is used by the
+         * fastFormat() method to decide whether to call the resetFastPathData
+         * method to reinitialize fast path data or is it already initialized
+         * in this method.
+         */
+        return true;
+    }
+
+    private void resetFastPathData(boolean fastPathWasOn) {
         // Since some instance properties may have changed while still falling
         // in the fast-path case, we need to reinitialize fastPathData anyway.
         if (isFastPath) {
             // We need to instantiate fastPathData if not already done.
-            if (fastPathData == null)
+            if (fastPathData == null) {
                 fastPathData = new FastPathData();
+            }
 
             // Sets up the locale specific constants used when formatting.
             // '0' is our default representation of zero.
@@ -1011,22 +1026,25 @@ public class DecimalFormat extends NumberFormat {
             fastPathData.groupingChar = symbols.getGroupingSeparator();
 
             // Sets up fractional constants related to currency/decimal pattern.
-            fastPathData.fractionalMaxIntBound = (isCurrencyFormat) ? 99 : 999;
-            fastPathData.fractionalScaleFactor = (isCurrencyFormat) ? 100.0d : 1000.0d;
+            fastPathData.fractionalMaxIntBound = (isCurrencyFormat)
+                    ? 99 : 999;
+            fastPathData.fractionalScaleFactor = (isCurrencyFormat)
+                    ? 100.0d : 1000.0d;
 
             // Records the need for adding prefix or suffix
-            fastPathData.positiveAffixesRequired =
-                (positivePrefix.length() != 0) || (positiveSuffix.length() != 0);
-            fastPathData.negativeAffixesRequired =
-                (negativePrefix.length() != 0) || (negativeSuffix.length() != 0);
+            fastPathData.positiveAffixesRequired
+                    = !positivePrefix.isEmpty() || !positiveSuffix.isEmpty();
+            fastPathData.negativeAffixesRequired
+                    = !negativePrefix.isEmpty() || !negativeSuffix.isEmpty();
 
             // Creates a cached char container for result, with max possible size.
             int maxNbIntegralDigits = 10;
             int maxNbGroups = 3;
-            int containerSize =
-                Math.max(positivePrefix.length(), negativePrefix.length()) +
-                maxNbIntegralDigits + maxNbGroups + 1 + maximumFractionDigits +
-                Math.max(positiveSuffix.length(), negativeSuffix.length());
+            int containerSize
+                    = Math.max(positivePrefix.length(), negativePrefix.length())
+                    + maxNbIntegralDigits + maxNbGroups + 1
+                    + maximumFractionDigits
+                    + Math.max(positiveSuffix.length(), negativeSuffix.length());
 
             fastPathData.fastPathContainer = new char[containerSize];
 
@@ -1038,17 +1056,18 @@ public class DecimalFormat extends NumberFormat {
 
             // Sets up fixed index positions for integral and fractional digits.
             // Sets up decimal point in cached result container.
-            int longestPrefixLength =
-                Math.max(positivePrefix.length(), negativePrefix.length());
-            int decimalPointIndex =
-                maxNbIntegralDigits + maxNbGroups + longestPrefixLength;
+            int longestPrefixLength
+                    = Math.max(positivePrefix.length(),
+                            negativePrefix.length());
+            int decimalPointIndex
+                    = maxNbIntegralDigits + maxNbGroups + longestPrefixLength;
 
-            fastPathData.integralLastIndex    = decimalPointIndex - 1;
+            fastPathData.integralLastIndex = decimalPointIndex - 1;
             fastPathData.fractionalFirstIndex = decimalPointIndex + 1;
-            fastPathData.fastPathContainer[decimalPointIndex] =
-                isCurrencyFormat ?
-                symbols.getMonetaryDecimalSeparator() :
-                symbols.getDecimalSeparator();
+            fastPathData.fastPathContainer[decimalPointIndex]
+                    = isCurrencyFormat
+                            ? symbols.getMonetaryDecimalSeparator()
+                            : symbols.getDecimalSeparator();
 
         } else if (fastPathWasOn) {
             // Previous state was fast-path and is no more.
@@ -1059,8 +1078,6 @@ public class DecimalFormat extends NumberFormat {
             fastPathData.charsPositivePrefix = null;
             fastPathData.charsNegativePrefix = null;
         }
-
-        fastPathCheckNeeded = false;
     }
 
     /**
@@ -1554,9 +1571,11 @@ public class DecimalFormat extends NumberFormat {
      * @return the formatted result for {@code d} as a string.
      */
     String fastFormat(double d) {
+        boolean isDataSet = false;
         // (Re-)Evaluates fast-path status if needed.
-        if (fastPathCheckNeeded)
-            checkAndSetFastPathStatus();
+        if (fastPathCheckNeeded) {
+            isDataSet = checkAndSetFastPathStatus();
+        }
 
         if (!isFastPath )
             // DecimalFormat instance is not in a fast-path state.
@@ -1580,8 +1599,20 @@ public class DecimalFormat extends NumberFormat {
         if (d > MAX_INT_AS_DOUBLE)
             // Filters out values that are outside expected fast-path range
             return null;
-        else
+        else {
+            if (!isDataSet) {
+                /*
+                 * If the fast path data is not set through
+                 * checkAndSetFastPathStatus() and fulfil the
+                 * fast path conditions then reset the data
+                 * directly through resetFastPathData()
+                 */
+                resetFastPathData(isFastPath);
+            }
             fastDoubleFormat(d, negative);
+
+        }
+
 
         // Returns a new string from updated fastPathContainer.
         return new String(fastPathData.fastPathContainer,
@@ -1918,7 +1949,7 @@ public class DecimalFormat extends NumberFormat {
                         Format.Field signAttribute) {
         int start = result.length();
 
-        if (string.length() > 0) {
+        if (!string.isEmpty()) {
             result.append(string);
             for (int counter = 0, max = positions.length; counter < max;
                  counter++) {
@@ -1971,7 +2002,7 @@ public class DecimalFormat extends NumberFormat {
      *       the type they want.
      *   <li>If <code>isParseBigDecimal()</code> is true, values are returned
      *       as <code>BigDecimal</code> objects. The values are the ones
-     *       constructed by {@link BigDecimal#BigDecimal(String)}
+     *       constructed by {@link java.math.BigDecimal#BigDecimal(String)}
      *       for corresponding strings in locale-independent format. The
      *       special cases negative and positive infinity and NaN are returned
      *       as <code>Double</code> instances holding the values of the
@@ -2351,7 +2382,7 @@ public class DecimalFormat extends NumberFormat {
      * Returns a copy of the decimal format symbols, which is generally not
      * changed by the programmer or user.
      * @return a copy of the desired DecimalFormatSymbols
-     * @see DecimalFormatSymbols
+     * @see java.text.DecimalFormatSymbols
      */
     public DecimalFormatSymbols getDecimalFormatSymbols() {
         try {
@@ -2367,7 +2398,7 @@ public class DecimalFormat extends NumberFormat {
      * Sets the decimal format symbols, which is generally not changed
      * by the programmer or user.
      * @param newSymbols desired DecimalFormatSymbols
-     * @see DecimalFormatSymbols
+     * @see java.text.DecimalFormatSymbols
      */
     public void setDecimalFormatSymbols(DecimalFormatSymbols newSymbols) {
         try {
@@ -2593,8 +2624,8 @@ public class DecimalFormat extends NumberFormat {
      *
      * @return the grouping size
      * @see #setGroupingSize
-     * @see NumberFormat#isGroupingUsed
-     * @see DecimalFormatSymbols#getGroupingSeparator
+     * @see java.text.NumberFormat#isGroupingUsed
+     * @see java.text.DecimalFormatSymbols#getGroupingSeparator
      */
     public int getGroupingSize () {
         return groupingSize;
@@ -2609,8 +2640,8 @@ public class DecimalFormat extends NumberFormat {
      *
      * @param newValue the new grouping size
      * @see #getGroupingSize
-     * @see NumberFormat#setGroupingUsed
-     * @see DecimalFormatSymbols#setGroupingSeparator
+     * @see java.text.NumberFormat#setGroupingUsed
+     * @see java.text.DecimalFormatSymbols#setGroupingSeparator
      */
     public void setGroupingSize (int newValue) {
         groupingSize = (byte)newValue;
@@ -2643,7 +2674,7 @@ public class DecimalFormat extends NumberFormat {
     }
 
     /**
-     * Returns whether the {@link #parse(String, ParsePosition)}
+     * Returns whether the {@link #parse(java.lang.String, java.text.ParsePosition)}
      * method returns <code>BigDecimal</code>. The default value is false.
      *
      * @return {@code true} if the parse method returns BigDecimal;
@@ -2656,7 +2687,7 @@ public class DecimalFormat extends NumberFormat {
     }
 
     /**
-     * Sets whether the {@link #parse(String, ParsePosition)}
+     * Sets whether the {@link #parse(java.lang.String, java.text.ParsePosition)}
      * method returns <code>BigDecimal</code>.
      *
      * @param newValue {@code true} if the parse method returns BigDecimal;
@@ -2873,7 +2904,7 @@ public class DecimalFormat extends NumberFormat {
                     } else {
                         string = symbols.getCurrencySymbol();
                     }
-                    if (string.length() > 0) {
+                    if (!string.isEmpty()) {
                         if (positions == null) {
                             positions = new ArrayList<>(2);
                         }
@@ -3444,7 +3475,7 @@ public class DecimalFormat extends NumberFormat {
             }
         }
 
-        if (pattern.length() == 0) {
+        if (pattern.isEmpty()) {
             posPrefixPattern = posSuffixPattern = "";
             setMinimumIntegerDigits(0);
             setMaximumIntegerDigits(MAXIMUM_INTEGER_DIGITS);
@@ -3640,7 +3671,7 @@ public class DecimalFormat extends NumberFormat {
     }
 
     /**
-     * Gets the {@link RoundingMode} used in this DecimalFormat.
+     * Gets the {@link java.math.RoundingMode} used in this DecimalFormat.
      *
      * @return The <code>RoundingMode</code> used for this DecimalFormat.
      * @see #setRoundingMode(RoundingMode)
@@ -3652,7 +3683,7 @@ public class DecimalFormat extends NumberFormat {
     }
 
     /**
-     * Sets the {@link RoundingMode} used in this DecimalFormat.
+     * Sets the {@link java.math.RoundingMode} used in this DecimalFormat.
      *
      * @param roundingMode The <code>RoundingMode</code> to be used
      * @see #getRoundingMode()
@@ -3689,7 +3720,7 @@ public class DecimalFormat extends NumberFormat {
      * and this method throws an <code>InvalidObjectException</code>.
      * <li>
      * If <code>serialVersionOnStream</code> is less than 4, initialize
-     * <code>roundingMode</code> to {@link RoundingMode#HALF_EVEN
+     * <code>roundingMode</code> to {@link java.math.RoundingMode#HALF_EVEN
      * RoundingMode.HALF_EVEN}.  This field is new with version 4.
      * <li>
      * If <code>serialVersionOnStream</code> is less than 3, then call
@@ -3856,7 +3887,7 @@ public class DecimalFormat extends NumberFormat {
      *
      * @serial
      * @see #getGroupingSize
-     * @see NumberFormat#isGroupingUsed
+     * @see java.text.NumberFormat#isGroupingUsed
      */
     private byte    groupingSize = 3;  // invariant, > 0 if useThousands
 
@@ -3892,7 +3923,7 @@ public class DecimalFormat extends NumberFormat {
      *
      * @serial
      * @see #setDecimalFormatSymbols
-     * @see DecimalFormatSymbols
+     * @see java.text.DecimalFormatSymbols
      */
     private DecimalFormatSymbols symbols = null; // LIU new DecimalFormatSymbols();
 
@@ -3992,7 +4023,7 @@ public class DecimalFormat extends NumberFormat {
     private int    minimumFractionDigits = super.getMinimumFractionDigits();
 
     /**
-     * The {@link RoundingMode} used in this DecimalFormat.
+     * The {@link java.math.RoundingMode} used in this DecimalFormat.
      *
      * @serial
      * @since 1.6

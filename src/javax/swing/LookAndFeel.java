@@ -516,7 +516,7 @@ public abstract class LookAndFeel
      * @param fallbackValue the object to be returned as the value if the system value is null
      * @return the current value of the desktop property
      *
-     * @see Toolkit#getDesktopProperty
+     * @see java.awt.Toolkit#getDesktopProperty
      *
      * @since 1.4
      */

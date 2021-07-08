@@ -774,8 +774,8 @@ class InvokerBytecodeGenerator {
 
     static private Class<?>[] STATICALLY_INVOCABLE_PACKAGES = {
         // Sample classes from each package we are willing to bind to statically:
-        Object.class,
-        Arrays.class,
+        java.lang.Object.class,
+        java.util.Arrays.class,
         sun.misc.Unsafe.class
         //MethodHandle.class already covered
     };
@@ -1192,7 +1192,7 @@ class InvokerBytecodeGenerator {
             mv.visitInsn(Opcodes.RETURN);
             // it doesn't matter what rclass is; the JVM will discard any value
         } else {
-            Name rn = lambdaForm.names[lambdaForm.result];
+            LambdaForm.Name rn = lambdaForm.names[lambdaForm.result];
 
             // put return value on the stack if it is not already there
             if (rn != onStack) {

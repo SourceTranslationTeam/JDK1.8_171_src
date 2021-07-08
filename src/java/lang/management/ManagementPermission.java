@@ -81,7 +81,7 @@ package java.lang.management;
  * @see java.security.Permission
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
- * @see SecurityManager
+ * @see java.lang.SecurityManager
  *
  */
 

@@ -61,7 +61,7 @@ public interface StubDelegate {
     /**
      * Delegation call for {@link Stub#equals}.
      */
-    boolean equals(Stub self, Object obj);
+    boolean equals(Stub self, java.lang.Object obj);
 
     /**
      * Delegation call for {@link Stub#toString}.

@@ -38,6 +38,6 @@ package org.omg.CORBA;
  */
 
 public interface DomainManager extends DomainManagerOperations,
-    Object, org.omg.CORBA.portable.IDLEntity
+    org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity
 {
 }

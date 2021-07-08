@@ -219,7 +219,7 @@ public interface JdbcRowSet extends RowSet, Joinable {
     *
     * @throws SQLException if a database access error occurs or this
     * Connection object within this <code>JdbcRowSet</code> is in auto-commit mode
-    * @see Connection#setAutoCommit
+    * @see java.sql.Connection#setAutoCommit
     */
     public void commit() throws SQLException;
 
@@ -240,7 +240,7 @@ public interface JdbcRowSet extends RowSet, Joinable {
     *
     * @return {@code true} if auto-commit is enabled; {@code false} otherwise
     * @throws SQLException if a database access error occurs
-    * @see Connection#getAutoCommit()
+    * @see java.sql.Connection#getAutoCommit()
     */
     public boolean getAutoCommit() throws SQLException;
 
@@ -255,7 +255,7 @@ public interface JdbcRowSet extends RowSet, Joinable {
     * @param autoCommit {@code true} to enable auto-commit; {@code false} to
     * disable auto-commit
     * @throws SQLException if a database access error occurs
-    * @see Connection#setAutoCommit(boolean)
+    * @see java.sql.Connection#setAutoCommit(boolean)
     */
     public void setAutoCommit(boolean autoCommit) throws SQLException;
 

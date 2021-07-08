@@ -42,7 +42,7 @@ import java.awt.event.FocusEvent;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JScrollPane}.
+ * {@link javax.swing.JScrollPane}.
  *
  * @author Scott Violet
  * @since 1.7

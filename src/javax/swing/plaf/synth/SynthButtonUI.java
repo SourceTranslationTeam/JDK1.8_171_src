@@ -35,7 +35,7 @@ import javax.swing.text.View;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JButton}.
+ * {@link javax.swing.JButton}.
  *
  * @author Scott Violet
  * @since 1.7

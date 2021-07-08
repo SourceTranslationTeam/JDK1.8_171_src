@@ -69,8 +69,8 @@ package java.beans.beancontext;
  * @author Laurence P. G. Cable
  * @since 1.2
  *
- * @see BeanContextChild
- * @see BeanContextChildSupport
+ * @see java.beans.beancontext.BeanContextChild
+ * @see java.beans.beancontext.BeanContextChildSupport
  */
 
 public interface BeanContextProxy {

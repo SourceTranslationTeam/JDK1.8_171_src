@@ -70,7 +70,7 @@ import javax.accessibility.AccessibleStateSet;
  * always be non-null. Attempting to set it to null will cause the JFrame
  * to throw an exception. The default content pane will have a BorderLayout
  * manager set on it.
- * Refer to {@link RootPaneContainer}
+ * Refer to {@link javax.swing.RootPaneContainer}
  * for details on adding, removing and setting the <code>LayoutManager</code>
  * of a <code>JFrame</code>.
  * <p>
@@ -89,7 +89,7 @@ import javax.accessibility.AccessibleStateSet;
  href="https://docs.oracle.com/javase/tutorial/uiswing/components/toplevel.html">Using Top-Level Containers</a> in <em>The Java Tutorial</em>.
  * <p>
  * In a multi-screen environment, you can create a <code>JFrame</code>
- * on a different screen device.  See {@link Frame} for more
+ * on a different screen device.  See {@link java.awt.Frame} for more
  * information.
  * <p>
  * <strong>Warning:</strong> Swing is not thread safe. For more
@@ -109,7 +109,7 @@ import javax.accessibility.AccessibleStateSet;
  * @see JRootPane
  * @see #setDefaultCloseOperation
  * @see java.awt.event.WindowListener#windowClosing
- * @see RootPaneContainer
+ * @see javax.swing.RootPaneContainer
  *
  * @beaninfo
  *      attribute: isContainer true
@@ -167,7 +167,7 @@ public class JFrame  extends Frame implements WindowConstants,
      *
      * @see #isRootPaneCheckingEnabled
      * @see #setRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     protected boolean rootPaneCheckingEnabled = false;
 
@@ -373,7 +373,7 @@ public class JFrame  extends Frame implements WindowConstants,
      *        if <code>EXIT_ON_CLOSE</code> has been specified and the
      *        <code>SecurityManager</code> will
      *        not allow the caller to invoke <code>System.exit</code>
-     * @see        Runtime#exit(int)
+     * @see        java.lang.Runtime#exit(int)
      *
      * @beaninfo
      *   preferred: true
@@ -442,7 +442,7 @@ public class JFrame  extends Frame implements WindowConstants,
      *
      * @see TransferHandler
      * @see #getTransferHandler
-     * @see Component#setDropTarget
+     * @see java.awt.Component#setDropTarget
      * @since 1.6
      *
      * @beaninfo
@@ -514,7 +514,7 @@ public class JFrame  extends Frame implements WindowConstants,
      * @see #addImpl
      * @see #setLayout
      * @see #setRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     protected boolean isRootPaneCheckingEnabled() {
         return rootPaneCheckingEnabled;
@@ -532,7 +532,7 @@ public class JFrame  extends Frame implements WindowConstants,
      * @see #addImpl
      * @see #setLayout
      * @see #isRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      * @beaninfo
      *      hidden: true
      * description: Whether the add and setLayout methods are forwarded
@@ -547,7 +547,7 @@ public class JFrame  extends Frame implements WindowConstants,
      * This method is overridden to conditionally forward calls to the
      * <code>contentPane</code>.
      * By default, children are added to the <code>contentPane</code> instead
-     * of the frame, refer to {@link RootPaneContainer} for
+     * of the frame, refer to {@link javax.swing.RootPaneContainer} for
      * details.
      *
      * @param comp the component to be enhanced
@@ -559,7 +559,7 @@ public class JFrame  extends Frame implements WindowConstants,
      * @exception IllegalArgumentException if adding a window to a container
      *
      * @see #setRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     protected void addImpl(Component comp, Object constraints, int index)
     {
@@ -581,7 +581,7 @@ public class JFrame  extends Frame implements WindowConstants,
      * @param comp the component to be removed
      * @throws NullPointerException if <code>comp</code> is null
      * @see #add
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     public void remove(Component comp) {
         if (comp == rootPane) {
@@ -596,12 +596,12 @@ public class JFrame  extends Frame implements WindowConstants,
      * Sets the <code>LayoutManager</code>.
      * Overridden to conditionally forward the call to the
      * <code>contentPane</code>.
-     * Refer to {@link RootPaneContainer} for
+     * Refer to {@link javax.swing.RootPaneContainer} for
      * more information.
      *
      * @param manager the <code>LayoutManager</code>
      * @see #setRootPaneCheckingEnabled
-     * @see RootPaneContainer
+     * @see javax.swing.RootPaneContainer
      */
     public void setLayout(LayoutManager manager) {
         if(isRootPaneCheckingEnabled()) {
@@ -808,7 +808,7 @@ public class JFrame  extends Frame implements WindowConstants,
      *
      * @param defaultLookAndFeelDecorated A hint as to whether or not current
      *        look and feel should provide window decorations
-     * @see LookAndFeel#getSupportsWindowDecorations
+     * @see javax.swing.LookAndFeel#getSupportsWindowDecorations
      * @since 1.4
      */
     public static void setDefaultLookAndFeelDecorated(boolean defaultLookAndFeelDecorated) {

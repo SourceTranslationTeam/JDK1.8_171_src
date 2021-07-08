@@ -46,7 +46,7 @@ public class CommunicationException extends NamingException {
      * arguments supplied.
      *
      * @param   explanation     Additional detail about this exception.
-     * @see Throwable#getMessage
+     * @see java.lang.Throwable#getMessage
      */
     public CommunicationException(String explanation) {
         super(explanation);

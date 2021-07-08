@@ -115,7 +115,7 @@ import java.util.Spliterator;
  * characteristics that stream has; when describing a stream operation, one need
  * describe whether the operation preserves, injects, or clears that
  * characteristic.  Accordingly, two bits are used for each flag, so as to allow
- * representing not only the presence of of a characteristic, but how an
+ * representing not only the presence of a characteristic, but how an
  * operation modifies that characteristic.  There are two common forms in which
  * flag bits are combined into an {@code int} bit set.  <em>Stream flags</em>
  * are a unioned bit set constructed by ORing the enum characteristic values of
@@ -131,12 +131,12 @@ import java.util.Spliterator;
  *
  * <p>
  * With the exception of {@link #SHORT_CIRCUIT}, stream characteristics can be
- * derived from the equivalent {@link Spliterator} characteristics:
- * {@link Spliterator#DISTINCT}, {@link Spliterator#SORTED},
- * {@link Spliterator#ORDERED}, and
- * {@link Spliterator#SIZED}.  A spliterator characteristics bit set
+ * derived from the equivalent {@link java.util.Spliterator} characteristics:
+ * {@link java.util.Spliterator#DISTINCT}, {@link java.util.Spliterator#SORTED},
+ * {@link java.util.Spliterator#ORDERED}, and
+ * {@link java.util.Spliterator#SIZED}.  A spliterator characteristics bit set
  * can be converted to stream flags using the method
- * {@link #fromCharacteristics(Spliterator)} and converted back using
+ * {@link #fromCharacteristics(java.util.Spliterator)} and converted back using
  * {@link #toCharacteristics(int)}.  (The bit set
  * {@link #SPLITERATOR_CHARACTERISTICS_MASK} is used to AND with a bit set to
  * produce a valid spliterator characteristics bit set that can be converted to
@@ -194,7 +194,7 @@ import java.util.Spliterator;
  * {@code SIZED.isKnown(flags)} returns true then the stream size remains
  * constant throughout the pipeline, this information can be utilized to
  * pre-allocate data structures and combined with
- * {@link Spliterator#SUBSIZED} that information can be utilized to
+ * {@link java.util.Spliterator#SUBSIZED} that information can be utilized to
  * perform concurrent in-place updates into a shared array.
  *
  * For specific details see the {@link AbstractPipeline} constructors.
@@ -254,7 +254,7 @@ enum StreamOpFlag {
      * A stream can have this value or an intermediate operation can preserve,
      * clear or inject this value.
      * <p>
-     * Note: The {@link Spliterator#SORTED} characteristic can define
+     * Note: The {@link java.util.Spliterator#SORTED} characteristic can define
      * a sort order with an associated non-null comparator.  Augmenting flag
      * state with addition properties such that those properties can be passed
      * to operations requires some disruptive changes for a singular use-case.

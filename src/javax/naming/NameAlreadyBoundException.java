@@ -52,7 +52,7 @@ public class NameAlreadyBoundException extends NamingException {
      *
      *
      * @param   explanation     Possibly null additional detail about this exception.
-     * @see Throwable#getMessage
+     * @see java.lang.Throwable#getMessage
      */
     public NameAlreadyBoundException(String explanation) {
         super(explanation);

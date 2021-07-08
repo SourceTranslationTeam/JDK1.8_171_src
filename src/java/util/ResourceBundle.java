@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1996, 2017, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1996, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -109,7 +109,7 @@ import sun.util.locale.LocaleObjectCache;
  * <P>
  * When your program needs a locale-specific object, it loads
  * the <code>ResourceBundle</code> class using the
- * {@link #getBundle(String, Locale) getBundle}
+ * {@link #getBundle(java.lang.String, java.util.Locale) getBundle}
  * method:
  * <blockquote>
  * <pre>
@@ -193,7 +193,7 @@ import sun.util.locale.LocaleObjectCache;
  *
  * <h3>ResourceBundle.Control</h3>
  *
- * The {@link Control} class provides information necessary
+ * The {@link ResourceBundle.Control} class provides information necessary
  * to perform the bundle loading process by the <code>getBundle</code>
  * factory methods that take a <code>ResourceBundle.Control</code>
  * instance. You can implement your own subclass in order to enable
@@ -327,7 +327,7 @@ public abstract class ResourceBundle {
      * @return The base name of the resource bundle, as provided to and expected
      * by the {@code ResourceBundle.getBundle(...)} methods.
      *
-     * @see #getBundle(String, Locale, ClassLoader)
+     * @see #getBundle(java.lang.String, java.util.Locale, java.lang.ClassLoader)
      *
      * @since 1.8
      */
@@ -394,7 +394,7 @@ public abstract class ResourceBundle {
      * Gets a string for the given key from this resource bundle or one of its parents.
      * Calling this method is equivalent to calling
      * <blockquote>
-     * <code>(String) {@link #getObject(String) getObject}(key)</code>.
+     * <code>(String) {@link #getObject(java.lang.String) getObject}(key)</code>.
      * </blockquote>
      *
      * @param key the key for the desired string
@@ -411,7 +411,7 @@ public abstract class ResourceBundle {
      * Gets a string array for the given key from this resource bundle or one of its parents.
      * Calling this method is equivalent to calling
      * <blockquote>
-     * <code>(String[]) {@link #getObject(String) getObject}(key)</code>.
+     * <code>(String[]) {@link #getObject(java.lang.String) getObject}(key)</code>.
      * </blockquote>
      *
      * @param key the key for the desired string array
@@ -427,7 +427,7 @@ public abstract class ResourceBundle {
     /**
      * Gets an object for the given key from this resource bundle or one of its parents.
      * This method first tries to obtain the object from this resource bundle using
-     * {@link #handleGetObject(String) handleGetObject}.
+     * {@link #handleGetObject(java.lang.String) handleGetObject}.
      * If not successful, and the parent resource bundle is not null,
      * it calls the parent's <code>getObject</code> method.
      * If still not successful, it throws a MissingResourceException.
@@ -701,8 +701,8 @@ public abstract class ResourceBundle {
 
         public String toString() {
             String l = locale.toString();
-            if (l.length() == 0) {
-                if (locale.getVariant().length() != 0) {
+            if (l.isEmpty()) {
+                if (!locale.getVariant().isEmpty()) {
                     l = "__" + locale.getVariant();
                 } else {
                     l = "\"\"";
@@ -770,7 +770,7 @@ public abstract class ResourceBundle {
      * for a complete description of the search and instantiation strategy.
      *
      * @param baseName the base name of the resource bundle, a fully qualified class name
-     * @exception NullPointerException
+     * @exception java.lang.NullPointerException
      *     if <code>baseName</code> is <code>null</code>
      * @exception MissingResourceException
      *     if no resource bundle for the specified base name can be found
@@ -916,7 +916,7 @@ public abstract class ResourceBundle {
      * behavior</a>.
      *
      * <p><code>getBundle</code> uses the base name, the specified locale, and
-     * the default locale (obtained from {@link Locale#getDefault()
+     * the default locale (obtained from {@link java.util.Locale#getDefault()
      * Locale.getDefault}) to generate a sequence of <a
      * name="candidates"><em>candidate bundle names</em></a>.  If the specified
      * locale's language, script, country, and variant are all empty strings,
@@ -990,7 +990,7 @@ public abstract class ResourceBundle {
      * path name from the candidate bundle name by replacing all "." characters
      * with "/" and appending the string ".properties".  It attempts to find a
      * "resource" with this name using {@link
-     * ClassLoader#getResource(String)
+     * java.lang.ClassLoader#getResource(java.lang.String)
      * ClassLoader.getResource}.  (Note that a "resource" in the sense of
      * <code>getResource</code> has nothing to do with the contents of a
      * resource bundle, it is just a container of data, such as a file.)  If it
@@ -1022,7 +1022,7 @@ public abstract class ResourceBundle {
      * looking for a class and then a properties file, as described above).
      *
      * <p>Whenever it succeeds, it calls the previously instantiated resource
-     * bundle's {@link #setParent(ResourceBundle) setParent} method
+     * bundle's {@link #setParent(java.util.ResourceBundle) setParent} method
      * with the new resource bundle.  This continues until the list of names
      * is exhausted or the current bundle already has a non-null parent.
      *
@@ -1076,7 +1076,7 @@ public abstract class ResourceBundle {
      * @param locale the locale for which a resource bundle is desired
      * @param loader the class loader from which to load the resource bundle
      * @return a resource bundle for the given base name and locale
-     * @exception NullPointerException
+     * @exception java.lang.NullPointerException
      *        if <code>baseName</code>, <code>locale</code>, or <code>loader</code> is <code>null</code>
      * @exception MissingResourceException
      *        if no resource bundle for the specified base name can be found
@@ -1109,7 +1109,7 @@ public abstract class ResourceBundle {
      * to the caller. Otherwise, this factory method proceeds with the
      * loading process below.</li>
      *
-     * <li>The {@link Control#getFormats(String)
+     * <li>The {@link ResourceBundle.Control#getFormats(String)
      * control.getFormats} method is called to get resource bundle formats
      * to produce bundle or resource names. The strings
      * <code>"java.class"</code> and <code>"java.properties"</code>
@@ -1119,12 +1119,12 @@ public abstract class ResourceBundle {
      * and must not be used for application-defined formats. Other strings
      * designate application-defined formats.</li>
      *
-     * <li>The {@link Control#getCandidateLocales(String,
+     * <li>The {@link ResourceBundle.Control#getCandidateLocales(String,
      * Locale) control.getCandidateLocales} method is called with the target
      * locale to get a list of <em>candidate <code>Locale</code>s</em> for
      * which resource bundles are searched.</li>
      *
-     * <li>The {@link Control#newBundle(String, Locale,
+     * <li>The {@link ResourceBundle.Control#newBundle(String, Locale,
      * String, ClassLoader, boolean) control.newBundle} method is called to
      * instantiate a <code>ResourceBundle</code> for the base bundle name, a
      * candidate locale, and a format. (Refer to the note on the cache
@@ -1190,7 +1190,7 @@ public abstract class ResourceBundle {
      * proceed to Step 6. If a bundle has been found that is not a base
      * bundle, proceed to Step 7.</li>
      *
-     * <li>The {@link Control#getFallbackLocale(String,
+     * <li>The {@link ResourceBundle.Control#getFallbackLocale(String,
      * Locale) control.getFallbackLocale} method is called to get a fallback
      * locale (alternative to the current target locale) to try further
      * finding a resource bundle. If the method returns a non-null locale,
@@ -1212,7 +1212,7 @@ public abstract class ResourceBundle {
      * Control#newBundle(String, Locale, String, ClassLoader, boolean)
      * control.newBundle} method.  If the time-to-live period of the
      * resource bundle found in the cache has expired, the factory method
-     * calls the {@link Control#needsReload(String, Locale,
+     * calls the {@link ResourceBundle.Control#needsReload(String, Locale,
      * String, ClassLoader, ResourceBundle, long) control.needsReload}
      * method to determine whether the resource bundle needs to be reloaded.
      * If reloading is required, the factory method calls
@@ -1398,7 +1398,15 @@ public abstract class ResourceBundle {
             bundle = baseBundle;
         }
 
+        keepAlive(loader);
         return bundle;
+    }
+
+    /**
+     * Keeps the argument ClassLoader alive.
+     */
+    private static void keepAlive(ClassLoader loader){
+        // Do nothing.
     }
 
     /**
@@ -1748,7 +1756,7 @@ public abstract class ResourceBundle {
      * using the caller's class loader.
      *
      * @since 1.6
-     * @see Control#getTimeToLive(String,Locale)
+     * @see ResourceBundle.Control#getTimeToLive(String,Locale)
      */
     @CallerSensitive
     public static final void clearCache() {
@@ -1762,7 +1770,7 @@ public abstract class ResourceBundle {
      * @param loader the class loader
      * @exception NullPointerException if <code>loader</code> is null
      * @since 1.6
-     * @see Control#getTimeToLive(String,Locale)
+     * @see ResourceBundle.Control#getTimeToLive(String,Locale)
      */
     public static final void clearCache(ClassLoader loader) {
         if (loader == null) {
@@ -1902,7 +1910,7 @@ public abstract class ResourceBundle {
      *
      * <p>The formats returned by the {@link Control#getFormats(String)
      * getFormats} method and candidate locales returned by the {@link
-     * Control#getCandidateLocales(String, Locale)
+     * ResourceBundle.Control#getCandidateLocales(String, Locale)
      * getCandidateLocales} method must be consistent in all
      * <code>ResourceBundle.getBundle</code> invocations for the same base
      * bundle. Otherwise, the <code>ResourceBundle.getBundle</code> methods
@@ -1951,7 +1959,7 @@ public abstract class ResourceBundle {
      * <p><b>Example 2</b>
      *
      * <p>The following is an example of loading XML-based bundles
-     * using {@link Properties#loadFromXML(InputStream)
+     * using {@link Properties#loadFromXML(java.io.InputStream)
      * Properties.loadFromXML}.
      *
      * <pre>
@@ -2402,7 +2410,7 @@ public abstract class ResourceBundle {
                     List<Locale> bokmalList = new LinkedList<>();
                     for (Locale l : tmpList) {
                         bokmalList.add(l);
-                        if (l.getLanguage().length() == 0) {
+                        if (l.getLanguage().isEmpty()) {
                             break;
                         }
                         bokmalList.add(Locale.getInstance("no", l.getScript(), l.getCountry(),
@@ -2420,7 +2428,7 @@ public abstract class ResourceBundle {
                 }
                 // Special handling for Chinese
                 else if (language.equals("zh")) {
-                    if (script.length() == 0 && region.length() > 0) {
+                    if (script.isEmpty() && !region.isEmpty()) {
                         // Supply script for users who want to use zh_Hans/zh_Hant
                         // as bundle names (recommended for Java7+)
                         switch (region) {
@@ -2434,7 +2442,7 @@ public abstract class ResourceBundle {
                             script = "Hans";
                             break;
                         }
-                    } else if (script.length() > 0 && region.length() == 0) {
+                    } else if (!script.isEmpty() && region.isEmpty()) {
                         // Supply region(country) for users who still package Chinese
                         // bundles using old convension.
                         switch (script) {
@@ -2454,7 +2462,7 @@ public abstract class ResourceBundle {
             private static List<Locale> getDefaultList(String language, String script, String region, String variant) {
                 List<String> variants = null;
 
-                if (variant.length() > 0) {
+                if (!variant.isEmpty()) {
                     variants = new LinkedList<>();
                     int idx = variant.length();
                     while (idx != -1) {
@@ -2470,10 +2478,10 @@ public abstract class ResourceBundle {
                         list.add(Locale.getInstance(language, script, region, v, null));
                     }
                 }
-                if (region.length() > 0) {
+                if (!region.isEmpty()) {
                     list.add(Locale.getInstance(language, script, region, "", null));
                 }
-                if (script.length() > 0) {
+                if (!script.isEmpty()) {
                     list.add(Locale.getInstance(language, script, "", "", null));
 
                     // With script, after truncating variant, region and script,
@@ -2483,11 +2491,11 @@ public abstract class ResourceBundle {
                             list.add(Locale.getInstance(language, "", region, v, null));
                         }
                     }
-                    if (region.length() > 0) {
+                    if (!region.isEmpty()) {
                         list.add(Locale.getInstance(language, "", region, "", null));
                     }
                 }
-                if (language.length() > 0) {
+                if (!language.isEmpty()) {
                     list.add(Locale.getInstance(language, "", "", "", null));
                 }
                 // Add root locale at the end

@@ -175,14 +175,16 @@ public class ArrayList<E> extends AbstractList<E>
      * @throws NullPointerException if the specified collection is null
      */
     public ArrayList(Collection<? extends E> c) {
-        elementData = c.toArray();
-        if ((size = elementData.length) != 0) {
-            // c.toArray might (incorrectly) not return Object[] (see 6260652)
-            if (elementData.getClass() != Object[].class)
-                elementData = Arrays.copyOf(elementData, size, Object[].class);
+        Object[] a = c.toArray();
+        if ((size = a.length) != 0) {
+            if (c.getClass() == ArrayList.class) {
+                elementData = a;
+            } else {
+                elementData = Arrays.copyOf(a, size, Object[].class);
+            }
         } else {
             // replace with empty array.
-            this.elementData = EMPTY_ELEMENTDATA;
+            elementData = EMPTY_ELEMENTDATA;
         }
     }
 
@@ -256,17 +258,11 @@ public class ArrayList<E> extends AbstractList<E>
     private void grow(int minCapacity) {
         // overflow-conscious code
         int oldCapacity = elementData.length;
-
-        // 新的容量：右移一位（扩容到原来的1.5倍）
         int newCapacity = oldCapacity + (oldCapacity >> 1);
-
-        // 新的容量
         if (newCapacity - minCapacity < 0)
             newCapacity = minCapacity;
-
         if (newCapacity - MAX_ARRAY_SIZE > 0)
             newCapacity = hugeCapacity(minCapacity);
-
         // minCapacity is usually close to size, so this is a win:
         elementData = Arrays.copyOf(elementData, newCapacity);
     }
@@ -464,10 +460,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @param e element to be appended to this list
      * @return <tt>true</tt> (as specified by {@link Collection#add})
      */
-    // 向数组中插入元素 - 插入到数组的最后一个元素位置
     public boolean add(E e) {
-
-        // minCapacity：原来的数组长度+1
         ensureCapacityInternal(size + 1);  // Increments modCount!!
         elementData[size++] = e;
         return true;
@@ -482,16 +475,10 @@ public class ArrayList<E> extends AbstractList<E>
      * @param element element to be inserted
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
-    // 向数组中的插入元素 - 通过索引
     public void add(int index, E element) {
-
-        // 判断插入位置是否合法
         rangeCheckForAdd(index);
 
-        // 确认数组最后一个元素的下标，minCapacity：原来的数组长度+1
         ensureCapacityInternal(size + 1);  // Increments modCount!!
-
-        // 数组复制
         System.arraycopy(elementData, index, elementData, index + 1,
                          size - index);
         elementData[index] = element;
@@ -676,7 +663,6 @@ public class ArrayList<E> extends AbstractList<E>
      * A version of rangeCheck used by add and addAll.
      */
     private void rangeCheckForAdd(int index) {
-        // 判断插入位置是否合法
         if (index > size || index < 0)
             throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
     }
@@ -686,7 +672,6 @@ public class ArrayList<E> extends AbstractList<E>
      * Of the many possible refactorings of the error handling code,
      * this "outlining" performs best with both server and client VMs.
      */
-    //
     private String outOfBoundsMsg(int index) {
         return "Index: "+index+", Size: "+size;
     }

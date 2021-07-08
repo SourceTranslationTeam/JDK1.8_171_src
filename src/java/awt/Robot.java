@@ -82,7 +82,7 @@ public class Robot {
      * low-level input control.  This exception is always thrown when
      * GraphicsEnvironment.isHeadless() returns true
      * @throws  SecurityException if <code>createRobot</code> permission is not granted
-     * @see     GraphicsEnvironment#isHeadless
+     * @see     java.awt.GraphicsEnvironment#isHeadless
      * @see     SecurityManager#checkPermission
      * @see     AWTPermission
      */
@@ -117,7 +117,7 @@ public class Robot {
      * @throws  IllegalArgumentException if <code>screen</code> is not a screen
      *          GraphicsDevice.
      * @throws  SecurityException if <code>createRobot</code> permission is not granted
-     * @see     GraphicsEnvironment#isHeadless
+     * @see     java.awt.GraphicsEnvironment#isHeadless
      * @see     GraphicsDevice
      * @see     SecurityManager#checkPermission
      * @see     AWTPermission
@@ -226,7 +226,7 @@ public class Robot {
      * then it is allowed to use the standard button masks
      * and masks for existing extended mouse buttons, if the mouse has more then three buttons.
      * In that way, it is allowed to use the button masks corresponding to the buttons
-     * in the range from 1 to {@link MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}.
+     * in the range from 1 to {@link java.awt.MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}.
      * <br>
      * It is recommended to use the {@link InputEvent#getMaskForButton(int) InputEvent.getMaskForButton(button)}
      * method to obtain the mask for any mouse button by its number.
@@ -249,7 +249,7 @@ public class Robot {
      * @see #mouseRelease(int)
      * @see InputEvent#getMaskForButton(int)
      * @see Toolkit#areExtraMouseButtonsEnabled()
-     * @see MouseInfo#getNumberOfButtons()
+     * @see java.awt.MouseInfo#getNumberOfButtons()
      * @see java.awt.event.MouseEvent
      */
     public synchronized void mousePress(int buttons) {
@@ -283,7 +283,7 @@ public class Robot {
      * then it is allowed to use the standard button masks
      * and masks for existing extended mouse buttons, if the mouse has more then three buttons.
      * In that way, it is allowed to use the button masks corresponding to the buttons
-     * in the range from 1 to {@link MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}.
+     * in the range from 1 to {@link java.awt.MouseInfo#getNumberOfButtons() MouseInfo.getNumberOfButtons()}.
      * <br>
      * It is recommended to use the {@link InputEvent#getMaskForButton(int) InputEvent.getMaskForButton(button)}
      * method to obtain the mask for any mouse button by its number.
@@ -306,7 +306,7 @@ public class Robot {
      * @see #mousePress(int)
      * @see InputEvent#getMaskForButton(int)
      * @see Toolkit#areExtraMouseButtonsEnabled()
-     * @see MouseInfo#getNumberOfButtons()
+     * @see java.awt.MouseInfo#getNumberOfButtons()
      * @see java.awt.event.MouseEvent
      */
     public synchronized void mouseRelease(int buttons) {
@@ -347,7 +347,7 @@ public class Robot {
      * @throws  IllegalArgumentException if <code>keycode</code> is not
      *          a valid key
      * @see     #keyRelease(int)
-     * @see     KeyEvent
+     * @see     java.awt.event.KeyEvent
      */
     public synchronized void keyPress(int keycode) {
         checkKeycodeArgument(keycode);
@@ -366,7 +366,7 @@ public class Robot {
      * @throws  IllegalArgumentException if <code>keycode</code> is not a
      *          valid key
      * @see  #keyPress(int)
-     * @see     KeyEvent
+     * @see     java.awt.event.KeyEvent
      */
     public synchronized void keyRelease(int keycode) {
         checkKeycodeArgument(keycode);
@@ -391,6 +391,7 @@ public class Robot {
      * @return  Color of the pixel
      */
     public synchronized Color getPixelColor(int x, int y) {
+        checkScreenCaptureAllowed();
         Color color = new Color(peer.getRGBPixel(x, y));
         return color;
     }
@@ -527,7 +528,7 @@ public class Robot {
      * <code>Thread.sleep()</code> may be used instead.
      * @param   ms      time to sleep in milliseconds
      * @throws  IllegalArgumentException if <code>ms</code> is not between 0 and 60,000 milliseconds inclusive
-     * @see     Thread#sleep
+     * @see     java.lang.Thread#sleep
      */
     public synchronized void delay(int ms) {
         checkDelayArgument(ms);

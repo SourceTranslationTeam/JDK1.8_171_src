@@ -29,7 +29,7 @@ package java.security.acl;
  * This is an exception that is thrown whenever an attempt is made to delete
  * the last owner of an Access Control List.
  *
- * @see Owner#deleteOwner
+ * @see java.security.acl.Owner#deleteOwner
  *
  * @author Satish Dharmaraj
  */

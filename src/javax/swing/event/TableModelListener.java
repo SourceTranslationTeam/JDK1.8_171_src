@@ -35,7 +35,7 @@ import java.util.EventListener;
  * @see javax.swing.table.TableModel
  */
 
-public interface TableModelListener extends EventListener
+public interface TableModelListener extends java.util.EventListener
 {
     /**
      * This fine grain notification tells listeners the exact range

@@ -94,7 +94,7 @@ public class SimpleBindings implements Bindings {
         if (toMerge == null) {
             throw new NullPointerException("toMerge map is null");
         }
-        for (Entry<? extends String, ? extends Object> entry : toMerge.entrySet()) {
+        for (Map.Entry<? extends String, ? extends Object> entry : toMerge.entrySet()) {
             String key = entry.getKey();
             checkKey(key);
             put(key, entry.getValue());
@@ -132,7 +132,7 @@ public class SimpleBindings implements Bindings {
     }
 
     /** {@inheritDoc} */
-    public Set<Entry<String, Object>> entrySet() {
+    public Set<Map.Entry<String, Object>> entrySet() {
         return map.entrySet();
     }
 

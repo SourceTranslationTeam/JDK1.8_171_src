@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -37,8 +37,8 @@ import static java.lang.invoke.MethodHandleStatics.*;
  * These transformations are quite general, and include such patterns as
  * {@linkplain #asType conversion},
  * {@linkplain #bindTo insertion},
- * {@linkplain MethodHandles#dropArguments deletion},
- * and {@linkplain MethodHandles#filterArguments substitution}.
+ * {@linkplain java.lang.invoke.MethodHandles#dropArguments deletion},
+ * and {@linkplain java.lang.invoke.MethodHandles#filterArguments substitution}.
  *
  * <h1>Method handle contents</h1>
  * Method handles are dynamically and strongly typed according to their parameter and return types.
@@ -47,7 +47,7 @@ import static java.lang.invoke.MethodHandleStatics.*;
  * the method handle's own {@linkplain #type type descriptor}.
  * <p>
  * Every method handle reports its type descriptor via the {@link #type type} accessor.
- * This type descriptor is a {@link MethodType MethodType} object,
+ * This type descriptor is a {@link java.lang.invoke.MethodType MethodType} object,
  * whose structure is a series of classes, one of which is
  * the return type of the method (or {@code void.class} if none).
  * <p>
@@ -72,7 +72,7 @@ import static java.lang.invoke.MethodHandleStatics.*;
  * <p>
  * Method handles cannot be subclassed by the user.
  * Implementations may (or may not) create internal subclasses of {@code MethodHandle}
- * which may be visible via the {@link Object#getClass Object.getClass}
+ * which may be visible via the {@link java.lang.Object#getClass Object.getClass}
  * operation.  The programmer should not draw conclusions about a method handle
  * from its specific class, as the method handle class hierarchy (if any)
  * may change from time to time or across implementations from different vendors.
@@ -195,11 +195,11 @@ import static java.lang.invoke.MethodHandleStatics.*;
  * Java code can create a method handle that directly accesses
  * any method, constructor, or field that is accessible to that code.
  * This is done via a reflective, capability-based API called
- * {@link MethodHandles.Lookup MethodHandles.Lookup}
+ * {@link java.lang.invoke.MethodHandles.Lookup MethodHandles.Lookup}
  * For example, a static method handle can be obtained
- * from {@link MethodHandles.Lookup#findStatic Lookup.findStatic}.
+ * from {@link java.lang.invoke.MethodHandles.Lookup#findStatic Lookup.findStatic}.
  * There are also conversion methods from Core Reflection API objects,
- * such as {@link MethodHandles.Lookup#unreflect Lookup.unreflect}.
+ * such as {@link java.lang.invoke.MethodHandles.Lookup#unreflect Lookup.unreflect}.
  * <p>
  * Like classes and strings, method handles that correspond to accessible
  * fields, methods, and constructors can also be represented directly
@@ -288,12 +288,12 @@ mh.invokeExact(System.out, "Hello, world.");
  * generates a single invokevirtual instruction with
  * the symbolic type descriptor indicated in the following comment.
  * In these examples, the helper method {@code assertEquals} is assumed to
- * be a method which calls {@link Objects#equals(Object,Object) Objects.equals}
+ * be a method which calls {@link java.util.Objects#equals(Object,Object) Objects.equals}
  * on its arguments, and asserts that the result is true.
  *
  * <h1>Exceptions</h1>
  * The methods {@code invokeExact} and {@code invoke} are declared
- * to throw {@link Throwable Throwable},
+ * to throw {@link java.lang.Throwable Throwable},
  * which is to say that there is no static restriction on what a method handle
  * can throw.  Since the JVM does not distinguish between checked
  * and unchecked exceptions (other than by their class, of course),
@@ -330,12 +330,12 @@ mh.invokeExact(System.out, "Hello, world.");
  * untransformed descriptors, without reporting linkage errors.
  *
  * <h1>Interoperation between method handles and the Core Reflection API</h1>
- * Using factory methods in the {@link MethodHandles.Lookup Lookup} API,
+ * Using factory methods in the {@link java.lang.invoke.MethodHandles.Lookup Lookup} API,
  * any class member represented by a Core Reflection API object
  * can be converted to a behaviorally equivalent method handle.
  * For example, a reflective {@link java.lang.reflect.Method Method} can
  * be converted to a method handle using
- * {@link MethodHandles.Lookup#unreflect Lookup.unreflect}.
+ * {@link java.lang.invoke.MethodHandles.Lookup#unreflect Lookup.unreflect}.
  * The resulting method handles generally provide more direct and efficient
  * access to the underlying class members.
  * <p>
@@ -344,7 +344,7 @@ mh.invokeExact(System.out, "Hello, world.");
  * methods {@code invokeExact} or plain {@code invoke} in this class,
  * they appear as ordinary non-polymorphic methods.
  * Their reflective appearance, as viewed by
- * {@link Class#getDeclaredMethod Class.getDeclaredMethod},
+ * {@link java.lang.Class#getDeclaredMethod Class.getDeclaredMethod},
  * is unaffected by their special status in this API.
  * For example, {@link java.lang.reflect.Method#getModifiers Method.getModifiers}
  * will report exactly those modifier bits required for any similarly
@@ -364,9 +364,9 @@ mh.invokeExact(System.out, "Hello, world.");
  * {@code Class.getDeclaredMethod}, may be regarded as placeholders only.
  * <p>
  * In order to obtain an invoker method for a particular type descriptor,
- * use {@link MethodHandles#exactInvoker MethodHandles.exactInvoker},
- * or {@link MethodHandles#invoker MethodHandles.invoker}.
- * The {@link MethodHandles.Lookup#findVirtual Lookup.findVirtual}
+ * use {@link java.lang.invoke.MethodHandles#exactInvoker MethodHandles.exactInvoker},
+ * or {@link java.lang.invoke.MethodHandles#invoker MethodHandles.invoker}.
+ * The {@link java.lang.invoke.MethodHandles.Lookup#findVirtual Lookup.findVirtual}
  * API is also able to return a method handle
  * to call {@code invokeExact} or plain {@code invoke},
  * for any specified type descriptor .
@@ -375,7 +375,7 @@ mh.invokeExact(System.out, "Hello, world.");
  * A method handle can be obtained on a method, constructor, or field
  * which is declared with Java generic types.
  * As with the Core Reflection API, the type of the method handle
- * will constructed from the erasure of the source-level type.
+ * will be constructed from the erasure of the source-level type.
  * When a method handle is invoked, the types of its arguments
  * or the return value cast type may be generic types or type instances.
  * If this occurs, the compiler will replace those
@@ -471,7 +471,7 @@ public abstract class MethodHandle {
      * it will appear as a single native method, taking an object array and returning an object.
      * If this native method is invoked directly via
      * {@link java.lang.reflect.Method#invoke java.lang.reflect.Method.invoke}, via JNI,
-     * or indirectly via {@link MethodHandles.Lookup#unreflect Lookup.unreflect},
+     * or indirectly via {@link java.lang.invoke.MethodHandles.Lookup#unreflect Lookup.unreflect},
      * it will throw an {@code UnsupportedOperationException}.
      * @param args the signature-polymorphic parameter list, statically represented using varargs
      * @return the signature-polymorphic result, statically represented using {@code Object}
@@ -507,7 +507,7 @@ public abstract class MethodHandle {
      * it will appear as a single native method, taking an object array and returning an object.
      * If this native method is invoked directly via
      * {@link java.lang.reflect.Method#invoke java.lang.reflect.Method.invoke}, via JNI,
-     * or indirectly via {@link MethodHandles.Lookup#unreflect Lookup.unreflect},
+     * or indirectly via {@link java.lang.invoke.MethodHandles.Lookup#unreflect Lookup.unreflect},
      * it will throw an {@code UnsupportedOperationException}.
      * @param args the signature-polymorphic parameter list, statically represented using varargs
      * @return the signature-polymorphic result, statically represented using {@code Object}
@@ -645,7 +645,7 @@ public abstract class MethodHandle {
      * @throws WrongMethodTypeException if the target's type cannot be adjusted to take the given number of {@code Object} arguments
      * @throws Throwable anything thrown by the target method invocation
      */
-    public Object invokeWithArguments(List<?> arguments) throws Throwable {
+    public Object invokeWithArguments(java.util.List<?> arguments) throws Throwable {
         return invokeWithArguments(arguments.toArray());
     }
 
@@ -732,10 +732,10 @@ public abstract class MethodHandle {
      * At runtime, the conversions applied to reference arguments
      * or return values may require additional runtime checks which can fail.
      * An unboxing operation may fail because the original reference is null,
-     * causing a {@link NullPointerException NullPointerException}.
+     * causing a {@link java.lang.NullPointerException NullPointerException}.
      * An unboxing operation or a reference cast may also fail on a reference
      * to an object of the wrong type,
-     * causing a {@link ClassCastException ClassCastException}.
+     * causing a {@link java.lang.ClassCastException ClassCastException}.
      * Although an unboxing operation may accept several kinds of wrappers,
      * if none are available, a {@code ClassCastException} will be thrown.
      *
@@ -1184,7 +1184,7 @@ assertEquals("[three, thee, tee]", Arrays.toString((Object[])ls.get(0)));
      * Such method handles arise from the following sources:
      * <ul>
      * <li>a call to {@linkplain #asVarargsCollector asVarargsCollector}
-     * <li>a call to a {@linkplain MethodHandles.Lookup lookup method}
+     * <li>a call to a {@linkplain java.lang.invoke.MethodHandles.Lookup lookup method}
      *     which resolves to a variable arity Java method or constructor
      * <li>an {@code ldc} instruction of a {@code CONSTANT_MethodHandle}
      *     which resolves to a variable arity Java method or constructor

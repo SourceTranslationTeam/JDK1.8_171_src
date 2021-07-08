@@ -31,7 +31,7 @@ package java.nio.file;
  * different file system provider.
  */
 public class ProviderMismatchException
-    extends IllegalArgumentException
+    extends java.lang.IllegalArgumentException
 {
     static final long serialVersionUID = 4990847485741612530L;
 

@@ -32,8 +32,8 @@ package java.lang;
  * <code>Thread</code>.
  *
  * @author  unascribed
- * @see     Thread#resume()
- * @see     Thread#suspend()
+ * @see     java.lang.Thread#resume()
+ * @see     java.lang.Thread#suspend()
  * @since   JDK1.0
  */
 public class IllegalThreadStateException extends IllegalArgumentException {

@@ -53,10 +53,10 @@ package java.util;
  * <tt>equals</tt> method returns true for them.
  *
  * @author  Chris Warth
- * @see     Observable#notifyObservers()
- * @see     Observable#notifyObservers(Object)
- * @see     Observer
- * @see     Observer#update(Observable, Object)
+ * @see     java.util.Observable#notifyObservers()
+ * @see     java.util.Observable#notifyObservers(java.lang.Object)
+ * @see     java.util.Observer
+ * @see     java.util.Observer#update(java.util.Observable, java.lang.Object)
  * @since   JDK1.0
  */
 public class Observable {
@@ -107,9 +107,9 @@ public class Observable {
      * <blockquote><tt>
      * notifyObservers(null)</tt></blockquote>
      *
-     * @see     Observable#clearChanged()
-     * @see     Observable#hasChanged()
-     * @see     Observer#update(Observable, Object)
+     * @see     java.util.Observable#clearChanged()
+     * @see     java.util.Observable#hasChanged()
+     * @see     java.util.Observer#update(java.util.Observable, java.lang.Object)
      */
     public void notifyObservers() {
         notifyObservers(null);
@@ -125,9 +125,9 @@ public class Observable {
      * arguments: this observable object and the <code>arg</code> argument.
      *
      * @param   arg   any object.
-     * @see     Observable#clearChanged()
-     * @see     Observable#hasChanged()
-     * @see     Observer#update(Observable, Object)
+     * @see     java.util.Observable#clearChanged()
+     * @see     java.util.Observable#hasChanged()
+     * @see     java.util.Observer#update(java.util.Observable, java.lang.Object)
      */
     public void notifyObservers(Object arg) {
         /*
@@ -181,8 +181,8 @@ public class Observable {
      * This method is called automatically by the
      * <code>notifyObservers</code> methods.
      *
-     * @see     Observable#notifyObservers()
-     * @see     Observable#notifyObservers(Object)
+     * @see     java.util.Observable#notifyObservers()
+     * @see     java.util.Observable#notifyObservers(java.lang.Object)
      */
     protected synchronized void clearChanged() {
         changed = false;
@@ -195,8 +195,8 @@ public class Observable {
      *          method has been called more recently than the
      *          <code>clearChanged</code> method on this object;
      *          <code>false</code> otherwise.
-     * @see     Observable#clearChanged()
-     * @see     Observable#setChanged()
+     * @see     java.util.Observable#clearChanged()
+     * @see     java.util.Observable#setChanged()
      */
     public synchronized boolean hasChanged() {
         return changed;

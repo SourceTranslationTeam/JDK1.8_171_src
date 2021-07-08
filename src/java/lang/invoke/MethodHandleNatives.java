@@ -523,9 +523,9 @@ class MethodHandleNatives {
         Class<?> defc = mem.getDeclaringClass();
         switch (mem.getName()) {
         case "checkMemberAccess":
-            return canBeCalledVirtual(mem, SecurityManager.class);
+            return canBeCalledVirtual(mem, java.lang.SecurityManager.class);
         case "getContextClassLoader":
-            return canBeCalledVirtual(mem, Thread.class);
+            return canBeCalledVirtual(mem, java.lang.Thread.class);
         }
         return false;
     }

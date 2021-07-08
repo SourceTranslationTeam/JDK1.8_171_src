@@ -282,6 +282,47 @@ public class JPasswordField extends JTextField {
     }
 
     /**
+     * Sets the text of this <code>TextComponent</code>
+     * to the specified text.  If the text is <code>null</code>
+     * or empty, has the effect of simply deleting the old text.
+     * When text has been inserted, the resulting caret location
+     * is determined by the implementation of the caret class.
+     *
+     * <p>
+     * Note that text is not a bound property, so no <code>PropertyChangeEvent
+     * </code> is fired when it changes. To listen for changes to the text,
+     * use <code>DocumentListener</code>.
+     *
+     * @param t the new text to be set
+     * @see #getText
+     * @see DefaultCaret
+     * @beaninfo
+     * description: the text of this component
+     */
+    @Override
+    public void setText(String t) {
+        // overwrite the old data first
+        Document doc = getDocument();
+        int nleft = doc.getLength();
+        Segment text = new Segment();
+        // we would like to get direct data array access, not a copy of it
+        text.setPartialReturn(true);
+        int offs = 0;
+        try {
+            while (nleft > 0) {
+                doc.getText(offs, nleft, text);
+                Arrays.fill(text.array, text.offset,
+                            text.count + text.offset, '\u0000');
+                nleft -= text.count;
+                offs += text.count;
+            }
+        } catch (BadLocationException ignored) {
+            // we tried
+        }
+        super.setText(t);
+    }
+
+    /**
      * Returns the text contained in this <code>TextComponent</code>.
      * If the underlying document is <code>null</code>, will give a
      * <code>NullPointerException</code>.  For stronger
@@ -422,10 +463,10 @@ public class JPasswordField extends JTextField {
          * <code>AccessibleExtendedText</code> interface.
          *
          * @return <code>AccessibleText</code> for the JPasswordField
-         * @see AccessibleContext
-         * @see AccessibleContext#getAccessibleText
-         * @see AccessibleText
-         * @see AccessibleExtendedText
+         * @see javax.accessibility.AccessibleContext
+         * @see javax.accessibility.AccessibleContext#getAccessibleText
+         * @see javax.accessibility.AccessibleText
+         * @see javax.accessibility.AccessibleExtendedText
          *
          * @since 1.6
          */
@@ -457,9 +498,9 @@ public class JPasswordField extends JTextField {
          * <code>index</code> are valid.
          * Otherwise, <code>null</code> is returned
          *
-         * @see AccessibleText#CHARACTER
-         * @see AccessibleText#WORD
-         * @see AccessibleText#SENTENCE
+         * @see javax.accessibility.AccessibleText#CHARACTER
+         * @see javax.accessibility.AccessibleText#WORD
+         * @see javax.accessibility.AccessibleText#SENTENCE
          *
          * @since 1.6
          */
@@ -490,9 +531,9 @@ public class JPasswordField extends JTextField {
          * <code>index</code> are valid.
          * Otherwise, <code>null</code> is returned
          *
-         * @see AccessibleText#CHARACTER
-         * @see AccessibleText#WORD
-         * @see AccessibleText#SENTENCE
+         * @see javax.accessibility.AccessibleText#CHARACTER
+         * @see javax.accessibility.AccessibleText#WORD
+         * @see javax.accessibility.AccessibleText#SENTENCE
          *
          * @since 1.6
          */
@@ -517,9 +558,9 @@ public class JPasswordField extends JTextField {
          * <code>index</code> are valid.
          * Otherwise, <code>null</code> is returned
          *
-         * @see AccessibleText#CHARACTER
-         * @see AccessibleText#WORD
-         * @see AccessibleText#SENTENCE
+         * @see javax.accessibility.AccessibleText#CHARACTER
+         * @see javax.accessibility.AccessibleText#WORD
+         * @see javax.accessibility.AccessibleText#SENTENCE
          *
          * @since 1.6
          */
@@ -562,11 +603,11 @@ public class JPasswordField extends JTextField {
          * <code>part</code> and <code>index</code> are valid.  Otherwise,
          * <code>null</code> is returned
          *
-         * @see AccessibleText#CHARACTER
-         * @see AccessibleText#WORD
-         * @see AccessibleText#SENTENCE
-         * @see AccessibleExtendedText#LINE
-         * @see AccessibleExtendedText#ATTRIBUTE_RUN
+         * @see javax.accessibility.AccessibleText#CHARACTER
+         * @see javax.accessibility.AccessibleText#WORD
+         * @see javax.accessibility.AccessibleText#SENTENCE
+         * @see javax.accessibility.AccessibleExtendedText#LINE
+         * @see javax.accessibility.AccessibleExtendedText#ATTRIBUTE_RUN
          *
          * @since 1.6
          */
@@ -604,11 +645,11 @@ public class JPasswordField extends JTextField {
          * <code>part</code> and <code>index</code> are valid.  Otherwise,
          * <code>null</code> is returned
          *
-         * @see AccessibleText#CHARACTER
-         * @see AccessibleText#WORD
-         * @see AccessibleText#SENTENCE
-         * @see AccessibleExtendedText#LINE
-         * @see AccessibleExtendedText#ATTRIBUTE_RUN
+         * @see javax.accessibility.AccessibleText#CHARACTER
+         * @see javax.accessibility.AccessibleText#WORD
+         * @see javax.accessibility.AccessibleText#SENTENCE
+         * @see javax.accessibility.AccessibleExtendedText#LINE
+         * @see javax.accessibility.AccessibleExtendedText#ATTRIBUTE_RUN
          *
          * @since 1.6
          */
@@ -639,11 +680,11 @@ public class JPasswordField extends JTextField {
          * <code>part</code> and <code>index</code> are valid.  Otherwise,
          * <code>null</code> is returned
          *
-         * @see AccessibleText#CHARACTER
-         * @see AccessibleText#WORD
-         * @see AccessibleText#SENTENCE
-         * @see AccessibleExtendedText#LINE
-         * @see AccessibleExtendedText#ATTRIBUTE_RUN
+         * @see javax.accessibility.AccessibleText#CHARACTER
+         * @see javax.accessibility.AccessibleText#WORD
+         * @see javax.accessibility.AccessibleText#SENTENCE
+         * @see javax.accessibility.AccessibleExtendedText#LINE
+         * @see javax.accessibility.AccessibleExtendedText#ATTRIBUTE_RUN
          *
          * @since 1.6
          */

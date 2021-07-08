@@ -50,7 +50,7 @@ import javax.imageio.metadata.IIOMetadata;
  *
  * @see ImageReader#readAll(int, ImageReadParam)
  * @see ImageReader#readAll(java.util.Iterator)
- * @see ImageWriter#write(IIOMetadata,
+ * @see ImageWriter#write(javax.imageio.metadata.IIOMetadata,
  *                        IIOImage, ImageWriteParam)
  * @see ImageWriter#write(IIOImage)
  * @see ImageWriter#writeToSequence(IIOImage, ImageWriteParam)

@@ -506,7 +506,7 @@ public class BasicComboBoxUI extends ComboBoxUI {
      * explicitly set with <code>setRenderer</code>.
      *
      * @return a <code>ListCellRender</code> used for the combo box
-     * @see JComboBox#setRenderer
+     * @see javax.swing.JComboBox#setRenderer
      */
     protected ListCellRenderer createRenderer() {
         return new BasicComboBoxRenderer.UIResource();
@@ -518,7 +518,7 @@ public class BasicComboBoxUI extends ComboBoxUI {
      * explicitly set with <code>setEditor</code>.
      *
      * @return a <code>ComboBoxEditor</code> used for the combo box
-     * @see JComboBox#setEditor
+     * @see javax.swing.JComboBox#setEditor
      */
     protected ComboBoxEditor createEditor() {
         return new BasicComboBoxEditor.UIResource();
@@ -726,8 +726,8 @@ public class BasicComboBoxUI extends ComboBoxUI {
      * custom <code>ComboBoxEditor</code>
      *
      * @see #createEditor
-     * @see JComboBox#setEditor
-     * @see ComboBoxEditor
+     * @see javax.swing.JComboBox#setEditor
+     * @see javax.swing.ComboBoxEditor
      */
     public void addEditor() {
         removeEditor();
@@ -943,7 +943,7 @@ public class BasicComboBoxUI extends ComboBoxUI {
      *
      * @throws NullPointerException {@inheritDoc}
      * @throws IllegalArgumentException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     @Override
@@ -1000,7 +1000,7 @@ public class BasicComboBoxUI extends ComboBoxUI {
      * changes as the size changes.
      *
      * @throws NullPointerException {@inheritDoc}
-     * @see JComponent#getBaseline(int, int)
+     * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     @Override
@@ -1314,7 +1314,7 @@ public class BasicComboBoxUI extends ComboBoxUI {
      * size calculation.
      *
      * @return the size of the display area calculated from the combo box items
-     * @see JComboBox#setPrototypeDisplayValue
+     * @see javax.swing.JComboBox#setPrototypeDisplayValue
      */
     protected Dimension getDisplaySize() {
         if (!isDisplaySizeDirty)  {

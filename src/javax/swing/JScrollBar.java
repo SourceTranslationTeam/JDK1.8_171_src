@@ -246,7 +246,7 @@ public class JScrollBar extends JComponent implements Adjustable, Accessible
      *
      * @return VERTICAL or HORIZONTAL
      * @see #setOrientation
-     * @see Adjustable#getOrientation
+     * @see java.awt.Adjustable#getOrientation
      */
     public int getOrientation() {
         return orientation;

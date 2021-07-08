@@ -39,8 +39,8 @@ import javax.imageio.ImageWriter;
  * with an <code>ImageWriter</code>.  It is up to the
  * <code>ImageWriter</code> to provide localized messages.
  *
- * @see ImageWriter#addIIOWriteWarningListener
- * @see ImageWriter#removeIIOWriteWarningListener
+ * @see javax.imageio.ImageWriter#addIIOWriteWarningListener
+ * @see javax.imageio.ImageWriter#removeIIOWriteWarningListener
  *
  */
 public interface IIOWriteWarningListener extends EventListener {

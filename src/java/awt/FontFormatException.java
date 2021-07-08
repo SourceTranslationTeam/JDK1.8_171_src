@@ -30,7 +30,7 @@ package java.awt;
  * that the specified font is bad.
  *
  * @author  Parry Kejriwal
- * @see     Font
+ * @see     java.awt.Font
  * @since   1.3
  */
 public

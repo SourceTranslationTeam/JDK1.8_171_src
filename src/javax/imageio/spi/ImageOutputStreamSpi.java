@@ -50,7 +50,7 @@ import javax.imageio.stream.ImageOutputStream;
  * and used transparently by applications.
  *
  * @see IIORegistry
- * @see ImageOutputStream
+ * @see javax.imageio.stream.ImageOutputStream
  *
  */
 public abstract class ImageOutputStreamSpi extends IIOServiceProvider {

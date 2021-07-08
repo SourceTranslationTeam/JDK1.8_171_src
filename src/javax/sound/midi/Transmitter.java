@@ -68,9 +68,9 @@ public interface Transmitter extends AutoCloseable {
      * by calling {@link MidiDevice#close MidiDevice.close}, the
      * <code>Transmitter</code> is closed, too.  For a detailed
      * description of open/close behaviour see the class description
-     * of {@link MidiDevice MidiDevice}.
+     * of {@link javax.sound.midi.MidiDevice MidiDevice}.
      *
-     * @see MidiSystem#getTransmitter
+     * @see javax.sound.midi.MidiSystem#getTransmitter
      */
     public void close();
 }

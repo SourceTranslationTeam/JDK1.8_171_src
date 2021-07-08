@@ -697,7 +697,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return SimpleMethodHandle.make(srcType, form);
     }
 
-    @Hidden
+    @LambdaForm.Hidden
     static
     MethodHandle selectAlternative(boolean testResult, MethodHandle target, MethodHandle fallback) {
         if (testResult) {
@@ -708,7 +708,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     }
 
     // Intrinsified by C2. Counters are used during parsing to calculate branch frequencies.
-    @Hidden
+    @LambdaForm.Hidden
     static
     boolean profileBoolean(boolean result, int[] counters) {
         // Profile is int[2] where [0] and [1] correspond to false and true occurrences respectively.
@@ -1045,7 +1045,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      * Intrinsified during LambdaForm compilation
      * (see {@link InvokerBytecodeGenerator#emitGuardWithCatch emitGuardWithCatch}).
      */
-    @Hidden
+    @LambdaForm.Hidden
     static Object guardWithCatch(MethodHandle target, Class<? extends Throwable> exType, MethodHandle catcher,
                                  Object... av) throws Throwable {
         // Use asFixedArity() to avoid unnecessary boxing of last argument for VarargsCollector case.
@@ -1058,7 +1058,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     }
 
     /** Prepend an element {@code elem} to an {@code array}. */
-    @Hidden
+    @LambdaForm.Hidden
     private static Object[] prepend(Object elem, Object[] array) {
         Object[] newArray = new Object[array.length+1];
         newArray[0] = elem;

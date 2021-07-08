@@ -134,7 +134,7 @@ class BufferedOutputStream extends FilterOutputStream {
      * output bytes to be written out to the underlying output stream.
      *
      * @exception  IOException  if an I/O error occurs.
-     * @see        FilterOutputStream#out
+     * @see        java.io.FilterOutputStream#out
      */
     public synchronized void flush() throws IOException {
         flushBuffer();

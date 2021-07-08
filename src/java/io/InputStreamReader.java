@@ -33,7 +33,7 @@ import sun.nio.cs.StreamDecoder;
 /**
  * An InputStreamReader is a bridge from byte streams to character streams: It
  * reads bytes and decodes them into characters using a specified {@link
- * Charset charset}.  The charset that it uses
+ * java.nio.charset.Charset charset}.  The charset that it uses
  * may be specified by name or may be given explicitly, or the platform's
  * default charset may be accepted.
  *
@@ -53,7 +53,7 @@ import sun.nio.cs.StreamDecoder;
  *
  * @see BufferedReader
  * @see InputStream
- * @see Charset
+ * @see java.nio.charset.Charset
  *
  * @author      Mark Reinhold
  * @since       JDK1.1
@@ -86,7 +86,7 @@ public class InputStreamReader extends Reader {
      *
      * @param  charsetName
      *         The name of a supported
-     *         {@link Charset charset}
+     *         {@link java.nio.charset.Charset charset}
      *
      * @exception  UnsupportedEncodingException
      *             If the named charset is not supported
@@ -147,7 +147,7 @@ public class InputStreamReader extends Reader {
      * @return The historical name of this encoding, or
      *         <code>null</code> if the stream has been closed
      *
-     * @see Charset
+     * @see java.nio.charset.Charset
      *
      * @revised 1.4
      * @spec JSR-51

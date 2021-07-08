@@ -1,4 +1,4 @@
-// This file was generated AUTOMATICALLY from a template file Wed Mar 28 12:54:39 PDT 2018
+// This file was generated AUTOMATICALLY from a template file Wed Apr 07 19:15:20 GMT 2021
 /*
  * Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
@@ -354,7 +354,7 @@ class CharacterData01 extends CharacterData {
     private CharacterData01() {};
 
     // The following tables and code generated using:
-  // java GenerateCharacter -plane 1 -template /Users/java_re/workspace/8-2-build-macosx-x86_64/jdk8u171/10807/jdk/make/data/characterdata/CharacterData01.java.template -spec /Users/java_re/workspace/8-2-build-macosx-x86_64/jdk8u171/10807/jdk/make/data/unicodedata/UnicodeData.txt -specialcasing /Users/java_re/workspace/8-2-build-macosx-x86_64/jdk8u171/10807/jdk/make/data/unicodedata/SpecialCasing.txt -proplist /Users/java_re/workspace/8-2-build-macosx-x86_64/jdk8u171/10807/jdk/make/data/unicodedata/PropList.txt -o /Users/java_re/workspace/8-2-build-macosx-x86_64/jdk8u171/10807/build/macosx-x86_64/jdk/gensrc/java/lang/CharacterData01.java -string -usecharforbyte 11 4 1
+  // java GenerateCharacter -plane 1 -template /scratch/jenkins/workspace/8-2-build-linux-amd64/jdk8u291/1294/jdk/make/data/characterdata/CharacterData01.java.template -spec /scratch/jenkins/workspace/8-2-build-linux-amd64/jdk8u291/1294/jdk/make/data/unicodedata/UnicodeData.txt -specialcasing /scratch/jenkins/workspace/8-2-build-linux-amd64/jdk8u291/1294/jdk/make/data/unicodedata/SpecialCasing.txt -proplist /scratch/jenkins/workspace/8-2-build-linux-amd64/jdk8u291/1294/jdk/make/data/unicodedata/PropList.txt -o /scratch/jenkins/workspace/8-2-build-linux-amd64/jdk8u291/1294/build/linux-amd64/jdk/gensrc/java/lang/CharacterData01.java -string -usecharforbyte 11 4 1
   // The X table has 2048 entries for a total of 4096 bytes.
 
   static final char X[] = (

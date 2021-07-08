@@ -129,7 +129,7 @@ import java.io.PrintStream;
  * Please see {@link java.beans.XMLEncoder}.
  *
  * @see Box
- * @see ComponentOrientation
+ * @see java.awt.ComponentOrientation
  * @see JComponent#getAlignmentX
  * @see JComponent#getAlignmentY
  *

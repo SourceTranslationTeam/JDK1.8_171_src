@@ -331,7 +331,7 @@ public final class ImageIO {
      * @exception IOException if a cache file is needed but cannot be
      * created.
      *
-     * @see ImageInputStreamSpi
+     * @see javax.imageio.spi.ImageInputStreamSpi
      */
     public static ImageInputStream createImageInputStream(Object input)
         throws IOException {
@@ -393,7 +393,7 @@ public final class ImageIO {
      * @exception IOException if a cache file is needed but cannot be
      * created.
      *
-     * @see ImageOutputStreamSpi
+     * @see javax.imageio.spi.ImageOutputStreamSpi
      */
     public static ImageOutputStream createImageOutputStream(Object output)
         throws IOException {
@@ -634,7 +634,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if <code>input</code> is
      * <code>null</code>.
      *
-     * @see ImageReaderSpi#canDecodeInput
+     * @see javax.imageio.spi.ImageReaderSpi#canDecodeInput
      */
     public static Iterator<ImageReader> getImageReaders(Object input) {
         if (input == null) {
@@ -694,7 +694,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if <code>formatName</code>
      * is <code>null</code>.
      *
-     * @see ImageReaderSpi#getFormatNames
+     * @see javax.imageio.spi.ImageReaderSpi#getFormatNames
      */
     public static Iterator<ImageReader>
         getImageReadersByFormatName(String formatName)
@@ -729,7 +729,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if <code>fileSuffix</code>
      * is <code>null</code>.
      *
-     * @see ImageReaderSpi#getFileSuffixes
+     * @see javax.imageio.spi.ImageReaderSpi#getFileSuffixes
      */
     public static Iterator<ImageReader>
         getImageReadersBySuffix(String fileSuffix)
@@ -764,7 +764,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if <code>MIMEType</code> is
      * <code>null</code>.
      *
-     * @see ImageReaderSpi#getMIMETypes
+     * @see javax.imageio.spi.ImageReaderSpi#getMIMETypes
      */
     public static Iterator<ImageReader>
         getImageReadersByMIMEType(String MIMEType)
@@ -877,7 +877,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if <code>formatName</code> is
      * <code>null</code>.
      *
-     * @see ImageWriterSpi#getFormatNames
+     * @see javax.imageio.spi.ImageWriterSpi#getFormatNames
      */
     public static Iterator<ImageWriter>
         getImageWritersByFormatName(String formatName)
@@ -911,7 +911,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if <code>fileSuffix</code> is
      * <code>null</code>.
      *
-     * @see ImageWriterSpi#getFileSuffixes
+     * @see javax.imageio.spi.ImageWriterSpi#getFileSuffixes
      */
     public static Iterator<ImageWriter>
         getImageWritersBySuffix(String fileSuffix)
@@ -945,7 +945,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if <code>MIMEType</code> is
      * <code>null</code>.
      *
-     * @see ImageWriterSpi#getMIMETypes
+     * @see javax.imageio.spi.ImageWriterSpi#getMIMETypes
      */
     public static Iterator<ImageWriter>
         getImageWritersByMIMEType(String MIMEType)
@@ -993,7 +993,7 @@ public final class ImageIO {
      * <code>null</code>.
      *
      * @see #getImageReader(ImageWriter)
-     * @see ImageReaderSpi#getImageWriterSpiNames()
+     * @see javax.imageio.spi.ImageReaderSpi#getImageWriterSpiNames()
      */
     public static ImageWriter getImageWriter(ImageReader reader) {
         if (reader == null) {
@@ -1073,7 +1073,7 @@ public final class ImageIO {
      * <code>null</code>.
      *
      * @see #getImageWriter(ImageReader)
-     * @see ImageWriterSpi#getImageReaderSpiNames()
+     * @see javax.imageio.spi.ImageWriterSpi#getImageReaderSpiNames()
      */
     public static ImageReader getImageReader(ImageWriter writer) {
         if (writer == null) {
@@ -1148,7 +1148,7 @@ public final class ImageIO {
      * @exception IllegalArgumentException if any parameter is
      * <code>null</code>.
      *
-     * @see ImageWriterSpi#canEncodeImage(ImageTypeSpecifier)
+     * @see javax.imageio.spi.ImageWriterSpi#canEncodeImage(ImageTypeSpecifier)
      */
     public static Iterator<ImageWriter>
         getImageWriters(ImageTypeSpecifier type, String formatName)

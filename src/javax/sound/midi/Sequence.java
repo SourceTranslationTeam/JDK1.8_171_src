@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2004, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2016, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -266,11 +266,7 @@ public class Sequence {
      * @see #getTracks
      */
     public boolean deleteTrack(Track track) {
-
-        synchronized(tracks) {
-
-            return tracks.removeElement(track);
-        }
+        return tracks.removeElement(track);
     }
 
 
@@ -283,8 +279,8 @@ public class Sequence {
      * @see #deleteTrack
      */
     public Track[] getTracks() {
-
-        return (Track[]) tracks.toArray(new Track[tracks.size()]);
+        // Creation of the non-empty array will be synchronized inside toArray()
+        return tracks.toArray(new Track[0]);
     }
 
 
@@ -294,7 +290,7 @@ public class Sequence {
      */
     public long getMicrosecondLength() {
 
-        return MidiUtils.tick2microsecond(this, getTickLength(), null);
+        return com.sun.media.sound.MidiUtils.tick2microsecond(this, getTickLength(), null);
     }
 
 

@@ -99,7 +99,7 @@ public abstract class SOAPFactory {
      *
      * @exception SOAPException if there is an error in creating the
      *            <code>SOAPElement</code> object
-     * @see SOAPFactory#createElement(QName)
+     * @see SOAPFactory#createElement(javax.xml.namespace.QName)
      */
     public abstract SOAPElement createElement(Name name) throws SOAPException;
 

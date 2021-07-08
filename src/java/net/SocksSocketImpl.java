@@ -53,15 +53,17 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
 
 
     SocksSocketImpl() {
-        // Nothing needed
+        super(false);
     }
 
     SocksSocketImpl(String server, int port) {
+        super(false);
         this.server = server;
         this.serverPort = (port == -1 ? DEFAULT_PORT : port);
     }
 
     SocksSocketImpl(Proxy proxy) {
+        super(false);
         SocketAddress a = proxy.address();
         if (a instanceof InetSocketAddress) {
             InetSocketAddress ad = (InetSocketAddress) a;
@@ -82,7 +84,7 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
     {
         try {
             AccessController.doPrivileged(
-                new PrivilegedExceptionAction<Void>() {
+                new java.security.PrivilegedExceptionAction<Void>() {
                     public Void run() throws IOException {
                               superConnectServer(host, port, timeout);
                               cmdIn = getInputStream();
@@ -156,8 +158,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
             String password = null;
             final InetAddress addr = InetAddress.getByName(server);
             PasswordAuthentication pw =
-                AccessController.doPrivileged(
-                    new PrivilegedAction<PasswordAuthentication>() {
+                java.security.AccessController.doPrivileged(
+                    new java.security.PrivilegedAction<PasswordAuthentication>() {
                         public PasswordAuthentication run() {
                                 return Authenticator.requestPasswordAuthentication(
                                        server, addr, serverPort, "SOCKS5", "SOCKS authentication", null);
@@ -167,7 +169,7 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
                 userName = pw.getUserName();
                 password = new String(pw.getPassword());
             } else {
-                userName = AccessController.doPrivileged(
+                userName = java.security.AccessController.doPrivileged(
                         new sun.security.action.GetPropertyAction("user.name"));
             }
             if (userName == null)
@@ -350,8 +352,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
             // This is the general case
             // server is not null only when the socket was created with a
             // specified proxy in which case it does bypass the ProxySelector
-            ProxySelector sel = AccessController.doPrivileged(
-                new PrivilegedAction<ProxySelector>() {
+            ProxySelector sel = java.security.AccessController.doPrivileged(
+                new java.security.PrivilegedAction<ProxySelector>() {
                     public ProxySelector run() {
                             return ProxySelector.getDefault();
                         }
@@ -666,8 +668,8 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
             // This is the general case
             // server is not null only when the socket was created with a
             // specified proxy in which case it does bypass the ProxySelector
-            ProxySelector sel = AccessController.doPrivileged(
-                new PrivilegedAction<ProxySelector>() {
+            ProxySelector sel = java.security.AccessController.doPrivileged(
+                new java.security.PrivilegedAction<ProxySelector>() {
                     public ProxySelector run() {
                             return ProxySelector.getDefault();
                         }
@@ -722,7 +724,7 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
                     AccessController.doPrivileged(
                         new PrivilegedExceptionAction<Void>() {
                             public Void run() throws Exception {
-                                cmdsock = new Socket(new PlainSocketImpl());
+                                cmdsock = new Socket(new PlainSocketImpl(false));
                                 cmdsock.connect(new InetSocketAddress(server, serverPort));
                                 cmdIn = cmdsock.getInputStream();
                                 cmdOut = cmdsock.getOutputStream();
@@ -753,7 +755,7 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
                 AccessController.doPrivileged(
                     new PrivilegedExceptionAction<Void>() {
                         public Void run() throws Exception {
-                            cmdsock = new Socket(new PlainSocketImpl());
+                            cmdsock = new Socket(new PlainSocketImpl(false));
                             cmdsock.connect(new InetSocketAddress(server, serverPort));
                             cmdIn = cmdsock.getInputStream();
                             cmdOut = cmdsock.getOutputStream();
@@ -1033,7 +1035,7 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
      * Returns the value of this socket's {@code address} field.
      *
      * @return  the value of this socket's {@code address} field.
-     * @see     SocketImpl#address
+     * @see     java.net.SocketImpl#address
      */
     @Override
     protected InetAddress getInetAddress() {
@@ -1047,7 +1049,7 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
      * Returns the value of this socket's {@code port} field.
      *
      * @return  the value of this socket's {@code port} field.
-     * @see     SocketImpl#port
+     * @see     java.net.SocketImpl#port
      */
     @Override
     protected int getPort() {
@@ -1082,7 +1084,7 @@ class SocksSocketImpl extends PlainSocketImpl implements SocksConsts {
                 userName = System.getProperty("user.name");
             } catch (SecurityException se) { /* swallow Exception */ }
         } else {
-            userName = AccessController.doPrivileged(
+            userName = java.security.AccessController.doPrivileged(
                 new sun.security.action.GetPropertyAction("user.name"));
         }
         return userName;

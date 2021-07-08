@@ -34,7 +34,7 @@ import sun.swing.DefaultLookup;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JOptionPane}.
+ * {@link javax.swing.JOptionPane}.
  *
  * @author James Gosling
  * @author Scott Violet

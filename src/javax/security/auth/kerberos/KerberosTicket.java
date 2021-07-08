@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -29,11 +29,13 @@ import java.io.*;
 import java.util.Date;
 import java.util.Arrays;
 import java.net.InetAddress;
+import java.util.Objects;
 import javax.crypto.SecretKey;
 import javax.security.auth.Refreshable;
 import javax.security.auth.Destroyable;
 import javax.security.auth.RefreshFailedException;
 import javax.security.auth.DestroyFailedException;
+
 import sun.misc.HexDumpEncoder;
 import sun.security.krb5.EncryptionKey;
 import sun.security.krb5.Asn1Exception;
@@ -61,7 +63,7 @@ import sun.security.util.*;
  * application depends on the default JGSS Kerberos mechanism to access the
  * KerberosTicket. In that case, however, the application will need an
  * appropriate
- * {@link ServicePermission ServicePermission}.
+ * {@link javax.security.auth.kerberos.ServicePermission ServicePermission}.
  * <p>
  * Note that this class is applicable to both ticket granting tickets and
  * other regular service tickets. A ticket granting ticket is just a
@@ -77,7 +79,7 @@ import sun.security.util.*;
  * @since 1.4
  */
 public class KerberosTicket implements Destroyable, Refreshable,
-         Serializable {
+         java.io.Serializable {
 
     private static final long serialVersionUID = 7395334370157380539L;
 
@@ -190,10 +192,19 @@ public class KerberosTicket implements Destroyable, Refreshable,
      * @serial
      */
 
-
     private InetAddress[] clientAddresses;
 
+    /**
+     * Evidence ticket if proxy_impersonator. This field can be accessed
+     * by KerberosSecrets. It's serialized.
+     */
+    KerberosTicket proxy = null;
+
     private transient boolean destroyed = false;
+
+    transient KerberosPrincipal clientAlias = null;
+
+    transient KerberosPrincipal serverAlias = null;
 
     /**
      * Constructs a KerberosTicket using credentials information that a
@@ -459,7 +470,7 @@ public class KerberosTicket implements Destroyable, Refreshable,
      * @return the time that the client was authenticated
      *         or null if not set.
      */
-    public final Date getAuthTime() {
+    public final java.util.Date getAuthTime() {
         return (authTime == null) ? null : (Date)authTime.clone();
     }
 
@@ -469,7 +480,7 @@ public class KerberosTicket implements Destroyable, Refreshable,
      * @return the start time for this ticket's validity period
      *         or null if not set.
      */
-    public final Date getStartTime() {
+    public final java.util.Date getStartTime() {
         return (startTime == null) ? null : (Date)startTime.clone();
     }
 
@@ -478,7 +489,7 @@ public class KerberosTicket implements Destroyable, Refreshable,
      *
      * @return the expiration time for this ticket's validity period.
      */
-    public final Date getEndTime() {
+    public final java.util.Date getEndTime() {
         return (endTime == null) ? null : (Date) endTime.clone();
     }
 
@@ -488,7 +499,7 @@ public class KerberosTicket implements Destroyable, Refreshable,
      *
      * @return the latest expiration time for this ticket.
      */
-    public final Date getRenewTill() {
+    public final java.util.Date getRenewTill() {
         return (renewTill == null) ? null: (Date)renewTill.clone();
     }
 
@@ -498,7 +509,7 @@ public class KerberosTicket implements Destroyable, Refreshable,
      * @return ths list of addresses or null, if the field was not
      * provided.
      */
-    public final InetAddress[] getClientAddresses() {
+    public final java.net.InetAddress[] getClientAddresses() {
         return (clientAddresses == null) ? null: clientAddresses.clone();
     }
 
@@ -555,7 +566,11 @@ public class KerberosTicket implements Destroyable, Refreshable,
         try {
             krb5Creds = new sun.security.krb5.Credentials(asn1Encoding,
                                                     client.toString(),
+                                                    (clientAlias != null ?
+                                                           clientAlias.getName() : null),
                                                     server.toString(),
+                                                    (serverAlias != null ?
+                                                           serverAlias.getName() : null),
                                                     sessionKey.getEncoded(),
                                                     sessionKey.getKeyType(),
                                                     flags,
@@ -567,7 +582,7 @@ public class KerberosTicket implements Destroyable, Refreshable,
             krb5Creds = krb5Creds.renew();
         } catch (sun.security.krb5.KrbException krbException) {
             e = krbException;
-        } catch (IOException ioException) {
+        } catch (java.io.IOException ioException) {
             e = ioException;
         }
 
@@ -662,6 +677,7 @@ public class KerberosTicket implements Destroyable, Refreshable,
                 "Renew Till = " + String.valueOf(renewTill) + "\n" +
                 "Client Addresses " +
                 (clientAddresses == null ? " Null " : caddrBuf.toString() +
+                (proxy == null ? "" : "\nwith a proxy ticket") +
                 "\n"));
     }
 
@@ -699,6 +715,10 @@ public class KerberosTicket implements Destroyable, Refreshable,
 
         // clientAddress may be null, the array's hashCode is 0
         result = result * 37 + Arrays.hashCode(clientAddresses);
+
+        if (proxy != null) {
+            result = result * 37 + proxy.hashCode();
+        }
         return result * 37 + Arrays.hashCode(flags);
     }
 
@@ -762,6 +782,10 @@ public class KerberosTicket implements Destroyable, Refreshable,
         } else {
             if (!renewTill.equals(otherTicket.getRenewTill()))
                 return false;
+        }
+
+        if (!Objects.equals(proxy, otherTicket.proxy)) {
+            return false;
         }
 
         return true;

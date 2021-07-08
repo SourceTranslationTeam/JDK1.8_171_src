@@ -82,7 +82,7 @@ import sun.reflect.misc.ReflectUtil;
  */
 @SuppressWarnings("serial")  // serialVersionUID not constant
 public class DescriptorSupport
-         implements Descriptor
+         implements javax.management.Descriptor
 {
 
     // Serialization compatibility stuff:
@@ -613,7 +613,7 @@ public class DescriptorSupport
                 if (currValue == null) {
                     responseFields[i] = currElement.getKey() + "=";
                 } else {
-                    if (currValue instanceof String) {
+                    if (currValue instanceof java.lang.String) {
                         responseFields[i] =
                             currElement.getKey() + "=" + currValue.toString();
                     } else {
@@ -976,7 +976,7 @@ public class DescriptorSupport
             return false;
         String SfldValue = "";
         boolean isAString = false;
-        if ((fldValue != null) && (fldValue instanceof String)) {
+        if ((fldValue != null) && (fldValue instanceof java.lang.String)) {
             SfldValue = (String) fldValue;
             isAString = true;
         }
@@ -998,7 +998,7 @@ public class DescriptorSupport
             long v;
             if ((fldValue != null) && (isAString)) {
                 v = toNumeric(SfldValue);
-            } else if (fldValue instanceof Integer) {
+            } else if (fldValue instanceof java.lang.Integer) {
                 v = ((Integer)fldValue).intValue();
             } else return false;
 
@@ -1011,7 +1011,7 @@ public class DescriptorSupport
             long v;
             if ((fldValue != null) && (isAString)) {
                 v = toNumeric(SfldValue);
-            } else if (fldValue instanceof Integer) {
+            } else if (fldValue instanceof java.lang.Integer) {
                 v = ((Integer)fldValue).intValue();
             } else return false;
 
@@ -1032,13 +1032,13 @@ public class DescriptorSupport
             long v;
             if ((fldValue != null) && (isAString)) {
                 v = toNumeric(SfldValue);
-            } else if (fldValue instanceof Number) {
+            } else if (fldValue instanceof java.lang.Number) {
                 v = ((Number)fldValue).longValue();
             } else return false;
 
             return (v >= -1);
         } else if (fldName.equalsIgnoreCase("log")) {
-            return ((fldValue instanceof Boolean) ||
+            return ((fldValue instanceof java.lang.Boolean) ||
                     (isAString &&
                      (SfldValue.equalsIgnoreCase("T") ||
                       SfldValue.equalsIgnoreCase("true") ||
@@ -1331,7 +1331,7 @@ public class DescriptorSupport
 
     private long toNumeric(String inStr) {
         try {
-            return Long.parseLong(inStr);
+            return java.lang.Long.parseLong(inStr);
         } catch (Exception e) {
             return -2;
         }

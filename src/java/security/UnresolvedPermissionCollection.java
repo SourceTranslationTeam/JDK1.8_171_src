@@ -35,9 +35,9 @@ import java.io.IOException;
  * A UnresolvedPermissionCollection stores a collection
  * of UnresolvedPermission permissions.
  *
- * @see Permission
- * @see Permissions
- * @see UnresolvedPermission
+ * @see java.security.Permission
+ * @see java.security.Permissions
+ * @see java.security.UnresolvedPermission
  *
  *
  * @author Roland Schemers

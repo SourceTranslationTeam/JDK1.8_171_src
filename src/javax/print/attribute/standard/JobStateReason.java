@@ -439,7 +439,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * category  is class JobStateReason itself.
      *
      * @return  Printing attribute class (category), an instance of class
-     *          {@link Class java.lang.Class}.
+     *          {@link java.lang.Class java.lang.Class}.
      */
     public final Class<? extends Attribute> getCategory() {
         return JobStateReason.class;

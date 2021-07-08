@@ -58,9 +58,9 @@ public interface WebServiceContext {
      *         if the method is called while no request is
      *         being serviced.
      *
-     * @see MessageContext
-     * @see MessageContext.Scope
-     * @see IllegalStateException
+     * @see javax.xml.ws.handler.MessageContext
+     * @see javax.xml.ws.handler.MessageContext.Scope
+     * @see java.lang.IllegalStateException
      **/
     public MessageContext getMessageContext();
 
@@ -76,8 +76,8 @@ public interface WebServiceContext {
      *         if the method is called while no request is
      *         being serviced.
      *
-     * @see Principal
-     * @see IllegalStateException
+     * @see java.security.Principal
+     * @see java.lang.IllegalStateException
      **/
     public Principal getUserPrincipal();
 
@@ -147,5 +147,5 @@ public interface WebServiceContext {
      * @since JAX-WS 2.1
      **/
     public <T extends EndpointReference> T getEndpointReference(Class<T> clazz,
-                                                                Element... referenceParameters);
+            Element... referenceParameters);
 }

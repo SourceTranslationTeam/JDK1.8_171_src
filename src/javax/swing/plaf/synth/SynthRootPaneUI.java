@@ -33,7 +33,7 @@ import javax.swing.plaf.basic.BasicRootPaneUI;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JRootPane}.
+ * {@link javax.swing.JRootPane}.
  *
  * @author Scott Violet
  * @since 1.7

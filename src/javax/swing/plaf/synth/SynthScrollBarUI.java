@@ -34,7 +34,7 @@ import javax.swing.plaf.basic.*;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JScrollBar}.
+ * {@link javax.swing.JScrollBar}.
  *
  * @author Scott Violet
  * @since 1.7

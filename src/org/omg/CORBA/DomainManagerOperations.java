@@ -45,5 +45,5 @@ public interface DomainManagerOperations
      *
      *@param policy_type Type of policy to request
      */
-    public Policy get_domain_policy(int policy_type);
+    public org.omg.CORBA.Policy get_domain_policy(int policy_type);
 }

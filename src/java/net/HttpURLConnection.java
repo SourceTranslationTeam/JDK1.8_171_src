@@ -63,7 +63,7 @@ import java.util.Date;
  * destination, then the caller must also have permission to connect to the
  * redirected host/URL.
  *
- * @see     HttpURLConnection#disconnect()
+ * @see     java.net.HttpURLConnection#disconnect()
  * @since JDK1.1
  */
 abstract public class HttpURLConnection extends URLConnection {
@@ -263,7 +263,7 @@ abstract public class HttpURLConnection extends URLConnection {
      * @param   n   an index, where {@code n>=0}.
      * @return  the value of the {@code n}<sup>th</sup> header field,
      *          or {@code null} if the value does not exist.
-     * @see     HttpURLConnection#getHeaderFieldKey(int)
+     * @see     java.net.HttpURLConnection#getHeaderFieldKey(int)
      */
     public String getHeaderField(int n) {
         return null;
@@ -303,9 +303,9 @@ abstract public class HttpURLConnection extends URLConnection {
      * Its default value is based on the value of the static followRedirects
      * at HttpURLConnection construction time.
      *
-     * @see     HttpURLConnection#setInstanceFollowRedirects(boolean)
-     * @see     HttpURLConnection#getInstanceFollowRedirects()
-     * @see     HttpURLConnection#setFollowRedirects(boolean)
+     * @see     java.net.HttpURLConnection#setInstanceFollowRedirects(boolean)
+     * @see     java.net.HttpURLConnection#getInstanceFollowRedirects()
+     * @see     java.net.HttpURLConnection#setFollowRedirects(boolean)
      */
     protected boolean instanceFollowRedirects = followRedirects;
 
@@ -373,7 +373,7 @@ abstract public class HttpURLConnection extends URLConnection {
      * @param followRedirects a {@code boolean} indicating
      * whether or not to follow HTTP redirects.
      *
-     * @see    HttpURLConnection#instanceFollowRedirects
+     * @see    java.net.HttpURLConnection#instanceFollowRedirects
      * @see #getInstanceFollowRedirects
      * @since 1.3
      */
@@ -387,7 +387,7 @@ abstract public class HttpURLConnection extends URLConnection {
      *
      * @return  the value of this {@code HttpURLConnection}'s
      *          {@code instanceFollowRedirects} field.
-     * @see     HttpURLConnection#instanceFollowRedirects
+     * @see     java.net.HttpURLConnection#instanceFollowRedirects
      * @see #setInstanceFollowRedirects(boolean)
      * @since 1.3
      */
@@ -443,7 +443,7 @@ abstract public class HttpURLConnection extends URLConnection {
     /**
      * Get the request method.
      * @return the HTTP request method
-     * @see #setRequestMethod(String)
+     * @see #setRequestMethod(java.lang.String)
      */
     public String getRequestMethod() {
         return method;

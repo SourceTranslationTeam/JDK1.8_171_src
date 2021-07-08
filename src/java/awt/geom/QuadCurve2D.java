@@ -453,8 +453,8 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
      * the information necessary to satisfy the various accessor
      * methods below.
      *
-     * @see Float
-     * @see Double
+     * @see java.awt.geom.QuadCurve2D.Float
+     * @see java.awt.geom.QuadCurve2D.Double
      * @since 1.2
      */
     protected QuadCurve2D() {
@@ -1387,7 +1387,7 @@ public abstract class QuadCurve2D implements Shape, Cloneable {
      *
      * @return     a clone of this instance.
      * @exception  OutOfMemoryError            if there is not enough memory.
-     * @see        Cloneable
+     * @see        java.lang.Cloneable
      * @since      1.2
      */
     public Object clone() {

@@ -96,16 +96,16 @@ public final class System {
      * <p>
      * See the <code>println</code> methods in class <code>PrintStream</code>.
      *
-     * @see     PrintStream#println()
-     * @see     PrintStream#println(boolean)
-     * @see     PrintStream#println(char)
-     * @see     PrintStream#println(char[])
-     * @see     PrintStream#println(double)
-     * @see     PrintStream#println(float)
-     * @see     PrintStream#println(int)
-     * @see     PrintStream#println(long)
-     * @see     PrintStream#println(Object)
-     * @see     PrintStream#println(String)
+     * @see     java.io.PrintStream#println()
+     * @see     java.io.PrintStream#println(boolean)
+     * @see     java.io.PrintStream#println(char)
+     * @see     java.io.PrintStream#println(char[])
+     * @see     java.io.PrintStream#println(double)
+     * @see     java.io.PrintStream#println(float)
+     * @see     java.io.PrintStream#println(int)
+     * @see     java.io.PrintStream#println(long)
+     * @see     java.io.PrintStream#println(java.lang.Object)
+     * @see     java.io.PrintStream#println(java.lang.String)
      */
     public final static PrintStream out = null;
 
@@ -143,7 +143,7 @@ public final class System {
      *        reassigning of the standard input stream.
      *
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      *
      * @since   JDK1.1
      */
@@ -167,7 +167,7 @@ public final class System {
      *        reassigning of the standard output stream.
      *
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      *
      * @since   JDK1.1
      */
@@ -191,7 +191,7 @@ public final class System {
      *        reassigning of the standard error output stream.
      *
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      *
      * @since   JDK1.1
      */
@@ -202,7 +202,7 @@ public final class System {
 
     private static volatile Console cons = null;
     /**
-     * Returns the unique {@link Console Console} object associated
+     * Returns the unique {@link java.io.Console Console} object associated
      * with the current Java virtual machine, if any.
      *
      * @return  The system console, if any, otherwise <tt>null</tt>.
@@ -223,12 +223,12 @@ public final class System {
      * Java virtual machine.
      *
      * <p> This method returns the channel obtained by invoking the
-     * {@link SelectorProvider#inheritedChannel
+     * {@link java.nio.channels.spi.SelectorProvider#inheritedChannel
      * inheritedChannel} method of the system-wide default
-     * {@link SelectorProvider} object. </p>
+     * {@link java.nio.channels.spi.SelectorProvider} object. </p>
      *
      * <p> In addition to the network-oriented channels described in
-     * {@link SelectorProvider#inheritedChannel
+     * {@link java.nio.channels.spi.SelectorProvider#inheritedChannel
      * inheritedChannel}, this method may return other kinds of
      * channels in the future.
      *
@@ -279,7 +279,7 @@ public final class System {
      *             doesn't allow it to be replaced.
      * @see #getSecurityManager
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      */
     public static
     void setSecurityManager(final SecurityManager s) {
@@ -620,9 +620,9 @@ public final class System {
      *             <code>checkPropertiesAccess</code> method doesn't allow access
      *              to the system properties.
      * @see        #setProperties
-     * @see        SecurityException
-     * @see        SecurityManager#checkPropertiesAccess()
-     * @see        Properties
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkPropertiesAccess()
+     * @see        java.util.Properties
      */
     public static Properties getProperties() {
         SecurityManager sm = getSecurityManager();
@@ -668,9 +668,9 @@ public final class System {
      *             <code>checkPropertiesAccess</code> method doesn't allow access
      *              to the system properties.
      * @see        #getProperties
-     * @see        Properties
-     * @see        SecurityException
-     * @see        SecurityManager#checkPropertiesAccess()
+     * @see        java.util.Properties
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkPropertiesAccess()
      */
     public static void setProperties(Properties props) {
         SecurityManager sm = getSecurityManager();
@@ -706,9 +706,9 @@ public final class System {
      *             <code>null</code>.
      * @exception  IllegalArgumentException if <code>key</code> is empty.
      * @see        #setProperty
-     * @see        SecurityException
-     * @see        SecurityManager#checkPropertyAccess(String)
-     * @see        System#getProperties()
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkPropertyAccess(java.lang.String)
+     * @see        java.lang.System#getProperties()
      */
     public static String getProperty(String key) {
         checkKey(key);
@@ -743,8 +743,8 @@ public final class System {
      *             <code>null</code>.
      * @exception  IllegalArgumentException if <code>key</code> is empty.
      * @see        #setProperty
-     * @see        SecurityManager#checkPropertyAccess(String)
-     * @see        System#getProperties()
+     * @see        java.lang.SecurityManager#checkPropertyAccess(java.lang.String)
+     * @see        java.lang.System#getProperties()
      */
     public static String getProperty(String key, String def) {
         checkKey(key);
@@ -779,9 +779,9 @@ public final class System {
      *             <code>value</code> is <code>null</code>.
      * @exception  IllegalArgumentException if <code>key</code> is empty.
      * @see        #getProperty
-     * @see        System#getProperty(String)
-     * @see        System#getProperty(String, String)
-     * @see        PropertyPermission
+     * @see        java.lang.System#getProperty(java.lang.String)
+     * @see        java.lang.System#getProperty(java.lang.String, java.lang.String)
+     * @see        java.util.PropertyPermission
      * @see        SecurityManager#checkPermission
      * @since      1.2
      */
@@ -818,9 +818,9 @@ public final class System {
      * @exception  IllegalArgumentException if <code>key</code> is empty.
      * @see        #getProperty
      * @see        #setProperty
-     * @see        Properties
-     * @see        SecurityException
-     * @see        SecurityManager#checkPropertiesAccess()
+     * @see        java.util.Properties
+     * @see        java.lang.SecurityException
+     * @see        java.lang.SecurityManager#checkPropertiesAccess()
      * @since 1.5
      */
     public static String clearProperty(String key) {
@@ -938,7 +938,7 @@ public final class System {
      * @see    ProcessBuilder#environment()
      * @since  1.5
      */
-    public static Map<String,String> getenv() {
+    public static java.util.Map<String,String> getenv() {
         SecurityManager sm = getSecurityManager();
         if (sm != null) {
             sm.checkPermission(new RuntimePermission("getenv.*"));
@@ -965,7 +965,7 @@ public final class System {
      * @throws  SecurityException
      *        if a security manager exists and its <code>checkExit</code>
      *        method doesn't allow exit with the specified status.
-     * @see        Runtime#exit(int)
+     * @see        java.lang.Runtime#exit(int)
      */
     public static void exit(int status) {
         Runtime.getRuntime().exit(status);
@@ -987,7 +987,7 @@ public final class System {
      * Runtime.getRuntime().gc()
      * </pre></blockquote>
      *
-     * @see     Runtime#gc()
+     * @see     java.lang.Runtime#gc()
      */
     public static void gc() {
         Runtime.getRuntime().gc();
@@ -1009,7 +1009,7 @@ public final class System {
      * Runtime.getRuntime().runFinalization()
      * </pre></blockquote>
      *
-     * @see     Runtime#runFinalization()
+     * @see     java.lang.Runtime#runFinalization()
      */
     public static void runFinalization() {
         Runtime.getRuntime().runFinalization();
@@ -1035,9 +1035,9 @@ public final class System {
      *        if a security manager exists and its <code>checkExit</code>
      *        method doesn't allow the exit.
      *
-     * @see     Runtime#exit(int)
-     * @see     Runtime#gc()
-     * @see     SecurityManager#checkExit(int)
+     * @see     java.lang.Runtime#exit(int)
+     * @see     java.lang.Runtime#gc()
+     * @see     java.lang.SecurityManager#checkExit(int)
      * @since   JDK1.1
      */
     @Deprecated
@@ -1078,8 +1078,8 @@ public final class System {
      *             a native library image by the host system.
      * @exception  NullPointerException if <code>filename</code> is
      *             <code>null</code>
-     * @see        Runtime#load(String)
-     * @see        SecurityManager#checkLink(String)
+     * @see        java.lang.Runtime#load(java.lang.String)
+     * @see        java.lang.SecurityManager#checkLink(java.lang.String)
      */
     @CallerSensitive
     public static void load(String filename) {
@@ -1114,8 +1114,8 @@ public final class System {
      *             native library image by the host system.
      * @exception  NullPointerException if <code>libname</code> is
      *             <code>null</code>
-     * @see        Runtime#loadLibrary(String)
-     * @see        SecurityManager#checkLink(String)
+     * @see        java.lang.Runtime#loadLibrary(java.lang.String)
+     * @see        java.lang.SecurityManager#checkLink(java.lang.String)
      */
     @CallerSensitive
     public static void loadLibrary(String libname) {
@@ -1130,8 +1130,8 @@ public final class System {
      * @return     a platform-dependent native library name.
      * @exception  NullPointerException if <code>libname</code> is
      *             <code>null</code>
-     * @see        System#loadLibrary(String)
-     * @see        ClassLoader#findLibrary(String)
+     * @see        java.lang.System#loadLibrary(java.lang.String)
+     * @see        java.lang.ClassLoader#findLibrary(java.lang.String)
      * @since      1.2
      */
     public static native String mapLibraryName(String libname);

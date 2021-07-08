@@ -54,7 +54,7 @@ public interface Templates {
      * The object returned will
      * be a clone of the internal values. Accordingly, it can be mutated
      * without mutating the Templates object, and then handed in to
-     * {@link Transformer#setOutputProperties}.
+     * {@link javax.xml.transform.Transformer#setOutputProperties}.
      *
      * <p>The properties returned should contain properties set by the stylesheet,
      * and these properties are "defaulted" by default properties specified by

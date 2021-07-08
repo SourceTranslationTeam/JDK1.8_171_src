@@ -106,7 +106,7 @@ public class ChannelBinding {
 
         if (appData != null) {
             this.appData = new byte[appData.length];
-            System.arraycopy(appData, 0, this.appData, 0,
+            java.lang.System.arraycopy(appData, 0, this.appData, 0,
                                 appData.length);
         }
     }

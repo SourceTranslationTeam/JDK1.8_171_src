@@ -287,8 +287,8 @@ public class MetalToolBarUI extends BasicToolBarUI
      * @param c JComponent painting on
      * @throws NullPointerException if <code>g</code> or <code>c</code> is
      *         null
-     * @see ComponentUI#update
-     * @see ComponentUI#paint
+     * @see javax.swing.plaf.ComponentUI#update
+     * @see javax.swing.plaf.ComponentUI#paint
      * @since 1.5
      */
     public void update(Graphics g, JComponent c) {
@@ -349,11 +349,11 @@ public class MetalToolBarUI extends BasicToolBarUI
 
     // No longer used. Cannot remove for compatibility reasons
     protected class MetalContainerListener
-        extends ToolBarContListener {}
+        extends BasicToolBarUI.ToolBarContListener {}
 
     // No longer used. Cannot remove for compatibility reasons
     protected class MetalRolloverListener
-        extends PropertyListener {}
+        extends BasicToolBarUI.PropertyListener {}
 
     protected class MetalDockingListener extends DockingListener {
         private boolean pressedInBumps = false;

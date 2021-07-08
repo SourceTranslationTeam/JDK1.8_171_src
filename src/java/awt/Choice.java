@@ -120,9 +120,9 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      * by calling one of the <code>select</code> methods.
      * @exception HeadlessException if GraphicsEnvironment.isHeadless()
      * returns true
-     * @see       GraphicsEnvironment#isHeadless
+     * @see       java.awt.GraphicsEnvironment#isHeadless
      * @see       #select(int)
-     * @see       #select(String)
+     * @see       #select(java.lang.String)
      */
     public Choice() throws HeadlessException {
         GraphicsEnvironment.checkHeadless();
@@ -143,8 +143,8 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      * Creates the <code>Choice</code>'s peer.  This peer allows us
      * to change the look
      * of the <code>Choice</code> without changing its functionality.
-     * @see     Toolkit#createChoice(Choice)
-     * @see     Component#getToolkit()
+     * @see     java.awt.Toolkit#createChoice(java.awt.Choice)
+     * @see     java.awt.Component#getToolkit()
      */
     public void addNotify() {
         synchronized (getTreeLock()) {
@@ -473,8 +473,8 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      * @see           #removeItemListener
      * @see           #getItemListeners
      * @see           #select
-     * @see           ItemEvent
-     * @see           ItemListener
+     * @see           java.awt.event.ItemEvent
+     * @see           java.awt.event.ItemListener
      * @since         JDK1.1
      */
     public synchronized void addItemListener(ItemListener l) {
@@ -495,8 +495,8 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      * @param         l    the item listener
      * @see           #addItemListener
      * @see           #getItemListeners
-     * @see           ItemEvent
-     * @see           ItemListener
+     * @see           java.awt.event.ItemEvent
+     * @see           java.awt.event.ItemListener
      * @since         JDK1.1
      */
     public synchronized void removeItemListener(ItemListener l) {
@@ -516,8 +516,8 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      *
      * @see           #addItemListener
      * @see           #removeItemListener
-     * @see           ItemEvent
-     * @see           ItemListener
+     * @see           java.awt.event.ItemEvent
+     * @see           java.awt.event.ItemListener
      * @since 1.4
      */
     public synchronized ItemListener[] getItemListeners() {
@@ -589,7 +589,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      * exception.
      *
      * @param      e the event
-     * @see        ItemEvent
+     * @see        java.awt.event.ItemEvent
      * @see        #processItemEvent
      * @since      JDK1.1
      */
@@ -619,10 +619,10 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      * exception.
      *
      * @param       e the item event
-     * @see         ItemEvent
-     * @see         ItemListener
+     * @see         java.awt.event.ItemEvent
+     * @see         java.awt.event.ItemListener
      * @see         #addItemListener(ItemListener)
-     * @see         Component#enableEvents
+     * @see         java.awt.Component#enableEvents
      * @since       JDK1.1
      */
     protected void processItemEvent(ItemEvent e) {
@@ -671,11 +671,11 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      *     <code>ItemListener</code> object
      *
      * @see AWTEventMulticaster#save(ObjectOutputStream, String, EventListener)
-     * @see Component#itemListenerK
+     * @see java.awt.Component#itemListenerK
      * @see #readObject(ObjectInputStream)
      */
     private void writeObject(ObjectOutputStream s)
-      throws IOException
+      throws java.io.IOException
     {
       s.defaultWriteObject();
 
@@ -696,7 +696,7 @@ public class Choice extends Component implements ItemSelectable, Accessible {
      * @serial
      * @see #removeItemListener(ItemListener)
      * @see #addItemListener(ItemListener)
-     * @see GraphicsEnvironment#isHeadless
+     * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #writeObject(ObjectOutputStream)
      */
     private void readObject(ObjectInputStream s)

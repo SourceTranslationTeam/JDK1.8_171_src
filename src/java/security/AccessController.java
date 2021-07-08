@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2019, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -291,7 +291,7 @@ public final class AccessController {
      * @see #doPrivileged(PrivilegedAction,AccessControlContext)
      * @see #doPrivileged(PrivilegedExceptionAction)
      * @see #doPrivilegedWithCombiner(PrivilegedAction)
-     * @see DomainCombiner
+     * @see java.security.DomainCombiner
      */
 
     @CallerSensitive
@@ -318,7 +318,7 @@ public final class AccessController {
      * @exception NullPointerException if the action is {@code null}
      *
      * @see #doPrivileged(PrivilegedAction)
-     * @see DomainCombiner
+     * @see java.security.DomainCombiner
      *
      * @since 1.6
      */
@@ -348,7 +348,7 @@ public final class AccessController {
      * {@code AccessControlContext} was not created by system code and the
      * caller's {@code ProtectionDomain} has not been granted the
      * {@literal "createAccessControlContext"}
-     * {@link SecurityPermission}, then the action is performed
+     * {@link java.security.SecurityPermission}, then the action is performed
      * with no permissions.
      *
      * @param <T> the type of the value returned by the PrivilegedAction's
@@ -390,7 +390,7 @@ public final class AccessController {
      * {@code AccessControlContext} was not created by system code and the
      * caller's {@code ProtectionDomain} has not been granted the
      * {@literal "createAccessControlContext"}
-     * {@link SecurityPermission}, then the action is performed
+     * {@link java.security.SecurityPermission}, then the action is performed
      * with no permissions.
      *
      * @param <T> the type of the value returned by the PrivilegedAction's
@@ -425,7 +425,8 @@ public final class AccessController {
             throw new NullPointerException("null permissions parameter");
         }
         Class <?> caller = Reflection.getCallerClass();
-        return AccessController.doPrivileged(action, createWrapper(null,
+        DomainCombiner dc = (context == null) ? null : context.getCombiner();
+        return AccessController.doPrivileged(action, createWrapper(dc,
             caller, parent, context, perms));
     }
 
@@ -451,7 +452,7 @@ public final class AccessController {
      * {@code AccessControlContext} was not created by system code and the
      * caller's {@code ProtectionDomain} has not been granted the
      * {@literal "createAccessControlContext"}
-     * {@link SecurityPermission}, then the action is performed
+     * {@link java.security.SecurityPermission}, then the action is performed
      * with no permissions.
      *
      * @param <T> the type of the value returned by the PrivilegedAction's
@@ -474,7 +475,7 @@ public final class AccessController {
      *
      * @see #doPrivileged(PrivilegedAction)
      * @see #doPrivileged(PrivilegedExceptionAction,AccessControlContext)
-     * @see DomainCombiner
+     * @see java.security.DomainCombiner
      *
      * @since 1.8
      */
@@ -520,7 +521,7 @@ public final class AccessController {
      * @see #doPrivileged(PrivilegedAction)
      * @see #doPrivileged(PrivilegedExceptionAction,AccessControlContext)
      * @see #doPrivilegedWithCombiner(PrivilegedExceptionAction)
-     * @see DomainCombiner
+     * @see java.security.DomainCombiner
      */
     @CallerSensitive
     public static native <T> T
@@ -552,7 +553,7 @@ public final class AccessController {
      *
      * @see #doPrivileged(PrivilegedAction)
      * @see #doPrivileged(PrivilegedExceptionAction,AccessControlContext)
-     * @see DomainCombiner
+     * @see java.security.DomainCombiner
      *
      * @since 1.6
      */
@@ -626,7 +627,7 @@ public final class AccessController {
      * {@code AccessControlContext} was not created by system code and the
      * caller's {@code ProtectionDomain} has not been granted the
      * {@literal "createAccessControlContext"}
-     * {@link SecurityPermission}, then the action is performed
+     * {@link java.security.SecurityPermission}, then the action is performed
      * with no permissions.
      *
      * @param <T> the type of the value returned by the
@@ -672,7 +673,7 @@ public final class AccessController {
      * {@code AccessControlContext} was not created by system code and the
      * caller's {@code ProtectionDomain} has not been granted the
      * {@literal "createAccessControlContext"}
-     * {@link SecurityPermission}, then the action is performed
+     * {@link java.security.SecurityPermission}, then the action is performed
      * with no permissions.
      *
      * @param <T> the type of the value returned by the
@@ -710,7 +711,8 @@ public final class AccessController {
             throw new NullPointerException("null permissions parameter");
         }
         Class <?> caller = Reflection.getCallerClass();
-        return AccessController.doPrivileged(action, createWrapper(null, caller, parent, context, perms));
+        DomainCombiner dc = (context == null) ? null : context.getCombiner();
+        return AccessController.doPrivileged(action, createWrapper(dc, caller, parent, context, perms));
     }
 
 
@@ -735,7 +737,7 @@ public final class AccessController {
      * {@code AccessControlContext} was not created by system code and the
      * caller's {@code ProtectionDomain} has not been granted the
      * {@literal "createAccessControlContext"}
-     * {@link SecurityPermission}, then the action is performed
+     * {@link java.security.SecurityPermission}, then the action is performed
      * with no permissions.
      *
      * @param <T> the type of the value returned by the
@@ -760,7 +762,7 @@ public final class AccessController {
      *
      * @see #doPrivileged(PrivilegedAction)
      * @see #doPrivileged(PrivilegedAction,AccessControlContext)
-     * @see DomainCombiner
+     * @see java.security.DomainCombiner
      *
      * @since 1.8
      */

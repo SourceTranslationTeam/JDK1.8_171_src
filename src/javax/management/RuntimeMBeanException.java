@@ -42,7 +42,7 @@ public class RuntimeMBeanException extends JMRuntimeException   {
     /**
      * @serial The encapsulated {@link RuntimeException}
      */
-    private RuntimeException runtimeException ;
+    private java.lang.RuntimeException runtimeException ;
 
 
     /**
@@ -50,7 +50,7 @@ public class RuntimeMBeanException extends JMRuntimeException   {
      *
      * @param e the wrapped exception.
      */
-    public RuntimeMBeanException(RuntimeException e) {
+    public RuntimeMBeanException(java.lang.RuntimeException e) {
         super() ;
         runtimeException = e ;
     }
@@ -62,7 +62,7 @@ public class RuntimeMBeanException extends JMRuntimeException   {
      * @param e the wrapped exception.
      * @param message the detail message.
      */
-    public RuntimeMBeanException(RuntimeException e, String message) {
+    public RuntimeMBeanException(java.lang.RuntimeException e, String message) {
         super(message) ;
         runtimeException = e ;
     }
@@ -72,7 +72,7 @@ public class RuntimeMBeanException extends JMRuntimeException   {
      *
      * @return the wrapped {@link RuntimeException}.
      */
-    public RuntimeException getTargetException()  {
+    public java.lang.RuntimeException getTargetException()  {
         return runtimeException ;
     }
 

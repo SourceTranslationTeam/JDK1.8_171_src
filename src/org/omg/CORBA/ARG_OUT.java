@@ -41,7 +41,7 @@ package org.omg.CORBA;
  *        "argumentIdentifier", myAny, org.omg.CORBA.ARG_OUT.value);
  * </PRE>
  *
- * @see     NamedValue
+ * @see     org.omg.CORBA.NamedValue
  * @since   JDK1.2
  */
 public interface ARG_OUT {

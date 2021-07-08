@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2015, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -377,7 +377,7 @@ public final class DateTimeFormatterBuilder {
      * The parser for a variable width value such as this normally behaves greedily,
      * requiring one digit, but accepting as many digits as possible.
      * This behavior can be affected by 'adjacent value parsing'.
-     * See {@link #appendValue(TemporalField, int)} for full details.
+     * See {@link #appendValue(java.time.temporal.TemporalField, int)} for full details.
      *
      * @param field  the field to append, not null
      * @return this, for chaining, not null
@@ -459,7 +459,7 @@ public final class DateTimeFormatterBuilder {
      * The parser for a variable width value such as this normally behaves greedily,
      * accepting as many digits as possible.
      * This behavior can be affected by 'adjacent value parsing'.
-     * See {@link #appendValue(TemporalField, int)} for full details.
+     * See {@link #appendValue(java.time.temporal.TemporalField, int)} for full details.
      * <p>
      * In strict parsing mode, the minimum number of parsed digits is {@code minWidth}
      * and the maximum is {@code maxWidth}.
@@ -772,11 +772,22 @@ public final class DateTimeFormatterBuilder {
         final LocaleStore store = new LocaleStore(map);
         DateTimeTextProvider provider = new DateTimeTextProvider() {
             @Override
+            public String getText(Chronology chrono, TemporalField field,
+                                  long value, TextStyle style, Locale locale) {
+                return store.getText(value, style);
+            }
+            @Override
             public String getText(TemporalField field, long value, TextStyle style, Locale locale) {
                 return store.getText(value, style);
             }
             @Override
-            public Iterator<Entry<String, Long>> getTextIterator(TemporalField field, TextStyle style, Locale locale) {
+            public Iterator<Entry<String, Long>> getTextIterator(Chronology chrono,
+                    TemporalField field, TextStyle style, Locale locale) {
+                return store.getTextIterator(style);
+            }
+            @Override
+            public Iterator<Entry<String, Long>> getTextIterator(TemporalField field,
+                    TextStyle style, Locale locale) {
                 return store.getTextIterator(style);
             }
         };
@@ -1299,7 +1310,7 @@ public final class DateTimeFormatterBuilder {
      */
     public DateTimeFormatterBuilder appendLiteral(String literal) {
         Objects.requireNonNull(literal, "literal");
-        if (literal.length() > 0) {
+        if (!literal.isEmpty()) {
             if (literal.length() == 1) {
                 appendInternal(new CharLiteralPrinterParser(literal.charAt(0)));
             } else {
@@ -1678,7 +1689,7 @@ public final class DateTimeFormatterBuilder {
                     throw new IllegalArgumentException("Pattern ends with an incomplete string literal: " + pattern);
                 }
                 String str = pattern.substring(start + 1, pos);
-                if (str.length() == 0) {
+                if (str.isEmpty()) {
                     appendLiteral('\'');
                 } else {
                     appendLiteral(str.replace("''", "'"));
@@ -2598,7 +2609,7 @@ public final class DateTimeFormatterBuilder {
          * minWidth, maxWidth, signStyle and whether subsequent fields are fixed.
          * @param context the context
          * @return true if the field is fixed width
-         * @see DateTimeFormatterBuilder#appendValue(TemporalField, int)
+         * @see DateTimeFormatterBuilder#appendValue(java.time.temporal.TemporalField, int)
          */
         boolean isFixedWidth(DateTimeParseContext context) {
             return subsequentWidth == -1 ||
@@ -2876,7 +2887,7 @@ public final class DateTimeFormatterBuilder {
          * otherwise it is set as for NumberPrinterParser.
          * @param context the context
          * @return if the field is fixed width
-         * @see DateTimeFormatterBuilder#appendValueReduced(TemporalField, int, int, int)
+         * @see DateTimeFormatterBuilder#appendValueReduced(java.time.temporal.TemporalField, int, int, int)
          */
         @Override
         boolean isFixedWidth(DateTimeParseContext context) {
@@ -3005,7 +3016,7 @@ public final class DateTimeFormatterBuilder {
          * Converts a value for this field to a fraction between 0 and 1.
          * <p>
          * The fractional value is between 0 (inclusive) and 1 (exclusive).
-         * It can only be returned if the {@link TemporalField#range() value range} is fixed.
+         * It can only be returned if the {@link java.time.temporal.TemporalField#range() value range} is fixed.
          * The fraction is obtained by calculation from the field range using 9 decimal
          * places and a rounding mode of {@link RoundingMode#FLOOR FLOOR}.
          * The calculation is inaccurate if the values do not run continuously from smallest to largest.
@@ -3032,7 +3043,7 @@ public final class DateTimeFormatterBuilder {
          * Converts a fraction from 0 to 1 for this field to a value.
          * <p>
          * The fractional value must be between 0 (inclusive) and 1 (exclusive).
-         * It can only be returned if the {@link TemporalField#range() value range} is fixed.
+         * It can only be returned if the {@link java.time.temporal.TemporalField#range() value range} is fixed.
          * The value is obtained by calculation from the field range and a rounding
          * mode of {@link RoundingMode#FLOOR FLOOR}.
          * The calculation is inaccurate if the values do not run continuously from smallest to largest.
@@ -3923,7 +3934,7 @@ public final class DateTimeFormatterBuilder {
             this.key = k;
             this.value = v;
             this.child = child;
-            if (k.length() == 0){
+            if (k.isEmpty()) {
                 c0 = 0xffff;
             } else {
                 c0 = key.charAt(0);

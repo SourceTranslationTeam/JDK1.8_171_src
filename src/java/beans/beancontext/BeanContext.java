@@ -45,12 +45,12 @@ import java.util.Locale;
  * @since 1.2
  *
  * @see java.beans.Beans
- * @see BeanContextChild
- * @see BeanContextMembershipListener
+ * @see java.beans.beancontext.BeanContextChild
+ * @see java.beans.beancontext.BeanContextMembershipListener
  * @see java.beans.PropertyChangeEvent
- * @see DesignMode
- * @see Visibility
- * @see Collection
+ * @see java.beans.DesignMode
+ * @see java.beans.Visibility
+ * @see java.util.Collection
  */
 
 @SuppressWarnings("rawtypes")

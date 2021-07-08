@@ -409,7 +409,7 @@ public class MetalScrollBarUI extends BasicScrollBarUI
 
 
 
-    class ScrollBarListener extends PropertyChangeHandler
+    class ScrollBarListener extends BasicScrollBarUI.PropertyChangeHandler
     {
         public void propertyChange(PropertyChangeEvent e)
         {

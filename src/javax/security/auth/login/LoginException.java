@@ -28,7 +28,7 @@ package javax.security.auth.login;
 /**
  * This is the basic login exception.
  *
- * @see LoginContext
+ * @see javax.security.auth.login.LoginContext
  */
 
 public class LoginException extends java.security.GeneralSecurityException {

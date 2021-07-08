@@ -41,14 +41,14 @@ public class RuntimeErrorException extends JMRuntimeException   {
     /**
      * @serial The encapsulated {@link Error}
      */
-    private Error error ;
+    private java.lang.Error error ;
 
     /**
      * Default constructor.
      *
      * @param e the wrapped error.
      */
-    public RuntimeErrorException(Error e) {
+    public RuntimeErrorException(java.lang.Error e) {
       super();
       error = e ;
     }
@@ -59,7 +59,7 @@ public class RuntimeErrorException extends JMRuntimeException   {
      * @param e the wrapped error.
      * @param message the detail message.
      */
-    public RuntimeErrorException(Error e, String message) {
+    public RuntimeErrorException(java.lang.Error e, String message) {
        super(message);
        error = e ;
     }
@@ -69,7 +69,7 @@ public class RuntimeErrorException extends JMRuntimeException   {
      *
      * @return the wrapped {@link Error}.
      */
-    public Error getTargetError()  {
+    public java.lang.Error getTargetError()  {
         return error ;
     }
 

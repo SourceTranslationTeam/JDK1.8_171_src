@@ -46,12 +46,12 @@ import java.util.Vector;
  * </blockquote>
  *
  * <p>AttributeList implements the deprecated SAX1 {@link
- * AttributeList AttributeList} interface, and has been
- * replaced by the new SAX2 {@link AttributesImpl
+ * org.xml.sax.AttributeList AttributeList} interface, and has been
+ * replaced by the new SAX2 {@link org.xml.sax.helpers.AttributesImpl
  * AttributesImpl} interface.</p>
  *
  * <p>This class provides a convenience implementation of the SAX
- * {@link AttributeList AttributeList} interface.  This
+ * {@link org.xml.sax.AttributeList AttributeList} interface.  This
  * implementation is useful both for SAX parser writers, who can use
  * it to provide attributes to the application, and for SAX application
  * writers, who can use it to create a persistent copy of an element's
@@ -76,15 +76,15 @@ import java.util.Vector;
  * implementations.</p>
  *
  * @deprecated This class implements a deprecated interface,
- *             {@link AttributeList AttributeList};
+ *             {@link org.xml.sax.AttributeList AttributeList};
  *             that interface has been replaced by
  *             {@link org.xml.sax.Attributes Attributes},
  *             which is implemented in the
- *             {@link AttributesImpl
+ *             {@link org.xml.sax.helpers.AttributesImpl
  *            AttributesImpl} helper class.
  * @since SAX 1.0
  * @author David Megginson
- * @see AttributeList
+ * @see org.xml.sax.AttributeList
  * @see org.xml.sax.DocumentHandler#startElement
  */
 public class AttributeListImpl implements AttributeList
@@ -222,7 +222,7 @@ public class AttributeListImpl implements AttributeList
      * Return the number of attributes in the list.
      *
      * @return The number of attributes in the list.
-     * @see AttributeList#getLength
+     * @see org.xml.sax.AttributeList#getLength
      */
     public int getLength ()
     {
@@ -236,7 +236,7 @@ public class AttributeListImpl implements AttributeList
      * @param i The position of the attribute in the list.
      * @return The attribute name as a string, or null if there
      *         is no attribute at that position.
-     * @see AttributeList#getName(int)
+     * @see org.xml.sax.AttributeList#getName(int)
      */
     public String getName (int i)
     {
@@ -259,7 +259,7 @@ public class AttributeListImpl implements AttributeList
      *         enumeration, and "CDATA" if no declaration was
      *         read), or null if there is no attribute at
      *         that position.
-     * @see AttributeList#getType(int)
+     * @see org.xml.sax.AttributeList#getType(int)
      */
     public String getType (int i)
     {
@@ -280,7 +280,7 @@ public class AttributeListImpl implements AttributeList
      * @param i The position of the attribute in the list.
      * @return The attribute value as a string, or null if
      *         there is no attribute at that position.
-     * @see AttributeList#getValue(int)
+     * @see org.xml.sax.AttributeList#getValue(int)
      */
     public String getValue (int i)
     {
@@ -302,7 +302,7 @@ public class AttributeListImpl implements AttributeList
      * @return The attribute type as a string ("NMTOKEN" for an
      *         enumeration, and "CDATA" if no declaration was
      *         read).
-     * @see AttributeList#getType(String)
+     * @see org.xml.sax.AttributeList#getType(java.lang.String)
      */
     public String getType (String name)
     {
@@ -314,7 +314,7 @@ public class AttributeListImpl implements AttributeList
      * Get the value of an attribute (by name).
      *
      * @param name The attribute name.
-     * @see AttributeList#getValue(String)
+     * @see org.xml.sax.AttributeList#getValue(java.lang.String)
      */
     public String getValue (String name)
     {

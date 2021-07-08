@@ -39,7 +39,7 @@ import sun.misc.JarIndex;
  *
  * @author  David Connelly
  * @see     Manifest
- * @see     ZipInputStream
+ * @see     java.util.zip.ZipInputStream
  * @since   1.2
  */
 public

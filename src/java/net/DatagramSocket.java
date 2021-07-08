@@ -59,8 +59,8 @@ import java.security.PrivilegedExceptionAction;
  * UDP port 8888.
  *
  * @author  Pavani Diwanji
- * @see     DatagramPacket
- * @see     DatagramChannel
+ * @see     java.net.DatagramPacket
+ * @see     java.nio.channels.DatagramChannel
  * @since JDK1.0
  */
 public
@@ -422,11 +422,11 @@ class DatagramSocket implements java.io.Closeable {
      * access to the remote address. Specifically, if the given {@code address}
      * is a {@link InetAddress#isMulticastAddress multicast address},
      * the security manager's {@link
-     * SecurityManager#checkMulticast(InetAddress)
+     * java.lang.SecurityManager#checkMulticast(InetAddress)
      * checkMulticast} method is invoked with the given {@code address}.
      * Otherwise, the security manager's {@link
-     * SecurityManager#checkConnect(String,int) checkConnect}
-     * and {@link SecurityManager#checkAccept checkAccept} methods
+     * java.lang.SecurityManager#checkConnect(String,int) checkConnect}
+     * and {@link java.lang.SecurityManager#checkAccept checkAccept} methods
      * are invoked, with the given {@code address} and {@code port}, to
      * verify that datagrams are permitted to be sent and received
      * respectively.
@@ -645,7 +645,7 @@ class DatagramSocket implements java.io.Closeable {
      * @exception  IllegalArgumentException if the socket is connected,
      *             and connected address and packet address differ.
      *
-     * @see        DatagramPacket
+     * @see        java.net.DatagramPacket
      * @see        SecurityManager#checkMulticast(InetAddress)
      * @see        SecurityManager#checkConnect
      * @revised 1.4
@@ -720,8 +720,8 @@ class DatagramSocket implements java.io.Closeable {
      * @exception  java.nio.channels.IllegalBlockingModeException
      *             if this socket has an associated channel,
      *             and the channel is in non-blocking mode.
-     * @see        DatagramPacket
-     * @see        DatagramSocket
+     * @see        java.net.DatagramPacket
+     * @see        java.net.DatagramSocket
      * @revised 1.4
      * @spec JSR-51
      */
@@ -1048,7 +1048,7 @@ class DatagramSocket implements java.io.Closeable {
      * For UDP sockets it may be necessary to bind more than one
      * socket to the same socket address. This is typically for the
      * purpose of receiving multicast packets
-     * (See {@link MulticastSocket}). The
+     * (See {@link java.net.MulticastSocket}). The
      * {@code SO_REUSEADDR} socket option allows multiple
      * sockets to be bound to the same socket address if the
      * {@code SO_REUSEADDR} socket option is enabled prior
@@ -1248,11 +1248,11 @@ class DatagramSocket implements java.io.Closeable {
     }
 
     /**
-     * Returns the unique {@link DatagramChannel} object
+     * Returns the unique {@link java.nio.channels.DatagramChannel} object
      * associated with this datagram socket, if any.
      *
      * <p> A datagram socket will have a channel if, and only if, the channel
-     * itself was created via the {@link DatagramChannel#open
+     * itself was created via the {@link java.nio.channels.DatagramChannel#open
      * DatagramChannel.open} method.
      *
      * @return  the datagram channel associated with this datagram socket,
@@ -1294,7 +1294,7 @@ class DatagramSocket implements java.io.Closeable {
      *             {@code checkSetFactory} method doesn't allow the
      operation.
      * @see
-     DatagramSocketImplFactory#createDatagramSocketImpl()
+     java.net.DatagramSocketImplFactory#createDatagramSocketImpl()
      * @see       SecurityManager#checkSetFactory
      * @since 1.3
      */

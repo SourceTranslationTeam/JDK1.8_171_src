@@ -93,10 +93,10 @@ import java.util.List;
  * {@code type} (class name) for the underlying permission
  * that has not been resolved.
  *
- * @see Permission
- * @see Permissions
- * @see PermissionCollection
- * @see Policy
+ * @see java.security.Permission
+ * @see java.security.Permissions
+ * @see java.security.PermissionCollection
+ * @see java.security.Policy
  *
  *
  * @author Roland Schemers
@@ -134,7 +134,7 @@ implements java.io.Serializable
      */
     private String actions;
 
-    private transient Certificate certs[];
+    private transient java.security.cert.Certificate certs[];
 
     /**
      * Creates a new UnresolvedPermission containing the permission
@@ -156,7 +156,7 @@ implements java.io.Serializable
     public UnresolvedPermission(String type,
                                 String name,
                                 String actions,
-                                Certificate certs[])
+                                java.security.cert.Certificate certs[])
     {
         super(type);
 
@@ -199,7 +199,7 @@ implements java.io.Serializable
 
                 if (this.certs == null) {
                     // extract the signer certs
-                    ArrayList<Certificate> signerCerts =
+                    ArrayList<java.security.cert.Certificate> signerCerts =
                         new ArrayList<>();
                     i = 0;
                     while (i < certs.length) {
@@ -212,7 +212,7 @@ implements java.io.Serializable
                         i++;
                     }
                     this.certs =
-                        new Certificate[signerCerts.size()];
+                        new java.security.cert.Certificate[signerCerts.size()];
                     signerCerts.toArray(this.certs);
                 }
             }
@@ -228,7 +228,7 @@ implements java.io.Serializable
      * try and resolve this permission using the class loader of the permission
      * that was passed in.
      */
-    Permission resolve(Permission p, Certificate certs[]) {
+    Permission resolve(Permission p, java.security.cert.Certificate certs[]) {
         if (this.certs != null) {
             // if p wasn't signed, we don't have a match
             if (certs == null) {
@@ -477,7 +477,7 @@ implements java.io.Serializable
      *
      * @since 1.5
      */
-    public Certificate[] getUnresolvedCerts() {
+    public java.security.cert.Certificate[] getUnresolvedCerts() {
         return (certs == null) ? null : certs.clone();
     }
 
@@ -532,7 +532,7 @@ implements java.io.Serializable
             oos.writeInt(certs.length);
             // write out each cert, including its type
             for (int i=0; i < certs.length; i++) {
-                Certificate cert = certs[i];
+                java.security.cert.Certificate cert = certs[i];
                 try {
                     oos.writeUTF(cert.getType());
                     byte[] encoded = cert.getEncoded();
@@ -590,7 +590,7 @@ implements java.io.Serializable
                 cfs.put(certType, cf);
             }
             // parse the certificate
-            byte[] encoded = IOUtils.readNBytes(ois, ois.readInt());
+            byte[] encoded = IOUtils.readExactlyNBytes(ois, ois.readInt());
             ByteArrayInputStream bais = new ByteArrayInputStream(encoded);
             try {
                 certList.add(cf.generateCertificate(bais));
@@ -601,7 +601,7 @@ implements java.io.Serializable
         }
         if (certList != null) {
             this.certs = certList.toArray(
-                    new Certificate[size]);
+                    new java.security.cert.Certificate[size]);
         }
     }
 }

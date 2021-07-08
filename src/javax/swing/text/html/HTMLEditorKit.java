@@ -1135,7 +1135,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     if ((ws != null) && ws.equals("pre")) {
                         return new LineView(elem);
                     }
-                    return new ParagraphView(elem);
+                    return new javax.swing.text.html.ParagraphView(elem);
                 } else if ((kind == HTML.Tag.P) ||
                            (kind == HTML.Tag.H1) ||
                            (kind == HTML.Tag.H2) ||
@@ -1145,7 +1145,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                            (kind == HTML.Tag.H6) ||
                            (kind == HTML.Tag.DT)) {
                     // paragraph
-                    return new ParagraphView(elem);
+                    return new javax.swing.text.html.ParagraphView(elem);
                 } else if ((kind == HTML.Tag.MENU) ||
                            (kind == HTML.Tag.DIR) ||
                            (kind == HTML.Tag.UL)   ||
@@ -1176,7 +1176,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 } else if (kind == HTML.Tag.BR) {
                     return new BRView(elem);
                 } else if (kind == HTML.Tag.TABLE) {
-                    return new TableView(elem);
+                    return new javax.swing.text.html.TableView(elem);
                 } else if ((kind == HTML.Tag.INPUT) ||
                            (kind == HTML.Tag.SELECT) ||
                            (kind == HTML.Tag.TEXTAREA)) {
@@ -1275,9 +1275,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 Container container = getContainer();
                 Container parentContainer;
                 if (container != null
-                    && (container instanceof JEditorPane)
+                    && (container instanceof javax.swing.JEditorPane)
                     && (parentContainer = container.getParent()) != null
-                    && (parentContainer instanceof JViewport)) {
+                    && (parentContainer instanceof javax.swing.JViewport)) {
                     JViewport viewPort = (JViewport)parentContainer;
                     if (cachedViewPort != null) {
                         JViewport cachedObject = cachedViewPort.get();

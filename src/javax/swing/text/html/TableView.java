@@ -931,7 +931,7 @@ import javax.swing.text.*;
             } else if ((kind == HTML.Tag.TD) || (kind == HTML.Tag.TH)) {
                 return new CellView(elem);
             } else if (kind == HTML.Tag.CAPTION) {
-                return new ParagraphView(elem);
+                return new javax.swing.text.html.ParagraphView(elem);
             }
         }
         // default is to delegate to the normal factory

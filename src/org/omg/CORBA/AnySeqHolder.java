@@ -37,30 +37,30 @@ package org.omg.CORBA;
 
 public final class AnySeqHolder implements org.omg.CORBA.portable.Streamable
 {
-    public Any value[] = null;
+    public org.omg.CORBA.Any value[] = null;
 
     public AnySeqHolder ()
     {
     }
 
-    public AnySeqHolder (Any[] initialValue)
+    public AnySeqHolder (org.omg.CORBA.Any[] initialValue)
     {
         value = initialValue;
     }
 
     public void _read (org.omg.CORBA.portable.InputStream i)
     {
-        value = AnySeqHelper.read (i);
+        value = org.omg.CORBA.AnySeqHelper.read (i);
     }
 
     public void _write (org.omg.CORBA.portable.OutputStream o)
     {
-        AnySeqHelper.write (o, value);
+        org.omg.CORBA.AnySeqHelper.write (o, value);
     }
 
-    public TypeCode _type ()
+    public org.omg.CORBA.TypeCode _type ()
     {
-        return AnySeqHelper.type ();
+        return org.omg.CORBA.AnySeqHelper.type ();
     }
 
 }

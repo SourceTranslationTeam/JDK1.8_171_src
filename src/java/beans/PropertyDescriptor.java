@@ -671,7 +671,7 @@ public class PropertyDescriptor extends FeatureDescriptor {
 
     /**
      * Returns a hash code value for the object.
-     * See {@link Object#hashCode} for a complete description.
+     * See {@link java.lang.Object#hashCode} for a complete description.
      *
      * @return a hash code value for this object.
      * @since 1.5
@@ -715,7 +715,7 @@ public class PropertyDescriptor extends FeatureDescriptor {
         appendTo(sb, "writeMethod", this.writeMethodRef.get());
     }
 
-    private boolean isAssignable(Method m1, Method m2) {
+    boolean isAssignable(Method m1, Method m2) {
         if (m1 == null) {
             return true; // choose second method
         }

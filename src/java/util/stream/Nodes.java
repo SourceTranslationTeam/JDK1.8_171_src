@@ -785,7 +785,7 @@ final class Nodes {
 
         @Override
         public Spliterator<T> spliterator() {
-            return new InternalNodeSpliterator.OfRef<>(this);
+            return new Nodes.InternalNodeSpliterator.OfRef<>(this);
         }
 
         @Override
@@ -881,10 +881,10 @@ final class Nodes {
         }
 
         static final class OfInt
-                extends OfPrimitive<Integer, IntConsumer, int[], Spliterator.OfInt, Node.OfInt>
+                extends ConcNode.OfPrimitive<Integer, IntConsumer, int[], Spliterator.OfInt, Node.OfInt>
                 implements Node.OfInt {
 
-            OfInt(OfInt left, OfInt right) {
+            OfInt(Node.OfInt left, Node.OfInt right) {
                 super(left, right);
             }
 
@@ -895,10 +895,10 @@ final class Nodes {
         }
 
         static final class OfLong
-                extends OfPrimitive<Long, LongConsumer, long[], Spliterator.OfLong, Node.OfLong>
+                extends ConcNode.OfPrimitive<Long, LongConsumer, long[], Spliterator.OfLong, Node.OfLong>
                 implements Node.OfLong {
 
-            OfLong(OfLong left, OfLong right) {
+            OfLong(Node.OfLong left, Node.OfLong right) {
                 super(left, right);
             }
 
@@ -909,10 +909,10 @@ final class Nodes {
         }
 
         static final class OfDouble
-                extends OfPrimitive<Double, DoubleConsumer, double[], Spliterator.OfDouble, Node.OfDouble>
+                extends ConcNode.OfPrimitive<Double, DoubleConsumer, double[], Spliterator.OfDouble, Node.OfDouble>
                 implements Node.OfDouble {
 
-            OfDouble(OfDouble left, OfDouble right) {
+            OfDouble(Node.OfDouble left, Node.OfDouble right) {
                 super(left, right);
             }
 

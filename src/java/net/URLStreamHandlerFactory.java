@@ -33,8 +33,8 @@ package java.net;
  * {@code URLStreamHandler} for a specific protocol.
  *
  * @author  Arthur van Hoff
- * @see     URL
- * @see     URLStreamHandler
+ * @see     java.net.URL
+ * @see     java.net.URLStreamHandler
  * @since   JDK1.0
  */
 public interface URLStreamHandlerFactory {
@@ -45,7 +45,7 @@ public interface URLStreamHandlerFactory {
      * @param   protocol   the protocol ("{@code ftp}",
      *                     "{@code http}", "{@code nntp}", etc.).
      * @return  a {@code URLStreamHandler} for the specific protocol.
-     * @see     URLStreamHandler
+     * @see     java.net.URLStreamHandler
      */
     URLStreamHandler createURLStreamHandler(String protocol);
 }

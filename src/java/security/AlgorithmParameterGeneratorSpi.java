@@ -47,7 +47,7 @@ import java.security.spec.AlgorithmParameterSpec;
  *
  * @see AlgorithmParameterGenerator
  * @see AlgorithmParameters
- * @see AlgorithmParameterSpec
+ * @see java.security.spec.AlgorithmParameterSpec
  *
  * @since 1.2
  */

@@ -60,7 +60,7 @@ import java.security.PrivilegedAction;
  *
  * @author David Mendenhall
  *
- * @see Comparator
+ * @see java.util.Comparator
  * @since 1.4
  */
 public class SortingFocusTraversalPolicy

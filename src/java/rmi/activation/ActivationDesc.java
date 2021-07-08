@@ -47,7 +47,7 @@ import java.rmi.MarshalledObject;
  *
  * @author      Ann Wollrath
  * @since       1.2
- * @see         Activatable
+ * @see         java.rmi.activation.Activatable
  */
 public final class ActivationDesc implements Serializable {
 

@@ -108,7 +108,7 @@ public interface Blob {
    * @see #setBinaryStream
    * @since 1.2
    */
-  InputStream getBinaryStream() throws SQLException;
+  java.io.InputStream getBinaryStream () throws SQLException;
 
   /**
    * Retrieves the byte position at which the specified byte array

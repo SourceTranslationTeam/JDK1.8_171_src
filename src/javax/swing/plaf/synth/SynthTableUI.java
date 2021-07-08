@@ -55,7 +55,7 @@ import javax.swing.table.TableColumnModel;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JTable}.
+ * {@link javax.swing.JTable}.
  *
  * @author Philip Milne
  * @since 1.7

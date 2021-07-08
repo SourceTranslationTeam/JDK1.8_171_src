@@ -50,17 +50,17 @@ public final class CharSeqHolder implements org.omg.CORBA.portable.Streamable
 
     public void _read (org.omg.CORBA.portable.InputStream i)
     {
-        value = CharSeqHelper.read (i);
+        value = org.omg.CORBA.CharSeqHelper.read (i);
     }
 
     public void _write (org.omg.CORBA.portable.OutputStream o)
     {
-        CharSeqHelper.write (o, value);
+        org.omg.CORBA.CharSeqHelper.write (o, value);
     }
 
-    public TypeCode _type ()
+    public org.omg.CORBA.TypeCode _type ()
     {
-        return CharSeqHelper.type ();
+        return org.omg.CORBA.CharSeqHelper.type ();
     }
 
 }

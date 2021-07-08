@@ -31,7 +31,7 @@ package java.net;
  * implementations.
  *
  * @author  Yingxian Wang
- * @see     DatagramSocket
+ * @see     java.net.DatagramSocket
  * @since   1.3
  */
 public
@@ -40,7 +40,7 @@ interface DatagramSocketImplFactory {
      * Creates a new {@code DatagramSocketImpl} instance.
      *
      * @return  a new instance of {@code DatagramSocketImpl}.
-     * @see     DatagramSocketImpl
+     * @see     java.net.DatagramSocketImpl
      */
     DatagramSocketImpl createDatagramSocketImpl();
 }

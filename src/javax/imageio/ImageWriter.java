@@ -58,7 +58,7 @@ import javax.imageio.spi.ImageWriterSpi;
  * @see ImageReader
  * @see ImageWriteParam
  * @see javax.imageio.spi.IIORegistry
- * @see ImageWriterSpi
+ * @see javax.imageio.spi.ImageWriterSpi
  *
  */
 public abstract class ImageWriter implements ImageTranscoder {

@@ -33,7 +33,7 @@ import sun.swing.MenuItemLayoutHelper;
 
 /**
  * Provides the Synth L&amp;F UI delegate for
- * {@link JMenu}.
+ * {@link javax.swing.JMenu}.
  *
  * @author Georges Saab
  * @author David Karlton

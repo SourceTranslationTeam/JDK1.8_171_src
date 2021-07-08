@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2020, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -135,7 +135,7 @@ class Invokers {
 
     private boolean checkInvoker(MethodHandle invoker) {
         assert(targetType.invokerType().equals(invoker.type()))
-                : Arrays.asList(targetType, targetType.invokerType(), invoker);
+                : java.util.Arrays.asList(targetType, targetType.invokerType(), invoker);
         assert(invoker.internalMemberName() == null ||
                invoker.internalMemberName().getMethodType().equals(targetType));
         assert(!invoker.isVarargsCollector());
@@ -331,7 +331,7 @@ class Invokers {
          *  => checkcast(A)* & MH.invokeBasic(a*) & checkcast(R)
          * if a big adapter BA can be pulled out of (MT0,MT1)
          *  => BA.invokeBasic(MT0,MH,a*)
-         * if a local adapter LA can cached on static CS0 = new GICS(MT0)
+         * if a local adapter LA can be cached on static CS0 = new GICS(MT0)
          *  => CS0.LA.invokeBasic(MH,a*)
          * else
          *  => MH.asType(MT0).invokeBasic(A*)

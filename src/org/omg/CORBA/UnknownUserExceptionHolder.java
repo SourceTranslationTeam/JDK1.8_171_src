@@ -36,30 +36,30 @@ package org.omg.CORBA;
 
 public final class UnknownUserExceptionHolder implements org.omg.CORBA.portable.Streamable
 {
-  public UnknownUserException value = null;
+  public org.omg.CORBA.UnknownUserException value = null;
 
   public UnknownUserExceptionHolder ()
   {
   }
 
-  public UnknownUserExceptionHolder (UnknownUserException initialValue)
+  public UnknownUserExceptionHolder (org.omg.CORBA.UnknownUserException initialValue)
   {
     value = initialValue;
   }
 
   public void _read (org.omg.CORBA.portable.InputStream i)
   {
-    value = UnknownUserExceptionHelper.read (i);
+    value = org.omg.CORBA.UnknownUserExceptionHelper.read (i);
   }
 
   public void _write (org.omg.CORBA.portable.OutputStream o)
   {
-    UnknownUserExceptionHelper.write (o, value);
+    org.omg.CORBA.UnknownUserExceptionHelper.write (o, value);
   }
 
-  public TypeCode _type ()
+  public org.omg.CORBA.TypeCode _type ()
   {
-    return UnknownUserExceptionHelper.type ();
+    return org.omg.CORBA.UnknownUserExceptionHelper.type ();
   }
 
 }

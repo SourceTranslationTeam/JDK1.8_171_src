@@ -101,7 +101,7 @@ public final class LongHolder implements Streamable {
      *
      * @return    the TypeCode of the value held in the holder
      */
-    public TypeCode _type() {
+    public org.omg.CORBA.TypeCode _type() {
         return ORB.init().get_primitive_tc(TCKind.tk_longlong);
     }
 

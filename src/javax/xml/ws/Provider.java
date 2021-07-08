@@ -42,7 +42,7 @@ package javax.xml.ws;
  *
  *  @see javax.xml.transform.Source
  *  @see javax.xml.soap.SOAPMessage
- *  @see ServiceMode
+ *  @see javax.xml.ws.ServiceMode
 **/
 public interface Provider<T> {
 
@@ -57,7 +57,7 @@ public interface Provider<T> {
    *          of <code>ProtocolException</code> to control the protocol level
    *          representation of the exception.
    *  @see javax.xml.ws.handler.MessageContext
-   *  @see ProtocolException
+   *  @see javax.xml.ws.ProtocolException
   **/
   public T invoke(T request);
 }

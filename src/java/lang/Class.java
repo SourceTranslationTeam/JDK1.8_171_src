@@ -113,7 +113,7 @@ import sun.reflect.misc.ReflectUtil;
  * unknown.
  *
  * @author  unascribed
- * @see     ClassLoader#defineClass(byte[], int, int)
+ * @see     java.lang.ClassLoader#defineClass(byte[], int, int)
  * @since   JDK1.0
  */
 public final class Class<T> implements java.io.Serializable,
@@ -322,8 +322,8 @@ public final class Class<T> implements java.io.Serializable,
      * @exception ClassNotFoundException if the class cannot be located by
      *            the specified class loader
      *
-     * @see       Class#forName(String)
-     * @see       ClassLoader
+     * @see       java.lang.Class#forName(String)
+     * @see       java.lang.ClassLoader
      * @since     1.2
      */
     @CallerSensitive
@@ -365,10 +365,10 @@ public final class Class<T> implements java.io.Serializable,
      * this method effectively bypasses the compile-time exception
      * checking that would otherwise be performed by the compiler.
      * The {@link
-     * Constructor#newInstance(Object...)
+     * java.lang.reflect.Constructor#newInstance(java.lang.Object...)
      * Constructor.newInstance} method avoids this problem by wrapping
      * any exception thrown by the constructor in a (checked) {@link
-     * InvocationTargetException}.
+     * java.lang.reflect.InvocationTargetException}.
      *
      * @return  a newly allocated instance of the class represented by this
      *          object.
@@ -414,8 +414,8 @@ public final class Class<T> implements java.io.Serializable,
                 // since we have to do the security check here anyway
                 // (the stack depth is wrong for the Constructor's
                 // security check to work)
-                AccessController.doPrivileged(
-                    new PrivilegedAction<Void>() {
+                java.security.AccessController.doPrivileged(
+                    new java.security.PrivilegedAction<Void>() {
                         public Void run() {
                                 c.setAccessible(true);
                                 return null;
@@ -547,15 +547,15 @@ public final class Class<T> implements java.io.Serializable,
      *
      * @return true if and only if this class represents a primitive type
      *
-     * @see     Boolean#TYPE
-     * @see     Character#TYPE
-     * @see     Byte#TYPE
-     * @see     Short#TYPE
-     * @see     Integer#TYPE
-     * @see     Long#TYPE
-     * @see     Float#TYPE
-     * @see     Double#TYPE
-     * @see     Void#TYPE
+     * @see     java.lang.Boolean#TYPE
+     * @see     java.lang.Character#TYPE
+     * @see     java.lang.Byte#TYPE
+     * @see     java.lang.Short#TYPE
+     * @see     java.lang.Integer#TYPE
+     * @see     java.lang.Long#TYPE
+     * @see     java.lang.Float#TYPE
+     * @see     java.lang.Double#TYPE
+     * @see     java.lang.Void#TYPE
      * @since JDK1.1
      */
     public native boolean isPrimitive();
@@ -669,9 +669,9 @@ public final class Class<T> implements java.io.Serializable,
      *    if a security manager exists and its
      *    {@code checkPermission} method denies
      *    access to the class loader for the class.
-     * @see ClassLoader
+     * @see java.lang.ClassLoader
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      */
     @CallerSensitive
     public ClassLoader getClassLoader() {
@@ -921,7 +921,7 @@ public final class Class<T> implements java.io.Serializable,
      *
      * @return the {@code Class} representing the component type of this
      * class if this class is an array
-     * @see     Array
+     * @see     java.lang.reflect.Array
      * @since JDK1.1
      */
     public native Class<?> getComponentType();
@@ -951,7 +951,7 @@ public final class Class<T> implements java.io.Serializable,
      * Specification</em>, table 4.1.
      *
      * @return the {@code int} representing the modifiers for this class
-     * @see     Modifier
+     * @see     java.lang.reflect.Modifier
      * @since JDK1.1
      */
     public native int getModifiers();
@@ -977,7 +977,7 @@ public final class Class<T> implements java.io.Serializable,
     /**
      * If this {@code Class} object represents a local or anonymous
      * class within a method, returns a {@link
-     * Method Method} object representing the
+     * java.lang.reflect.Method Method} object representing the
      * immediately enclosing method of the underlying class. Returns
      * {@code null} otherwise.
      *
@@ -1132,7 +1132,7 @@ public final class Class<T> implements java.io.Serializable,
     /**
      * If this {@code Class} object represents a local or anonymous
      * class within a constructor, returns a {@link
-     * Constructor Constructor} object representing
+     * java.lang.reflect.Constructor Constructor} object representing
      * the immediately enclosing constructor of the underlying
      * class. Returns {@code null} otherwise.  In particular, this
      * method returns {@code null} if the underlying class is a local
@@ -1495,8 +1495,8 @@ public final class Class<T> implements java.io.Serializable,
         // out anything other than public members and (2) public member access
         // has already been ok'd by the SecurityManager.
 
-        return AccessController.doPrivileged(
-            new PrivilegedAction<Class<?>[]>() {
+        return java.security.AccessController.doPrivileged(
+            new java.security.PrivilegedAction<Class<?>[]>() {
                 public Class<?>[] run() {
                     List<Class<?>> list = new ArrayList<>();
                     Class<?> currentClass = Class.this;
@@ -1747,7 +1747,7 @@ public final class Class<T> implements java.io.Serializable,
      * increased flexibility in the virtual machine can be used to
      * implement various language features.  For example, covariant
      * returns can be implemented with {@linkplain
-     * Method#isBridge bridge methods}; the bridge
+     * java.lang.reflect.Method#isBridge bridge methods}; the bridge
      * method and the method being overridden would have the same
      * signature but different return types.
      *
@@ -2208,7 +2208,7 @@ public final class Class<T> implements java.io.Serializable,
      * </ul>
      *
      * @param  name name of the desired resource
-     * @return      A {@link InputStream} object or {@code null} if
+     * @return      A {@link java.io.InputStream} object or {@code null} if
      *              no resource with this name is found
      * @throws  NullPointerException If {@code name} is {@code null}
      * @since  JDK1.1
@@ -2290,7 +2290,7 @@ public final class Class<T> implements java.io.Serializable,
      *
      * @see java.security.ProtectionDomain
      * @see SecurityManager#checkPermission
-     * @see RuntimePermission
+     * @see java.lang.RuntimePermission
      * @since 1.2
      */
     public java.security.ProtectionDomain getProtectionDomain() {
@@ -3199,9 +3199,9 @@ public final class Class<T> implements java.io.Serializable,
      * class when it was (or will be) initialized.
      *
      * @return the desired assertion status of the specified class.
-     * @see    ClassLoader#setClassAssertionStatus
-     * @see    ClassLoader#setPackageAssertionStatus
-     * @see    ClassLoader#setDefaultAssertionStatus
+     * @see    java.lang.ClassLoader#setClassAssertionStatus
+     * @see    java.lang.ClassLoader#setPackageAssertionStatus
+     * @see    java.lang.ClassLoader#setDefaultAssertionStatus
      * @since  1.4
      */
     public boolean desiredAssertionStatus() {
@@ -3236,15 +3236,15 @@ public final class Class<T> implements java.io.Serializable,
         // the ENUM bit set; classes for specialized enum constants
         // don't do the former.
         return (this.getModifiers() & ENUM) != 0 &&
-        this.getSuperclass() == Enum.class;
+        this.getSuperclass() == java.lang.Enum.class;
     }
 
     // Fetches the factory for reflective objects
     private static ReflectionFactory getReflectionFactory() {
         if (reflectionFactory == null) {
             reflectionFactory =
-                AccessController.doPrivileged
-                    (new ReflectionFactory.GetReflectionFactoryAction());
+                java.security.AccessController.doPrivileged
+                    (new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
         }
         return reflectionFactory;
     }
@@ -3309,8 +3309,8 @@ public final class Class<T> implements java.io.Serializable,
             if (!isEnum()) return null;
             try {
                 final Method values = getMethod("values");
-                AccessController.doPrivileged(
-                    new PrivilegedAction<Void>() {
+                java.security.AccessController.doPrivileged(
+                    new java.security.PrivilegedAction<Void>() {
                         public Void run() {
                                 values.setAccessible(true);
                                 return null;

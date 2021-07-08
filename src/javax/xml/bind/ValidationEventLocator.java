@@ -78,7 +78,7 @@ public interface ValidationEventLocator {
      * @return a reference to the object in the Java content tree or null if
      *         unavailable
      */
-    public Object getObject();
+    public java.lang.Object getObject();
 
     /**
      * Return a reference to the DOM Node if available

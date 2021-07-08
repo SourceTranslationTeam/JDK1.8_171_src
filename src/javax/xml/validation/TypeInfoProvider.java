@@ -42,7 +42,7 @@ import org.w3c.dom.TypeInfo;
  * {@link ValidatorHandler#getTypeInfoProvider()} method.
  *
  * @author  <a href="mailto:Kohsuke.Kawaguchi@Sun.com">Kohsuke Kawaguchi</a>
- * @see TypeInfo
+ * @see org.w3c.dom.TypeInfo
  * @since 1.5
  */
 public abstract class TypeInfoProvider {

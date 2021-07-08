@@ -66,10 +66,10 @@ import java.util.Set;
  * the current character.
  *
  * <p>
- * Attribute keys are instances of {@link Attribute} and its
+ * Attribute keys are instances of {@link AttributedCharacterIterator.Attribute} and its
  * subclasses, such as {@link java.awt.font.TextAttribute}.
  *
- * @see Attribute
+ * @see AttributedCharacterIterator.Attribute
  * @see java.awt.font.TextAttribute
  * @see AttributedString
  * @see Annotation
@@ -181,7 +181,7 @@ public interface AttributedCharacterIterator extends CharacterIterator {
          * <p>Values are instances of {@link Annotation} holding instances of {@link String}.
          *
          * @see Annotation
-         * @see String
+         * @see java.lang.String
          */
         public static final Attribute READING = new Attribute("reading");
 

@@ -45,7 +45,7 @@ package javax.accessibility;
  * start and end indicies/offsets into a larger body of text that the
  * <code>String</code> comes from.
  *
- * @see AccessibleExtendedText
+ * @see javax.accessibility.AccessibleExtendedText
  */
 public class AccessibleTextSequence {
 

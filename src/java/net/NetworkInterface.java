@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -319,8 +319,20 @@ public final class NetworkInterface {
         if (addr == null) {
             throw new NullPointerException();
         }
-        if (!(addr instanceof Inet4Address || addr instanceof Inet6Address)) {
-            throw new IllegalArgumentException ("invalid address type");
+        if (addr instanceof Inet4Address) {
+            Inet4Address inet4Address = (Inet4Address) addr;
+            if (inet4Address.holder.family != InetAddress.IPv4) {
+                throw new IllegalArgumentException("invalid family type: "
+                        + inet4Address.holder.family);
+            }
+        } else if (addr instanceof Inet6Address) {
+            Inet6Address inet6Address = (Inet6Address) addr;
+            if (inet6Address.holder.family != InetAddress.IPv6) {
+                throw new IllegalArgumentException("invalid family type: "
+                        + inet6Address.holder.family);
+            }
+        } else {
+            throw new IllegalArgumentException("invalid address type: " + addr);
         }
         return getByInetAddress0(addr);
     }
@@ -507,7 +519,7 @@ public final class NetworkInterface {
      * @param   obj   the object to compare against.
      * @return  {@code true} if the objects are the same;
      *          {@code false} otherwise.
-     * @see     InetAddress#getAddress()
+     * @see     java.net.InetAddress#getAddress()
      */
     public boolean equals(Object obj) {
         if (!(obj instanceof NetworkInterface)) {

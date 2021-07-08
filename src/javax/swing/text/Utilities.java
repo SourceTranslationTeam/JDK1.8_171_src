@@ -952,7 +952,7 @@ public class Utilities {
      * Convenience function for determining ComponentOrientation.  Helps us
      * avoid having Munge directives throughout the code.
      */
-    static boolean isLeftToRight( Component c ) {
+    static boolean isLeftToRight( java.awt.Component c ) {
         return c.getComponentOrientation().isLeftToRight();
     }
 

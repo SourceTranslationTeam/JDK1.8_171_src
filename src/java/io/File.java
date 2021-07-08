@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1994, 2021, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
  *
@@ -210,7 +210,7 @@ public class File
      * property <code>file.separator</code>.  On UNIX systems the value of this
      * field is <code>'/'</code>; on Microsoft Windows systems it is <code>'\\'</code>.
      *
-     * @see     System#getProperty(String)
+     * @see     java.lang.System#getProperty(java.lang.String)
      */
     public static final char separatorChar = fs.getSeparator();
 
@@ -229,7 +229,7 @@ public class File
      * On UNIX systems, this character is <code>':'</code>; on Microsoft Windows systems it
      * is <code>';'</code>.
      *
-     * @see     System#getProperty(String)
+     * @see     java.lang.System#getProperty(java.lang.String)
      */
     public static final char pathSeparatorChar = fs.getPathSeparator();
 
@@ -406,7 +406,7 @@ public class File
      *          If the preconditions on the parameter do not hold
      *
      * @see #toURI()
-     * @see URI
+     * @see java.net.URI
      * @since 1.4
      */
     public File(URI uri) {
@@ -498,6 +498,9 @@ public class File
     public File getParentFile() {
         String p = this.getParent();
         if (p == null) return null;
+        if (getClass() != File.class) {
+            p = fs.normalize(p);
+        }
         return new File(p, this.prefixLength);
     }
 
@@ -550,7 +553,7 @@ public class File
      * @throws  SecurityException
      *          If a required system property value cannot be accessed.
      *
-     * @see     File#isAbsolute()
+     * @see     java.io.File#isAbsolute()
      */
     public String getAbsolutePath() {
         return fs.resolve(this);
@@ -570,6 +573,9 @@ public class File
      */
     public File getAbsoluteFile() {
         String absPath = getAbsolutePath();
+        if (getClass() != File.class) {
+            absPath = fs.normalize(absPath);
+        }
         return new File(absPath, fs.prefixLength(absPath));
     }
 
@@ -605,7 +611,7 @@ public class File
      * @throws  SecurityException
      *          If a required system property value cannot be accessed, or
      *          if a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead}</code> method denies
+     *          java.lang.SecurityManager#checkRead}</code> method denies
      *          read access to the file
      *
      * @since   JDK1.1
@@ -633,7 +639,7 @@ public class File
      * @throws  SecurityException
      *          If a required system property value cannot be accessed, or
      *          if a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead}</code> method denies
+     *          java.lang.SecurityManager#checkRead}</code> method denies
      *          read access to the file
      *
      * @since 1.2
@@ -641,6 +647,9 @@ public class File
      */
     public File getCanonicalFile() throws IOException {
         String canonPath = getCanonicalPath();
+        if (getClass() != File.class) {
+            canonPath = fs.normalize(canonPath);
+        }
         return new File(canonPath, fs.prefixLength(canonPath));
     }
 
@@ -667,16 +676,16 @@ public class File
      *          If the path cannot be parsed as a URL
      *
      * @see     #toURI()
-     * @see     URI
-     * @see     URI#toURL()
-     * @see     URL
+     * @see     java.net.URI
+     * @see     java.net.URI#toURL()
+     * @see     java.net.URL
      * @since   1.2
      *
      * @deprecated This method does not automatically escape characters that
      * are illegal in URLs.  It is recommended that new code convert an
      * abstract pathname into a URL by first converting it into a URI, via the
      * {@link #toURI() toURI} method, and then converting the URI into a URL
-     * via the {@link URI#toURL() URI.toURL} method.
+     * via the {@link java.net.URI#toURL() URI.toURL} method.
      */
     @Deprecated
     public URL toURL() throws MalformedURLException {
@@ -696,7 +705,7 @@ public class File
      * <p> For a given abstract pathname <i>f</i>, it is guaranteed that
      *
      * <blockquote><tt>
-     * new {@link #File(URI) File}(</tt><i>&nbsp;f</i><tt>.toURI()).equals(</tt><i>&nbsp;f</i><tt>.{@link #getAbsoluteFile() getAbsoluteFile}())
+     * new {@link #File(java.net.URI) File}(</tt><i>&nbsp;f</i><tt>.toURI()).equals(</tt><i>&nbsp;f</i><tt>.{@link #getAbsoluteFile() getAbsoluteFile}())
      * </tt></blockquote>
      *
      * so long as the original abstract pathname, the URI, and the new abstract
@@ -721,9 +730,9 @@ public class File
      * @throws SecurityException If a required system property value cannot
      * be accessed.
      *
-     * @see #File(URI)
-     * @see URI
-     * @see URI#toURL()
+     * @see #File(java.net.URI)
+     * @see java.net.URI
+     * @see java.net.URI#toURL()
      * @since 1.4
      */
     public URI toURI() {
@@ -754,7 +763,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file
      */
     public boolean canRead() {
@@ -782,7 +791,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
      */
     public boolean canWrite() {
@@ -805,7 +814,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file or directory
      */
     public boolean exists() {
@@ -835,7 +844,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file
      */
     public boolean isDirectory() {
@@ -868,7 +877,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file
      */
     public boolean isFile() {
@@ -895,7 +904,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file
      *
      * @since 1.2
@@ -929,7 +938,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file
      */
     public long lastModified() {
@@ -960,7 +969,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method denies read access to the file
      */
     public long length() {
@@ -998,7 +1007,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
      *
      * @since 1.2
@@ -1027,7 +1036,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkDelete}</code> method denies
+     *          java.lang.SecurityManager#checkDelete}</code> method denies
      *          delete access to the file
      */
     public boolean delete() {
@@ -1061,7 +1070,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkDelete}</code> method denies
+     *          java.lang.SecurityManager#checkDelete}</code> method denies
      *          delete access to the file
      *
      * @see #delete
@@ -1077,6 +1086,41 @@ public class File
             return;
         }
         DeleteOnExitHook.add(path);
+    }
+
+    /**
+     * Returns an array of strings naming the files and directories in the
+     * directory denoted by this abstract pathname.  The strings are
+     * ensured to represent normalized paths.
+     *
+     * @return  An array of strings naming the files and directories in the
+     *          directory denoted by this abstract pathname.  The array will be
+     *          empty if the directory is empty.  Returns {@code null} if
+     *          this abstract pathname does not denote a directory, or if an
+     *          I/O error occurs.
+     *
+     * @throws  SecurityException
+     *          If a security manager exists and its {@link
+     *          SecurityManager#checkRead(String)} method denies read access to
+     *          the directory
+     */
+    private final String[] normalizedList() {
+        SecurityManager security = System.getSecurityManager();
+        if (security != null) {
+            security.checkRead(path);
+        }
+        if (isInvalid()) {
+            return null;
+        }
+        String[] s = fs.list(this);
+        if (s != null && getClass() != File.class) {
+            String[] normalized = new String[s.length];
+            for (int i = 0; i < s.length; i++) {
+                normalized[i] = fs.normalize(s[i]);
+            }
+            s = normalized;
+        }
+        return s;
     }
 
     /**
@@ -1112,14 +1156,7 @@ public class File
      *          the directory
      */
     public String[] list() {
-        SecurityManager security = System.getSecurityManager();
-        if (security != null) {
-            security.checkRead(path);
-        }
-        if (isInvalid()) {
-            return null;
-        }
-        return fs.list(this);
+        return normalizedList();
     }
 
     /**
@@ -1152,7 +1189,7 @@ public class File
      * @see java.nio.file.Files#newDirectoryStream(Path,String)
      */
     public String[] list(FilenameFilter filter) {
-        String names[] = list();
+        String names[] = normalizedList();
         if ((names == null) || (filter == null)) {
             return names;
         }
@@ -1204,7 +1241,7 @@ public class File
      * @since  1.2
      */
     public File[] listFiles() {
-        String[] ss = list();
+        String[] ss = normalizedList();
         if (ss == null) return null;
         int n = ss.length;
         File[] fs = new File[n];
@@ -1245,7 +1282,7 @@ public class File
      * @see java.nio.file.Files#newDirectoryStream(Path,String)
      */
     public File[] listFiles(FilenameFilter filter) {
-        String ss[] = list();
+        String ss[] = normalizedList();
         if (ss == null) return null;
         ArrayList<File> files = new ArrayList<>();
         for (String s : ss)
@@ -1283,7 +1320,7 @@ public class File
      * @see java.nio.file.Files#newDirectoryStream(Path,java.nio.file.DirectoryStream.Filter)
      */
     public File[] listFiles(FileFilter filter) {
-        String ss[] = list();
+        String ss[] = normalizedList();
         if (ss == null) return null;
         ArrayList<File> files = new ArrayList<>();
         for (String s : ss) {
@@ -1302,7 +1339,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method does not permit the named directory to be created
      */
     public boolean mkdir() {
@@ -1328,11 +1365,11 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkRead(String)}</code>
+     *          java.lang.SecurityManager#checkRead(java.lang.String)}</code>
      *          method does not permit verification of the existence of the
      *          named directory and all necessary parent directories; or if
      *          the <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method does not permit the named directory and all necessary
      *          parent directories to be created
      */
@@ -1376,7 +1413,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to either the old or new pathnames
      *
      * @throws  NullPointerException
@@ -1418,7 +1455,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the named file
      *
      * @since 1.2
@@ -1449,7 +1486,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the named file
      *
      * @since 1.2
@@ -1492,7 +1529,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the named file
      *
      * @since 1.6
@@ -1530,7 +1567,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
      *
      * @since 1.6
@@ -1569,7 +1606,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
      *
      * @since 1.6
@@ -1610,7 +1647,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
      *
      * @since 1.6
@@ -1649,7 +1686,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
      *
      * @since 1.6
@@ -1690,7 +1727,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method denies write access to the file
      *
      * @since 1.6
@@ -1711,7 +1748,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkExec(String)}</code>
+     *          java.lang.SecurityManager#checkExec(java.lang.String)}</code>
      *          method denies execute access to the file
      *
      * @since 1.6
@@ -1988,7 +2025,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method does not allow a file to be created
      *
      * @since 1.2
@@ -2030,8 +2067,8 @@ public class File
     /**
      * Creates an empty file in the default temporary-file directory, using
      * the given prefix and suffix to generate its name. Invoking this method
-     * is equivalent to invoking <code>{@link #createTempFile(String,
-     * String, File)
+     * is equivalent to invoking <code>{@link #createTempFile(java.lang.String,
+     * java.lang.String, java.io.File)
      * createTempFile(prefix,&nbsp;suffix,&nbsp;null)}</code>.
      *
      * <p> The {@link
@@ -2058,7 +2095,7 @@ public class File
      *
      * @throws  SecurityException
      *          If a security manager exists and its <code>{@link
-     *          SecurityManager#checkWrite(String)}</code>
+     *          java.lang.SecurityManager#checkWrite(java.lang.String)}</code>
      *          method does not allow a file to be created
      *
      * @since 1.2
@@ -2149,7 +2186,7 @@ public class File
      * <p>
      * @serialData  Default fields followed by separator character.
      */
-    private synchronized void writeObject(ObjectOutputStream s)
+    private synchronized void writeObject(java.io.ObjectOutputStream s)
         throws IOException
     {
         s.defaultWriteObject();
@@ -2162,7 +2199,7 @@ public class File
      * than the separator character on this system, then the old separator
      * is replaced by the local separator.
      */
-    private synchronized void readObject(ObjectInputStream s)
+    private synchronized void readObject(java.io.ObjectInputStream s)
          throws IOException, ClassNotFoundException
     {
         ObjectInputStream.GetField fields = s.readFields();
@@ -2202,12 +2239,12 @@ public class File
     /**
      * Returns a {@link Path java.nio.file.Path} object constructed from the
      * this abstract path. The resulting {@code Path} is associated with the
-     * {@link FileSystems#getDefault default-filesystem}.
+     * {@link java.nio.file.FileSystems#getDefault default-filesystem}.
      *
      * <p> The first invocation of this method works as if invoking it were
      * equivalent to evaluating the expression:
      * <blockquote><pre>
-     * {@link FileSystems#getDefault FileSystems.getDefault}().{@link
+     * {@link java.nio.file.FileSystems#getDefault FileSystems.getDefault}().{@link
      * java.nio.file.FileSystem#getPath getPath}(this.{@link #getPath getPath}());
      * </pre></blockquote>
      * Subsequent invocations of this method return the same {@code Path}.

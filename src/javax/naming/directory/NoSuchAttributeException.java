@@ -44,7 +44,7 @@ public class NoSuchAttributeException extends NamingException {
      * Constructs a new instance of NoSuchAttributeException using
      * an explanation. All other fields are set to null.
      * @param   explanation     Additional detail about this exception. Can be null.
-     * @see Throwable#getMessage
+     * @see java.lang.Throwable#getMessage
      */
     public NoSuchAttributeException(String explanation) {
         super(explanation);
