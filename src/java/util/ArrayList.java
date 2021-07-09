@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2017, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -104,12 +84,11 @@ import sun.misc.SharedSecrets;
  * @since   1.2
  */
 
-public class ArrayList<E> extends AbstractList<E>
-        implements List<E>, RandomAccess, Cloneable, java.io.Serializable
-{
+public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable {
     private static final long serialVersionUID = 8683452581122892189L;
 
     /**
+     * 默认的初始容量 capacity=10<p>
      * Default initial capacity.
      */
     private static final int DEFAULT_CAPACITY = 10;
@@ -258,9 +237,14 @@ public class ArrayList<E> extends AbstractList<E>
     private void grow(int minCapacity) {
         // overflow-conscious code
         int oldCapacity = elementData.length;
+
+        // 新的容量：右移一位（扩容到原来的1.5倍）
         int newCapacity = oldCapacity + (oldCapacity >> 1);
+
         if (newCapacity - minCapacity < 0)
             newCapacity = minCapacity;
+
+        // 新的容量
         if (newCapacity - MAX_ARRAY_SIZE > 0)
             newCapacity = hugeCapacity(minCapacity);
         // minCapacity is usually close to size, so this is a win:
@@ -455,18 +439,20 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     /**
+     * 向数组中插入元素 - 插入到数组的最后一个元素位置<p>
      * Appends the specified element to the end of this list.
-     *
      * @param e element to be appended to this list
      * @return <tt>true</tt> (as specified by {@link Collection#add})
      */
     public boolean add(E e) {
+        // minCapacity：原来的数组长度+1
         ensureCapacityInternal(size + 1);  // Increments modCount!!
         elementData[size++] = e;
         return true;
     }
 
     /**
+     * 向数组中的插入元素 - 通过索引<p>
      * Inserts the specified element at the specified position in this
      * list. Shifts the element currently at that position (if any) and
      * any subsequent elements to the right (adds one to their indices).
@@ -476,11 +462,13 @@ public class ArrayList<E> extends AbstractList<E>
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     public void add(int index, E element) {
+        // 判断插入位置是否合法
         rangeCheckForAdd(index);
 
+        // 确认数组最后一个元素的下标，minCapacity：原来的数组长度+1
         ensureCapacityInternal(size + 1);  // Increments modCount!!
-        System.arraycopy(elementData, index, elementData, index + 1,
-                         size - index);
+        // 数组复制
+        System.arraycopy(elementData, index, elementData, index + 1, size - index);
         elementData[index] = element;
         size++;
     }
@@ -660,6 +648,7 @@ public class ArrayList<E> extends AbstractList<E>
     }
 
     /**
+     * 判断插入位置是否合法<p>
      * A version of rangeCheck used by add and addAll.
      */
     private void rangeCheckForAdd(int index) {

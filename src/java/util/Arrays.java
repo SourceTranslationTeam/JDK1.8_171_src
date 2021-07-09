@@ -1,26 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package java.util;
@@ -94,7 +74,8 @@ public class Arrays {
      * deleting or bypassing ComparableTimSort.  There is currently no
      * empirical case for separating them for parallel sorting, so all
      * public Object parallelSort methods use the same comparator
-     * based implementation.
+     * based implementation.<p>
+     * 排序的内部类
      */
     static final class NaturalOrder implements Comparator<Object> {
         @SuppressWarnings("unchecked")
@@ -442,7 +423,7 @@ public class Arrays {
     }
 
     /**
-     * Sorts the specified array into ascending numerical order.
+     * 并行排序 Sorts the specified array into ascending numerical order.
      *
      * @implNote The sorting algorithm is a parallel sort-merge that breaks the
      * array into sub-arrays that are themselves sorted and then merged. When
@@ -1185,16 +1166,13 @@ public class Arrays {
      */
 
     /**
-     * Old merge sort implementation can be selected (for
+     * 旧的归并排序 Old merge sort implementation can be selected (for
      * compatibility with broken comparators) using a system property.
      * Cannot be a static boolean in the enclosing class due to
      * circular dependencies. To be removed in a future release.
      */
     static final class LegacyMergeSort {
-        private static final boolean userRequested =
-            java.security.AccessController.doPrivileged(
-                new sun.security.action.GetBooleanAction(
-                    "java.util.Arrays.useLegacyMergeSort")).booleanValue();
+        private static final boolean userRequested = java.security.AccessController.doPrivileged(new sun.security.action.GetBooleanAction("java.util.Arrays.useLegacyMergeSort")).booleanValue();
     }
 
     /**
@@ -1239,6 +1217,7 @@ public class Arrays {
      *         ordering of the array elements is found to violate the
      *         {@link Comparable} contract
      */
+    // 快速排序
     public static void sort(Object[] a) {
         if (LegacyMergeSort.userRequested)
             legacyMergeSort(a);
@@ -1334,6 +1313,7 @@ public class Arrays {
      * off is the offset to generate corresponding low, high in src
      * To be removed in a future release.
      */
+    // 归并排序
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static void mergeSort(Object[] src,
                                   Object[] dest,
@@ -1588,6 +1568,7 @@ public class Arrays {
      * @throws NullPointerException if the specified array or function is null
      * @since 1.8
      */
+    // 并行前缀求和
     public static <T> void parallelPrefix(T[] array, BinaryOperator<T> op) {
         Objects.requireNonNull(op);
         if (array.length > 0)
@@ -1779,6 +1760,7 @@ public class Arrays {
      *         that this guarantees that the return value will be &gt;= 0 if
      *         and only if the key is found.
      */
+    // 二分查找
     public static int binarySearch(long[] a, long key) {
         return binarySearch0(a, 0, a.length, key);
     }
@@ -2567,6 +2549,7 @@ public class Arrays {
      * @param a2 the other array to be tested for equality
      * @return <tt>true</tt> if the two arrays are equal
      */
+    // 比较两个数组是否相等（比较元素）
     public static boolean equals(long[] a, long[] a2) {
         if (a==a2)
             return true;
@@ -2842,6 +2825,7 @@ public class Arrays {
      * @param a the array to be filled
      * @param val the value to be stored in all elements of the array
      */
+    // 将指定的值赋值给数组的每个元素
     public static void fill(long[] a, long val) {
         for (int i = 0, len = a.length; i < len; i++)
             a[i] = val;
@@ -3176,6 +3160,7 @@ public class Arrays {
      * @throws NullPointerException if <tt>original</tt> is null
      * @since 1.6
      */
+    // 复制数组
     @SuppressWarnings("unchecked")
     public static <T> T[] copyOf(T[] original, int newLength) {
         return (T[]) copyOf(original, newLength, original.getClass());
@@ -3794,6 +3779,7 @@ public class Arrays {
      * @param a the array by which the list will be backed
      * @return a list view of the specified array
      */
+    // 把数组转换成List
     @SafeVarargs
     @SuppressWarnings("varargs")
     public static <T> List<T> asList(T... a) {
@@ -3813,6 +3799,9 @@ public class Arrays {
             a = Objects.requireNonNull(array);
         }
 
+        /**
+         * 大小
+         */
         @Override
         public int size() {
             return a.length;
@@ -3912,6 +3901,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
+    // 获取hash值
     public static int hashCode(long a[]) {
         if (a == null)
             return 0;
@@ -4844,6 +4834,7 @@ public class Arrays {
      * @return a spliterator for the array elements
      * @since 1.8
      */
+    // 分割数组的元素
     public static <T> Spliterator<T> spliterator(T[] array) {
         return Spliterators.spliterator(array,
                                         Spliterator.ORDERED | Spliterator.IMMUTABLE);

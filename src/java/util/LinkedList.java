@@ -80,10 +80,7 @@ import java.util.function.Consumer;
  * @param <E> the type of elements held in this collection
  */
 
-public class LinkedList<E>
-    extends AbstractSequentialList<E>
-    implements List<E>, Deque<E>, Cloneable, java.io.Serializable
-{
+public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, java.io.Serializable {
     transient int size = 0;
 
     /**
@@ -120,6 +117,7 @@ public class LinkedList<E>
     }
 
     /**
+     * 链表操作：头插<p>
      * Links e as first element.
      */
     private void linkFirst(E e) {
@@ -967,6 +965,9 @@ public class LinkedList<E>
         }
     }
 
+    /**
+     * 链表的结点：是一个内部类
+     */
     private static class Node<E> {
         E item;
         Node<E> next;
